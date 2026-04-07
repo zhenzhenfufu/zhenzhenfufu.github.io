@@ -22,7 +22,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--t1);font-family:var(--body);font-size:15px;line-height:1.7;overflow-x:hidden}
+body{background:var(--bg);color:var(--t1);font-family:var(--body);font-size:15px;line-height:1.7;overflow-x:hidden;padding-bottom:0}
 
 /* ─── dot bg ─── */
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(circle,rgba(155,0,255,.06) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0}
@@ -52,6 +52,22 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(circle
 .petal:nth-child(7){left:78%;width:9px;height:9px;background:#A0FFD4;animation-duration:13s;animation-delay:1.2s}
 .petal:nth-child(8){left:88%;width:11px;height:11px;background:#FFB3CC;animation-duration:10s;animation-delay:3.5s}
 @keyframes pFall{0%{opacity:0;transform:translateY(-20px) rotate(0deg) translateX(0)}8%{opacity:.7}92%{opacity:.5}100%{opacity:0;transform:translateY(105vh) rotate(700deg) translateX(50px)}}
+
+/* ─── anime characters ─── */
+.anime-char{position:fixed;pointer-events:none;z-index:2;bottom:0;animation:charFloat 4s ease-in-out infinite}
+.anime-char svg{filter:drop-shadow(0 4px 16px rgba(155,0,255,.18))}
+.char-furina{right:18px;bottom:0;animation-delay:0s}
+.char-nino{left:12px;bottom:0;animation-delay:1s}
+.char-violet{right:200px;bottom:0;animation-delay:2s;opacity:.85}
+.char-saber{left:200px;bottom:0;animation-delay:1.5s;opacity:.85}
+@keyframes charFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* ─── anime decorations (small stickers) ─── */
+.sticker{position:fixed;pointer-events:none;z-index:2;animation:stickerBob 3s ease-in-out infinite}
+.sticker-1{top:120px;left:10px;animation-delay:.5s}
+.sticker-2{top:300px;right:10px;animation-delay:1.2s}
+.sticker-3{top:500px;left:8px;animation-delay:2s}
+@keyframes stickerBob{0%,100%{transform:rotate(-5deg) scale(1)}50%{transform:rotate(5deg) scale(1.06)}}
 
 /* ─── nav ─── */
 nav{position:fixed;top:0;left:0;right:0;z-index:300;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;background:rgba(255,254,245,.92);backdrop-filter:blur(16px);border-bottom:2px solid var(--brd)}
@@ -241,6 +257,8 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
   .tl-empty{display:none!important}
   .tl-node{grid-column:1;padding-top:.9rem}
   .tl-card-inner{max-width:100%;margin-left:0!important}
+  .anime-char{display:none}
+  .sticker{display:none}
 }
 </style>
 </head>
@@ -280,14 +298,14 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
       <div>
         <div class="h-badge">🌸 <span data-i18n="hero.badge">UCSD 2029届 · 圣地亚哥</span></div>
         <h1 class="h-name">Zhen<br><span class="rainbow" data-i18n="hero.name2">Wang ✦</span></h1>
-        <p class="h-sub">zhw124@ucsd.edu &nbsp;·&nbsp; Data Science &amp; Math-CS</p>
+        <p class="h-sub"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a8d2c0df999a9ce8ddcbdbcc86cdccdd">[email&#160;protected]</a> &nbsp;·&nbsp; Data Science &amp; Math-CS</p>
         <p class="h-desc" data-i18n="hero.desc">
           UCSD 数据科学 &amp; 数学-计算机科学双专业在读，
           边缘 AI 能效研究员，动漫爱好者。
           在数据、算法和 AI 的交叉点探索世界 ✨
         </p>
         <div class="h-btns">
-          <a href="mailto:zhw124@ucsd.edu" class="btn btn-main">✉ <span data-i18n="hero.cta1">打个招呼</span></a>
+          <a href="/cdn-cgi/l/email-protection#9be1f3ecaaa9afdbeef8e8ffb5feffee" class="btn btn-main">✉ <span data-i18n="hero.cta1">打个招呼</span></a>
           <a href="#experience" class="btn btn-s"><span data-i18n="hero.cta2">查看我的经历</span> ↓</a>
         </div>
       </div>
@@ -322,11 +340,11 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
       <div class="exp-card">
         <div class="e-icon ei-p">🔬</div>
         <div>
-          <div class="e-org" data-i18n="e1.org">UCSD · TRELS 科研奖学金</div>
+          <div class="e-org" data-i18n="e1.org">UCSD · 独立本科科研项目</div>
           <div class="e-role" data-i18n="e1.role">独立研究员 — 边缘 AI 热节流效应研究</div>
           <span class="chip c-p" style="display:inline-block;margin:.2rem 0 .7rem" data-i18n="e1.date">2026.03 – 至今</span>
           <ul class="e-ul" id="e1-ul">
-            <li data-i18n="e1.b1">获得 TRELS 本科科研奖学金，独立主导课题：边缘 AI 热节流效应与能效关系。导师：Peter Chi 教授。</li>
+            <li data-i18n="e1.b1">独立主导课题：边缘 AI 热节流效应与能效关系。导师：Peter Chi 教授。</li>
             <li data-i18n="e1.b2">在 GPU/Jetson 设备上部署 Llama-3 推理任务，使用 nvidia-smi &amp; Prometheus 实时采集 GPU 温度、时钟频率、功耗与吞吐量。</li>
             <li data-i18n="e1.b3">构建"效率-热量"量化模型，产出含可视化仪表盘的技术报告，为不同热状态下 AI 推理提供实证数据。</li>
           </ul>
@@ -337,7 +355,7 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
         <div class="e-icon ei-v">📊</div>
         <div>
           <div class="e-org" data-i18n="e2.org">UCSD · Halıcıoğlu 数据科学院</div>
-          <div class="e-role" data-i18n="e2.role">研究助理 — Sam Lau 教授课题组</div>
+          <div class="e-role" data-i18n="e2.role">研究助理 — 数据科学教育研究</div>
           <span class="chip c-v" style="display:inline-block;margin:.2rem 0 .7rem" data-i18n="e2.date">2026.01 – 至今</span>
           <ul class="e-ul">
             <li data-i18n="e2.b1">采集与处理学生数据科学前后测数据，构建量化评估管道。</li>
@@ -463,7 +481,7 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
           <div class="tl-card-inner">
             <div class="tl-year">2026.01 – 至今</div>
             <div class="tl-event" data-i18n="tl7.ev">📊 HDSI 数据科学院 RA</div>
-            <div class="tl-detail" data-i18n="tl7.d">加入 Sam Lau 教授团队，参与数据科学教育研究，探索 Pandas Tutor 工具对教学流程的优化潜力。</div>
+            <div class="tl-detail" data-i18n="tl7.d">加入 HDSI 课题组，参与数据科学教育研究，探索 Pandas Tutor 工具对教学流程的优化潜力。</div>
           </div>
         </div>
         <div class="tl-node"><div class="tl-dot" style="box-shadow:0 0 0 3px var(--b),0 4px 14px var(--shd)">📊</div></div>
@@ -476,8 +494,8 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
         <div class="tl-content">
           <div class="tl-card-inner">
             <div class="tl-year">2026.03 – 至今</div>
-            <div class="tl-event" data-i18n="tl8.ev">🏆 获 TRELS 奖学金，独立科研</div>
-            <div class="tl-detail" data-i18n="tl8.d">获得 TRELS 本科科研奖学金，独立主导边缘 AI 热节流效应研究，向着高性能计算与 AI 研究方向全力前进。</div>
+            <div class="tl-event" data-i18n="tl8.ev">🏆 获科研资助，独立科研</div>
+            <div class="tl-detail" data-i18n="tl8.d">获得本科科研资助，独立主导边缘 AI 热节流效应研究，向着高性能计算与 AI 研究方向全力前进。</div>
           </div>
         </div>
       </div>
@@ -497,7 +515,7 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
       <div class="proj-card pc1">
         <div class="proj-n">01 · 2026.03 – 至今</div>
         <div class="proj-title" data-i18n="p1.t">边缘 AI 热节流效应研究</div>
-        <p class="proj-desc" data-i18n="p1.d">TRELS 资助的独立研究，在 Jetson 上部署 Llama-3，构建实时监控管道与"效率-热量"量化模型，探究边缘推理能效边界。</p>
+        <p class="proj-desc" data-i18n="p1.d">独立本科科研项目，在 Jetson 上部署 Llama-3，构建实时监控管道与"效率-热量"量化模型，探究边缘推理能效边界。</p>
         <div class="tag-row"><span class="chip c-p">Edge AI</span><span class="chip c-v">LLM</span><span class="chip c-b">GPU 性能分析</span></div>
       </div>
       <div class="proj-card pc2">
@@ -560,7 +578,7 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
           <div class="m-av">王</div>
           <div><div class="m-name">王臻</div><div class="m-date">2026.03.15</div></div>
         </div>
-        <p class="m-text" data-i18n="m1.t">TRELS 奖学金批了！！要开始我的独立科研了 🎉 研究方向是边缘 AI 的热节流效应，导师是 Peter Chi 教授。下周开始在 Jetson 上跑 Llama-3，感觉超兴奋的，加油！✨⚡</p>
+        <p class="m-text" data-i18n="m1.t">独立科研项目批了！！要开始我的独立科研了 🎉 研究方向是边缘 AI 的热节流效应，导师是 Peter Chi 教授。下周开始在 Jetson 上跑 Llama-3，感觉超兴奋的，加油！✨⚡</p>
         <div class="m-imgs g1"><div class="m-img-ph tall" style="font-size:36px">🔬⚡🤖</div></div>
         <div class="m-footer">
           <div class="tag-row"><span class="chip c-v">科研</span><span class="chip c-b">Edge AI</span><span class="chip c-g">UCSD</span></div>
@@ -617,7 +635,7 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
           <div class="ct-sb" data-i18n="ct.sub">UCSD · 数据科学 &amp; 数学-CS · 2029 届</div>
         </div>
         <div class="ct-items">
-          <a href="mailto:zhw124@ucsd.edu" class="citem"><span class="ci-ico">✉️</span><div><span class="ci-lbl">Email</span>zhw124@ucsd.edu</div></a>
+          <a href="/cdn-cgi/l/email-protection#0973617e383b3d497c6a7a6d276c6d7c" class="citem"><span class="ci-ico">✉️</span><div><span class="ci-lbl">Email</span><span class="__cf_email__" data-cfemail="97edffe0a6a5a3d7e2f4e4f3b9f2f3e2">[email&#160;protected]</span></div></a>
           <a href="tel:+18582208768" class="citem"><span class="ci-ico">📱</span><div><span class="ci-lbl" data-i18n="ct.phone">电话 (US)</span>858-220-8768</div></a>
           <div class="citem" style="cursor:default"><span class="ci-ico">📍</span><div><span class="ci-lbl" data-i18n="ct.loc">所在地</span><span data-i18n="ct.locv">圣地亚哥 / 上海</span></div></div>
           <a href="https://pandastutor.com" target="_blank" class="citem"><span class="ci-ico">🔗</span><div><span class="ci-lbl" data-i18n="ct.proj">研究项目</span>pandastutor.com</div></a>
@@ -627,9 +645,9 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
         <span style="font-size:32px;display:block;margin-bottom:.8rem">🌸</span>
         <div class="open-pill"><span class="open-dot"></span><span data-i18n="ct.open">开放机遇中</span></div>
         <h3 data-i18n="ct.h3">一起做些有趣的事吧！</h3>
-        <p data-i18n="ct.p1">我目前是 UCSD 的 TRELS 独立研究员，在研究边缘 AI 能效问题。随时欢迎聊科研、数据科学、合作机会，或者只是打个招呼 ✨</p>
+        <p data-i18n="ct.p1">我目前是 UCSD 的独立本科研究员，在研究边缘 AI 能效问题，导师是 Peter Chi 教授。随时欢迎聊科研、数据科学、合作机会，或者只是打个招呼 ✨</p>
         <p data-i18n="ct.p2">数据科学 &amp; 数学-计算机科学双专业，预计 2029 年毕业。</p>
-        <a href="mailto:zhw124@ucsd.edu" class="btn btn-main" style="margin-top:.4rem" data-i18n="ct.btn">发消息给我 💌</a>
+        <a href="/cdn-cgi/l/email-protection#3f4557480e0d0b7f4a5c4c5b115a5b4a" class="btn btn-main" style="margin-top:.4rem" data-i18n="ct.btn">发消息给我 💌</a>
       </div>
     </div>
   </div>
@@ -642,7 +660,238 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
   <span><span data-i18n="ft">用</span> <span class="fh">♡</span> <span data-i18n="ft2">制作 · UCSD 数据科学 &amp; 数学-CS</span></span>
 </footer>
 
-<script>
+<!-- ╔══ ANIME CHARACTERS ══╗ -->
+<!-- Furina (Genshin) - right side -->
+<div class="anime-char char-furina">
+<svg width="90" height="160" viewBox="0 0 90 160" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hat -->
+  <ellipse cx="45" cy="30" rx="30" ry="8" fill="#1a1a3e"/>
+  <rect x="28" y="10" width="34" height="22" rx="6" fill="#1a1a3e"/>
+  <circle cx="45" cy="10" r="8" fill="#6fa8dc"/>
+  <ellipse cx="45" cy="10" rx="5" ry="5" fill="#a0c4ff"/>
+  <!-- Hair -->
+  <ellipse cx="45" cy="42" rx="20" ry="16" fill="#b8d4f5"/>
+  <rect x="25" y="40" width="8" height="28" rx="4" fill="#b8d4f5"/>
+  <rect x="57" y="40" width="8" height="28" rx="4" fill="#b8d4f5"/>
+  <!-- Face -->
+  <ellipse cx="45" cy="50" rx="15" ry="16" fill="#fde8d8"/>
+  <!-- Eyes -->
+  <ellipse cx="39" cy="49" rx="4" ry="4.5" fill="#4a90d9"/>
+  <ellipse cx="51" cy="49" rx="4" ry="4.5" fill="#4a90d9"/>
+  <circle cx="40" cy="48" r="1.5" fill="#fff"/>
+  <circle cx="52" cy="48" r="1.5" fill="#fff"/>
+  <ellipse cx="39" cy="50" rx="2.5" ry="2.5" fill="#1a4a8c"/>
+  <ellipse cx="51" cy="50" rx="2.5" ry="2.5" fill="#1a4a8c"/>
+  <!-- Blush -->
+  <ellipse cx="35" cy="54" rx="4" ry="2.5" fill="#ffb3c6" opacity=".5"/>
+  <ellipse cx="55" cy="54" rx="4" ry="2.5" fill="#ffb3c6" opacity=".5"/>
+  <!-- Mouth -->
+  <path d="M41 58 Q45 62 49 58" stroke="#d4607a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Body / dress -->
+  <path d="M30 66 Q45 72 60 66 L65 130 Q45 138 25 130Z" fill="#1e2d6e"/>
+  <!-- White collar / lace -->
+  <path d="M33 66 Q45 74 57 66" stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <ellipse cx="45" cy="70" rx="8" ry="4" fill="#ffffff" opacity=".8"/>
+  <!-- Frills on dress -->
+  <path d="M25 100 Q35 95 45 100 Q55 95 65 100" stroke="#4a6fbd" stroke-width="2" fill="none"/>
+  <path d="M25 115 Q35 110 45 115 Q55 110 65 115" stroke="#4a6fbd" stroke-width="2" fill="none"/>
+  <!-- Gold trim -->
+  <path d="M30 66 L27 130" stroke="#f5c842" stroke-width="1.5" opacity=".7"/>
+  <path d="M60 66 L63 130" stroke="#f5c842" stroke-width="1.5" opacity=".7"/>
+  <!-- Arms -->
+  <rect x="16" y="68" width="12" height="38" rx="6" fill="#fde8d8"/>
+  <rect x="62" y="68" width="12" height="38" rx="6" fill="#fde8d8"/>
+  <!-- Gloves -->
+  <rect x="15" y="100" width="14" height="18" rx="6" fill="#d4e8ff"/>
+  <rect x="61" y="100" width="14" height="18" rx="6" fill="#d4e8ff"/>
+  <!-- Legs -->
+  <rect x="33" y="128" width="10" height="30" rx="5" fill="#f0d0c0"/>
+  <rect x="47" y="128" width="10" height="30" rx="5" fill="#f0d0c0"/>
+  <!-- Shoes -->
+  <ellipse cx="38" cy="158" rx="8" ry="4" fill="#1a1a3e"/>
+  <ellipse cx="52" cy="158" rx="8" ry="4" fill="#1a1a3e"/>
+  <!-- Name label -->
+  <rect x="18" y="136" width="54" height="16" rx="8" fill="rgba(30,45,110,0.85)"/>
+  <text x="45" y="148" font-size="9" text-anchor="middle" fill="#a0c4ff" font-family="sans-serif" font-weight="bold">芙宁娜 ✦</text>
+</svg>
+</div>
+
+<!-- Nino (Quintessential Quintuplets) - left side -->
+<div class="anime-char char-nino">
+<svg width="85" height="155" viewBox="0 0 85 155" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hair - pink twin tails -->
+  <ellipse cx="42" cy="38" rx="20" ry="18" fill="#f48fb1"/>
+  <!-- twin tails -->
+  <path d="M18 45 Q5 60 8 85 Q14 90 20 85 Q18 65 25 52Z" fill="#f48fb1"/>
+  <path d="M66 45 Q79 60 76 85 Q70 90 64 85 Q66 65 59 52Z" fill="#f48fb1"/>
+  <!-- hair bows -->
+  <path d="M10 55 Q4 50 10 46 Q16 50 10 55Z" fill="#ff4081"/>
+  <path d="M74 55 Q80 50 74 46 Q68 50 74 55Z" fill="#ff4081"/>
+  <circle cx="10" cy="50" r="3" fill="#ff4081"/>
+  <circle cx="74" cy="50" r="3" fill="#ff4081"/>
+  <!-- Face -->
+  <ellipse cx="42" cy="46" rx="16" ry="17" fill="#fde8d8"/>
+  <!-- Eyes -->
+  <ellipse cx="36" cy="45" rx="4" ry="4.5" fill="#c2185b"/>
+  <ellipse cx="48" cy="45" rx="4" ry="4.5" fill="#c2185b"/>
+  <circle cx="37" cy="44" r="1.5" fill="#fff"/>
+  <circle cx="49" cy="44" r="1.5" fill="#fff"/>
+  <!-- Blush -->
+  <ellipse cx="31" cy="50" rx="4" ry="2.5" fill="#ffb3c6" opacity=".6"/>
+  <ellipse cx="53" cy="50" rx="4" ry="2.5" fill="#ffb3c6" opacity=".6"/>
+  <!-- Mouth -->
+  <path d="M38 54 Q42 58 46 54" stroke="#d4607a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- School uniform body -->
+  <path d="M26 63 Q42 70 58 63 L62 128 Q42 135 22 128Z" fill="#3949ab"/>
+  <!-- White shirt collar / bow -->
+  <path d="M34 63 Q42 70 50 63" stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M39 67 L42 75 L45 67" fill="#ff4081" stroke="#ff4081" stroke-width="1"/>
+  <!-- Skirt pleats -->
+  <path d="M22 103 Q32 98 42 103 Q52 98 62 103" stroke="#283593" stroke-width="2" fill="none"/>
+  <path d="M22 115 Q32 110 42 115 Q52 110 62 115" stroke="#283593" stroke-width="2" fill="none"/>
+  <!-- Arms -->
+  <rect x="14" y="65" width="11" height="36" rx="5.5" fill="#fde8d8"/>
+  <rect x="60" y="65" width="11" height="36" rx="5.5" fill="#fde8d8"/>
+  <!-- Legs -->
+  <rect x="31" y="126" width="10" height="28" rx="5" fill="#fde8d8"/>
+  <rect x="44" y="126" width="10" height="28" rx="5" fill="#fde8d8"/>
+  <!-- Shoes -->
+  <ellipse cx="36" cy="153" rx="8" ry="4" fill="#212121"/>
+  <ellipse cx="49" cy="153" rx="8" ry="4" fill="#212121"/>
+  <!-- Name label -->
+  <rect x="14" y="132" width="56" height="16" rx="8" fill="rgba(193,35,97,0.85)"/>
+  <text x="42" y="144" font-size="9" text-anchor="middle" fill="#ffd6e7" font-family="sans-serif" font-weight="bold">二乃 ✦</text>
+</svg>
+</div>
+
+<!-- Violet Evergarden - right inner -->
+<div class="anime-char char-violet">
+<svg width="80" height="148" viewBox="0 0 80 148" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hair - long blonde -->
+  <ellipse cx="40" cy="35" rx="18" ry="16" fill="#f5e642"/>
+  <rect x="22" y="32" width="7" height="40" rx="3.5" fill="#f5e642"/>
+  <rect x="51" y="32" width="7" height="40" rx="3.5" fill="#f5e642"/>
+  <path d="M22 50 Q15 70 18 90 Q23 92 26 88 Q22 70 27 55Z" fill="#f5e642"/>
+  <path d="M58 50 Q65 70 62 90 Q57 92 54 88 Q58 70 53 55Z" fill="#f5e642"/>
+  <!-- Hair ribbon -->
+  <rect x="28" y="30" width="24" height="5" rx="2.5" fill="#80cbc4"/>
+  <!-- Face -->
+  <ellipse cx="40" cy="42" rx="14" ry="15" fill="#fde8d8"/>
+  <!-- Eyes - blue/teal -->
+  <ellipse cx="34" cy="41" rx="4" ry="4.5" fill="#4dd0e1"/>
+  <ellipse cx="46" cy="41" rx="4" ry="4.5" fill="#4dd0e1"/>
+  <circle cx="35" cy="40" r="1.5" fill="#fff"/>
+  <circle cx="47" cy="40" r="1.5" fill="#fff"/>
+  <!-- Blush subtle -->
+  <ellipse cx="29" cy="46" rx="3.5" ry="2" fill="#ffb3c6" opacity=".35"/>
+  <ellipse cx="51" cy="46" rx="3.5" ry="2" fill="#ffb3c6" opacity=".35"/>
+  <!-- Slight smile -->
+  <path d="M36 51 Q40 54 44 51" stroke="#d4607a" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+  <!-- Dress - Victorian style white/cream -->
+  <path d="M26 57 Q40 65 54 57 L58 125 Q40 132 22 125Z" fill="#f5f0e8"/>
+  <!-- Teal accents -->
+  <path d="M28 57 Q40 65 52 57" stroke="#80cbc4" stroke-width="2.5" fill="none"/>
+  <rect x="36" y="62" width="8" height="3" rx="1.5" fill="#80cbc4"/>
+  <!-- Dress details -->
+  <path d="M22 95 Q31 91 40 95 Q49 91 58 95" stroke="#d4c9a0" stroke-width="1.5" fill="none"/>
+  <path d="M22 110 Q31 106 40 110 Q49 106 58 110" stroke="#d4c9a0" stroke-width="1.5" fill="none"/>
+  <!-- Auto Memory Doll arms/gloves -->
+  <rect x="13" y="59" width="11" height="35" rx="5.5" fill="#fde8d8"/>
+  <rect x="56" y="59" width="11" height="35" rx="5.5" fill="#fde8d8"/>
+  <rect x="12" y="88" width="13" height="14" rx="6" fill="#e0e0e0"/>
+  <rect x="55" y="88" width="13" height="14" rx="6" fill="#e0e0e0"/>
+  <!-- Legs -->
+  <rect x="29" y="122" width="10" height="24" rx="5" fill="#fde8d8"/>
+  <rect x="41" y="122" width="10" height="24" rx="5" fill="#fde8d8"/>
+  <!-- Shoes -->
+  <ellipse cx="34" cy="146" rx="8" ry="3.5" fill="#5d4037"/>
+  <ellipse cx="46" cy="146" rx="8" ry="3.5" fill="#5d4037"/>
+  <!-- Name label -->
+  <rect x="10" y="128" width="60" height="16" rx="8" fill="rgba(77,208,225,0.88)"/>
+  <text x="40" y="140" font-size="8.5" text-anchor="middle" fill="#fff" font-family="sans-serif" font-weight="bold">薇尔莉特 ✦</text>
+</svg>
+</div>
+
+<!-- Saber (Fate) - left inner -->
+<div class="anime-char char-saber">
+<svg width="82" height="152" viewBox="0 0 82 152" xmlns="http://www.w3.org/2000/svg">
+  <!-- Armor pauldrons -->
+  <ellipse cx="15" cy="65" rx="12" ry="7" fill="#c8b84a" transform="rotate(-10,15,65)"/>
+  <ellipse cx="67" cy="65" rx="12" ry="7" fill="#c8b84a" transform="rotate(10,67,65)"/>
+  <!-- Hair - golden bun -->
+  <ellipse cx="41" cy="36" rx="17" ry="15" fill="#e8c840"/>
+  <!-- bun -->
+  <circle cx="41" cy="24" r="9" fill="#e8c840"/>
+  <ellipse cx="41" cy="20" rx="6" ry="3" fill="#d4b030"/>
+  <!-- ribbons -->
+  <rect x="33" y="18" width="16" height="4" rx="2" fill="#1a237e"/>
+  <!-- Face -->
+  <ellipse cx="41" cy="44" rx="14" ry="15" fill="#fde8d8"/>
+  <!-- Eyes - green -->
+  <ellipse cx="35" cy="43" rx="4" ry="4.5" fill="#388e3c"/>
+  <ellipse cx="47" cy="43" rx="4" ry="4.5" fill="#388e3c"/>
+  <circle cx="36" cy="42" r="1.5" fill="#fff"/>
+  <circle cx="48" cy="42" r="1.5" fill="#fff"/>
+  <!-- Expression - determined -->
+  <path d="M37 52 Q41 55 45 52" stroke="#b0474f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+  <!-- Slight blush -->
+  <ellipse cx="30" cy="48" rx="3.5" ry="2" fill="#ffb3c6" opacity=".3"/>
+  <ellipse cx="52" cy="48" rx="3.5" ry="2" fill="#ffb3c6" opacity=".3"/>
+  <!-- Blue armor chest -->
+  <path d="M27 59 Q41 67 55 59 L59 124 Q41 131 23 124Z" fill="#1a237e"/>
+  <!-- Gold trim chest -->
+  <path d="M29 59 Q41 67 53 59" stroke="#c8b84a" stroke-width="3" fill="none"/>
+  <path d="M29 59 L25 124" stroke="#c8b84a" stroke-width="1.5"/>
+  <path d="M53 59 L57 124" stroke="#c8b84a" stroke-width="1.5"/>
+  <!-- Chest emblem -->
+  <circle cx="41" cy="72" r="5" fill="#c8b84a"/>
+  <circle cx="41" cy="72" r="3" fill="#1a237e"/>
+  <!-- Armor waist band -->
+  <rect x="23" y="100" width="36" height="8" rx="2" fill="#c8b84a"/>
+  <!-- Skirt -->
+  <path d="M23 108 Q41 115 59 108 L62 140 Q41 148 20 140Z" fill="#283593"/>
+  <!-- Arms - armor -->
+  <rect x="13" y="61" width="12" height="38" rx="5" fill="#1a237e"/>
+  <rect x="57" y="61" width="12" height="38" rx="5" fill="#1a237e"/>
+  <rect x="12" y="92" width="14" height="12" rx="5" fill="#c8b84a"/>
+  <rect x="56" y="92" width="14" height="12" rx="5" fill="#c8b84a"/>
+  <!-- Sword hint on right -->
+  <rect x="68" y="40" width="4" height="70" rx="2" fill="#e0e0e0"/>
+  <rect x="62" y="55" width="16" height="4" rx="2" fill="#c8b84a"/>
+  <path d="M70 40 L70 28 L72 35Z" fill="#e0e0e0"/>
+  <!-- Legs -->
+  <rect x="30" y="138" width="10" height="12" rx="5" fill="#fde8d8"/>
+  <rect x="42" y="138" width="10" height="12" rx="5" fill="#fde8d8"/>
+  <!-- Boots -->
+  <rect x="28" y="144" width="14" height="6" rx="3" fill="#1a237e"/>
+  <rect x="40" y="144" width="14" height="6" rx="3" fill="#1a237e"/>
+  <!-- Name label -->
+  <rect x="10" y="130" width="60" height="16" rx="8" fill="rgba(26,35,126,0.88)"/>
+  <text x="41" y="142" font-size="9" text-anchor="middle" fill="#e8c840" font-family="sans-serif" font-weight="bold">Saber ✦</text>
+</svg>
+</div>
+
+<!-- Small sticker decorations -->
+<div class="sticker sticker-1">
+  <svg width="52" height="52" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="26" cy="26" r="24" fill="#fff0f6" stroke="#ffb3d1" stroke-width="2"/>
+    <text x="26" y="33" font-size="22" text-anchor="middle">🌸</text>
+  </svg>
+</div>
+<div class="sticker sticker-2">
+  <svg width="52" height="52" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="26" cy="26" r="24" fill="#f0f4ff" stroke="#b3c6ff" stroke-width="2"/>
+    <text x="26" y="33" font-size="22" text-anchor="middle">⚡</text>
+  </svg>
+</div>
+<div class="sticker sticker-3">
+  <svg width="52" height="52" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="26" cy="26" r="24" fill="#f5f0ff" stroke="#c9b3ff" stroke-width="2"/>
+    <text x="26" y="33" font-size="22" text-anchor="middle">✨</text>
+  </svg>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ══ I18N ══ */
 const T = {
   zh:{
@@ -653,11 +902,11 @@ const T = {
     'pow.title':'旅行者能量站','pow.sub':'VISITOR ENERGY STATION','pow.unit':'份能量已收到','pow.btn':'点击充能 +1',
     'pow.msg0':'你好呀旅行者，快来给我充能吧！',
     'exp.tag':'研究 & 经历','exp.title1':'我做过的','exp.title2':'研究与探索',
-    'e1.org':'UCSD · TRELS 科研奖学金','e1.role':'独立研究员 — 边缘 AI 热节流效应研究','e1.date':'2026.03 – 至今',
-    'e1.b1':'获得 TRELS 本科科研奖学金，独立主导课题：边缘 AI 热节流效应与能效关系。导师：Peter Chi 教授。',
+    'e1.org':'UCSD · 独立本科科研项目','e1.role':'独立研究员 — 边缘 AI 热节流效应研究','e1.date':'2026.03 – 至今',
+    'e1.b1':'独立主导课题：边缘 AI 热节流效应与能效关系。导师：Peter Chi 教授。',
     'e1.b2':'在 GPU/Jetson 设备上部署 Llama-3 推理任务，使用 nvidia-smi & Prometheus 实时采集 GPU 温度、时钟频率、功耗与吞吐量。',
     'e1.b3':'构建"效率-热量"量化模型，产出含可视化仪表盘的技术报告，为不同热状态下 AI 推理提供实证数据。',
-    'e2.org':'UCSD · Halıcıoğlu 数据科学院','e2.role':'研究助理 — Sam Lau 教授课题组','e2.date':'2026.01 – 至今',
+    'e2.org':'UCSD · Halıcıoğlu 数据科学院','e2.role':'研究助理 — 数据科学教育研究','e2.date':'2026.01 – 至今',
     'e2.b1':'采集与处理学生数据科学前后测数据，构建量化评估管道。',
     'e2.b2':'系统学习并评估 Pandas Tutor 工具，分析其数据处理流程优化潜力。',
     'e3.org':'上海交通大学 · 心理学院','e3.role':'研究助理 — 儿童发展与家庭研究实验室','e3.date':'2024.06 – 2025.09',
@@ -674,10 +923,10 @@ const T = {
     'tl4.ev':'🎖️ 学生会实践部副部长','tl4.d':'领导 108 人志愿者团队，在高三繁忙学业中磨砺组织能力与领导力，统筹多项大型校园文化活动。',
     'tl5.ev':'🔬 上海交大心理学院 RA','tl5.d':'人生第一段正式科研经历。独立执行儿童认知评估，在大规模数据流水线中学会了 Stata 与系统化研究方法。',
     'tl6.ev':'✈️ 远赴加州，开启 UCSD','tl6.d':'带着好奇与期待飞越太平洋，开始数据科学 & 数学-计算机科学双专业本科学习。GPA 4.0/4.0。',
-    'tl7.ev':'📊 HDSI 数据科学院 RA','tl7.d':'加入 Sam Lau 教授团队，参与数据科学教育研究，探索 Pandas Tutor 工具对教学流程的优化潜力。',
-    'tl8.ev':'🏆 获 TRELS 奖学金，独立科研','tl8.d':'获得 TRELS 本科科研奖学金，独立主导边缘 AI 热节流效应研究，向着高性能计算与 AI 研究方向全力前进。',
+    'tl7.ev':'📊 HDSI 数据科学院 RA','tl7.d':'加入 HDSI 课题组，参与数据科学教育研究，探索 Pandas Tutor 工具对教学流程的优化潜力。',
+    'tl8.ev':'🏆 获科研资助，独立科研','tl8.d':'获得本科科研资助，独立主导边缘 AI 热节流效应研究，向着高性能计算与 AI 研究方向全力前进。',
     'proj.tag':'精选项目','proj.title1':'做出来的','proj.title2':'成果',
-    'p1.t':'边缘 AI 热节流效应研究','p1.d':'TRELS 资助的独立研究，在 Jetson 上部署 Llama-3，构建实时监控管道与"效率-热量"量化模型，探究边缘推理能效边界。',
+    'p1.t':'边缘 AI 热节流效应研究','p1.d':'独立本科科研项目，在 Jetson 上部署 Llama-3，构建实时监控管道与"效率-热量"量化模型，探究边缘推理能效边界。',
     'p2.t':'英超转会花费与净胜球关系分析','p2.d':'用 Python/Pandas 从 Transfermarkt 爬取 20 支球队近 10 年逐年数据，构建时间序列数据集，用线性回归量化转会投入与竞技成绩的相关性。',
     'p3.t':'"学生为何上学" 社会学研究','p3.d':'带领 5 人团队完成 10 场深度访谈，运用统计假设检验与定性编码处理数据，合作完成 25 页研究报告。满分 100/100 ⭐',
     'p4.t':'儿童发展数据流水线','p4.d':'在上海交大自动化 Stata/Excel 工作流，处理 500+ 小时行为数据。设计 60 变量问卷工具，为 28 名儿童执行韦氏量表等标准化评估。',
@@ -690,14 +939,14 @@ const T = {
     'sk6.n':'表达与传播','sk6.d':'中英双语写作与演示。Bilibili 内容创作者，视频累计播放量 15.5 万+。',
     'mom.tag':'生活分享','mom.title1':'我的','mom.title2':'朋友圈',
     'mom.note':'这里是我的生活碎片。内容持续更新中，快来看看我最近在干嘛～',
-    'm1.t':'TRELS 奖学金批了！！要开始我的独立科研了 🎉 研究方向是边缘 AI 的热节流效应，导师是 Peter Chi 教授。下周开始在 Jetson 上跑 Llama-3，感觉超兴奋的，加油！✨⚡',
+    'm1.t':'独立科研项目批了！！要开始我的独立科研了 🎉 研究方向是边缘 AI 的热节流效应，导师是 Peter Chi 教授。下周开始在 Jetson 上跑 Llama-3，感觉超兴奋的，加油！✨⚡',
     'm2.t':'Club Tennis 今天赢了！打球真的是减压神器，每次打完都感觉充满能量 🎾 顺便说一下期中 Data Science 拿了满绩，开心～下周还有三门课的 midterm，加油加油！',
     'm3.n':'待更新','m3.d':'你的下一条朋友圈内容',
     'm3.t':'📝 在这里填入你想分享的内容。可以是校园生活、研究进展、旅行见闻、动漫感想……什么都可以！',
     'ct.tag':'联系我','ct.title1':'一起','ct.title2':'搞点有意思的事',
     'ct.sub':'UCSD · 数据科学 & 数学-CS · 2029 届','ct.phone':'电话 (US)','ct.loc':'所在地','ct.locv':'圣地亚哥 / 上海',
     'ct.proj':'研究项目','ct.open':'开放机遇中','ct.h3':'一起做些有趣的事吧！',
-    'ct.p1':'我目前是 UCSD 的 TRELS 独立研究员，在研究边缘 AI 能效问题。随时欢迎聊科研、数据科学、合作机会，或者只是打个招呼 ✨',
+    'ct.p1':'我目前是 UCSD 的独立本科研究员，在研究边缘 AI 能效问题，导师是 Peter Chi 教授。随时欢迎聊科研、数据科学、合作机会，或者只是打个招呼 ✨',
     'ct.p2':'数据科学 & 数学-计算机科学双专业，预计 2029 年毕业。',
     'ct.btn':'发消息给我 💌','ft':'用','ft2':'制作 · UCSD 数据科学 & 数学-CS'
   },
@@ -709,11 +958,11 @@ const T = {
     'pow.title':'Traveler Energy Station','pow.sub':'旅行者能量站','pow.unit':'energy received','pow.btn':'Charge +1',
     'pow.msg0':'Hello traveler! Click to give me energy!',
     'exp.tag':'Research & Experience','exp.title1':'What I\'ve','exp.title2':'built & studied',
-    'e1.org':'UCSD · TRELS Research Scholarship','e1.role':'Independent Researcher — Edge AI Thermal Throttling','e1.date':'Mar 2026 – Present',
-    'e1.b1':'Awarded TRELS funding to independently study thermal throttling & energy efficiency in edge AI workloads. Advisor: Prof. Peter Chi.',
+    'e1.org':'UCSD · Independent Undergraduate Research','e1.role':'Independent Researcher — Edge AI Thermal Throttling','e1.date':'Mar 2026 – Present',
+    'e1.b1':'Independently leading a study on thermal throttling & energy efficiency in edge AI workloads. Advisor: Prof. Peter Chi.',
     'e1.b2':'Deployed Llama-3 on GPU/Jetson edge devices; collected real-time GPU temperature, clock speed, power draw and throughput via nvidia-smi & Prometheus.',
     'e1.b3':'Built a quantitative "efficiency-to-heat" model and produced a technical report with visualization dashboards on AI inference energy cost under varying thermal conditions.',
-    'e2.org':'UCSD · Halıcıoğlu Data Science Institute','e2.role':'Research Assistant — Prof. Sam Lau','e2.date':'Jan 2026 – Present',
+    'e2.org':'UCSD · Halıcıoğlu Data Science Institute','e2.role':'Research Assistant — Data Science Education Research','e2.date':'Jan 2026 – Present',
     'e2.b1':'Collected and processed pre/post-instruction data on students\' mastery of data science and statistics; built a quantitative assessment pipeline.',
     'e2.b2':'Systematically studied and evaluated Pandas Tutor for computational workflow optimization potential.',
     'e3.org':'Shanghai Jiao Tong University · Dept. of Psychology','e3.role':'Research Assistant — Child Development & Family Studies Lab','e3.date':'Jun 2024 – Sep 2025',
@@ -730,10 +979,10 @@ const T = {
     'tl4.ev':'🎖️ Student Union Vice Minister','tl4.d':'Led a 108-member volunteer team through major campus events, honing leadership and organizational skills during a busy senior year.',
     'tl5.ev':'🔬 SJTU Psychology Dept. RA','tl5.d':'First formal research experience. Conducted cognitive assessments independently and mastered Stata through a large-scale data pipeline.',
     'tl6.ev':'✈️ Off to California — UCSD Begins','tl6.d':'Crossed the Pacific with curiosity and excitement to begin a double major in Data Science & Math-CS. GPA: 4.0/4.0.',
-    'tl7.ev':'📊 HDSI Research Assistant','tl7.d':'Joined Prof. Sam Lau\'s team on data science education research, evaluating Pandas Tutor for workflow optimization.',
-    'tl8.ev':'🏆 TRELS Scholar — Independent Research','tl8.d':'Awarded TRELS funding to independently lead edge AI thermal throttling research — charging full speed ahead in HPC and AI research.',
+    'tl7.ev':'📊 HDSI Research Assistant','tl7.d':'Joined HDSI to work on data science education research, exploring Pandas Tutor for teaching workflow optimization.',
+    'tl8.ev':'🏆 Research Funding — Independent Study','tl8.d':'Received undergraduate research funding to independently lead edge AI thermal throttling research — charging full speed ahead in HPC and AI research.',
     'proj.tag':'Selected Projects','proj.title1':'Things I\'ve','proj.title2':'shipped',
-    'p1.t':'Edge AI Thermal Throttling Study','p1.d':'TRELS-funded independent research. Deployed Llama-3 on Jetson, built a real-time monitoring pipeline and quantitative efficiency-to-heat model for edge AI inference.',
+    'p1.t':'Edge AI Thermal Throttling Study','p1.d':'Independent undergraduate research. Deployed Llama-3 on Jetson, built a real-time monitoring pipeline and quantitative efficiency-to-heat model for edge AI inference.',
     'p2.t':'EPL Transfer Spending vs. Goal Difference','p2.d':'Scraped 10 years of Premier League transfer data via Python/Pandas from Transfermarkt. Applied linear regression and hypothesis testing to quantify the ROI of transfer investment.',
     'p3.t':'"Why Do Students Go to College?"','p3.d':'Led a 5-member sociology team through 10 in-depth interviews, statistical hypothesis testing, and qualitative coding. Co-authored a 25-page report. Score: 100/100 ⭐',
     'p4.t':'Child Development Data Pipeline','p4.d':'Automated Stata/Excel workflows at SJTU for 500+ hours of behavioral data. Designed 60-variable survey instruments; conducted Wechsler assessments for 28 children.',
@@ -746,14 +995,14 @@ const T = {
     'sk6.n':'Communication','sk6.d':'Bilingual Chinese/English writing and presentation. Bilibili content creator with 155K+ total views.',
     'mom.tag':'Life Sharing','mom.title1':'My','mom.title2':'Moments',
     'mom.note':'Snippets of my life. Updated regularly — come see what I\'ve been up to!',
-    'm1.t':'TRELS grant approved!! Starting my independent research 🎉 Topic: thermal throttling & energy efficiency in edge AI. Deploying Llama-3 on Jetson next week — so excited, let\'s go! ✨⚡',
+    'm1.t':'Research funding approved!! Starting my independent research 🎉 Topic: thermal throttling & energy efficiency in edge AI. Deploying Llama-3 on Jetson next week — so excited, let\'s go! ✨⚡',
     'm2.t':'Won the Club Tennis match today! Tennis is such a great stress reliever 🎾 Also aced the Data Science midterm~ Three more midterms next week, here we go!',
     'm3.n':'Coming Soon','m3.d':'Your next post here',
     'm3.t':'📝 Add your content here. Campus life, research updates, travel, anime thoughts — anything goes! Edit the #moments section in index.html to add new cards.',
     'ct.tag':'Contact','ct.title1':'Let\'s','ct.title2':'build something together',
     'ct.sub':'UCSD · Data Science & Math-CS · Class of 2029','ct.phone':'Phone (US)','ct.loc':'Location','ct.locv':'San Diego / Shanghai',
     'ct.proj':'Research Project','ct.open':'Open to opportunities','ct.h3':'Let\'s do something interesting!',
-    'ct.p1':'I\'m a TRELS independent researcher at UCSD, studying edge AI energy efficiency under Prof. Peter Chi. Always happy to chat about research, data science, or collaborations ✨',
+    'ct.p1':'I\'m an independent undergraduate researcher at UCSD, studying edge AI energy efficiency under Prof. Peter Chi. Always happy to chat about research, data science, or collaborations ✨',
     'ct.p2':'Double-majoring in Data Science and Mathematics-Computer Science, expected graduation 2029.',
     'ct.btn':'Send me a message 💌','ft':'Made with','ft2':'· UCSD Data Science & Math-CS'
   }
@@ -815,18 +1064,4 @@ function addPower(){
 function updatePowMsg(n){
   const c=n||getPow();
   const msgs=MSGS[lang];
-  const msg=c===0?msgs[0]:msgs[Math.min(Math.floor((c-1)%10),msgs.length-1)];
-  document.getElementById('powMsg').textContent=msg;
-}
-
-/* ══ SCROLL ANIMATIONS ══ */
-const io=new IntersectionObserver(entries=>{
-  entries.forEach((e,i)=>{if(e.isIntersecting) setTimeout(()=>e.target.classList.add('vis'),i*70)});
-},{threshold:.08});
-document.querySelectorAll('.exp-card,.tl-row').forEach(el=>io.observe(el));
-
-/* ══ INIT ══ */
-initPow();
-</script>
-</body>
-</html>
+  const msg=c===0?msgs[0]:msgs[Math.min(Math.flo
