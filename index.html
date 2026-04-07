@@ -311,6 +311,37 @@ footer span{font-family:var(--sub);font-size:11.5px;color:var(--t3);font-weight:
     max-width: 100%;
   }
 }
+  /* 动态打字机特效样式 */
+.h-typing {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--t2);
+  margin-bottom: 1rem;
+  margin-top: -0.5rem;
+}
+
+.typewriter-text {
+  color: var(--v); /* 科技紫色，突出专业名词 */
+  font-family: 'Space Mono', monospace; /* 使用等宽字体显得更有极客感 */
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  background-color: var(--v);
+  margin-left: 4px;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* 确保手机端居中完美适配 */
+@media (max-width: 720px) {
+  .h-typing { font-size: 1.1rem; }
+}
 </style>
 </head>
 <body>
@@ -337,33 +368,27 @@ footer span{font-family:var(--sub);font-size:11.5px;color:var(--t3);font-weight:
 <section id="hero" class="sec">
   <div class="h-blob hb1"></div><div class="h-blob hb2"></div><div class="h-blob hb3"></div>
   <div class="ctr">
-    <div class="h-inner">
-      <div>
-        <div class="h-avatar-wrap">
-          <img src="个人主页首页照片.jpg" alt="Zhen Wang">
-        </div>
-        
-        <div class="h-badge">🌸 <span data-i18n="hero.badge">UCSD 2029届 · 圣地亚哥</span></div>
-        <h1 class="h-name">Zhen<br><span class="rainbow" data-i18n="hero.name2">Wang ✦</span></h1>
-        <p class="h-sub">zw2@ucsd.edu &nbsp;·&nbsp; Data Science &amp; Math-CS</p>
-        <p class="h-desc" data-i18n="hero.desc">UCSD 数据科学 &amp; 数学-计算机科学双专业在读，边缘 AI 能效研究员。在数据、算法和 AI 的交叉点探索世界 ✨</p>
-        <div class="h-btns">
-          <a href="mailto:zw2@ucsd.edu" class="btn btn-main">✉ <span data-i18n="hero.cta1">打个招呼</span></a>
-          <a href="#experience" class="btn btn-s"><span data-i18n="hero.cta2">查看我的经历</span> ↓</a>
-        </div>
+    <div class="h-inner" style="display:flex; flex-direction:column; align-items:center; text-align:center; max-width:800px; margin:0 auto;">
+      
+      <div class="h-avatar-wrap" style="margin: 0 auto 1.5rem auto;">
+        <img src="个人主页首页照片.jpg" alt="王 臻">
       </div>
       
-      <div class="pow-card" id="powCard">
-        <div class="pow-title">⚡ <span data-i18n="pow.title">旅行者能量站</span></div>
-        <div class="pow-sub" data-i18n="pow.sub">VISITOR ENERGY STATION</div>
-        <div class="pow-count-wrap">
-          <span class="pow-num" id="powNum">0</span>
-          <span class="pow-unit" data-i18n="pow.unit">份能量已收到</span>
-        </div>
-        <div class="pow-bar-wrap"><div class="pow-bar" id="powBar" style="width:2%"></div></div>
-        <button class="pow-btn" id="powBtn" onclick="addPower()">⚡ <span data-i18n="pow.btn">点击充能 +1</span></button>
-        <div class="pow-msg" id="powMsg" data-i18n="pow.msg0">你好呀旅行者，快来给我充能吧！</div>
+      <div class="h-badge">🌸 <span data-i18n="hero.badge"> UCSD 2029届 </span></div>
+      <h1 class="h-name">臻<br><span class="rainbow" data-i18n="hero.name2">王 ✦</span></h1>
+      
+      <div class="h-typing">
+        <span data-i18n="hero.focus">我专注于：</span>
+        <span id="typewriter" class="typewriter-text"></span><span class="typewriter-cursor">|</span>
       </div>
+
+      <p class="h-desc" data-i18n="hero.desc">UCSD 数学-计算机科学，边缘 AI 能效研究员。在数据、算法和 AI 的交叉点探索世界 ✨</p>
+      
+      <div class="h-btns" style="justify-content: center;">
+        <a href="mailto:zhw124@ucsd.edu" class="btn btn-main">✉ <span data-i18n="hero.cta1">打个招呼</span></a>
+        <a href="#experience" class="btn btn-s"><span data-i18n="hero.cta2">查看我的经历</span> ↓</a>
+      </div>
+
     </div>
   </div>
 </section>
@@ -648,7 +673,7 @@ footer span{font-family:var(--sub);font-size:11.5px;color:var(--t3);font-weight:
         <div class="open-pill"><span class="open-dot"></span><span data-i18n="ct.open">开放机遇中</span></div>
         <h3 data-i18n="ct.h3">一起做些有趣的事吧！</h3>
         <p data-i18n="ct.p1">我目前是 UCSD 的独立本科研究员，在研究边缘 AI 能效问题，导师是 Peter Chi 教授。随时欢迎聊科研、数据科学、合作机会，或者只是打个招呼 ✨</p>
-        <p data-i18n="ct.p2">数据科学 &amp; 数学-计算机科学双专业，预计 2029 年毕业。</p>
+        <p data-i18n="ct.p2">数据科学 &amp; 数学-计算机科学，预计 2029 年毕业。</p>
         <a href="mailto:zw2@ucsd.edu" class="btn btn-main" style="margin-top:.4rem" data-i18n="ct.btn">发消息给我 💌</a>
       </div>
     </div>
@@ -679,6 +704,7 @@ const T={
   zh:{
     'nav.exp':'经历','nav.tl':'时间轴','nav.proj':'项目','nav.sk':'技能','nav.mom':'生活','nav.ct':'联系',
     'hero.badge':'UCSD 2029届 · 圣地亚哥','hero.name2':'Wang ✦',
+    'hero.focus': '我专注于：',
     'hero.desc':'UCSD 数据科学 & 数学-计算机科学双专业在读，边缘 AI 能效研究员。在数据、算法和 AI 的交叉点探索世界 ✨',
     'hero.cta1':'打个招呼','hero.cta2':'查看我的经历','pow.title':'旅行者能量站','pow.sub':'VISITOR ENERGY STATION','pow.unit':'份能量已收到','pow.btn':'点击充能 +1','pow.msg0':'你好呀旅行者，快来给我充能吧！',
     'exp.tag':'研究 & 经历','exp.title1':'我做过的','exp.title2':'研究与探索',
@@ -708,6 +734,7 @@ const T={
   en:{
     'nav.exp':'Experience','nav.tl':'Timeline','nav.proj':'Projects','nav.sk':'Skills','nav.mom':'Life','nav.ct':'Contact',
     'hero.badge':'UCSD Class of 2029 · San Diego','hero.name2':'Wang ✦',
+    'hero.focus': 'I focus on: ',
     'hero.desc':'Double-major in Data Science & Math-CS at UCSD, Edge AI efficiency researcher. Exploring the intersection of data, algorithms, and AI ✨',
     'hero.cta1':'Say Hello','hero.cta2':'View My Work','pow.title':'Traveler Energy Station','pow.sub':'旅行者能量站','pow.unit':'energy received','pow.btn':'Charge +1','pow.msg0':'Hello traveler! Click to give me energy!',
     'exp.tag':'Research & Experience','exp.title1':"What I've",'exp.title2':'built & studied',
@@ -788,6 +815,59 @@ const io=new IntersectionObserver(entries=>{
 },{threshold:.08});
 document.querySelectorAll('.exp-card,.tl-row').forEach(el=>io.observe(el));
 initPow();
+  // ====== 动态打字机特效代码 ======
+const typeWords = {
+  zh: ["边缘 AI 能效研究 ⚡", "数据科学与自动化 📊", "大规模数据流水线 💻", "假设检验与量化分析 📝"],
+  en: ["Edge AI Efficiency ⚡", "Data Science & Automation 📊", "Large-scale Pipelines 💻", "Quantitative Analysis 📝"]
+};
+
+let typingWordIndex = 0;
+let typingCharIndex = 0;
+let isDeleting = false;
+let typingTimeout;
+
+function typeEffect() {
+  const words = typeWords[lang]; // 根据当前语言选择词库
+  const currentWord = words[typingWordIndex];
+  const el = document.getElementById("typewriter");
+  
+  if (!el) return;
+
+  if (isDeleting) {
+    typingCharIndex--;
+  } else {
+    typingCharIndex++;
+  }
+
+  el.textContent = currentWord.substring(0, typingCharIndex);
+
+  let speed = isDeleting ? 40 : 100; // 打字速度100ms，删除速度40ms
+
+  if (!isDeleting && typingCharIndex === currentWord.length) {
+    speed = 2000; // 打完一个词后，停顿2秒
+    isDeleting = true;
+  } else if (isDeleting && typingCharIndex === 0) {
+    isDeleting = false;
+    typingWordIndex = (typingWordIndex + 1) % words.length; // 切换到下一个词
+    speed = 500; // 删除完后，停顿0.5秒再打下一个
+  }
+
+  typingTimeout = setTimeout(typeEffect, speed);
+}
+
+// 启动打字机
+typeEffect();
+
+// 修改原有的 applyLang 函数，让它在切换语言时重启打字机
+const originalApplyLang = applyLang;
+applyLang = function() {
+  originalApplyLang();
+  // 切换语言时重置打字机
+  clearTimeout(typingTimeout);
+  isDeleting = false;
+  typingCharIndex = 0;
+  typeEffect();
+};
 </script>
 </body>
 </html>
