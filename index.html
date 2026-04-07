@@ -402,100 +402,136 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
   <div class="ctr">
     <p class="sec-tag" style="background:var(--vl);color:#6600CC">✦ <span data-i18n="tl.tag">人生时间轴</span></p>
     <h2 class="sec-title"><span data-i18n="tl.title1">走过的</span> <span class="acc" style="background:linear-gradient(90deg,var(--v),var(--b));" data-i18n="tl.title2">每一步</span></h2>
+
+    <!-- column labels -->
+    <div style="display:grid;grid-template-columns:1fr 60px 1fr;margin-bottom:1.4rem">
+      <div style="text-align:right;padding-right:2rem">
+        <span style="display:inline-flex;align-items:center;gap:5px;background:var(--bl);color:#0055aa;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .9rem;border-radius:50px">🎓 <span data-i18n="tl.col1">教育经历</span></span>
+      </div>
+      <div></div>
+      <div style="padding-left:2rem">
+        <span style="display:inline-flex;align-items:center;gap:5px;background:var(--pl);color:var(--pd);font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .9rem;border-radius:50px">⚡ <span data-i18n="tl.col2">活动 &amp; 成就</span></span>
+      </div>
+    </div>
+
     <div class="tl-wrap">
 
-      <div class="tl-row left">
-        <div class="tl-content">
-          <div class="tl-card-inner">
-            <div class="tl-year">2007.01.07</div>
-            <div class="tl-event" data-i18n="tl1.ev">🌟 出生于上海</div>
-            <div class="tl-detail" data-i18n="tl1.d">上海，这座繁华都市，见证了一切的开始。</div>
+      <!-- ROW 1: 高中 (left) | 学生会副部长 (right) — overlap period -->
+      <div class="tl-row" style="display:grid;grid-template-columns:1fr 60px 1fr;gap:0;margin-bottom:2rem;opacity:0;transform:translateY(16px);transition:all .45s">
+        <!-- LEFT: 高中 -->
+        <div class="tl-content" style="grid-column:1;text-align:right;padding-right:2rem;padding-top:.5rem">
+          <div class="tl-card-inner" style="margin-left:auto">
+            <div class="tl-year">2022.09 – 2025.06</div>
+            <div class="tl-event" data-i18n="tl1.ev">🏫 上海市世外中学（高中）</div>
+            <div class="tl-detail" data-i18n="tl1.d">高中三年，发现对数据科学与社会科学的深厚兴趣，系统打磨独立思考与自学能力，厚积薄发。</div>
           </div>
         </div>
-        <div class="tl-node"><div class="tl-dot">🌟</div></div>
-        <div class="tl-empty"></div>
-      </div>
-
-      <div class="tl-row right">
-        <div class="tl-empty"></div>
-        <div class="tl-node"><div class="tl-dot" style="box-shadow:0 0 0 3px var(--b),0 4px 14px var(--shd)">📚</div></div>
-        <div class="tl-content">
-          <div class="tl-card-inner">
-            <div class="tl-year">2013 – 2019</div>
-            <div class="tl-event" data-i18n="tl2.ev">📚 小学六年</div>
-            <div class="tl-detail" data-i18n="tl2.d">打好基础，培养对数学与逻辑的热爱，开始接触编程思维。</div>
-          </div>
+        <!-- NODE -->
+        <div class="tl-node" style="grid-column:2;display:flex;justify-content:center;align-items:flex-start;padding-top:1.2rem">
+          <div class="tl-dot" style="box-shadow:0 0 0 3px var(--b),0 4px 14px var(--shd)">🏫</div>
         </div>
-      </div>
-
-      <div class="tl-row left">
-        <div class="tl-content">
-          <div class="tl-card-inner">
-            <div class="tl-year">2019 – 2023</div>
-            <div class="tl-event" data-i18n="tl3.ev">🏫 上海市世外中学</div>
-            <div class="tl-detail" data-i18n="tl3.d">初中三年，广泛探索。疫情居家期间开始系统自学，建立独立思考能力。开始对数据科学与社会科学产生浓厚兴趣。</div>
-          </div>
-        </div>
-        <div class="tl-node"><div class="tl-dot" style="box-shadow:0 0 0 3px var(--g),0 4px 14px var(--shd)">🏫</div></div>
-        <div class="tl-empty"></div>
-      </div>
-
-      <div class="tl-row right">
-        <div class="tl-empty"></div>
-        <div class="tl-node"><div class="tl-dot" style="box-shadow:0 0 0 3px var(--o),0 4px 14px var(--shd)">🎖️</div></div>
-        <div class="tl-content">
+        <!-- RIGHT: 学生会 -->
+        <div class="tl-content" style="grid-column:3;padding-left:2rem;padding-top:.5rem">
           <div class="tl-card-inner">
             <div class="tl-year">2023.09 – 2024.09</div>
-            <div class="tl-event" data-i18n="tl4.ev">🎖️ 学生会实践部副部长</div>
-            <div class="tl-detail" data-i18n="tl4.d">领导 108 人志愿者团队，在高三繁忙学业中磨砺组织能力与领导力，统筹多项大型校园文化活动。</div>
+            <div class="tl-event" data-i18n="tl2.ev">🎖️ 学生会实践部副部长</div>
+            <div class="tl-detail" data-i18n="tl2.d">领导 108 人志愿者团队，在高三繁忙学业中磨砺组织能力与领导力，统筹多项大型校园文化活动。</div>
           </div>
         </div>
       </div>
 
-      <div class="tl-row left">
-        <div class="tl-content">
+      <!-- ROW 2: (高中仍在，活动右侧) 交大 RA -->
+      <div class="tl-row" style="display:grid;grid-template-columns:1fr 60px 1fr;gap:0;margin-bottom:2rem;opacity:0;transform:translateY(16px);transition:all .45s">
+        <!-- LEFT: empty spacer during high school (still ongoing) -->
+        <div style="grid-column:1"></div>
+        <!-- NODE -->
+        <div class="tl-node" style="grid-column:2;display:flex;justify-content:center;align-items:flex-start;padding-top:1.2rem">
+          <div class="tl-dot" style="box-shadow:0 0 0 3px var(--p),0 4px 14px var(--shd)">🔬</div>
+        </div>
+        <!-- RIGHT: SJTU RA -->
+        <div class="tl-content" style="grid-column:3;padding-left:2rem;padding-top:.5rem">
           <div class="tl-card-inner">
             <div class="tl-year">2024.06 – 2025.09</div>
-            <div class="tl-event" data-i18n="tl5.ev">🔬 上海交大心理学院 RA</div>
-            <div class="tl-detail" data-i18n="tl5.d">人生第一段正式科研经历。独立执行儿童认知评估，在大规模数据流水线中学会了 Stata 与系统化研究方法。</div>
+            <div class="tl-event" data-i18n="tl3.ev">🔬 上海交大心理学院 RA</div>
+            <div class="tl-detail" data-i18n="tl3.d">人生第一段正式科研经历。独立执行 28 名儿童认知评估，处理 500+ 小时数据，学会了 Stata 与系统化研究方法。</div>
           </div>
         </div>
-        <div class="tl-node"><div class="tl-dot" style="box-shadow:0 0 0 3px var(--p),0 4px 14px var(--shd)">🔬</div></div>
-        <div class="tl-empty"></div>
       </div>
 
-      <div class="tl-row right">
-        <div class="tl-empty"></div>
-        <div class="tl-node"><div class="tl-dot" style="box-shadow:0 0 0 3px var(--v),0 4px 14px var(--shd)">✈️</div></div>
-        <div class="tl-content">
+      <!-- ROW 3: UCSD begins (left) | 社会学研究项目 (right) -->
+      <div class="tl-row" style="display:grid;grid-template-columns:1fr 60px 1fr;gap:0;margin-bottom:2rem;opacity:0;transform:translateY(16px);transition:all .45s">
+        <!-- LEFT: UCSD -->
+        <div class="tl-content" style="grid-column:1;text-align:right;padding-right:2rem;padding-top:.5rem">
+          <div class="tl-card-inner" style="margin-left:auto">
+            <div class="tl-year">2025.09 – 至今</div>
+            <div class="tl-event" data-i18n="tl4.ev">✈️ 远赴加州，开启 UCSD</div>
+            <div class="tl-detail" data-i18n="tl4.d">带着好奇与期待飞越太平洋，开始数据科学 &amp; 数学-计算机科学双专业本科学习。GPA 4.0/4.0。</div>
+          </div>
+        </div>
+        <!-- NODE -->
+        <div class="tl-node" style="grid-column:2;display:flex;justify-content:center;align-items:flex-start;padding-top:1.2rem">
+          <div class="tl-dot" style="box-shadow:0 0 0 3px var(--v),0 4px 14px var(--shd)">✈️</div>
+        </div>
+        <!-- RIGHT: sociology project (Fall 2025) -->
+        <div class="tl-content" style="grid-column:3;padding-left:2rem;padding-top:.5rem">
           <div class="tl-card-inner">
-            <div class="tl-year">2025.09</div>
-            <div class="tl-event" data-i18n="tl6.ev">✈️ 远赴加州，开启 UCSD</div>
-            <div class="tl-detail" data-i18n="tl6.d">带着好奇与期待飞越太平洋，开始数据科学 &amp; 数学-计算机科学双专业本科学习。GPA 4.0/4.0。</div>
+            <div class="tl-year">2025.09 – 2025.12</div>
+            <div class="tl-event" data-i18n="tl5.ev">📝 "学生为何上学"社会学研究</div>
+            <div class="tl-detail" data-i18n="tl5.d">带领 5 人团队完成 10 场深度访谈，运用假设检验与定性编码，合作撰写 25 页研究报告。满分 100/100 ⭐</div>
           </div>
         </div>
       </div>
 
-      <div class="tl-row left">
-        <div class="tl-content">
+      <!-- ROW 4: UCSD (left continued) | EPL 数据分析 -->
+      <div class="tl-row" style="display:grid;grid-template-columns:1fr 60px 1fr;gap:0;margin-bottom:2rem;opacity:0;transform:translateY(16px);transition:all .45s">
+        <!-- LEFT: empty (UCSD ongoing) -->
+        <div style="grid-column:1"></div>
+        <!-- NODE -->
+        <div class="tl-node" style="grid-column:2;display:flex;justify-content:center;align-items:flex-start;padding-top:1.2rem">
+          <div class="tl-dot" style="box-shadow:0 0 0 3px var(--g),0 4px 14px var(--shd)">📈</div>
+        </div>
+        <!-- RIGHT: EPL project -->
+        <div class="tl-content" style="grid-column:3;padding-left:2rem;padding-top:.5rem">
+          <div class="tl-card-inner">
+            <div class="tl-year">2026.01 – 2026.03</div>
+            <div class="tl-event" data-i18n="tl6.ev">📈 英超转会分析项目</div>
+            <div class="tl-detail" data-i18n="tl6.d">用 Python/Pandas 爬取 Transfermarkt 近 10 年数据，构建时间序列数据集，用线性回归量化转会投入与竞技成绩的关系。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 5: UCSD (left) | HDSI RA (right) -->
+      <div class="tl-row" style="display:grid;grid-template-columns:1fr 60px 1fr;gap:0;margin-bottom:2rem;opacity:0;transform:translateY(16px);transition:all .45s">
+        <!-- LEFT: still at UCSD -->
+        <div style="grid-column:1"></div>
+        <!-- NODE -->
+        <div class="tl-node" style="grid-column:2;display:flex;justify-content:center;align-items:flex-start;padding-top:1.2rem">
+          <div class="tl-dot" style="box-shadow:0 0 0 3px var(--b),0 4px 14px var(--shd)">📊</div>
+        </div>
+        <!-- RIGHT: HDSI RA -->
+        <div class="tl-content" style="grid-column:3;padding-left:2rem;padding-top:.5rem">
           <div class="tl-card-inner">
             <div class="tl-year">2026.01 – 至今</div>
             <div class="tl-event" data-i18n="tl7.ev">📊 HDSI 数据科学院 RA</div>
             <div class="tl-detail" data-i18n="tl7.d">加入 HDSI 课题组，参与数据科学教育研究，探索 Pandas Tutor 工具对教学流程的优化潜力。</div>
           </div>
         </div>
-        <div class="tl-node"><div class="tl-dot" style="box-shadow:0 0 0 3px var(--b),0 4px 14px var(--shd)">📊</div></div>
-        <div class="tl-empty"></div>
       </div>
 
-      <div class="tl-row right">
-        <div class="tl-empty"></div>
-        <div class="tl-node"><div class="tl-dot" style="box-shadow:0 0 0 3px var(--y),0 4px 14px var(--shd)">🏆</div></div>
-        <div class="tl-content">
+      <!-- ROW 6: UCSD (left) | 独立科研 (right) -->
+      <div class="tl-row" style="display:grid;grid-template-columns:1fr 60px 1fr;gap:0;margin-bottom:2rem;opacity:0;transform:translateY(16px);transition:all .45s">
+        <!-- LEFT: still at UCSD -->
+        <div style="grid-column:1"></div>
+        <!-- NODE -->
+        <div class="tl-node" style="grid-column:2;display:flex;justify-content:center;align-items:flex-start;padding-top:1.2rem">
+          <div class="tl-dot" style="box-shadow:0 0 0 3px var(--y),0 4px 14px var(--shd)">🏆</div>
+        </div>
+        <!-- RIGHT: independent research -->
+        <div class="tl-content" style="grid-column:3;padding-left:2rem;padding-top:.5rem">
           <div class="tl-card-inner">
             <div class="tl-year">2026.03 – 至今</div>
-            <div class="tl-event" data-i18n="tl8.ev">🏆 获科研资助，独立科研</div>
-            <div class="tl-detail" data-i18n="tl8.d">获得本科科研资助，独立主导边缘 AI 热节流效应研究，向着高性能计算与 AI 研究方向全力前进。</div>
+            <div class="tl-event" data-i18n="tl8.ev">🏆 独立科研：边缘 AI 能效</div>
+            <div class="tl-detail" data-i18n="tl8.d">获得本科科研资助，独立主导边缘 AI 热节流效应研究，导师 Peter Chi 教授。向高性能计算与 AI 研究全力冲刺。</div>
           </div>
         </div>
       </div>
@@ -917,14 +953,15 @@ const T = {
     'e4.org':'上海市世外中学 · 学生会','e4.role':'实践部副部长','e4.date':'2023.09 – 2024.09',
     'e4.b1':'管理 108 人校志愿者团队，统筹调度电影博物馆、敦煌文化周、中国文化周、爱心义卖、篮球班赛等多类活动。',
     'tl.tag':'人生时间轴','tl.title1':'走过的','tl.title2':'每一步',
-    'tl1.ev':'🌟 出生于上海','tl1.d':'上海，这座繁华都市，见证了一切的开始。',
-    'tl2.ev':'📚 小学六年','tl2.d':'打好基础，培养对数学与逻辑的热爱，开始接触编程思维。',
-    'tl3.ev':'🏫 上海市世外中学','tl3.d':'初中三年，广泛探索。疫情居家期间开始系统自学，建立独立思考能力。开始对数据科学与社会科学产生浓厚兴趣。',
-    'tl4.ev':'🎖️ 学生会实践部副部长','tl4.d':'领导 108 人志愿者团队，在高三繁忙学业中磨砺组织能力与领导力，统筹多项大型校园文化活动。',
-    'tl5.ev':'🔬 上海交大心理学院 RA','tl5.d':'人生第一段正式科研经历。独立执行儿童认知评估，在大规模数据流水线中学会了 Stata 与系统化研究方法。',
-    'tl6.ev':'✈️ 远赴加州，开启 UCSD','tl6.d':'带着好奇与期待飞越太平洋，开始数据科学 & 数学-计算机科学双专业本科学习。GPA 4.0/4.0。',
+    'tl.col1':'教育经历','tl.col2':'活动 & 成就',
+    'tl1.ev':'🏫 上海市世外中学（高中）','tl1.d':'高中三年，发现对数据科学与社会科学的深厚兴趣，系统打磨独立思考与自学能力，厚积薄发。',
+    'tl2.ev':'🎖️ 学生会实践部副部长','tl2.d':'领导 108 人志愿者团队，在高三繁忙学业中磨砺组织能力与领导力，统筹多项大型校园文化活动。',
+    'tl3.ev':'🔬 上海交大心理学院 RA','tl3.d':'人生第一段正式科研经历。独立执行 28 名儿童认知评估，处理 500+ 小时数据，学会了 Stata 与系统化研究方法。',
+    'tl4.ev':'✈️ 远赴加州，开启 UCSD','tl4.d':'带着好奇与期待飞越太平洋，开始数据科学 & 数学-计算机科学双专业本科学习。GPA 4.0/4.0。',
+    'tl5.ev':'📝 "学生为何上学"社会学研究','tl5.d':'带领 5 人团队完成 10 场深度访谈，运用假设检验与定性编码，合作撰写 25 页研究报告。满分 100/100 ⭐',
+    'tl6.ev':'📈 英超转会分析项目','tl6.d':'用 Python/Pandas 爬取 Transfermarkt 近 10 年数据，构建时间序列数据集，用线性回归量化转会投入与竞技成绩的关系。',
     'tl7.ev':'📊 HDSI 数据科学院 RA','tl7.d':'加入 HDSI 课题组，参与数据科学教育研究，探索 Pandas Tutor 工具对教学流程的优化潜力。',
-    'tl8.ev':'🏆 获科研资助，独立科研','tl8.d':'获得本科科研资助，独立主导边缘 AI 热节流效应研究，向着高性能计算与 AI 研究方向全力前进。',
+    'tl8.ev':'🏆 独立科研：边缘 AI 能效','tl8.d':'获得本科科研资助，独立主导边缘 AI 热节流效应研究，导师 Peter Chi 教授。向高性能计算与 AI 研究全力冲刺。',
     'proj.tag':'精选项目','proj.title1':'做出来的','proj.title2':'成果',
     'p1.t':'边缘 AI 热节流效应研究','p1.d':'独立本科科研项目，在 Jetson 上部署 Llama-3，构建实时监控管道与"效率-热量"量化模型，探究边缘推理能效边界。',
     'p2.t':'英超转会花费与净胜球关系分析','p2.d':'用 Python/Pandas 从 Transfermarkt 爬取 20 支球队近 10 年逐年数据，构建时间序列数据集，用线性回归量化转会投入与竞技成绩的相关性。',
@@ -973,14 +1010,15 @@ const T = {
     'e4.org':'Shanghai World Foreign Language Academy · Student Union','e4.role':'Practice Dept. Vice Minister','e4.date':'Sep 2023 – Sep 2024',
     'e4.b1':'Managed a 108-member volunteer team, organizing on- and off-campus events including museum volunteering, Dunhuang Culture Week, charity sales, and basketball tournaments.',
     'tl.tag':'Life Timeline','tl.title1':'Every step','tl.title2':'of the journey',
-    'tl1.ev':'🌟 Born in Shanghai','tl1.d':'Shanghai, the city where it all began.',
-    'tl2.ev':'📚 Six Years of Primary School','tl2.d':'Built a strong foundation in math and logic, and first encountered computational thinking.',
-    'tl3.ev':'🏫 Shanghai World Foreign Language Academy','tl3.d':'Three years of middle school. Developed independent thinking during COVID lockdowns. Discovered deep interest in data science and social science.',
-    'tl4.ev':'🎖️ Student Union Vice Minister','tl4.d':'Led a 108-member volunteer team through major campus events, honing leadership and organizational skills during a busy senior year.',
-    'tl5.ev':'🔬 SJTU Psychology Dept. RA','tl5.d':'First formal research experience. Conducted cognitive assessments independently and mastered Stata through a large-scale data pipeline.',
-    'tl6.ev':'✈️ Off to California — UCSD Begins','tl6.d':'Crossed the Pacific with curiosity and excitement to begin a double major in Data Science & Math-CS. GPA: 4.0/4.0.',
+    'tl.col1':'Education','tl.col2':'Activities & Achievements',
+    'tl1.ev':'🏫 Shanghai World Foreign Language Academy','tl1.d':'Three years of high school. Discovered deep passion for data science and social science; honed independent thinking and self-learning skills.',
+    'tl2.ev':'🎖️ Student Union Vice Minister','tl2.d':'Led a 108-member volunteer team through major campus events, honing leadership and organizational skills during a busy senior year.',
+    'tl3.ev':'🔬 SJTU Psychology Dept. RA','tl3.d':'First formal research experience. Independently conducted cognitive assessments for 28 children, processed 500+ hours of data, and mastered Stata.',
+    'tl4.ev':'✈️ Off to California — UCSD Begins','tl4.d':'Crossed the Pacific with curiosity and excitement to begin a double major in Data Science & Math-CS. GPA: 4.0/4.0.',
+    'tl5.ev':'📝 "Why Do Students Go to College?"','tl5.d':'Led a 5-member sociology team through 10 in-depth interviews, statistical hypothesis testing, and qualitative coding. Score: 100/100 ⭐',
+    'tl6.ev':'📈 EPL Transfer Spending Analysis','tl6.d':'Scraped 10 years of Premier League transfer data via Python/Pandas from Transfermarkt; quantified transfer ROI using linear regression.',
     'tl7.ev':'📊 HDSI Research Assistant','tl7.d':'Joined HDSI to work on data science education research, exploring Pandas Tutor for teaching workflow optimization.',
-    'tl8.ev':'🏆 Research Funding — Independent Study','tl8.d':'Received undergraduate research funding to independently lead edge AI thermal throttling research — charging full speed ahead in HPC and AI research.',
+    'tl8.ev':'🏆 Independent Research: Edge AI','tl8.d':'Received undergraduate research funding to independently lead edge AI thermal throttling research under Prof. Peter Chi — charging ahead in HPC and AI.',
     'proj.tag':'Selected Projects','proj.title1':'Things I\'ve','proj.title2':'shipped',
     'p1.t':'Edge AI Thermal Throttling Study','p1.d':'Independent undergraduate research. Deployed Llama-3 on Jetson, built a real-time monitoring pipeline and quantitative efficiency-to-heat model for edge AI inference.',
     'p2.t':'EPL Transfer Spending vs. Goal Difference','p2.d':'Scraped 10 years of Premier League transfer data via Python/Pandas from Transfermarkt. Applied linear regression and hypothesis testing to quantify the ROI of transfer investment.',
