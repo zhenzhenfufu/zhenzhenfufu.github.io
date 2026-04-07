@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>王臻 ✦ 个人空间</title>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&family=Quicksand:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#FFFEF5;--bg2:#F9F5FF;--white:#fff;
@@ -16,18 +16,15 @@
   --o:#FF6600;--ol:#FFF0E5;
   --t1:#180828;--t2:#5A3870;--t3:#C0A8D8;
   --brd:#EED8FF;--shd:rgba(155,0,255,.07);
-  --disp:'Fredoka One',cursive;
+  --disp:'Pacifico',cursive;
   --body:'Nunito',sans-serif;
+  --sub:'Quicksand',sans-serif;
   --mono:'Space Mono',monospace;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--t1);font-family:var(--body);font-size:15px;line-height:1.7;overflow-x:hidden;padding-bottom:0}
-
-/* ─── dot bg ─── */
-body::before{content:'';position:fixed;inset:0;background:radial-gradient(circle,rgba(155,0,255,.06) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0}
-
-/* ─── sparkles ─── */
+body{background:var(--bg);color:var(--t1);font-family:var(--body);font-size:15px;line-height:1.7;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(circle,rgba(155,0,255,.055) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0}
 .sp{position:fixed;pointer-events:none;z-index:0;font-size:14px;animation:spFloat 6s ease-in-out infinite;color:var(--p);opacity:.5}
 .sp:nth-child(1){left:3%;top:15%;animation-delay:0s;font-size:18px}
 .sp:nth-child(2){left:8%;top:60%;animation-delay:1s;color:var(--v);font-size:12px}
@@ -38,8 +35,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(circle
 .sp:nth-child(7){left:20%;top:85%;animation-delay:4s;color:var(--o);font-size:16px}
 .sp:nth-child(8){left:60%;top:90%;animation-delay:2.5s;color:var(--v);font-size:10px}
 @keyframes spFloat{0%,100%{transform:translateY(0) rotate(0deg);opacity:.5}50%{transform:translateY(-18px) rotate(180deg);opacity:.9}}
-
-/* ─── petals ─── */
 .petals{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .petal{position:absolute;top:-20px;border-radius:50% 0 50% 0;opacity:0;animation:pFall linear infinite}
 .petal:nth-child(odd){border-radius:0 50% 0 50%}
@@ -52,8 +47,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(circle
 .petal:nth-child(7){left:78%;width:9px;height:9px;background:#A0FFD4;animation-duration:13s;animation-delay:1.2s}
 .petal:nth-child(8){left:88%;width:11px;height:11px;background:#FFB3CC;animation-duration:10s;animation-delay:3.5s}
 @keyframes pFall{0%{opacity:0;transform:translateY(-20px) rotate(0deg) translateX(0)}8%{opacity:.7}92%{opacity:.5}100%{opacity:0;transform:translateY(105vh) rotate(700deg) translateX(50px)}}
-
-/* ─── anime characters ─── */
 .anime-char{position:fixed;pointer-events:none;z-index:2;bottom:0;animation:charFloat 4s ease-in-out infinite}
 .anime-char svg{filter:drop-shadow(0 4px 16px rgba(155,0,255,.18))}
 .char-furina{right:18px;bottom:0;animation-delay:0s}
@@ -61,191 +54,136 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(circle
 .char-violet{right:200px;bottom:0;animation-delay:2s;opacity:.85}
 .char-saber{left:200px;bottom:0;animation-delay:1.5s;opacity:.85}
 @keyframes charFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-
-/* ─── anime decorations (small stickers) ─── */
 .sticker{position:fixed;pointer-events:none;z-index:2;animation:stickerBob 3s ease-in-out infinite}
 .sticker-1{top:120px;left:10px;animation-delay:.5s}
 .sticker-2{top:300px;right:10px;animation-delay:1.2s}
 .sticker-3{top:500px;left:8px;animation-delay:2s}
 @keyframes stickerBob{0%,100%{transform:rotate(-5deg) scale(1)}50%{transform:rotate(5deg) scale(1.06)}}
-
-/* ─── nav ─── */
 nav{position:fixed;top:0;left:0;right:0;z-index:300;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;background:rgba(255,254,245,.92);backdrop-filter:blur(16px);border-bottom:2px solid var(--brd)}
-.nav-logo{font-family:var(--disp);font-size:18px;background:linear-gradient(90deg,var(--p),var(--v),var(--b));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+.nav-logo{font-family:var(--disp);font-size:17px;background:linear-gradient(90deg,var(--p),var(--v),var(--b));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .nav-r{display:flex;align-items:center;gap:.5rem}
 .nav-links{display:flex;gap:.2rem;list-style:none}
-.nav-links a{font-weight:700;font-size:12.5px;color:var(--t2);text-decoration:none;padding:.35rem .85rem;border-radius:50px;transition:all .2s}
+.nav-links a{font-family:var(--sub);font-weight:700;font-size:12.5px;color:var(--t2);text-decoration:none;padding:.35rem .85rem;border-radius:50px;transition:all .2s}
 .nav-links a:hover{background:var(--pl);color:var(--pd)}
 .lang-btn{font-family:var(--mono);font-size:11px;font-weight:700;padding:.32rem .9rem;border-radius:50px;border:2px solid var(--brd);background:transparent;color:var(--t2);cursor:pointer;transition:all .2s;margin-left:.5rem}
 .lang-btn:hover{background:var(--vl);border-color:var(--v);color:var(--v)}
-
-/* ─── layout ─── */
 main{position:relative;z-index:1}
 .sec{padding:86px 0}
 .ctr{max-width:980px;margin:0 auto;padding:0 2rem}
-
-/* ─── sec headers ─── */
-.sec-tag{display:inline-flex;align-items:center;gap:5px;font-weight:800;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;padding:.3rem .95rem;border-radius:50px;margin-bottom:.85rem}
-.sec-title{font-family:var(--disp);font-size:clamp(26px,5vw,40px);color:var(--t1);line-height:1.15;margin-bottom:2rem}
+.sec-tag{display:inline-flex;align-items:center;gap:5px;font-family:var(--sub);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .95rem;border-radius:50px;margin-bottom:.85rem}
+.sec-title{font-family:var(--disp);font-size:clamp(24px,4.5vw,36px);color:var(--t1);line-height:1.3;margin-bottom:2rem}
 .sec-title .acc{-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-
-/* ─── wave ─── */
 .wave{line-height:0;overflow:hidden}.wave svg{display:block;width:100%}
-
-/* ─── card base ─── */
-.card{background:var(--white);border-radius:20px;border:2px solid var(--brd);box-shadow:0 4px 20px var(--shd);transition:transform .2s,box-shadow .2s}
-.card:hover{transform:translateY(-3px);box-shadow:0 10px 32px var(--shd)}
-
-/* ─── chips ─── */
-.chip{font-size:10.5px;font-weight:800;letter-spacing:.04em;padding:.25rem .7rem;border-radius:50px}
-.c-p{background:var(--pl);color:var(--pd)}
-.c-v{background:var(--vl);color:#6600CC}
-.c-b{background:var(--bl);color:#0066CC}
-.c-g{background:var(--gl);color:#007755}
-.c-y{background:var(--yl);color:#996600}
-.c-o{background:var(--ol);color:#CC4400}
-
-/* ─── HERO ─── */
+.chip{font-family:var(--sub);font-size:10.5px;font-weight:700;letter-spacing:.04em;padding:.25rem .7rem;border-radius:50px}
+.c-p{background:var(--pl);color:var(--pd)}.c-v{background:var(--vl);color:#6600CC}.c-b{background:var(--bl);color:#0066CC}.c-g{background:var(--gl);color:#007755}.c-y{background:var(--yl);color:#996600}.c-o{background:var(--ol);color:#CC4400}
 #hero{min-height:100vh;padding-top:58px;display:flex;align-items:center;position:relative;overflow:hidden}
 .h-blob{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none}
 .hb1{width:380px;height:380px;background:rgba(255,45,120,.1);top:0;right:-80px}
 .hb2{width:280px;height:280px;background:rgba(155,0,255,.09);bottom:5%;left:-50px}
 .hb3{width:220px;height:220px;background:rgba(0,170,255,.08);top:40%;right:25%}
 .h-inner{display:grid;grid-template-columns:1fr 290px;gap:3rem;align-items:center}
-
-/* hero left */
-.h-badge{display:inline-flex;align-items:center;gap:6px;background:var(--pl);color:var(--pd);border:2px solid rgba(255,45,120,.25);padding:.42rem 1rem;border-radius:50px;font-weight:800;font-size:11.5px;margin-bottom:1.2rem;opacity:0;animation:popIn .5s .1s cubic-bezier(.34,1.56,.64,1) forwards}
-h1.h-name{font-family:var(--disp);font-size:clamp(48px,9vw,80px);color:var(--t1);line-height:.95;margin-bottom:.8rem;opacity:0;animation:popIn .5s .2s cubic-bezier(.34,1.56,.64,1) forwards}
+.h-badge{display:inline-flex;align-items:center;gap:6px;background:var(--pl);color:var(--pd);border:2px solid rgba(255,45,120,.25);padding:.42rem 1rem;border-radius:50px;font-family:var(--sub);font-weight:700;font-size:11.5px;margin-bottom:1.2rem;opacity:0;animation:popIn .5s .1s cubic-bezier(.34,1.56,.64,1) forwards}
+h1.h-name{font-family:var(--disp);font-size:clamp(40px,7vw,65px);color:var(--t1);line-height:1.15;margin-bottom:.8rem;opacity:0;animation:popIn .5s .2s cubic-bezier(.34,1.56,.64,1) forwards}
 h1.h-name .rainbow{background:linear-gradient(90deg,var(--p),var(--v),var(--b),var(--g));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .h-sub{font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:.14em;margin-bottom:1.2rem;opacity:0;animation:fadeUp .5s .3s forwards}
-.h-desc{font-size:14.5px;color:var(--t2);line-height:1.85;max-width:420px;margin-bottom:1.8rem;opacity:0;animation:fadeUp .5s .4s forwards}
+.h-desc{font-family:var(--sub);font-size:14.5px;color:var(--t2);line-height:1.85;max-width:420px;margin-bottom:1.8rem;opacity:0;animation:fadeUp .5s .4s forwards;font-weight:600}
 .h-btns{display:flex;gap:.65rem;flex-wrap:wrap;opacity:0;animation:fadeUp .5s .5s forwards}
-.btn{font-family:var(--body);font-weight:800;font-size:13px;padding:.7rem 1.6rem;border-radius:50px;text-decoration:none;transition:all .2s;cursor:pointer;display:inline-block;border:none}
+.btn{font-family:var(--sub);font-weight:700;font-size:13px;padding:.7rem 1.6rem;border-radius:50px;text-decoration:none;transition:all .2s;cursor:pointer;display:inline-block;border:none}
 .btn-main{background:linear-gradient(135deg,var(--p),#FF6B9D);color:#fff;box-shadow:0 5px 18px rgba(255,45,120,.35)}
 .btn-main:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(255,45,120,.45)}
 .btn-s{background:var(--vl);color:var(--v);border:2px solid rgba(155,0,255,.25)}
 .btn-s:hover{background:#E8D0FF;transform:translateY(-2px)}
-
-/* ─── POWER COUNTER CARD ─── */
 #hero .pow-card{background:var(--white);border-radius:22px;border:2px solid var(--brd);box-shadow:0 12px 40px var(--shd);padding:1.6rem;opacity:0;animation:popIn .6s .45s cubic-bezier(.34,1.56,.64,1) forwards;position:relative;overflow:hidden}
 #hero .pow-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,45,120,.04),rgba(155,0,255,.04));pointer-events:none}
-.pow-title{font-family:var(--disp);font-size:16px;color:var(--t1);margin-bottom:.3rem;display:flex;align-items:center;gap:6px}
+.pow-title{font-family:var(--disp);font-size:14px;color:var(--t1);margin-bottom:.3rem;display:flex;align-items:center;gap:6px}
 .pow-sub{font-size:11px;color:var(--t3);font-weight:700;margin-bottom:1.1rem;font-family:var(--mono)}
 .pow-count-wrap{text-align:center;margin-bottom:1rem}
-.pow-num{font-family:var(--disp);font-size:42px;background:linear-gradient(135deg,var(--p),var(--v));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;display:block}
-.pow-unit{font-size:11px;font-weight:800;color:var(--t3);letter-spacing:.12em;text-transform:uppercase}
+.pow-num{font-family:var(--disp);font-size:40px;background:linear-gradient(135deg,var(--p),var(--v));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;display:block}
+.pow-unit{font-family:var(--sub);font-size:11px;font-weight:700;color:var(--t3);letter-spacing:.12em;text-transform:uppercase}
 .pow-bar-wrap{background:var(--bg2);border-radius:50px;height:10px;margin-bottom:.9rem;overflow:hidden;border:1.5px solid var(--brd)}
 .pow-bar{height:100%;border-radius:50px;background:linear-gradient(90deg,var(--p),var(--v),var(--b));transition:width .8s cubic-bezier(.34,1.56,.64,1)}
-.pow-btn{width:100%;font-family:var(--disp);font-size:17px;padding:.75rem;border-radius:14px;border:none;cursor:pointer;background:linear-gradient(135deg,var(--p),var(--v));color:#fff;transition:all .2s;box-shadow:0 4px 14px rgba(255,45,120,.3);margin-bottom:.7rem}
+.pow-btn{width:100%;font-family:var(--disp);font-size:15px;padding:.75rem;border-radius:14px;border:none;cursor:pointer;background:linear-gradient(135deg,var(--p),var(--v));color:#fff;transition:all .2s;box-shadow:0 4px 14px rgba(255,45,120,.3);margin-bottom:.7rem}
 .pow-btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 8px 24px rgba(155,0,255,.4)}
 .pow-btn:active{transform:scale(.97)}
-.pow-msg{font-size:12px;color:var(--t2);font-weight:700;text-align:center;min-height:18px;line-height:1.4}
-/* +1 float animation */
+.pow-msg{font-family:var(--sub);font-size:12px;color:var(--t2);font-weight:700;text-align:center;min-height:18px;line-height:1.4}
 .plus1{position:absolute;font-family:var(--disp);font-size:20px;color:var(--p);pointer-events:none;animation:plusFloat 1s ease-out forwards}
 @keyframes plusFloat{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-50px) scale(1.5)}}
-
-/* ─── EXPERIENCE ─── */
 .exp-grid{display:flex;flex-direction:column;gap:1.1rem}
 .exp-card{background:var(--white);border-radius:18px;border:2px solid var(--brd);box-shadow:0 4px 18px var(--shd);padding:1.5rem 1.7rem;display:grid;grid-template-columns:46px 1fr;gap:0 1.2rem;opacity:0;transform:translateX(-18px);transition:all .4s}
 .exp-card.vis{opacity:1;transform:translateX(0)}
 .exp-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px var(--shd)}
 .e-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;align-self:flex-start}
 .ei-p{background:var(--pl)}.ei-v{background:var(--vl)}.ei-b{background:var(--bl)}.ei-g{background:var(--gl)}.ei-o{background:var(--ol)}
-.e-org{font-weight:800;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:.1rem}
-.e-role{font-family:var(--disp);font-size:17px;color:var(--t1);margin-bottom:.18rem;line-height:1.25}
+.e-org{font-family:var(--sub);font-weight:700;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:.1rem}
+.e-role{font-family:var(--disp);font-size:15px;color:var(--t1);margin-bottom:.18rem;line-height:1.35}
 .e-ul{list-style:none;display:flex;flex-direction:column;gap:.28rem;margin-top:.5rem}
-.e-ul li{font-size:13.5px;color:var(--t2);padding-left:1.1rem;position:relative;line-height:1.65}
+.e-ul li{font-family:var(--sub);font-size:13.5px;color:var(--t2);padding-left:1.1rem;position:relative;line-height:1.65;font-weight:600}
 .e-ul li::before{content:'✦';position:absolute;left:0;font-size:10px;color:var(--p);top:3px}
-
-/* ─── LIFE TIMELINE ─── */
 #timeline{background:var(--bg2)}
 .tl-wrap{position:relative;padding:0 0 2rem}
 .tl-wrap::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--p),var(--v),var(--b),var(--g));border-radius:3px;transform:translateX(-50%)}
 .tl-row{display:grid;grid-template-columns:1fr 60px 1fr;gap:0;margin-bottom:2rem;opacity:0;transform:translateY(16px);transition:all .45s}
 .tl-row.vis{opacity:1;transform:translateY(0)}
-.tl-row.left .tl-content{grid-column:1;text-align:right;padding-right:2rem}
-.tl-row.left .tl-empty{grid-column:3}
-.tl-row.right .tl-content{grid-column:3;padding-left:2rem}
-.tl-row.right .tl-empty{grid-column:1}
 .tl-node{grid-column:2;display:flex;justify-content:center;align-items:flex-start;padding-top:1.2rem}
 .tl-dot{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;border:3px solid var(--white);box-shadow:0 0 0 3px var(--p),0 4px 14px var(--shd);flex-shrink:0;z-index:1;background:var(--white)}
 .tl-content{padding-top:.5rem}
 .tl-card-inner{background:var(--white);border-radius:16px;border:2px solid var(--brd);padding:1.1rem 1.3rem;box-shadow:0 4px 18px var(--shd);display:inline-block;max-width:340px;text-align:left}
-.tl-row.left .tl-card-inner{margin-left:auto}
 .tl-year{font-family:var(--mono);font-size:10.5px;color:var(--t3);font-weight:700;margin-bottom:.18rem}
-.tl-event{font-family:var(--disp);font-size:15.5px;color:var(--t1);margin-bottom:.25rem;line-height:1.2}
-.tl-detail{font-size:12.5px;color:var(--t2);line-height:1.6}
-
-/* ─── PROJECTS ─── */
+.tl-event{font-family:var(--disp);font-size:13.5px;color:var(--t1);margin-bottom:.25rem;line-height:1.35}
+.tl-detail{font-family:var(--sub);font-size:12.5px;color:var(--t2);line-height:1.6;font-weight:600}
 .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:1.1rem}
 .proj-card{background:var(--white);border-radius:18px;border:2px solid var(--brd);padding:1.5rem;box-shadow:0 4px 18px var(--shd);transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden}
 .proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:18px 18px 0 0}
 .pc1::before{background:linear-gradient(90deg,var(--p),var(--v))}.pc2::before{background:linear-gradient(90deg,var(--b),var(--g))}.pc3::before{background:linear-gradient(90deg,var(--v),var(--b))}.pc4::before{background:linear-gradient(90deg,var(--o),var(--p))}
 .proj-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px var(--shd)}
 .proj-n{font-family:var(--mono);font-size:10px;color:var(--t3);margin-bottom:.8rem}
-.proj-title{font-family:var(--disp);font-size:16.5px;color:var(--t1);margin-bottom:.55rem;line-height:1.3}
-.proj-desc{font-size:13px;color:var(--t2);line-height:1.7;margin-bottom:1rem}
+.proj-title{font-family:var(--disp);font-size:14.5px;color:var(--t1);margin-bottom:.55rem;line-height:1.35}
+.proj-desc{font-family:var(--sub);font-size:13px;color:var(--t2);line-height:1.7;margin-bottom:1rem;font-weight:600}
 .tag-row{display:flex;flex-wrap:wrap;gap:.35rem}
-
-/* ─── SKILLS ─── */
 .sk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.1rem}
 .sk-card{background:var(--white);border-radius:18px;border:2px solid var(--brd);padding:1.5rem;box-shadow:0 4px 18px var(--shd);transition:transform .2s,box-shadow .2s}
 .sk-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px var(--shd)}
 .sk-icon{font-size:22px;margin-bottom:.6rem}
-.sk-name{font-family:var(--disp);font-size:16.5px;color:var(--t1);margin-bottom:.4rem}
-.sk-desc{font-size:13px;color:var(--t2);line-height:1.7;margin-bottom:.85rem}
-
-/* ─── MOMENTS ─── */
+.sk-name{font-family:var(--disp);font-size:14.5px;color:var(--t1);margin-bottom:.4rem}
+.sk-desc{font-family:var(--sub);font-size:13px;color:var(--t2);line-height:1.7;margin-bottom:.85rem;font-weight:600}
 #moments{background:var(--bg2)}
-.moments-note{background:var(--yl);border:2px dashed var(--y);border-radius:14px;padding:.9rem 1.2rem;margin-bottom:1.8rem;font-size:13px;color:#775500;font-weight:700;display:flex;gap:.5rem;align-items:flex-start}
+.moments-note{background:var(--yl);border:2px dashed var(--y);border-radius:14px;padding:.9rem 1.2rem;margin-bottom:1.8rem;font-family:var(--sub);font-size:13px;color:#775500;font-weight:700;display:flex;gap:.5rem;align-items:flex-start}
 .moments-feed{display:flex;flex-direction:column;gap:1.2rem}
 .moment-card{background:var(--white);border-radius:18px;border:2px solid var(--brd);padding:1.3rem 1.5rem;box-shadow:0 4px 18px var(--shd)}
 .m-header{display:flex;align-items:center;gap:.8rem;margin-bottom:.8rem}
-.m-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--pl),var(--vl));display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-size:15px;color:var(--p);flex-shrink:0;border:2px solid var(--brd)}
-.m-name{font-weight:800;font-size:14px;color:var(--t1)}
-.m-date{font-size:11px;color:var(--t3);font-weight:600}
-.m-text{font-size:14px;color:var(--t1);line-height:1.75;margin-bottom:.85rem}
+.m-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--pl),var(--vl));display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-size:13px;color:var(--p);flex-shrink:0;border:2px solid var(--brd)}
+.m-name{font-family:var(--sub);font-weight:800;font-size:14px;color:var(--t1)}
+.m-date{font-family:var(--sub);font-size:11px;color:var(--t3);font-weight:600}
+.m-text{font-family:var(--sub);font-size:14px;color:var(--t1);line-height:1.75;margin-bottom:.85rem;font-weight:600}
 .m-imgs{display:grid;gap:6px;margin-bottom:.85rem;border-radius:12px;overflow:hidden}
-.m-imgs.g1{grid-template-columns:1fr}
-.m-imgs.g3{grid-template-columns:1fr 1fr 1fr}
+.m-imgs.g1{grid-template-columns:1fr}.m-imgs.g3{grid-template-columns:1fr 1fr 1fr}
 .m-img-ph{background:linear-gradient(135deg,var(--pl),var(--vl));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:28px;aspect-ratio:1;font-weight:800;color:var(--pd)}
 .m-img-ph.tall{aspect-ratio:16/9}
 .m-footer{display:flex;align-items:center;justify-content:space-between}
-.m-tags{display:flex;gap:.35rem;flex-wrap:wrap}
-.m-react{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--t3);font-weight:700;cursor:default}
-
-/* ─── CONTACT ─── */
+.m-react{font-family:var(--sub);font-size:12px;color:var(--t3);font-weight:700;cursor:default}
 .ct-wrap{display:grid;grid-template-columns:1fr 1fr;gap:1.8rem;align-items:start}
 .ct-card{background:var(--white);border-radius:20px;border:2px solid var(--brd);box-shadow:0 4px 18px var(--shd);overflow:hidden}
 .ct-top{background:linear-gradient(135deg,#FFF5FC,#F5E8FF,#E8F5FF);padding:1.8rem;text-align:center}
-.ct-av{width:66px;height:66px;border-radius:50%;background:var(--white);margin:0 auto .8rem;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-size:22px;color:var(--p);box-shadow:0 4px 14px var(--shd);border:2px solid var(--brd)}
-.ct-nm{font-family:var(--disp);font-size:20px;color:var(--t1);margin-bottom:.2rem}
-.ct-sb{font-size:11.5px;color:var(--t2);font-weight:700}
+.ct-av{width:66px;height:66px;border-radius:50%;background:var(--white);margin:0 auto .8rem;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-size:19px;color:var(--p);box-shadow:0 4px 14px var(--shd);border:2px solid var(--brd)}
+.ct-nm{font-family:var(--disp);font-size:17px;color:var(--t1);margin-bottom:.2rem}
+.ct-sb{font-family:var(--sub);font-size:11.5px;color:var(--t2);font-weight:700}
 .ct-items{padding:1.2rem;display:flex;flex-direction:column;gap:.6rem}
-.citem{display:flex;align-items:center;gap:.75rem;padding:.8rem 1rem;border-radius:12px;text-decoration:none;color:var(--t1);border:2px solid var(--brd);transition:all .2s;font-weight:700;font-size:13.5px}
+.citem{display:flex;align-items:center;gap:.75rem;padding:.8rem 1rem;border-radius:12px;text-decoration:none;color:var(--t1);border:2px solid var(--brd);transition:all .2s;font-family:var(--sub);font-weight:700;font-size:13.5px}
 .citem:hover{transform:translateX(4px);border-color:var(--p);background:var(--pl);color:var(--pd)}
 .ci-ico{font-size:16px;flex-shrink:0}
-.ci-lbl{font-size:9.5px;font-weight:800;letter-spacing:.1em;color:var(--t3);display:block;text-transform:uppercase;line-height:1;margin-bottom:1px}
+.ci-lbl{font-family:var(--sub);font-size:9.5px;font-weight:800;letter-spacing:.1em;color:var(--t3);display:block;text-transform:uppercase;line-height:1;margin-bottom:1px}
 .note-card{background:var(--white);border-radius:20px;border:2px solid var(--brd);box-shadow:0 4px 18px var(--shd);padding:1.8rem}
-.open-pill{display:inline-flex;align-items:center;gap:5px;background:var(--gl);color:#006644;padding:.32rem .9rem;border-radius:50px;font-size:11.5px;font-weight:800;margin-bottom:1rem}
+.open-pill{display:inline-flex;align-items:center;gap:5px;background:var(--gl);color:#006644;padding:.32rem .9rem;border-radius:50px;font-family:var(--sub);font-size:11.5px;font-weight:800;margin-bottom:1rem}
 .open-dot{width:6px;height:6px;border-radius:50%;background:var(--g);animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
-.note-card h3{font-family:var(--disp);font-size:20px;color:var(--t1);margin-bottom:.65rem}
-.note-card p{font-size:13.5px;color:var(--t2);line-height:1.8;margin-bottom:.8rem}
-
-/* ─── FOOTER ─── */
+.note-card h3{font-family:var(--disp);font-size:17px;color:var(--t1);margin-bottom:.65rem}
+.note-card p{font-family:var(--sub);font-size:13.5px;color:var(--t2);line-height:1.8;margin-bottom:.8rem;font-weight:600}
 footer{padding:1.6rem 3rem;border-top:2px solid var(--brd);display:flex;justify-content:space-between;align-items:center;background:var(--bg)}
-footer span{font-size:11.5px;color:var(--t3);font-weight:700}
+footer span{font-family:var(--sub);font-size:11.5px;color:var(--t3);font-weight:700}
 .fh{color:var(--p)}
-
-/* ─── ANIMATIONS ─── */
 @keyframes popIn{from{opacity:0;transform:scale(.85) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-
-/* ─── SCROLLBAR ─── */
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:linear-gradient(var(--p),var(--v));border-radius:3px}
-
-/* ─── MOBILE ─── */
 @media(max-width:720px){
   nav{padding:0 1.2rem}.nav-links{display:none}
   .h-inner{grid-template-columns:1fr}.pow-card{display:none}
@@ -253,25 +191,16 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
   footer{flex-direction:column;gap:.4rem;padding:1.2rem;text-align:center}
   .tl-wrap::before{left:22px}
   .tl-row{grid-template-columns:44px 1fr!important}
-  .tl-row.left .tl-content,.tl-row.right .tl-content{grid-column:2;text-align:left;padding-left:1.2rem;padding-right:0}
-  .tl-empty{display:none!important}
-  .tl-node{grid-column:1;padding-top:.9rem}
-  .tl-card-inner{max-width:100%;margin-left:0!important}
-  .anime-char{display:none}
-  .sticker{display:none}
+  .tl-row .tl-content{grid-column:2!important;text-align:left!important;padding-left:1.2rem!important;padding-right:0!important}
+  .tl-node{grid-column:1!important}
+  .tl-card-inner{max-width:100%!important;margin-left:0!important}
+  .anime-char,.sticker{display:none}
 }
 </style>
 </head>
 <body>
-
-<div class="petals">
-  <div class="petal"></div><div class="petal"></div><div class="petal"></div>
-  <div class="petal"></div><div class="petal"></div><div class="petal"></div>
-  <div class="petal"></div><div class="petal"></div>
-</div>
-<div class="sp">✦</div><div class="sp">★</div><div class="sp">✦</div>
-<div class="sp">⭐</div><div class="sp">✦</div><div class="sp">★</div>
-<div class="sp">✦</div><div class="sp">⭐</div>
+<div class="petals"><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div></div>
+<div class="sp">✦</div><div class="sp">★</div><div class="sp">✦</div><div class="sp">⭐</div><div class="sp">✦</div><div class="sp">★</div><div class="sp">✦</div><div class="sp">⭐</div>
 
 <nav>
   <a href="#" class="nav-logo">王臻 ✦</a>
@@ -289,7 +218,6 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
 </nav>
 
 <main>
-
 <!-- ╔══ HERO ══╗ -->
 <section id="hero" class="sec">
   <div class="h-blob hb1"></div><div class="h-blob hb2"></div><div class="h-blob hb3"></div>
@@ -298,19 +226,13 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
       <div>
         <div class="h-badge">🌸 <span data-i18n="hero.badge">UCSD 2029届 · 圣地亚哥</span></div>
         <h1 class="h-name">Zhen<br><span class="rainbow" data-i18n="hero.name2">Wang ✦</span></h1>
-        <p class="h-sub"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a8d2c0df999a9ce8ddcbdbcc86cdccdd">[email&#160;protected]</a> &nbsp;·&nbsp; Data Science &amp; Math-CS</p>
-        <p class="h-desc" data-i18n="hero.desc">
-          UCSD 数据科学 &amp; 数学-计算机科学双专业在读，
-          边缘 AI 能效研究员，动漫爱好者。
-          在数据、算法和 AI 的交叉点探索世界 ✨
-        </p>
+        <p class="h-sub">zw2@ucsd.edu &nbsp;·&nbsp; Data Science &amp; Math-CS</p>
+        <p class="h-desc" data-i18n="hero.desc">UCSD 数据科学 &amp; 数学-计算机科学双专业在读，边缘 AI 能效研究员，动漫爱好者。在数据、算法和 AI 的交叉点探索世界 ✨</p>
         <div class="h-btns">
-          <a href="/cdn-cgi/l/email-protection#9be1f3ecaaa9afdbeef8e8ffb5feffee" class="btn btn-main">✉ <span data-i18n="hero.cta1">打个招呼</span></a>
+          <a href="mailto:zw2@ucsd.edu" class="btn btn-main">✉ <span data-i18n="hero.cta1">打个招呼</span></a>
           <a href="#experience" class="btn btn-s"><span data-i18n="hero.cta2">查看我的经历</span> ↓</a>
         </div>
       </div>
-
-      <!-- POWER COUNTER -->
       <div class="pow-card" id="powCard">
         <div class="pow-title">⚡ <span data-i18n="pow.title">旅行者能量站</span></div>
         <div class="pow-sub" data-i18n="pow.sub">VISITOR ENERGY STATION</div>
@@ -319,9 +241,7 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
           <span class="pow-unit" data-i18n="pow.unit">份能量已收到</span>
         </div>
         <div class="pow-bar-wrap"><div class="pow-bar" id="powBar" style="width:2%"></div></div>
-        <button class="pow-btn" id="powBtn" onclick="addPower()">
-          ⚡ <span data-i18n="pow.btn">点击充能 +1</span>
-        </button>
+        <button class="pow-btn" id="powBtn" onclick="addPower()">⚡ <span data-i18n="pow.btn">点击充能 +1</span></button>
         <div class="pow-msg" id="powMsg" data-i18n="pow.msg0">你好呀旅行者，快来给我充能吧！</div>
       </div>
     </div>
@@ -336,21 +256,19 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
     <p class="sec-tag" style="background:var(--pl);color:var(--pd)">✦ <span data-i18n="exp.tag">研究 &amp; 经历</span></p>
     <h2 class="sec-title"><span data-i18n="exp.title1">我做过的</span> <span class="acc" style="background:linear-gradient(90deg,var(--p),var(--v));" data-i18n="exp.title2">研究与探索</span></h2>
     <div class="exp-grid">
-
       <div class="exp-card">
         <div class="e-icon ei-p">🔬</div>
         <div>
           <div class="e-org" data-i18n="e1.org">UCSD · 独立本科科研项目</div>
           <div class="e-role" data-i18n="e1.role">独立研究员 — 边缘 AI 热节流效应研究</div>
           <span class="chip c-p" style="display:inline-block;margin:.2rem 0 .7rem" data-i18n="e1.date">2026.03 – 至今</span>
-          <ul class="e-ul" id="e1-ul">
+          <ul class="e-ul">
             <li data-i18n="e1.b1">独立主导课题：边缘 AI 热节流效应与能效关系。导师：Peter Chi 教授。</li>
-            <li data-i18n="e1.b2">在 GPU/Jetson 设备上部署 Llama-3 推理任务，使用 nvidia-smi &amp; Prometheus 实时采集 GPU 温度、时钟频率、功耗与吞吐量。</li>
+            <li data-i18n="e1.b2">在 GPU/Jetson 设备上部署 Llama-3，使用 nvidia-smi &amp; Prometheus 实时采集 GPU 温度、时钟频率、功耗与吞吐量。</li>
             <li data-i18n="e1.b3">构建"效率-热量"量化模型，产出含可视化仪表盘的技术报告，为不同热状态下 AI 推理提供实证数据。</li>
           </ul>
         </div>
       </div>
-
       <div class="exp-card">
         <div class="e-icon ei-v">📊</div>
         <div>
@@ -363,7 +281,6 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
           </ul>
         </div>
       </div>
-
       <div class="exp-card">
         <div class="e-icon ei-b">🧠</div>
         <div>
@@ -373,12 +290,11 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
           <ul class="e-ul">
             <li data-i18n="e3.b1">在孙晓宁教授课题组处理 500+ 小时幼儿行为结构化数据，推动大规模发展研究数据的系统化分析。</li>
             <li data-i18n="e3.b2">使用 Stata &amp; Excel 管理发展评估数据集，与博士生协作构建自动化流程，完成 95 份标准化计算分析报告。</li>
-            <li data-i18n="e3.b3">主导设计 60 项变量采集工具；作为实验主试之一，独立执行 28 名儿童的标准化评估（韦氏量表、TEC）。</li>
+            <li data-i18n="e3.b3">主导设计 60 项变量采集工具；独立执行 28 名儿童的标准化评估（韦氏量表、TEC）。</li>
             <li data-i18n="e3.b4">担任《Developmental Psychology》期刊审稿人；每周文献研讨会完成 10 次方法学批判性汇报。</li>
           </ul>
         </div>
       </div>
-
       <div class="exp-card">
         <div class="e-icon ei-o">🏫</div>
         <div>
@@ -390,48 +306,38 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
           </ul>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <div class="wave" style="background:var(--bg)"><svg viewBox="0 0 1200 60" preserveAspectRatio="none" height="52"><path d="M0,60 C400,0 800,60 1200,0 L1200,60 L0,60Z" fill="var(--bg2)"/></svg></div>
 
-<!-- ╔══ LIFE TIMELINE ══╗ -->
+<!-- ╔══ TIMELINE ══╗ -->
 <section id="timeline" class="sec">
   <div class="ctr">
     <p class="sec-tag" style="background:var(--vl);color:#6600CC">✦ <span data-i18n="tl.tag">人生时间轴</span></p>
     <h2 class="sec-title"><span data-i18n="tl.title1">走过的</span> <span class="acc" style="background:linear-gradient(90deg,var(--v),var(--b));" data-i18n="tl.title2">每一步</span></h2>
-
-    <!-- column labels -->
     <div style="display:grid;grid-template-columns:1fr 60px 1fr;margin-bottom:1.4rem">
       <div style="text-align:right;padding-right:2rem">
-        <span style="display:inline-flex;align-items:center;gap:5px;background:var(--bl);color:#0055aa;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .9rem;border-radius:50px">🎓 <span data-i18n="tl.col1">教育经历</span></span>
+        <span style="display:inline-flex;align-items:center;gap:5px;background:var(--bl);color:#0055aa;font-family:var(--sub);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .9rem;border-radius:50px">🎓 <span data-i18n="tl.col1">教育经历</span></span>
       </div>
       <div></div>
       <div style="padding-left:2rem">
-        <span style="display:inline-flex;align-items:center;gap:5px;background:var(--pl);color:var(--pd);font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .9rem;border-radius:50px">⚡ <span data-i18n="tl.col2">活动 &amp; 成就</span></span>
+        <span style="display:inline-flex;align-items:center;gap:5px;background:var(--pl);color:var(--pd);font-family:var(--sub);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .9rem;border-radius:50px">⚡ <span data-i18n="tl.col2">活动 &amp; 成就</span></span>
       </div>
     </div>
-
     <div class="tl-wrap">
 
-      <!-- ROW 1: 高中 (left) | 学生会副部长 (right) — overlap period -->
-      <div class="tl-row" style="display:grid;grid-template-columns:1fr 60px 1fr;gap:0;margin-bottom:2rem;opacity:0;transform:translateY(16px);transition:all .45s">
-        <!-- LEFT: 高中 -->
-        <div class="tl-content" style="grid-column:1;text-align:right;padding-right:2rem;padding-top:.5rem">
+      <div class="tl-row">
+        <div class="tl-content" style="grid-column:1;text-align:right;padding-right:2rem">
           <div class="tl-card-inner" style="margin-left:auto">
             <div class="tl-year">2022.09 – 2025.06</div>
             <div class="tl-event" data-i18n="tl1.ev">🏫 上海市世外中学（高中）</div>
             <div class="tl-detail" data-i18n="tl1.d">高中三年，发现对数据科学与社会科学的深厚兴趣，系统打磨独立思考与自学能力，厚积薄发。</div>
           </div>
         </div>
-        <!-- NODE -->
-        <div class="tl-node" style="grid-column:2;display:flex;justify-content:center;align-items:flex-start;padding-top:1.2rem">
-          <div class="tl-dot" style="box-shadow:0 0 0 3px var(--b),0 4px 14px var(--shd)">🏫</div>
-        </div>
-        <!-- RIGHT: 学生会 -->
-        <div class="tl-content" style="grid-column:3;padding-left:2rem;padding-top:.5rem">
+        <div class="tl-node" style="grid-column:2"><div class="tl-dot" style="box-shadow:0 0 0 3px var(--b),0 4px 14px var(--shd)">🏫</div></div>
+        <div class="tl-content" style="grid-column:3;padding-left:2rem">
           <div class="tl-card-inner">
             <div class="tl-year">2023.09 – 2024.09</div>
             <div class="tl-event" data-i18n="tl2.ev">🎖️ 学生会实践部副部长</div>
@@ -440,16 +346,10 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
         </div>
       </div>
 
-      <!-- ROW 2: (高中仍在，活动右侧) 交大 RA -->
-      <div class="tl-row" style="display:grid;grid-template-columns:1fr 60px 1fr;gap:0;margin-bottom:2rem;opacity:0;transform:translateY(16px);transition:all .45s">
-        <!-- LEFT: empty spacer during high school (still ongoing) -->
+      <div class="tl-row">
         <div style="grid-column:1"></div>
-        <!-- NODE -->
-        <div class="tl-node" style="grid-column:2;display:flex;justify-content:center;align-items:flex-start;padding-top:1.2rem">
-          <div class="tl-dot" style="box-shadow:0 0 0 3px var(--p),0 4px 14px var(--shd)">🔬</div>
-        </div>
-        <!-- RIGHT: SJTU RA -->
-        <div class="tl-content" style="grid-column:3;padding-left:2rem;padding-top:.5rem">
+        <div class="tl-node" style="grid-column:2"><div class="tl-dot" style="box-shadow:0 0 0 3px var(--p),0 4px 14px var(--shd)">🔬</div></div>
+        <div class="tl-content" style="grid-column:3;padding-left:2rem">
           <div class="tl-card-inner">
             <div class="tl-year">2024.06 – 2025.09</div>
             <div class="tl-event" data-i18n="tl3.ev">🔬 上海交大心理学院 RA</div>
@@ -458,22 +358,16 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
         </div>
       </div>
 
-      <!-- ROW 3: UCSD begins (left) | 社会学研究项目 (right) -->
-      <div class="tl-row" style="display:grid;grid-template-columns:1fr 60px 1fr;gap:0;margin-bottom:2rem;opacity:0;transform:translateY(16px);transition:all .45s">
-        <!-- LEFT: UCSD -->
-        <div class="tl-content" style="grid-column:1;text-align:right;padding-right:2rem;padding-top:.5rem">
+      <div class="tl-row">
+        <div class="tl-content" style="grid-column:1;text-align:right;padding-right:2rem">
           <div class="tl-card-inner" style="margin-left:auto">
             <div class="tl-year">2025.09 – 至今</div>
             <div class="tl-event" data-i18n="tl4.ev">✈️ 远赴加州，开启 UCSD</div>
             <div class="tl-detail" data-i18n="tl4.d">带着好奇与期待飞越太平洋，开始数据科学 &amp; 数学-计算机科学双专业本科学习。GPA 4.0/4.0。</div>
           </div>
         </div>
-        <!-- NODE -->
-        <div class="tl-node" style="grid-column:2;display:flex;justify-content:center;align-items:flex-start;padding-top:1.2rem">
-          <div class="tl-dot" style="box-shadow:0 0 0 3px var(--v),0 4px 14px var(--shd)">✈️</div>
-        </div>
-        <!-- RIGHT: sociology project (Fall 2025) -->
-        <div class="tl-content" style="grid-column:3;padding-left:2rem;padding-top:.5rem">
+        <div class="tl-node" style="grid-column:2"><div class="tl-dot" style="box-shadow:0 0 0 3px var(--v),0 4px 14px var(--shd)">✈️</div></div>
+        <div class="tl-content" style="grid-column:3;padding-left:2rem">
           <div class="tl-card-inner">
             <div class="tl-year">2025.09 – 2025.12</div>
             <div class="tl-event" data-i18n="tl5.ev">📝 "学生为何上学"社会学研究</div>
@@ -482,16 +376,10 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
         </div>
       </div>
 
-      <!-- ROW 4: UCSD (left continued) | EPL 数据分析 -->
-      <div class="tl-row" style="display:grid;grid-template-columns:1fr 60px 1fr;gap:0;margin-bottom:2rem;opacity:0;transform:translateY(16px);transition:all .45s">
-        <!-- LEFT: empty (UCSD ongoing) -->
+      <div class="tl-row">
         <div style="grid-column:1"></div>
-        <!-- NODE -->
-        <div class="tl-node" style="grid-column:2;display:flex;justify-content:center;align-items:flex-start;padding-top:1.2rem">
-          <div class="tl-dot" style="box-shadow:0 0 0 3px var(--g),0 4px 14px var(--shd)">📈</div>
-        </div>
-        <!-- RIGHT: EPL project -->
-        <div class="tl-content" style="grid-column:3;padding-left:2rem;padding-top:.5rem">
+        <div class="tl-node" style="grid-column:2"><div class="tl-dot" style="box-shadow:0 0 0 3px var(--g),0 4px 14px var(--shd)">📈</div></div>
+        <div class="tl-content" style="grid-column:3;padding-left:2rem">
           <div class="tl-card-inner">
             <div class="tl-year">2026.01 – 2026.03</div>
             <div class="tl-event" data-i18n="tl6.ev">📈 英超转会分析项目</div>
@@ -500,16 +388,10 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
         </div>
       </div>
 
-      <!-- ROW 5: UCSD (left) | HDSI RA (right) -->
-      <div class="tl-row" style="display:grid;grid-template-columns:1fr 60px 1fr;gap:0;margin-bottom:2rem;opacity:0;transform:translateY(16px);transition:all .45s">
-        <!-- LEFT: still at UCSD -->
+      <div class="tl-row">
         <div style="grid-column:1"></div>
-        <!-- NODE -->
-        <div class="tl-node" style="grid-column:2;display:flex;justify-content:center;align-items:flex-start;padding-top:1.2rem">
-          <div class="tl-dot" style="box-shadow:0 0 0 3px var(--b),0 4px 14px var(--shd)">📊</div>
-        </div>
-        <!-- RIGHT: HDSI RA -->
-        <div class="tl-content" style="grid-column:3;padding-left:2rem;padding-top:.5rem">
+        <div class="tl-node" style="grid-column:2"><div class="tl-dot" style="box-shadow:0 0 0 3px var(--b),0 4px 14px var(--shd)">📊</div></div>
+        <div class="tl-content" style="grid-column:3;padding-left:2rem">
           <div class="tl-card-inner">
             <div class="tl-year">2026.01 – 至今</div>
             <div class="tl-event" data-i18n="tl7.ev">📊 HDSI 数据科学院 RA</div>
@@ -518,16 +400,10 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
         </div>
       </div>
 
-      <!-- ROW 6: UCSD (left) | 独立科研 (right) -->
-      <div class="tl-row" style="display:grid;grid-template-columns:1fr 60px 1fr;gap:0;margin-bottom:2rem;opacity:0;transform:translateY(16px);transition:all .45s">
-        <!-- LEFT: still at UCSD -->
+      <div class="tl-row">
         <div style="grid-column:1"></div>
-        <!-- NODE -->
-        <div class="tl-node" style="grid-column:2;display:flex;justify-content:center;align-items:flex-start;padding-top:1.2rem">
-          <div class="tl-dot" style="box-shadow:0 0 0 3px var(--y),0 4px 14px var(--shd)">🏆</div>
-        </div>
-        <!-- RIGHT: independent research -->
-        <div class="tl-content" style="grid-column:3;padding-left:2rem;padding-top:.5rem">
+        <div class="tl-node" style="grid-column:2"><div class="tl-dot" style="box-shadow:0 0 0 3px var(--y),0 4px 14px var(--shd)">🏆</div></div>
+        <div class="tl-content" style="grid-column:3;padding-left:2rem">
           <div class="tl-card-inner">
             <div class="tl-year">2026.03 – 至今</div>
             <div class="tl-event" data-i18n="tl8.ev">🏆 独立科研：边缘 AI 能效</div>
@@ -557,19 +433,19 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
       <div class="proj-card pc2">
         <div class="proj-n">02 · 2026.01 – 2026.03</div>
         <div class="proj-title" data-i18n="p2.t">英超转会花费与净胜球关系分析</div>
-        <p class="proj-desc" data-i18n="p2.d">用 Python/Pandas 从 Transfermarkt 爬取 20 支球队近 10 年逐年数据，构建时间序列数据集，用线性回归量化转会投入与竞技成绩的相关性。</p>
+        <p class="proj-desc" data-i18n="p2.d">用 Python/Pandas 从 Transfermarkt 爬取 20 支球队近 10 年数据，用线性回归量化转会投入与竞技成绩的相关性。</p>
         <div class="tag-row"><span class="chip c-g">Python/Pandas</span><span class="chip c-b">线性回归</span><span class="chip c-o">数据爬取</span></div>
       </div>
       <div class="proj-card pc3">
         <div class="proj-n">03 · 2025.09 – 2025.12</div>
         <div class="proj-title" data-i18n="p3.t">"学生为何上学" 社会学研究</div>
-        <p class="proj-desc" data-i18n="p3.d">带领 5 人团队完成 10 场深度访谈，运用统计假设检验与定性编码处理数据，合作完成 25 页研究报告。满分 100/100 ⭐</p>
+        <p class="proj-desc" data-i18n="p3.d">带领 5 人团队完成 10 场深度访谈，运用统计假设检验与定性编码，合作完成 25 页研究报告。满分 100/100 ⭐</p>
         <div class="tag-row"><span class="chip c-v">混合研究法</span><span class="chip c-p">定性编码</span><span class="chip c-b">团队领导</span></div>
       </div>
       <div class="proj-card pc4">
         <div class="proj-n">04 · 2024.06 – 2025.09</div>
         <div class="proj-title" data-i18n="p4.t">儿童发展数据流水线</div>
-        <p class="proj-desc" data-i18n="p4.d">在上海交大自动化 Stata/Excel 工作流，处理 500+ 小时行为数据。设计 60 变量问卷工具，为 28 名儿童执行韦氏量表等标准化评估。</p>
+        <p class="proj-desc" data-i18n="p4.d">在上海交大自动化 Stata/Excel 工作流，处理 500+ 小时行为数据。设计 60 变量问卷，为 28 名儿童执行韦氏量表等标准化评估。</p>
         <div class="tag-row"><span class="chip c-o">Stata</span><span class="chip c-v">行为数据</span><span class="chip c-g">韦氏量表</span></div>
       </div>
     </div>
@@ -601,57 +477,25 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
   <div class="ctr">
     <p class="sec-tag" style="background:var(--pl);color:var(--pd)">✦ <span data-i18n="mom.tag">生活分享</span></p>
     <h2 class="sec-title"><span data-i18n="mom.title1">我的</span> <span class="acc" style="background:linear-gradient(90deg,var(--p),var(--o));" data-i18n="mom.title2">朋友圈</span> 📸</h2>
-
-    <div class="moments-note">
-      📝 <span data-i18n="mom.note">这里是我的生活碎片。内容持续更新中，快来看看我最近在干嘛～</span>
-    </div>
-
+    <div class="moments-note">📝 <span data-i18n="mom.note">这里是我的生活碎片。内容持续更新中，快来看看我最近在干嘛～</span></div>
     <div class="moments-feed">
-
-      <!-- post 1 -->
       <div class="moment-card">
-        <div class="m-header">
-          <div class="m-av">王</div>
-          <div><div class="m-name">王臻</div><div class="m-date">2026.03.15</div></div>
-        </div>
+        <div class="m-header"><div class="m-av">王</div><div><div class="m-name">王臻</div><div class="m-date">2026.03.15</div></div></div>
         <p class="m-text" data-i18n="m1.t">独立科研项目批了！！要开始我的独立科研了 🎉 研究方向是边缘 AI 的热节流效应，导师是 Peter Chi 教授。下周开始在 Jetson 上跑 Llama-3，感觉超兴奋的，加油！✨⚡</p>
         <div class="m-imgs g1"><div class="m-img-ph tall" style="font-size:36px">🔬⚡🤖</div></div>
-        <div class="m-footer">
-          <div class="tag-row"><span class="chip c-v">科研</span><span class="chip c-b">Edge AI</span><span class="chip c-g">UCSD</span></div>
-          <div class="m-react">❤️ 12</div>
-        </div>
+        <div class="m-footer"><div class="tag-row"><span class="chip c-v">科研</span><span class="chip c-b">Edge AI</span><span class="chip c-g">UCSD</span></div><div class="m-react">❤️ 12</div></div>
       </div>
-
-      <!-- post 2 -->
       <div class="moment-card">
-        <div class="m-header">
-          <div class="m-av">王</div>
-          <div><div class="m-name">王臻</div><div class="m-date">2026.02.20</div></div>
-        </div>
+        <div class="m-header"><div class="m-av">王</div><div><div class="m-name">王臻</div><div class="m-date">2026.02.20</div></div></div>
         <p class="m-text" data-i18n="m2.t">Club Tennis 今天赢了！打球真的是减压神器，每次打完都感觉充满能量 🎾 顺便说一下期中 Data Science 拿了满绩，开心～下周还有三门课的 midterm，加油加油！</p>
-        <div class="m-imgs g3">
-          <div class="m-img-ph">🎾</div>
-          <div class="m-img-ph">📊</div>
-          <div class="m-img-ph">☀️</div>
-        </div>
-        <div class="m-footer">
-          <div class="tag-row"><span class="chip c-g">网球</span><span class="chip c-p">UCSD</span></div>
-          <div class="m-react">❤️ 23</div>
-        </div>
+        <div class="m-imgs g3"><div class="m-img-ph">🎾</div><div class="m-img-ph">📊</div><div class="m-img-ph">☀️</div></div>
+        <div class="m-footer"><div class="tag-row"><span class="chip c-g">网球</span><span class="chip c-p">UCSD</span></div><div class="m-react">❤️ 23</div></div>
       </div>
-
-      <!-- post 3 — placeholder -->
       <div class="moment-card" style="border-style:dashed;border-color:var(--y);background:var(--yl)">
-        <div class="m-header">
-          <div class="m-av" style="background:var(--yl);color:var(--y)">+</div>
-          <div><div class="m-name" style="color:var(--y)" data-i18n="m3.n">待更新</div><div class="m-date" data-i18n="m3.d">你的下一条朋友圈内容</div></div>
-        </div>
-        <p class="m-text" style="color:#996600;font-weight:700" data-i18n="m3.t">
-          📝 在这里填入你想分享的内容。可以是校园生活、研究进展、旅行见闻、动漫感想……什么都可以！编辑 index.html 中 <code style="background:rgba(0,0,0,.06);padding:1px 4px;border-radius:4px">#moments</code> 区域的卡片即可添加。
-        </p>
+        <div class="m-header"><div class="m-av" style="background:var(--yl);color:var(--y)">+</div><div><div class="m-name" style="color:var(--y)" data-i18n="m3.n">待更新</div><div class="m-date" data-i18n="m3.d">你的下一条朋友圈内容</div></div></div>
+        <p class="m-text" style="color:#996600;font-weight:700" data-i18n="m3.t">📝 在这里填入你想分享的内容。可以是校园生活、研究进展、旅行见闻、动漫感想……什么都可以！</p>
         <div class="m-footer"><div class="tag-row"><span class="chip c-y">📌 待更新</span></div></div>
       </div>
-
     </div>
   </div>
 </section>
@@ -671,7 +515,7 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
           <div class="ct-sb" data-i18n="ct.sub">UCSD · 数据科学 &amp; 数学-CS · 2029 届</div>
         </div>
         <div class="ct-items">
-          <a href="/cdn-cgi/l/email-protection#0973617e383b3d497c6a7a6d276c6d7c" class="citem"><span class="ci-ico">✉️</span><div><span class="ci-lbl">Email</span><span class="__cf_email__" data-cfemail="97edffe0a6a5a3d7e2f4e4f3b9f2f3e2">[email&#160;protected]</span></div></a>
+          <a href="mailto:zw2@ucsd.edu" class="citem"><span class="ci-ico">✉️</span><div><span class="ci-lbl">Email</span>zw2@ucsd.edu</div></a>
           <a href="tel:+18582208768" class="citem"><span class="ci-ico">📱</span><div><span class="ci-lbl" data-i18n="ct.phone">电话 (US)</span>858-220-8768</div></a>
           <div class="citem" style="cursor:default"><span class="ci-ico">📍</span><div><span class="ci-lbl" data-i18n="ct.loc">所在地</span><span data-i18n="ct.locv">圣地亚哥 / 上海</span></div></div>
           <a href="https://pandastutor.com" target="_blank" class="citem"><span class="ci-ico">🔗</span><div><span class="ci-lbl" data-i18n="ct.proj">研究项目</span>pandastutor.com</div></a>
@@ -683,12 +527,11 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
         <h3 data-i18n="ct.h3">一起做些有趣的事吧！</h3>
         <p data-i18n="ct.p1">我目前是 UCSD 的独立本科研究员，在研究边缘 AI 能效问题，导师是 Peter Chi 教授。随时欢迎聊科研、数据科学、合作机会，或者只是打个招呼 ✨</p>
         <p data-i18n="ct.p2">数据科学 &amp; 数学-计算机科学双专业，预计 2029 年毕业。</p>
-        <a href="/cdn-cgi/l/email-protection#3f4557480e0d0b7f4a5c4c5b115a5b4a" class="btn btn-main" style="margin-top:.4rem" data-i18n="ct.btn">发消息给我 💌</a>
+        <a href="mailto:zw2@ucsd.edu" class="btn btn-main" style="margin-top:.4rem" data-i18n="ct.btn">发消息给我 💌</a>
       </div>
     </div>
   </div>
 </section>
-
 </main>
 
 <footer>
@@ -696,410 +539,37 @@ footer span{font-size:11.5px;color:var(--t3);font-weight:700}
   <span><span data-i18n="ft">用</span> <span class="fh">♡</span> <span data-i18n="ft2">制作 · UCSD 数据科学 &amp; 数学-CS</span></span>
 </footer>
 
-<!-- ╔══ ANIME CHARACTERS ══╗ -->
-<!-- Furina (Genshin) - right side -->
-<div class="anime-char char-furina">
-<svg width="90" height="160" viewBox="0 0 90 160" xmlns="http://www.w3.org/2000/svg">
-  <!-- Hat -->
-  <ellipse cx="45" cy="30" rx="30" ry="8" fill="#1a1a3e"/>
-  <rect x="28" y="10" width="34" height="22" rx="6" fill="#1a1a3e"/>
-  <circle cx="45" cy="10" r="8" fill="#6fa8dc"/>
-  <ellipse cx="45" cy="10" rx="5" ry="5" fill="#a0c4ff"/>
-  <!-- Hair -->
-  <ellipse cx="45" cy="42" rx="20" ry="16" fill="#b8d4f5"/>
-  <rect x="25" y="40" width="8" height="28" rx="4" fill="#b8d4f5"/>
-  <rect x="57" y="40" width="8" height="28" rx="4" fill="#b8d4f5"/>
-  <!-- Face -->
-  <ellipse cx="45" cy="50" rx="15" ry="16" fill="#fde8d8"/>
-  <!-- Eyes -->
-  <ellipse cx="39" cy="49" rx="4" ry="4.5" fill="#4a90d9"/>
-  <ellipse cx="51" cy="49" rx="4" ry="4.5" fill="#4a90d9"/>
-  <circle cx="40" cy="48" r="1.5" fill="#fff"/>
-  <circle cx="52" cy="48" r="1.5" fill="#fff"/>
-  <ellipse cx="39" cy="50" rx="2.5" ry="2.5" fill="#1a4a8c"/>
-  <ellipse cx="51" cy="50" rx="2.5" ry="2.5" fill="#1a4a8c"/>
-  <!-- Blush -->
-  <ellipse cx="35" cy="54" rx="4" ry="2.5" fill="#ffb3c6" opacity=".5"/>
-  <ellipse cx="55" cy="54" rx="4" ry="2.5" fill="#ffb3c6" opacity=".5"/>
-  <!-- Mouth -->
-  <path d="M41 58 Q45 62 49 58" stroke="#d4607a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <!-- Body / dress -->
-  <path d="M30 66 Q45 72 60 66 L65 130 Q45 138 25 130Z" fill="#1e2d6e"/>
-  <!-- White collar / lace -->
-  <path d="M33 66 Q45 74 57 66" stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round"/>
-  <ellipse cx="45" cy="70" rx="8" ry="4" fill="#ffffff" opacity=".8"/>
-  <!-- Frills on dress -->
-  <path d="M25 100 Q35 95 45 100 Q55 95 65 100" stroke="#4a6fbd" stroke-width="2" fill="none"/>
-  <path d="M25 115 Q35 110 45 115 Q55 110 65 115" stroke="#4a6fbd" stroke-width="2" fill="none"/>
-  <!-- Gold trim -->
-  <path d="M30 66 L27 130" stroke="#f5c842" stroke-width="1.5" opacity=".7"/>
-  <path d="M60 66 L63 130" stroke="#f5c842" stroke-width="1.5" opacity=".7"/>
-  <!-- Arms -->
-  <rect x="16" y="68" width="12" height="38" rx="6" fill="#fde8d8"/>
-  <rect x="62" y="68" width="12" height="38" rx="6" fill="#fde8d8"/>
-  <!-- Gloves -->
-  <rect x="15" y="100" width="14" height="18" rx="6" fill="#d4e8ff"/>
-  <rect x="61" y="100" width="14" height="18" rx="6" fill="#d4e8ff"/>
-  <!-- Legs -->
-  <rect x="33" y="128" width="10" height="30" rx="5" fill="#f0d0c0"/>
-  <rect x="47" y="128" width="10" height="30" rx="5" fill="#f0d0c0"/>
-  <!-- Shoes -->
-  <ellipse cx="38" cy="158" rx="8" ry="4" fill="#1a1a3e"/>
-  <ellipse cx="52" cy="158" rx="8" ry="4" fill="#1a1a3e"/>
-  <!-- Name label -->
-  <rect x="18" y="136" width="54" height="16" rx="8" fill="rgba(30,45,110,0.85)"/>
-  <text x="45" y="148" font-size="9" text-anchor="middle" fill="#a0c4ff" font-family="sans-serif" font-weight="bold">芙宁娜 ✦</text>
-</svg>
-</div>
+<!-- Anime Characters -->
+<div class="anime-char char-furina"><svg width="90" height="160" viewBox="0 0 90 160" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="30" rx="30" ry="8" fill="#1a1a3e"/><rect x="28" y="10" width="34" height="22" rx="6" fill="#1a1a3e"/><circle cx="45" cy="10" r="8" fill="#6fa8dc"/><ellipse cx="45" cy="42" rx="20" ry="16" fill="#b8d4f5"/><rect x="25" y="40" width="8" height="28" rx="4" fill="#b8d4f5"/><rect x="57" y="40" width="8" height="28" rx="4" fill="#b8d4f5"/><ellipse cx="45" cy="50" rx="15" ry="16" fill="#fde8d8"/><ellipse cx="39" cy="49" rx="4" ry="4.5" fill="#4a90d9"/><ellipse cx="51" cy="49" rx="4" ry="4.5" fill="#4a90d9"/><circle cx="40" cy="48" r="1.5" fill="#fff"/><circle cx="52" cy="48" r="1.5" fill="#fff"/><ellipse cx="35" cy="54" rx="4" ry="2.5" fill="#ffb3c6" opacity=".5"/><ellipse cx="55" cy="54" rx="4" ry="2.5" fill="#ffb3c6" opacity=".5"/><path d="M41 58 Q45 62 49 58" stroke="#d4607a" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M30 66 Q45 72 60 66 L65 130 Q45 138 25 130Z" fill="#1e2d6e"/><path d="M33 66 Q45 74 57 66" stroke="#fff" stroke-width="3" fill="none"/><ellipse cx="45" cy="70" rx="8" ry="4" fill="#fff" opacity=".8"/><path d="M25 100 Q35 95 45 100 Q55 95 65 100" stroke="#4a6fbd" stroke-width="2" fill="none"/><path d="M25 115 Q35 110 45 115 Q55 110 65 115" stroke="#4a6fbd" stroke-width="2" fill="none"/><rect x="16" y="68" width="12" height="38" rx="6" fill="#fde8d8"/><rect x="62" y="68" width="12" height="38" rx="6" fill="#fde8d8"/><rect x="15" y="100" width="14" height="18" rx="6" fill="#d4e8ff"/><rect x="61" y="100" width="14" height="18" rx="6" fill="#d4e8ff"/><rect x="33" y="128" width="10" height="30" rx="5" fill="#f0d0c0"/><rect x="47" y="128" width="10" height="30" rx="5" fill="#f0d0c0"/><ellipse cx="38" cy="158" rx="8" ry="4" fill="#1a1a3e"/><ellipse cx="52" cy="158" rx="8" ry="4" fill="#1a1a3e"/><rect x="18" y="136" width="54" height="16" rx="8" fill="rgba(30,45,110,0.85)"/><text x="45" y="148" font-size="9" text-anchor="middle" fill="#a0c4ff" font-family="sans-serif" font-weight="bold">芙宁娜 ✦</text></svg></div>
 
-<!-- Nino (Quintessential Quintuplets) - left side -->
-<div class="anime-char char-nino">
-<svg width="85" height="155" viewBox="0 0 85 155" xmlns="http://www.w3.org/2000/svg">
-  <!-- Hair - pink twin tails -->
-  <ellipse cx="42" cy="38" rx="20" ry="18" fill="#f48fb1"/>
-  <!-- twin tails -->
-  <path d="M18 45 Q5 60 8 85 Q14 90 20 85 Q18 65 25 52Z" fill="#f48fb1"/>
-  <path d="M66 45 Q79 60 76 85 Q70 90 64 85 Q66 65 59 52Z" fill="#f48fb1"/>
-  <!-- hair bows -->
-  <path d="M10 55 Q4 50 10 46 Q16 50 10 55Z" fill="#ff4081"/>
-  <path d="M74 55 Q80 50 74 46 Q68 50 74 55Z" fill="#ff4081"/>
-  <circle cx="10" cy="50" r="3" fill="#ff4081"/>
-  <circle cx="74" cy="50" r="3" fill="#ff4081"/>
-  <!-- Face -->
-  <ellipse cx="42" cy="46" rx="16" ry="17" fill="#fde8d8"/>
-  <!-- Eyes -->
-  <ellipse cx="36" cy="45" rx="4" ry="4.5" fill="#c2185b"/>
-  <ellipse cx="48" cy="45" rx="4" ry="4.5" fill="#c2185b"/>
-  <circle cx="37" cy="44" r="1.5" fill="#fff"/>
-  <circle cx="49" cy="44" r="1.5" fill="#fff"/>
-  <!-- Blush -->
-  <ellipse cx="31" cy="50" rx="4" ry="2.5" fill="#ffb3c6" opacity=".6"/>
-  <ellipse cx="53" cy="50" rx="4" ry="2.5" fill="#ffb3c6" opacity=".6"/>
-  <!-- Mouth -->
-  <path d="M38 54 Q42 58 46 54" stroke="#d4607a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <!-- School uniform body -->
-  <path d="M26 63 Q42 70 58 63 L62 128 Q42 135 22 128Z" fill="#3949ab"/>
-  <!-- White shirt collar / bow -->
-  <path d="M34 63 Q42 70 50 63" stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round"/>
-  <path d="M39 67 L42 75 L45 67" fill="#ff4081" stroke="#ff4081" stroke-width="1"/>
-  <!-- Skirt pleats -->
-  <path d="M22 103 Q32 98 42 103 Q52 98 62 103" stroke="#283593" stroke-width="2" fill="none"/>
-  <path d="M22 115 Q32 110 42 115 Q52 110 62 115" stroke="#283593" stroke-width="2" fill="none"/>
-  <!-- Arms -->
-  <rect x="14" y="65" width="11" height="36" rx="5.5" fill="#fde8d8"/>
-  <rect x="60" y="65" width="11" height="36" rx="5.5" fill="#fde8d8"/>
-  <!-- Legs -->
-  <rect x="31" y="126" width="10" height="28" rx="5" fill="#fde8d8"/>
-  <rect x="44" y="126" width="10" height="28" rx="5" fill="#fde8d8"/>
-  <!-- Shoes -->
-  <ellipse cx="36" cy="153" rx="8" ry="4" fill="#212121"/>
-  <ellipse cx="49" cy="153" rx="8" ry="4" fill="#212121"/>
-  <!-- Name label -->
-  <rect x="14" y="132" width="56" height="16" rx="8" fill="rgba(193,35,97,0.85)"/>
-  <text x="42" y="144" font-size="9" text-anchor="middle" fill="#ffd6e7" font-family="sans-serif" font-weight="bold">二乃 ✦</text>
-</svg>
-</div>
+<div class="anime-char char-nino"><svg width="85" height="155" viewBox="0 0 85 155" xmlns="http://www.w3.org/2000/svg"><ellipse cx="42" cy="38" rx="20" ry="18" fill="#f48fb1"/><path d="M18 45 Q5 60 8 85 Q14 90 20 85 Q18 65 25 52Z" fill="#f48fb1"/><path d="M66 45 Q79 60 76 85 Q70 90 64 85 Q66 65 59 52Z" fill="#f48fb1"/><path d="M10 55 Q4 50 10 46 Q16 50 10 55Z" fill="#ff4081"/><path d="M74 55 Q80 50 74 46 Q68 50 74 55Z" fill="#ff4081"/><circle cx="10" cy="50" r="3" fill="#ff4081"/><circle cx="74" cy="50" r="3" fill="#ff4081"/><ellipse cx="42" cy="46" rx="16" ry="17" fill="#fde8d8"/><ellipse cx="36" cy="45" rx="4" ry="4.5" fill="#c2185b"/><ellipse cx="48" cy="45" rx="4" ry="4.5" fill="#c2185b"/><circle cx="37" cy="44" r="1.5" fill="#fff"/><circle cx="49" cy="44" r="1.5" fill="#fff"/><ellipse cx="31" cy="50" rx="4" ry="2.5" fill="#ffb3c6" opacity=".6"/><ellipse cx="53" cy="50" rx="4" ry="2.5" fill="#ffb3c6" opacity=".6"/><path d="M38 54 Q42 58 46 54" stroke="#d4607a" stroke-width="1.5" fill="none"/><path d="M26 63 Q42 70 58 63 L62 128 Q42 135 22 128Z" fill="#3949ab"/><path d="M34 63 Q42 70 50 63" stroke="#fff" stroke-width="3" fill="none"/><path d="M39 67 L42 75 L45 67" fill="#ff4081"/><path d="M22 103 Q32 98 42 103 Q52 98 62 103" stroke="#283593" stroke-width="2" fill="none"/><rect x="14" y="65" width="11" height="36" rx="5.5" fill="#fde8d8"/><rect x="60" y="65" width="11" height="36" rx="5.5" fill="#fde8d8"/><rect x="31" y="126" width="10" height="28" rx="5" fill="#fde8d8"/><rect x="44" y="126" width="10" height="28" rx="5" fill="#fde8d8"/><ellipse cx="36" cy="153" rx="8" ry="4" fill="#212121"/><ellipse cx="49" cy="153" rx="8" ry="4" fill="#212121"/><rect x="14" y="132" width="56" height="16" rx="8" fill="rgba(193,35,97,0.85)"/><text x="42" y="144" font-size="9" text-anchor="middle" fill="#ffd6e7" font-family="sans-serif" font-weight="bold">二乃 ✦</text></svg></div>
 
-<!-- Violet Evergarden - right inner -->
-<div class="anime-char char-violet">
-<svg width="80" height="148" viewBox="0 0 80 148" xmlns="http://www.w3.org/2000/svg">
-  <!-- Hair - long blonde -->
-  <ellipse cx="40" cy="35" rx="18" ry="16" fill="#f5e642"/>
-  <rect x="22" y="32" width="7" height="40" rx="3.5" fill="#f5e642"/>
-  <rect x="51" y="32" width="7" height="40" rx="3.5" fill="#f5e642"/>
-  <path d="M22 50 Q15 70 18 90 Q23 92 26 88 Q22 70 27 55Z" fill="#f5e642"/>
-  <path d="M58 50 Q65 70 62 90 Q57 92 54 88 Q58 70 53 55Z" fill="#f5e642"/>
-  <!-- Hair ribbon -->
-  <rect x="28" y="30" width="24" height="5" rx="2.5" fill="#80cbc4"/>
-  <!-- Face -->
-  <ellipse cx="40" cy="42" rx="14" ry="15" fill="#fde8d8"/>
-  <!-- Eyes - blue/teal -->
-  <ellipse cx="34" cy="41" rx="4" ry="4.5" fill="#4dd0e1"/>
-  <ellipse cx="46" cy="41" rx="4" ry="4.5" fill="#4dd0e1"/>
-  <circle cx="35" cy="40" r="1.5" fill="#fff"/>
-  <circle cx="47" cy="40" r="1.5" fill="#fff"/>
-  <!-- Blush subtle -->
-  <ellipse cx="29" cy="46" rx="3.5" ry="2" fill="#ffb3c6" opacity=".35"/>
-  <ellipse cx="51" cy="46" rx="3.5" ry="2" fill="#ffb3c6" opacity=".35"/>
-  <!-- Slight smile -->
-  <path d="M36 51 Q40 54 44 51" stroke="#d4607a" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-  <!-- Dress - Victorian style white/cream -->
-  <path d="M26 57 Q40 65 54 57 L58 125 Q40 132 22 125Z" fill="#f5f0e8"/>
-  <!-- Teal accents -->
-  <path d="M28 57 Q40 65 52 57" stroke="#80cbc4" stroke-width="2.5" fill="none"/>
-  <rect x="36" y="62" width="8" height="3" rx="1.5" fill="#80cbc4"/>
-  <!-- Dress details -->
-  <path d="M22 95 Q31 91 40 95 Q49 91 58 95" stroke="#d4c9a0" stroke-width="1.5" fill="none"/>
-  <path d="M22 110 Q31 106 40 110 Q49 106 58 110" stroke="#d4c9a0" stroke-width="1.5" fill="none"/>
-  <!-- Auto Memory Doll arms/gloves -->
-  <rect x="13" y="59" width="11" height="35" rx="5.5" fill="#fde8d8"/>
-  <rect x="56" y="59" width="11" height="35" rx="5.5" fill="#fde8d8"/>
-  <rect x="12" y="88" width="13" height="14" rx="6" fill="#e0e0e0"/>
-  <rect x="55" y="88" width="13" height="14" rx="6" fill="#e0e0e0"/>
-  <!-- Legs -->
-  <rect x="29" y="122" width="10" height="24" rx="5" fill="#fde8d8"/>
-  <rect x="41" y="122" width="10" height="24" rx="5" fill="#fde8d8"/>
-  <!-- Shoes -->
-  <ellipse cx="34" cy="146" rx="8" ry="3.5" fill="#5d4037"/>
-  <ellipse cx="46" cy="146" rx="8" ry="3.5" fill="#5d4037"/>
-  <!-- Name label -->
-  <rect x="10" y="128" width="60" height="16" rx="8" fill="rgba(77,208,225,0.88)"/>
-  <text x="40" y="140" font-size="8.5" text-anchor="middle" fill="#fff" font-family="sans-serif" font-weight="bold">薇尔莉特 ✦</text>
-</svg>
-</div>
+<div class="anime-char char-violet"><svg width="80" height="148" viewBox="0 0 80 148" xmlns="http://www.w3.org/2000/svg"><ellipse cx="40" cy="35" rx="18" ry="16" fill="#f5e642"/><rect x="22" y="32" width="7" height="40" rx="3.5" fill="#f5e642"/><rect x="51" y="32" width="7" height="40" rx="3.5" fill="#f5e642"/><path d="M22 50 Q15 70 18 90 Q23 92 26 88 Q22 70 27 55Z" fill="#f5e642"/><path d="M58 50 Q65 70 62 90 Q57 92 54 88 Q58 70 53 55Z" fill="#f5e642"/><rect x="28" y="30" width="24" height="5" rx="2.5" fill="#80cbc4"/><ellipse cx="40" cy="42" rx="14" ry="15" fill="#fde8d8"/><ellipse cx="34" cy="41" rx="4" ry="4.5" fill="#4dd0e1"/><ellipse cx="46" cy="41" rx="4" ry="4.5" fill="#4dd0e1"/><circle cx="35" cy="40" r="1.5" fill="#fff"/><circle cx="47" cy="40" r="1.5" fill="#fff"/><path d="M36 51 Q40 54 44 51" stroke="#d4607a" stroke-width="1.3" fill="none"/><path d="M26 57 Q40 65 54 57 L58 125 Q40 132 22 125Z" fill="#f5f0e8"/><path d="M28 57 Q40 65 52 57" stroke="#80cbc4" stroke-width="2.5" fill="none"/><rect x="13" y="59" width="11" height="35" rx="5.5" fill="#fde8d8"/><rect x="56" y="59" width="11" height="35" rx="5.5" fill="#fde8d8"/><rect x="12" y="88" width="13" height="14" rx="6" fill="#e0e0e0"/><rect x="55" y="88" width="13" height="14" rx="6" fill="#e0e0e0"/><rect x="29" y="122" width="10" height="24" rx="5" fill="#fde8d8"/><rect x="41" y="122" width="10" height="24" rx="5" fill="#fde8d8"/><ellipse cx="34" cy="146" rx="8" ry="3.5" fill="#5d4037"/><ellipse cx="46" cy="146" rx="8" ry="3.5" fill="#5d4037"/><rect x="10" y="128" width="60" height="16" rx="8" fill="rgba(77,208,225,0.88)"/><text x="40" y="140" font-size="8.5" text-anchor="middle" fill="#fff" font-family="sans-serif" font-weight="bold">薇尔莉特 ✦</text></svg></div>
 
-<!-- Saber (Fate) - left inner -->
-<div class="anime-char char-saber">
-<svg width="82" height="152" viewBox="0 0 82 152" xmlns="http://www.w3.org/2000/svg">
-  <!-- Armor pauldrons -->
-  <ellipse cx="15" cy="65" rx="12" ry="7" fill="#c8b84a" transform="rotate(-10,15,65)"/>
-  <ellipse cx="67" cy="65" rx="12" ry="7" fill="#c8b84a" transform="rotate(10,67,65)"/>
-  <!-- Hair - golden bun -->
-  <ellipse cx="41" cy="36" rx="17" ry="15" fill="#e8c840"/>
-  <!-- bun -->
-  <circle cx="41" cy="24" r="9" fill="#e8c840"/>
-  <ellipse cx="41" cy="20" rx="6" ry="3" fill="#d4b030"/>
-  <!-- ribbons -->
-  <rect x="33" y="18" width="16" height="4" rx="2" fill="#1a237e"/>
-  <!-- Face -->
-  <ellipse cx="41" cy="44" rx="14" ry="15" fill="#fde8d8"/>
-  <!-- Eyes - green -->
-  <ellipse cx="35" cy="43" rx="4" ry="4.5" fill="#388e3c"/>
-  <ellipse cx="47" cy="43" rx="4" ry="4.5" fill="#388e3c"/>
-  <circle cx="36" cy="42" r="1.5" fill="#fff"/>
-  <circle cx="48" cy="42" r="1.5" fill="#fff"/>
-  <!-- Expression - determined -->
-  <path d="M37 52 Q41 55 45 52" stroke="#b0474f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-  <!-- Slight blush -->
-  <ellipse cx="30" cy="48" rx="3.5" ry="2" fill="#ffb3c6" opacity=".3"/>
-  <ellipse cx="52" cy="48" rx="3.5" ry="2" fill="#ffb3c6" opacity=".3"/>
-  <!-- Blue armor chest -->
-  <path d="M27 59 Q41 67 55 59 L59 124 Q41 131 23 124Z" fill="#1a237e"/>
-  <!-- Gold trim chest -->
-  <path d="M29 59 Q41 67 53 59" stroke="#c8b84a" stroke-width="3" fill="none"/>
-  <path d="M29 59 L25 124" stroke="#c8b84a" stroke-width="1.5"/>
-  <path d="M53 59 L57 124" stroke="#c8b84a" stroke-width="1.5"/>
-  <!-- Chest emblem -->
-  <circle cx="41" cy="72" r="5" fill="#c8b84a"/>
-  <circle cx="41" cy="72" r="3" fill="#1a237e"/>
-  <!-- Armor waist band -->
-  <rect x="23" y="100" width="36" height="8" rx="2" fill="#c8b84a"/>
-  <!-- Skirt -->
-  <path d="M23 108 Q41 115 59 108 L62 140 Q41 148 20 140Z" fill="#283593"/>
-  <!-- Arms - armor -->
-  <rect x="13" y="61" width="12" height="38" rx="5" fill="#1a237e"/>
-  <rect x="57" y="61" width="12" height="38" rx="5" fill="#1a237e"/>
-  <rect x="12" y="92" width="14" height="12" rx="5" fill="#c8b84a"/>
-  <rect x="56" y="92" width="14" height="12" rx="5" fill="#c8b84a"/>
-  <!-- Sword hint on right -->
-  <rect x="68" y="40" width="4" height="70" rx="2" fill="#e0e0e0"/>
-  <rect x="62" y="55" width="16" height="4" rx="2" fill="#c8b84a"/>
-  <path d="M70 40 L70 28 L72 35Z" fill="#e0e0e0"/>
-  <!-- Legs -->
-  <rect x="30" y="138" width="10" height="12" rx="5" fill="#fde8d8"/>
-  <rect x="42" y="138" width="10" height="12" rx="5" fill="#fde8d8"/>
-  <!-- Boots -->
-  <rect x="28" y="144" width="14" height="6" rx="3" fill="#1a237e"/>
-  <rect x="40" y="144" width="14" height="6" rx="3" fill="#1a237e"/>
-  <!-- Name label -->
-  <rect x="10" y="130" width="60" height="16" rx="8" fill="rgba(26,35,126,0.88)"/>
-  <text x="41" y="142" font-size="9" text-anchor="middle" fill="#e8c840" font-family="sans-serif" font-weight="bold">Saber ✦</text>
-</svg>
-</div>
+<div class="anime-char char-saber"><svg width="82" height="152" viewBox="0 0 82 152" xmlns="http://www.w3.org/2000/svg"><ellipse cx="41" cy="36" rx="17" ry="15" fill="#e8c840"/><circle cx="41" cy="24" r="9" fill="#e8c840"/><rect x="33" y="18" width="16" height="4" rx="2" fill="#1a237e"/><ellipse cx="41" cy="44" rx="14" ry="15" fill="#fde8d8"/><ellipse cx="35" cy="43" rx="4" ry="4.5" fill="#388e3c"/><ellipse cx="47" cy="43" rx="4" ry="4.5" fill="#388e3c"/><circle cx="36" cy="42" r="1.5" fill="#fff"/><circle cx="48" cy="42" r="1.5" fill="#fff"/><path d="M37 52 Q41 55 45 52" stroke="#b0474f" stroke-width="1.4" fill="none"/><path d="M27 59 Q41 67 55 59 L59 124 Q41 131 23 124Z" fill="#1a237e"/><path d="M29 59 Q41 67 53 59" stroke="#c8b84a" stroke-width="3" fill="none"/><circle cx="41" cy="72" r="5" fill="#c8b84a"/><circle cx="41" cy="72" r="3" fill="#1a237e"/><rect x="23" y="100" width="36" height="8" rx="2" fill="#c8b84a"/><path d="M23 108 Q41 115 59 108 L62 140 Q41 148 20 140Z" fill="#283593"/><rect x="13" y="61" width="12" height="38" rx="5" fill="#1a237e"/><rect x="57" y="61" width="12" height="38" rx="5" fill="#1a237e"/><rect x="12" y="92" width="14" height="12" rx="5" fill="#c8b84a"/><rect x="56" y="92" width="14" height="12" rx="5" fill="#c8b84a"/><rect x="68" y="40" width="4" height="70" rx="2" fill="#e0e0e0"/><rect x="62" y="55" width="16" height="4" rx="2" fill="#c8b84a"/><path d="M70 40 L70 28 L72 35Z" fill="#e0e0e0"/><rect x="28" y="144" width="14" height="6" rx="3" fill="#1a237e"/><rect x="40" y="144" width="14" height="6" rx="3" fill="#1a237e"/><rect x="10" y="130" width="60" height="16" rx="8" fill="rgba(26,35,126,0.88)"/><text x="41" y="142" font-size="9" text-anchor="middle" fill="#e8c840" font-family="sans-serif" font-weight="bold">Saber ✦</text></svg></div>
 
-<!-- Small sticker decorations -->
-<div class="sticker sticker-1">
-  <svg width="52" height="52" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="26" cy="26" r="24" fill="#fff0f6" stroke="#ffb3d1" stroke-width="2"/>
-    <text x="26" y="33" font-size="22" text-anchor="middle">🌸</text>
-  </svg>
-</div>
-<div class="sticker sticker-2">
-  <svg width="52" height="52" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="26" cy="26" r="24" fill="#f0f4ff" stroke="#b3c6ff" stroke-width="2"/>
-    <text x="26" y="33" font-size="22" text-anchor="middle">⚡</text>
-  </svg>
-</div>
-<div class="sticker sticker-3">
-  <svg width="52" height="52" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="26" cy="26" r="24" fill="#f5f0ff" stroke="#c9b3ff" stroke-width="2"/>
-    <text x="26" y="33" font-size="22" text-anchor="middle">✨</text>
-  </svg>
-</div>
+<div class="sticker sticker-1"><svg width="52" height="52" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg"><circle cx="26" cy="26" r="24" fill="#fff0f6" stroke="#ffb3d1" stroke-width="2"/><text x="26" y="33" font-size="22" text-anchor="middle">🌸</text></svg></div>
+<div class="sticker sticker-2"><svg width="52" height="52" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg"><circle cx="26" cy="26" r="24" fill="#f0f4ff" stroke="#b3c6ff" stroke-width="2"/><text x="26" y="33" font-size="22" text-anchor="middle">⚡</text></svg></div>
+<div class="sticker sticker-3"><svg width="52" height="52" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg"><circle cx="26" cy="26" r="24" fill="#f5f0ff" stroke="#c9b3ff" stroke-width="2"/><text x="26" y="33" font-size="22" text-anchor="middle">✨</text></svg></div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-/* ══ I18N ══ */
-const T = {
-  zh:{
-    'nav.exp':'经历','nav.tl':'时间轴','nav.proj':'项目','nav.sk':'技能','nav.mom':'生活','nav.ct':'联系',
-    'hero.badge':'UCSD 2029届 · 圣地亚哥','hero.name2':'Wang ✦',
-    'hero.desc':'UCSD 数据科学 & 数学-计算机科学双专业在读，边缘 AI 能效研究员，动漫爱好者。在数据、算法和 AI 的交叉点探索世界 ✨',
-    'hero.cta1':'打个招呼','hero.cta2':'查看我的经历',
-    'pow.title':'旅行者能量站','pow.sub':'VISITOR ENERGY STATION','pow.unit':'份能量已收到','pow.btn':'点击充能 +1',
-    'pow.msg0':'你好呀旅行者，快来给我充能吧！',
-    'exp.tag':'研究 & 经历','exp.title1':'我做过的','exp.title2':'研究与探索',
-    'e1.org':'UCSD · 独立本科科研项目','e1.role':'独立研究员 — 边缘 AI 热节流效应研究','e1.date':'2026.03 – 至今',
-    'e1.b1':'独立主导课题：边缘 AI 热节流效应与能效关系。导师：Peter Chi 教授。',
-    'e1.b2':'在 GPU/Jetson 设备上部署 Llama-3 推理任务，使用 nvidia-smi & Prometheus 实时采集 GPU 温度、时钟频率、功耗与吞吐量。',
-    'e1.b3':'构建"效率-热量"量化模型，产出含可视化仪表盘的技术报告，为不同热状态下 AI 推理提供实证数据。',
-    'e2.org':'UCSD · Halıcıoğlu 数据科学院','e2.role':'研究助理 — 数据科学教育研究','e2.date':'2026.01 – 至今',
-    'e2.b1':'采集与处理学生数据科学前后测数据，构建量化评估管道。',
-    'e2.b2':'系统学习并评估 Pandas Tutor 工具，分析其数据处理流程优化潜力。',
-    'e3.org':'上海交通大学 · 心理学院','e3.role':'研究助理 — 儿童发展与家庭研究实验室','e3.date':'2024.06 – 2025.09',
-    'e3.b1':'在孙晓宁教授课题组处理 500+ 小时幼儿行为结构化数据，推动大规模发展研究数据的系统化分析。',
-    'e3.b2':'使用 Stata & Excel 管理发展评估数据集，与博士生协作构建自动化流程，完成 95 份标准化计算分析报告。',
-    'e3.b3':'主导设计 60 项变量采集工具；作为实验主试之一，独立执行 28 名儿童的标准化评估（韦氏量表、TEC）。',
-    'e3.b4':'担任《Developmental Psychology》期刊审稿人；每周文献研讨会完成 10 次方法学批判性汇报。',
-    'e4.org':'上海市世外中学 · 学生会','e4.role':'实践部副部长','e4.date':'2023.09 – 2024.09',
-    'e4.b1':'管理 108 人校志愿者团队，统筹调度电影博物馆、敦煌文化周、中国文化周、爱心义卖、篮球班赛等多类活动。',
-    'tl.tag':'人生时间轴','tl.title1':'走过的','tl.title2':'每一步',
-    'tl.col1':'教育经历','tl.col2':'活动 & 成就',
-    'tl1.ev':'🏫 上海市世外中学（高中）','tl1.d':'高中三年，发现对数据科学与社会科学的深厚兴趣，系统打磨独立思考与自学能力，厚积薄发。',
-    'tl2.ev':'🎖️ 学生会实践部副部长','tl2.d':'领导 108 人志愿者团队，在高三繁忙学业中磨砺组织能力与领导力，统筹多项大型校园文化活动。',
-    'tl3.ev':'🔬 上海交大心理学院 RA','tl3.d':'人生第一段正式科研经历。独立执行 28 名儿童认知评估，处理 500+ 小时数据，学会了 Stata 与系统化研究方法。',
-    'tl4.ev':'✈️ 远赴加州，开启 UCSD','tl4.d':'带着好奇与期待飞越太平洋，开始数据科学 & 数学-计算机科学双专业本科学习。GPA 4.0/4.0。',
-    'tl5.ev':'📝 "学生为何上学"社会学研究','tl5.d':'带领 5 人团队完成 10 场深度访谈，运用假设检验与定性编码，合作撰写 25 页研究报告。满分 100/100 ⭐',
-    'tl6.ev':'📈 英超转会分析项目','tl6.d':'用 Python/Pandas 爬取 Transfermarkt 近 10 年数据，构建时间序列数据集，用线性回归量化转会投入与竞技成绩的关系。',
-    'tl7.ev':'📊 HDSI 数据科学院 RA','tl7.d':'加入 HDSI 课题组，参与数据科学教育研究，探索 Pandas Tutor 工具对教学流程的优化潜力。',
-    'tl8.ev':'🏆 独立科研：边缘 AI 能效','tl8.d':'获得本科科研资助，独立主导边缘 AI 热节流效应研究，导师 Peter Chi 教授。向高性能计算与 AI 研究全力冲刺。',
-    'proj.tag':'精选项目','proj.title1':'做出来的','proj.title2':'成果',
-    'p1.t':'边缘 AI 热节流效应研究','p1.d':'独立本科科研项目，在 Jetson 上部署 Llama-3，构建实时监控管道与"效率-热量"量化模型，探究边缘推理能效边界。',
-    'p2.t':'英超转会花费与净胜球关系分析','p2.d':'用 Python/Pandas 从 Transfermarkt 爬取 20 支球队近 10 年逐年数据，构建时间序列数据集，用线性回归量化转会投入与竞技成绩的相关性。',
-    'p3.t':'"学生为何上学" 社会学研究','p3.d':'带领 5 人团队完成 10 场深度访谈，运用统计假设检验与定性编码处理数据，合作完成 25 页研究报告。满分 100/100 ⭐',
-    'p4.t':'儿童发展数据流水线','p4.d':'在上海交大自动化 Stata/Excel 工作流，处理 500+ 小时行为数据。设计 60 变量问卷工具，为 28 名儿童执行韦氏量表等标准化评估。',
-    'sk.tag':'技能树','sk.title1':'我的','sk.title2':'能力点',
-    'sk1.n':'编程与工程','sk1.d':'高性能计算、数据处理流水线、自动化脚本与面向对象系统开发。',
-    'sk2.n':'数据分析','sk2.d':'统计建模、假设检验、线性回归建模、数据清洗与探索性分析（EDA）。',
-    'sk3.n':'研究方法','sk3.d':'定性与定量混合方法、深度访谈设计、行为实验执行与结构化报告撰写。',
-    'sk4.n':'AI & 机器学习','sk4.d':'边缘 AI 部署、LLM 推理、监督学习与 GPU 性能剖析。',
-    'sk5.n':'工具与平台','sk5.d':'覆盖研究分析全链路的行业工具，熟练构建可复现的数据流水线。',
-    'sk6.n':'表达与传播','sk6.d':'中英双语写作与演示。Bilibili 内容创作者，视频累计播放量 15.5 万+。',
-    'mom.tag':'生活分享','mom.title1':'我的','mom.title2':'朋友圈',
-    'mom.note':'这里是我的生活碎片。内容持续更新中，快来看看我最近在干嘛～',
-    'm1.t':'独立科研项目批了！！要开始我的独立科研了 🎉 研究方向是边缘 AI 的热节流效应，导师是 Peter Chi 教授。下周开始在 Jetson 上跑 Llama-3，感觉超兴奋的，加油！✨⚡',
-    'm2.t':'Club Tennis 今天赢了！打球真的是减压神器，每次打完都感觉充满能量 🎾 顺便说一下期中 Data Science 拿了满绩，开心～下周还有三门课的 midterm，加油加油！',
-    'm3.n':'待更新','m3.d':'你的下一条朋友圈内容',
-    'm3.t':'📝 在这里填入你想分享的内容。可以是校园生活、研究进展、旅行见闻、动漫感想……什么都可以！',
-    'ct.tag':'联系我','ct.title1':'一起','ct.title2':'搞点有意思的事',
-    'ct.sub':'UCSD · 数据科学 & 数学-CS · 2029 届','ct.phone':'电话 (US)','ct.loc':'所在地','ct.locv':'圣地亚哥 / 上海',
-    'ct.proj':'研究项目','ct.open':'开放机遇中','ct.h3':'一起做些有趣的事吧！',
-    'ct.p1':'我目前是 UCSD 的独立本科研究员，在研究边缘 AI 能效问题，导师是 Peter Chi 教授。随时欢迎聊科研、数据科学、合作机会，或者只是打个招呼 ✨',
-    'ct.p2':'数据科学 & 数学-计算机科学双专业，预计 2029 年毕业。',
-    'ct.btn':'发消息给我 💌','ft':'用','ft2':'制作 · UCSD 数据科学 & 数学-CS'
-  },
-  en:{
-    'nav.exp':'Experience','nav.tl':'Timeline','nav.proj':'Projects','nav.sk':'Skills','nav.mom':'Life','nav.ct':'Contact',
-    'hero.badge':'UCSD Class of 2029 · San Diego','hero.name2':'Wang ✦',
-    'hero.desc':'Double-major in Data Science & Math-CS at UCSD, Edge AI efficiency researcher, and anime fan. Exploring the intersection of data, algorithms, and AI ✨',
-    'hero.cta1':'Say Hello','hero.cta2':'View My Work',
-    'pow.title':'Traveler Energy Station','pow.sub':'旅行者能量站','pow.unit':'energy received','pow.btn':'Charge +1',
-    'pow.msg0':'Hello traveler! Click to give me energy!',
-    'exp.tag':'Research & Experience','exp.title1':'What I\'ve','exp.title2':'built & studied',
-    'e1.org':'UCSD · Independent Undergraduate Research','e1.role':'Independent Researcher — Edge AI Thermal Throttling','e1.date':'Mar 2026 – Present',
-    'e1.b1':'Independently leading a study on thermal throttling & energy efficiency in edge AI workloads. Advisor: Prof. Peter Chi.',
-    'e1.b2':'Deployed Llama-3 on GPU/Jetson edge devices; collected real-time GPU temperature, clock speed, power draw and throughput via nvidia-smi & Prometheus.',
-    'e1.b3':'Built a quantitative "efficiency-to-heat" model and produced a technical report with visualization dashboards on AI inference energy cost under varying thermal conditions.',
-    'e2.org':'UCSD · Halıcıoğlu Data Science Institute','e2.role':'Research Assistant — Data Science Education Research','e2.date':'Jan 2026 – Present',
-    'e2.b1':'Collected and processed pre/post-instruction data on students\' mastery of data science and statistics; built a quantitative assessment pipeline.',
-    'e2.b2':'Systematically studied and evaluated Pandas Tutor for computational workflow optimization potential.',
-    'e3.org':'Shanghai Jiao Tong University · Dept. of Psychology','e3.role':'Research Assistant — Child Development & Family Studies Lab','e3.date':'Jun 2024 – Sep 2025',
-    'e3.b1':'Processed 500+ hours of behavioral datasets using structured computational pipelines under Prof. Xiaoning Sun.',
-    'e3.b2':'Managed assessment data in Stata & Excel; collaborated with a PhD researcher to automate workflows, producing 95 standardized analytical reports.',
-    'e3.b3':'Designed survey instruments covering 60 socioeconomic variables; independently conducted psychological assessments for 28 children (Wechsler Scales, TEC).',
-    'e3.b4':'Reviewed papers for Developmental Psychology journal; delivered 10 critical methodology assessments in weekly seminars.',
-    'e4.org':'Shanghai World Foreign Language Academy · Student Union','e4.role':'Practice Dept. Vice Minister','e4.date':'Sep 2023 – Sep 2024',
-    'e4.b1':'Managed a 108-member volunteer team, organizing on- and off-campus events including museum volunteering, Dunhuang Culture Week, charity sales, and basketball tournaments.',
-    'tl.tag':'Life Timeline','tl.title1':'Every step','tl.title2':'of the journey',
-    'tl.col1':'Education','tl.col2':'Activities & Achievements',
-    'tl1.ev':'🏫 Shanghai World Foreign Language Academy','tl1.d':'Three years of high school. Discovered deep passion for data science and social science; honed independent thinking and self-learning skills.',
-    'tl2.ev':'🎖️ Student Union Vice Minister','tl2.d':'Led a 108-member volunteer team through major campus events, honing leadership and organizational skills during a busy senior year.',
-    'tl3.ev':'🔬 SJTU Psychology Dept. RA','tl3.d':'First formal research experience. Independently conducted cognitive assessments for 28 children, processed 500+ hours of data, and mastered Stata.',
-    'tl4.ev':'✈️ Off to California — UCSD Begins','tl4.d':'Crossed the Pacific with curiosity and excitement to begin a double major in Data Science & Math-CS. GPA: 4.0/4.0.',
-    'tl5.ev':'📝 "Why Do Students Go to College?"','tl5.d':'Led a 5-member sociology team through 10 in-depth interviews, statistical hypothesis testing, and qualitative coding. Score: 100/100 ⭐',
-    'tl6.ev':'📈 EPL Transfer Spending Analysis','tl6.d':'Scraped 10 years of Premier League transfer data via Python/Pandas from Transfermarkt; quantified transfer ROI using linear regression.',
-    'tl7.ev':'📊 HDSI Research Assistant','tl7.d':'Joined HDSI to work on data science education research, exploring Pandas Tutor for teaching workflow optimization.',
-    'tl8.ev':'🏆 Independent Research: Edge AI','tl8.d':'Received undergraduate research funding to independently lead edge AI thermal throttling research under Prof. Peter Chi — charging ahead in HPC and AI.',
-    'proj.tag':'Selected Projects','proj.title1':'Things I\'ve','proj.title2':'shipped',
-    'p1.t':'Edge AI Thermal Throttling Study','p1.d':'Independent undergraduate research. Deployed Llama-3 on Jetson, built a real-time monitoring pipeline and quantitative efficiency-to-heat model for edge AI inference.',
-    'p2.t':'EPL Transfer Spending vs. Goal Difference','p2.d':'Scraped 10 years of Premier League transfer data via Python/Pandas from Transfermarkt. Applied linear regression and hypothesis testing to quantify the ROI of transfer investment.',
-    'p3.t':'"Why Do Students Go to College?"','p3.d':'Led a 5-member sociology team through 10 in-depth interviews, statistical hypothesis testing, and qualitative coding. Co-authored a 25-page report. Score: 100/100 ⭐',
-    'p4.t':'Child Development Data Pipeline','p4.d':'Automated Stata/Excel workflows at SJTU for 500+ hours of behavioral data. Designed 60-variable survey instruments; conducted Wechsler assessments for 28 children.',
-    'sk.tag':'Skill Tree','sk.title1':'My','sk.title2':'capabilities',
-    'sk1.n':'Programming & Engineering','sk1.d':'HPC, data processing pipelines, automation scripts, and OOP systems development.',
-    'sk2.n':'Data Analysis','sk2.d':'Statistical modeling, hypothesis testing, linear regression, data cleaning, and EDA at scale.',
-    'sk3.n':'Research Methods','sk3.d':'Mixed-methods research, in-depth interview design, behavioral experiment execution, and structured reporting.',
-    'sk4.n':'AI & Machine Learning','sk4.d':'Edge AI deployment, LLM inference, supervised learning, and GPU performance profiling.',
-    'sk5.n':'Tools & Platforms','sk5.d':'Industry-standard tools for full-stack research workflows and reproducible data pipelines.',
-    'sk6.n':'Communication','sk6.d':'Bilingual Chinese/English writing and presentation. Bilibili content creator with 155K+ total views.',
-    'mom.tag':'Life Sharing','mom.title1':'My','mom.title2':'Moments',
-    'mom.note':'Snippets of my life. Updated regularly — come see what I\'ve been up to!',
-    'm1.t':'Research funding approved!! Starting my independent research 🎉 Topic: thermal throttling & energy efficiency in edge AI. Deploying Llama-3 on Jetson next week — so excited, let\'s go! ✨⚡',
-    'm2.t':'Won the Club Tennis match today! Tennis is such a great stress reliever 🎾 Also aced the Data Science midterm~ Three more midterms next week, here we go!',
-    'm3.n':'Coming Soon','m3.d':'Your next post here',
-    'm3.t':'📝 Add your content here. Campus life, research updates, travel, anime thoughts — anything goes! Edit the #moments section in index.html to add new cards.',
-    'ct.tag':'Contact','ct.title1':'Let\'s','ct.title2':'build something together',
-    'ct.sub':'UCSD · Data Science & Math-CS · Class of 2029','ct.phone':'Phone (US)','ct.loc':'Location','ct.locv':'San Diego / Shanghai',
-    'ct.proj':'Research Project','ct.open':'Open to opportunities','ct.h3':'Let\'s do something interesting!',
-    'ct.p1':'I\'m an independent undergraduate researcher at UCSD, studying edge AI energy efficiency under Prof. Peter Chi. Always happy to chat about research, data science, or collaborations ✨',
-    'ct.p2':'Double-majoring in Data Science and Mathematics-Computer Science, expected graduation 2029.',
-    'ct.btn':'Send me a message 💌','ft':'Made with','ft2':'· UCSD Data Science & Math-CS'
-  }
-};
+<script>
+const T={zh:{'nav.exp':'经历','nav.tl':'时间轴','nav.proj':'项目','nav.sk':'技能','nav.mom':'生活','nav.ct':'联系','hero.badge':'UCSD 2029届 · 圣地亚哥','hero.name2':'Wang ✦','hero.desc':'UCSD 数据科学 & 数学-计算机科学双专业在读，边缘 AI 能效研究员，动漫爱好者。在数据、算法和 AI 的交叉点探索世界 ✨','hero.cta1':'打个招呼','hero.cta2':'查看我的经历','pow.title':'旅行者能量站','pow.sub':'VISITOR ENERGY STATION','pow.unit':'份能量已收到','pow.btn':'点击充能 +1','pow.msg0':'你好呀旅行者，快来给我充能吧！','exp.tag':'研究 & 经历','exp.title1':'我做过的','exp.title2':'研究与探索','e1.org':'UCSD · 独立本科科研项目','e1.role':'独立研究员 — 边缘 AI 热节流效应研究','e1.date':'2026.03 – 至今','e1.b1':'独立主导课题：边缘 AI 热节流效应与能效关系。导师：Peter Chi 教授。','e1.b2':'在 GPU/Jetson 设备上部署 Llama-3，使用 nvidia-smi & Prometheus 实时采集 GPU 温度、时钟频率、功耗与吞吐量。','e1.b3':'构建"效率-热量"量化模型，产出含可视化仪表盘的技术报告，为不同热状态下 AI 推理提供实证数据。','e2.org':'UCSD · Halıcıoğlu 数据科学院','e2.role':'研究助理 — 数据科学教育研究','e2.date':'2026.01 – 至今','e2.b1':'采集与处理学生数据科学前后测数据，构建量化评估管道。','e2.b2':'系统学习并评估 Pandas Tutor 工具，分析其数据处理流程优化潜力。','e3.org':'上海交通大学 · 心理学院','e3.role':'研究助理 — 儿童发展与家庭研究实验室','e3.date':'2024.06 – 2025.09','e3.b1':'在孙晓宁教授课题组处理 500+ 小时幼儿行为结构化数据，推动大规模发展研究数据的系统化分析。','e3.b2':'使用 Stata & Excel 管理发展评估数据集，与博士生协作构建自动化流程，完成 95 份标准化计算分析报告。','e3.b3':'主导设计 60 项变量采集工具；独立执行 28 名儿童的标准化评估（韦氏量表、TEC）。','e3.b4':'担任《Developmental Psychology》期刊审稿人；每周文献研讨会完成 10 次方法学批判性汇报。','e4.org':'上海市世外中学 · 学生会','e4.role':'实践部副部长','e4.date':'2023.09 – 2024.09','e4.b1':'管理 108 人校志愿者团队，统筹调度电影博物馆、敦煌文化周、中国文化周、爱心义卖、篮球班赛等多类活动。','tl.tag':'人生时间轴','tl.title1':'走过的','tl.title2':'每一步','tl.col1':'教育经历','tl.col2':'活动 & 成就','tl1.ev':'🏫 上海市世外中学（高中）','tl1.d':'高中三年，发现对数据科学与社会科学的深厚兴趣，系统打磨独立思考与自学能力，厚积薄发。','tl2.ev':'🎖️ 学生会实践部副部长','tl2.d':'领导 108 人志愿者团队，在高三繁忙学业中磨砺组织能力与领导力，统筹多项大型校园文化活动。','tl3.ev':'🔬 上海交大心理学院 RA','tl3.d':'人生第一段正式科研经历。独立执行 28 名儿童认知评估，处理 500+ 小时数据，学会了 Stata 与系统化研究方法。','tl4.ev':'✈️ 远赴加州，开启 UCSD','tl4.d':'带着好奇与期待飞越太平洋，开始数据科学 & 数学-计算机科学双专业本科学习。GPA 4.0/4.0。','tl5.ev':'📝 "学生为何上学"社会学研究','tl5.d':'带领 5 人团队完成 10 场深度访谈，运用假设检验与定性编码，合作撰写 25 页研究报告。满分 100/100 ⭐','tl6.ev':'📈 英超转会分析项目','tl6.d':'用 Python/Pandas 爬取 Transfermarkt 近 10 年数据，构建时间序列数据集，用线性回归量化转会投入与竞技成绩的关系。','tl7.ev':'📊 HDSI 数据科学院 RA','tl7.d':'加入 HDSI 课题组，参与数据科学教育研究，探索 Pandas Tutor 工具对教学流程的优化潜力。','tl8.ev':'🏆 独立科研：边缘 AI 能效','tl8.d':'获得本科科研资助，独立主导边缘 AI 热节流效应研究，导师 Peter Chi 教授。向高性能计算与 AI 研究全力冲刺。','proj.tag':'精选项目','proj.title1':'做出来的','proj.title2':'成果','p1.t':'边缘 AI 热节流效应研究','p1.d':'独立本科科研项目，在 Jetson 上部署 Llama-3，构建实时监控管道与"效率-热量"量化模型，探究边缘推理能效边界。','p2.t':'英超转会花费与净胜球关系分析','p2.d':'用 Python/Pandas 从 Transfermarkt 爬取 20 支球队近 10 年数据，用线性回归量化转会投入与竞技成绩的相关性。','p3.t':'"学生为何上学" 社会学研究','p3.d':'带领 5 人团队完成 10 场深度访谈，运用统计假设检验与定性编码处理数据，合作完成 25 页研究报告。满分 100/100 ⭐','p4.t':'儿童发展数据流水线','p4.d':'在上海交大自动化 Stata/Excel 工作流，处理 500+ 小时行为数据。设计 60 变量问卷，为 28 名儿童执行韦氏量表等标准化评估。','sk.tag':'技能树','sk.title1':'我的','sk.title2':'能力点','sk1.n':'编程与工程','sk1.d':'高性能计算、数据处理流水线、自动化脚本与面向对象系统开发。','sk2.n':'数据分析','sk2.d':'统计建模、假设检验、线性回归建模、数据清洗与探索性分析（EDA）。','sk3.n':'研究方法','sk3.d':'定性与定量混合方法、深度访谈设计、行为实验执行与结构化报告撰写。','sk4.n':'AI & 机器学习','sk4.d':'边缘 AI 部署、LLM 推理、监督学习与 GPU 性能剖析。','sk5.n':'工具与平台','sk5.d':'覆盖研究分析全链路的行业工具，熟练构建可复现的数据流水线。','sk6.n':'表达与传播','sk6.d':'中英双语写作与演示。Bilibili 内容创作者，视频累计播放量 15.5 万+。','mom.tag':'生活分享','mom.title1':'我的','mom.title2':'朋友圈','mom.note':'这里是我的生活碎片。内容持续更新中，快来看看我最近在干嘛～','m1.t':'独立科研项目批了！！要开始我的独立科研了 🎉 研究方向是边缘 AI 的热节流效应，导师是 Peter Chi 教授。下周开始在 Jetson 上跑 Llama-3，感觉超兴奋的，加油！✨⚡','m2.t':'Club Tennis 今天赢了！打球真的是减压神器，每次打完都感觉充满能量 🎾 顺便说一下期中 Data Science 拿了满绩，开心～下周还有三门课的 midterm，加油加油！','m3.n':'待更新','m3.d':'你的下一条朋友圈内容','m3.t':'📝 在这里填入你想分享的内容。可以是校园生活、研究进展、旅行见闻、动漫感想……什么都可以！','ct.tag':'联系我','ct.title1':'一起','ct.title2':'搞点有意思的事','ct.sub':'UCSD · 数据科学 & 数学-CS · 2029 届','ct.phone':'电话 (US)','ct.loc':'所在地','ct.locv':'圣地亚哥 / 上海','ct.proj':'研究项目','ct.open':'开放机遇中','ct.h3':'一起做些有趣的事吧！','ct.p1':'我目前是 UCSD 的独立本科研究员，在研究边缘 AI 能效问题，导师是 Peter Chi 教授。随时欢迎聊科研、数据科学、合作机会，或者只是打个招呼 ✨','ct.p2':'数据科学 & 数学-计算机科学双专业，预计 2029 年毕业。','ct.btn':'发消息给我 💌','ft':'用','ft2':'制作 · UCSD 数据科学 & 数学-CS'},en:{'nav.exp':'Experience','nav.tl':'Timeline','nav.proj':'Projects','nav.sk':'Skills','nav.mom':'Life','nav.ct':'Contact','hero.badge':'UCSD Class of 2029 · San Diego','hero.name2':'Wang ✦','hero.desc':'Double-major in Data Science & Math-CS at UCSD, Edge AI efficiency researcher, and anime fan. Exploring the intersection of data, algorithms, and AI ✨','hero.cta1':'Say Hello','hero.cta2':'View My Work','pow.title':'Traveler Energy Station','pow.sub':'旅行者能量站','pow.unit':'energy received','pow.btn':'Charge +1','pow.msg0':'Hello traveler! Click to give me energy!','exp.tag':'Research & Experience','exp.title1':"What I've",'exp.title2':'built & studied','e1.org':'UCSD · Independent Undergraduate Research','e1.role':'Independent Researcher — Edge AI Thermal Throttling','e1.date':'Mar 2026 – Present','e1.b1':'Independently leading a study on thermal throttling & energy efficiency in edge AI. Advisor: Prof. Peter Chi.','e1.b2':'Deployed Llama-3 on Jetson; collected real-time GPU temperature, clock speed, power draw via nvidia-smi & Prometheus.','e1.b3':'Built a quantitative efficiency-to-heat model with visualization dashboards on AI inference energy cost.','e2.org':'UCSD · Halıcıoğlu Data Science Institute','e2.role':'Research Assistant — Data Science Education Research','e2.date':'Jan 2026 – Present','e2.b1':'Collected and processed pre/post-instruction data on student mastery; built a quantitative assessment pipeline.','e2.b2':'Systematically studied and evaluated Pandas Tutor for computational workflow optimization potential.','e3.org':'Shanghai Jiao Tong University · Dept. of Psychology','e3.role':'Research Assistant — Child Development & Family Studies Lab','e3.date':'Jun 2024 – Sep 2025','e3.b1':'Processed 500+ hours of behavioral datasets under Prof. Xiaoning Sun.','e3.b2':'Managed assessment data in Stata & Excel; automated workflows, producing 95 standardized reports.','e3.b3':'Designed 60-variable survey instruments; conducted Wechsler & TEC assessments for 28 children.','e3.b4':'Reviewed papers for Developmental Psychology journal; delivered 10 methodology assessments weekly.','e4.org':'Shanghai World Foreign Language Academy · Student Union','e4.role':'Practice Dept. Vice Minister','e4.date':'Sep 2023 – Sep 2024','e4.b1':'Managed a 108-member volunteer team, organizing museum, cultural, charity, and sports events.','tl.tag':'Life Timeline','tl.title1':'Every step','tl.title2':'of the journey','tl.col1':'Education','tl.col2':'Activities & Achievements','tl1.ev':'🏫 Shanghai World Foreign Language Academy','tl1.d':'Three years of high school. Discovered deep passion for data science and social science; honed independent thinking.','tl2.ev':'🎖️ Student Union Vice Minister','tl2.d':'Led a 108-member volunteer team through major campus events, honing leadership and organizational skills.','tl3.ev':'🔬 SJTU Psychology Dept. RA','tl3.d':'First formal research experience. Conducted cognitive assessments for 28 children, processed 500+ hours of data.','tl4.ev':'✈️ Off to California — UCSD Begins','tl4.d':'Crossed the Pacific to begin a double major in Data Science & Math-CS. GPA: 4.0/4.0.','tl5.ev':'📝 "Why Do Students Go to College?"','tl5.d':'Led a 5-member sociology team through 10 interviews, hypothesis testing, and qualitative coding. Score: 100/100 ⭐','tl6.ev':'📈 EPL Transfer Spending Analysis','tl6.d':'Scraped 10 years of Premier League transfer data from Transfermarkt; quantified ROI using linear regression.','tl7.ev':'📊 HDSI Research Assistant','tl7.d':'Joined HDSI to work on data science education research, exploring Pandas Tutor for teaching optimization.','tl8.ev':'🏆 Independent Research: Edge AI','tl8.d':'Received undergraduate research funding to lead edge AI thermal throttling research under Prof. Peter Chi.','proj.tag':'Selected Projects','proj.title1':"Things I've",'proj.title2':'shipped','p1.t':'Edge AI Thermal Throttling Study','p1.d':'Independent undergraduate research. Deployed Llama-3 on Jetson, built monitoring pipeline and efficiency-to-heat model.','p2.t':'EPL Transfer Spending vs. Goal Difference','p2.d':'Scraped 10 years of Premier League data from Transfermarkt. Applied linear regression to quantify transfer ROI.','p3.t':'"Why Do Students Go to College?"','p3.d':'Led a 5-member team through 10 interviews, hypothesis testing, and qualitative coding. 25-page report. 100/100 ⭐','p4.t':'Child Development Data Pipeline','p4.d':'Automated Stata/Excel workflows at SJTU for 500+ hours of data. Conducted Wechsler assessments for 28 children.','sk.tag':'Skill Tree','sk.title1':'My','sk.title2':'capabilities','sk1.n':'Programming & Engineering','sk1.d':'HPC, data processing pipelines, automation scripts, and OOP systems development.','sk2.n':'Data Analysis','sk2.d':'Statistical modeling, hypothesis testing, linear regression, data cleaning, and EDA at scale.','sk3.n':'Research Methods','sk3.d':'Mixed-methods research, in-depth interview design, behavioral experiment execution, and structured reporting.','sk4.n':'AI & Machine Learning','sk4.d':'Edge AI deployment, LLM inference, supervised learning, and GPU performance profiling.','sk5.n':'Tools & Platforms','sk5.d':'Industry-standard tools for full-stack research workflows and reproducible data pipelines.','sk6.n':'Communication','sk6.d':'Bilingual Chinese/English writing and presentation. Bilibili creator with 155K+ total views.','mom.tag':'Life Sharing','mom.title1':'My','mom.title2':'Moments','mom.note':"Snippets of my life. Updated regularly — come see what I've been up to!",'m1.t':'Research funding approved!! Starting my independent research 🎉 Topic: edge AI thermal throttling. Deploying Llama-3 on Jetson next week! ✨⚡','m2.t':'Won the Club Tennis match today! Such a stress reliever 🎾 Also aced the Data Science midterm~ Here we go!','m3.n':'Coming Soon','m3.d':'Your next post here','m3.t':'📝 Add your content here. Campus life, research updates, travel, anime thoughts — anything goes!','ct.tag':'Contact','ct.title1':"Let's",'ct.title2':'build something together','ct.sub':'UCSD · Data Science & Math-CS · Class of 2029','ct.phone':'Phone (US)','ct.loc':'Location','ct.locv':'San Diego / Shanghai','ct.proj':'Research Project','ct.open':'Open to opportunities','ct.h3':"Let's do something interesting!",'ct.p1':"I'm an independent undergraduate researcher at UCSD studying edge AI energy efficiency under Prof. Peter Chi. Happy to chat! ✨",'ct.p2':'Double-majoring in Data Science and Math-CS, expected graduation 2029.','ct.btn':'Send me a message 💌','ft':'Made with','ft2':'· UCSD Data Science & Math-CS'}};
 
-let lang = 'zh';
-function toggleLang(){
-  lang = lang==='zh'?'en':'zh';
-  document.getElementById('langBtn').textContent = lang==='zh'?'EN':'中';
-  document.documentElement.lang = lang;
-  document.querySelector('title').textContent = lang==='zh'?'王臻 ✦ 个人空间':'Zhen Wang ✦ Portfolio';
-  applyLang();
-}
-function applyLang(){
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k=el.getAttribute('data-i18n');
-    if(T[lang][k]!==undefined) el.textContent=T[lang][k];
-  });
-  updatePowMsg();
-}
+let lang='zh';
+function toggleLang(){lang=lang==='zh'?'en':'zh';document.getElementById('langBtn').textContent=lang==='zh'?'EN':'中';document.documentElement.lang=lang;document.querySelector('title').textContent=lang==='zh'?'王臻 ✦ 个人空间':'Zhen Wang ✦ Portfolio';applyLang();}
+function applyLang(){document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(T[lang][k]!==undefined)el.textContent=T[lang][k];});updatePowMsg();}
 
-/* ══ POWER COUNTER ══ */
-const MSGS = {
-  zh:['你好呀旅行者，快来给我充能吧！','谢谢你！能量+1 ⚡','哇！你真好！✨','满满的能量感谢你！🌟','宇宙最强充能者出现了！💫','已收到你的心意，感激不尽！❤️','充能完毕！战斗力 MAX！🔥','你让我今天很开心！🎉','收到你的能量了，好温暖～💝','神秘旅行者！感谢惠顾！✦'],
-  en:['Hello traveler, click to power me up!','Thank you! Energy +1 ⚡','Wow you\'re so kind! ✨','Full of energy, thanks to you! 🌟','Universe\'s top charger has arrived! 💫','Your kindness received — deeply grateful! ❤️','Fully charged! Power level MAX! 🔥','You made my day! 🎉','Received your energy — so warm! 💝','Mystery traveler! Thank you! ✦']
-};
-const BAR_MAX = 100;
-
+const MSGS={zh:['你好呀旅行者，快来给我充能吧！','谢谢你！能量+1 ⚡','哇！你真好！✨','满满的能量感谢你！🌟','宇宙最强充能者出现了！💫','已收到你的心意，感激不尽！❤️','充能完毕！战斗力 MAX！🔥','你让我今天很开心！🎉','收到你的能量了，好温暖～💝','神秘旅行者！感谢惠顾！✦'],en:['Hello traveler, click to power me up!','Thank you! Energy +1 ⚡',"Wow you're so kind! ✨",'Full of energy, thanks! 🌟',"Universe's top charger! 💫",'Your kindness received! ❤️','Fully charged! MAX! 🔥','You made my day! 🎉','Received your energy! 💝','Mystery traveler! Thank you! ✦']};
+const BAR_MAX=100;
 function getPow(){return parseInt(localStorage.getItem('pow_v2')||'0')}
 function setPow(n){localStorage.setItem('pow_v2',n)}
+function initPow(){const n=getPow();document.getElementById('powNum').textContent=n;document.getElementById('powBar').style.width=Math.min(2+n%BAR_MAX,100)+'%';updatePowMsg();}
+function addPower(){const n=getPow()+1;setPow(n);document.getElementById('powNum').textContent=n;document.getElementById('powBar').style.width=Math.min(2+(n%BAR_MAX),100)+'%';updatePowMsg(n);const btn=document.getElementById('powBtn');const p=document.createElement('span');p.className='plus1';p.textContent='+1 ⚡';p.style.cssText='top:0;left:50%;transform:translateX(-50%)';btn.parentElement.style.position='relative';btn.parentElement.appendChild(p);setTimeout(()=>p.remove(),1000);btn.style.transform='scale(.95)';setTimeout(()=>btn.style.transform='',150);}
+function updatePowMsg(n){const c=n||getPow();const msgs=MSGS[lang];const msg=c===0?msgs[0]:msgs[Math.min(Math.floor((c-1)%10),msgs.length-1)];document.getElementById('powMsg').textContent=msg;}
 
-function initPow(){
-  const n=getPow();
-  document.getElementById('powNum').textContent=n;
-  document.getElementById('powBar').style.width=Math.min(2+n%BAR_MAX,100)+'%';
-  updatePowMsg();
-}
-
-function addPower(){
-  const n=getPow()+1;
-  setPow(n);
-  const el=document.getElementById('powNum');
-  el.textContent=n;
-  document.getElementById('powBar').style.width=Math.min(2+(n%BAR_MAX),100)+'%';
-  updatePowMsg(n);
-  // +1 float
-  const btn=document.getElementById('powBtn');
-  const p=document.createElement('span');
-  p.className='plus1';p.textContent='+1 ⚡';
-  p.style.cssText='top:0;left:50%;transform:translateX(-50%)';
-  btn.parentElement.style.position='relative';
-  btn.parentElement.appendChild(p);
-  setTimeout(()=>p.remove(),1000);
-  // button bounce
-  btn.style.transform='scale(.95)';
-  setTimeout(()=>btn.style.transform='',150);
-}
-
-function updatePowMsg(n){
-  const c=n||getPow();
-  const msgs=MSGS[lang];
-  const msg=c===0?msgs[0]:msgs[Math.min(Math.flo
+const io=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('vis'),i*70)});},{threshold:.08});
+document.querySelectorAll('.exp-card,.tl-row').forEach(el=>io.observe(el));
+initPow();
+</script>
+</body>
+</html>
