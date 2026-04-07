@@ -575,7 +575,7 @@ footer span{font-family:var(--sub);font-size:11.5px;color:var(--t3);font-weight:
     <h2 class="sec-title"><span data-i18n="mom.title1">我的</span> <span class="acc" style="background:linear-gradient(90deg,var(--p),var(--o));" data-i18n="mom.title2">朋友圈</span> 📸</h2>
     <div class="moments-note">📝 <span data-i18n="mom.note">这里是我的生活碎片。内容持续更新中，快来看看我最近在干嘛～</span></div>
     <div class="moments-feed">
-     <div class="moment-card">
+    <div class="moment-card">
   <div class="m-avatar">
     <img src="个人主页首页照片.jpg" alt="Zhen Wang">
   </div>
@@ -583,8 +583,8 @@ footer span{font-family:var(--sub);font-size:11.5px;color:var(--t3);font-weight:
   <div class="m-content">
     <div class="m-name">Zhen Wang</div>
     
-    <div class="m-text">
-      Sept.30-Oct.13 at Rolex SH Masters 🎾
+    <div class="m-text" data-i18n="moment1.text">
+      Sept.30-Oct.13 劳力士上海大师赛 🎾
     </div>
     
     <div class="m-gallery">
@@ -599,10 +599,10 @@ footer span{font-family:var(--sub);font-size:11.5px;color:var(--t3);font-weight:
       <img src="微信图片_20260407003216_30_2.jpg" alt="The Broad 9">
     </div>
     
-    <div class="m-location">上海市 旗忠网球中心</div>
+    <div class="m-location" data-i18n="moment1.location">中国 上海市 旗忠网球中心</div>
     
     <div class="m-footer">
-      <span class="m-time">2024年10月11日</span>
+      <span class="m-time" data-i18n="moment1.date">2024年10月11日</span>
       <span>🤍 12</span> 
     </div>
   </div>
@@ -675,21 +675,117 @@ footer span{font-family:var(--sub);font-size:11.5px;color:var(--t3);font-weight:
 <div class="sticker sticker-3"><svg width="52" height="52" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg"><circle cx="26" cy="26" r="24" fill="#f5f0ff" stroke="#c9b3ff" stroke-width="2"/><text x="26" y="33" font-size="22" text-anchor="middle">✨</text></svg></div>
 
 <script>
-const T={zh:{'nav.exp':'经历','nav.tl':'时间轴','nav.proj':'项目','nav.sk':'技能','nav.mom':'生活','nav.ct':'联系','hero.badge':'UCSD 2029届 · 圣地亚哥','hero.name2':'Wang ✦','hero.desc':'UCSD 数据科学 & 数学-计算机科学双专业在读，边缘 AI 能效研究员，动漫爱好者。在数据、算法和 AI 的交叉点探索世界 ✨','hero.cta1':'打个招呼','hero.cta2':'查看我的经历','pow.title':'旅行者能量站','pow.sub':'VISITOR ENERGY STATION','pow.unit':'份能量已收到','pow.btn':'点击充能 +1','pow.msg0':'你好呀旅行者，快来给我充能吧！','exp.tag':'研究 & 经历','exp.title1':'我做过的','exp.title2':'研究与探索','e1.org':'UCSD · 独立本科科研项目','e1.role':'独立研究员 — 边缘 AI 热节流效应研究','e1.date':'2026.03 – 至今','e1.b1':'独立主导课题：边缘 AI 热节流效应与能效关系。导师：Peter Chi 教授。','e1.b2':'在 GPU/Jetson 设备上部署 Llama-3，使用 nvidia-smi & Prometheus 实时采集 GPU 温度、时钟频率、功耗与吞吐量。','e1.b3':'构建"效率-热量"量化模型，产出含可视化仪表盘的技术报告，为不同热状态下 AI 推理提供实证数据。','e2.org':'UCSD · Halıcıoğlu 数据科学院','e2.role':'研究助理 — 数据科学教育研究','e2.date':'2026.01 – 至今','e2.b1':'采集与处理学生数据科学前后测数据，构建量化评估管道。','e2.b2':'系统学习并评估 Pandas Tutor 工具，分析其数据处理流程优化潜力。','e3.org':'上海交通大学 · 心理学院','e3.role':'研究助理 — 儿童发展与家庭研究实验室','e3.date':'2024.06 – 2025.09','e3.b1':'在孙晓宁教授课题组处理 500+ 小时幼儿行为结构化数据，推动大规模发展研究数据的系统化分析。','e3.b2':'使用 Stata & Excel 管理发展评估数据集，与博士生协作构建自动化流程，完成 95 份标准化计算分析报告。','e3.b3':'主导设计 60 项变量采集工具；独立执行 28 名儿童的标准化评估（韦氏量表、TEC）。','e3.b4':'担任《Developmental Psychology》期刊审稿人；每周文献研讨会完成 10 次方法学批判性汇报。','e4.org':'上海市世外中学 · 学生会','e4.role':'实践部副部长','e4.date':'2023.09 – 2024.09','e4.b1':'管理 108 人校志愿者团队，统筹调度电影博物馆、敦煌文化周、中国文化周、爱心义卖、篮球班赛等多类活动。','tl.tag':'人生时间轴','tl.title1':'走过的','tl.title2':'每一步','tl.col1':'教育经历','tl.col2':'活动 & 成就','tl1.ev':'🏫 上海市世外中学（高中）','tl1.d':'高中三年，发现对数据科学与社会科学的深厚兴趣，系统打磨独立思考与自学能力，厚积薄发。','tl2.ev':'🎖️ 学生会实践部副部长','tl2.d':'领导 108 人志愿者团队，在高三繁忙学业中磨砺组织能力与领导力，统筹多项大型校园文化活动。','tl3.ev':'🔬 上海交大心理学院 RA','tl3.d':'人生第一段正式科研经历。独立执行 28 名儿童认知评估，处理 500+ 小时数据，学会了 Stata 与系统化研究方法。','tl4.ev':'✈️ 远赴加州，开启 UCSD','tl4.d':'带着好奇与期待飞越太平洋，开始数据科学 & 数学-计算机科学双专业本科学习。GPA 4.0/4.0。','tl5.ev':'📝 "学生为何上学"社会学研究','tl5.d':'带领 5 人团队完成 10 场深度访谈，运用假设检验与定性编码，合作撰写 25 页研究报告。满分 100/100 ⭐','tl6.ev':'📈 英超转会分析项目','tl6.d':'用 Python/Pandas 爬取 Transfermarkt 近 10 年数据，构建时间序列数据集，用线性回归量化转会投入与竞技成绩的关系。','tl7.ev':'📊 HDSI 数据科学院 RA','tl7.d':'加入 HDSI 课题组，参与数据科学教育研究，探索 Pandas Tutor 工具对教学流程的优化潜力。','tl8.ev':'🏆 独立科研：边缘 AI 能效','tl8.d':'获得本科科研资助，独立主导边缘 AI 热节流效应研究，导师 Peter Chi 教授。向高性能计算与 AI 研究全力冲刺。','proj.tag':'精选项目','proj.title1':'做出来的','proj.title2':'成果','p1.t':'边缘 AI 热节流效应研究','p1.d':'独立本科科研项目，在 Jetson 上部署 Llama-3，构建实时监控管道与"效率-热量"量化模型，探究边缘推理能效边界。','p2.t':'英超转会花费与净胜球关系分析','p2.d':'用 Python/Pandas 从 Transfermarkt 爬取 20 支球队近 10 年数据，用线性回归量化转会投入与竞技成绩的相关性。','p3.t':'"学生为何上学" 社会学研究','p3.d':'带领 5 人团队完成 10 场深度访谈，运用统计假设检验与定性编码处理数据，合作完成 25 页研究报告。满分 100/100 ⭐','p4.t':'儿童发展数据流水线','p4.d':'在上海交大自动化 Stata/Excel 工作流，处理 500+ 小时行为数据。设计 60 变量问卷，为 28 名儿童执行韦氏量表等标准化评估。','sk.tag':'技能树','sk.title1':'我的','sk.title2':'能力点','sk1.n':'编程与工程','sk1.d':'高性能计算、数据处理流水线、自动化脚本与面向对象系统开发。','sk2.n':'数据分析','sk2.d':'统计建模、假设检验、线性回归建模、数据清洗与探索性分析（EDA）。','sk3.n':'研究方法','sk3.d':'定性与定量混合方法、深度访谈设计、行为实验执行与结构化报告撰写。','sk4.n':'AI & 机器学习','sk4.d':'边缘 AI 部署、LLM 推理、监督学习与 GPU 性能剖析。','sk5.n':'工具与平台','sk5.d':'覆盖研究分析全链路的行业工具，熟练构建可复现的数据流水线。','sk6.n':'表达与传播','sk6.d':'中英双语写作与演示。Bilibili 内容创作者，视频累计播放量 15.5 万+。','mom.tag':'生活分享','mom.title1':'我的','mom.title2':'朋友圈','mom.note':'这里是我的生活碎片。内容持续更新中，快来看看我最近在干嘛～','m1.t':'独立科研项目批了！！要开始我的独立科研了 🎉 研究方向是边缘 AI 的热节流效应，导师是 Peter Chi 教授。下周开始在 Jetson 上跑 Llama-3，感觉超兴奋的，加油！✨⚡','m2.t':'Club Tennis 今天赢了！打球真的是减压神器，每次打完都感觉充满能量 🎾 顺便说一下期中 Data Science 拿了满绩，开心～下周还有三门课的 midterm，加油加油！','m3.n':'待更新','m3.d':'你的下一条朋友圈内容','m3.t':'📝 在这里填入你想分享的内容。可以是校园生活、研究进展、旅行见闻、动漫感想……什么都可以！','ct.tag':'联系我','ct.title1':'一起','ct.title2':'搞点有意思的事','ct.sub':'UCSD · 数据科学 & 数学-CS · 2029 届','ct.phone':'电话 (US)','ct.loc':'所在地','ct.locv':'圣地亚哥 / 上海','ct.proj':'研究项目','ct.open':'开放机遇中','ct.h3':'一起做些有趣的事吧！','ct.p1':'我目前是 UCSD 的独立本科研究员，在研究边缘 AI 能效问题，导师是 Peter Chi 教授。随时欢迎聊科研、数据科学、合作机会，或者只是打个招呼 ✨','ct.p2':'数据科学 & 数学-计算机科学双专业，预计 2029 年毕业。','ct.btn':'发消息给我 💌','ft':'用','ft2':'制作 · UCSD 数据科学 & 数学-CS'},en:{'nav.exp':'Experience','nav.tl':'Timeline','nav.proj':'Projects','nav.sk':'Skills','nav.mom':'Life','nav.ct':'Contact','hero.badge':'UCSD Class of 2029 · San Diego','hero.name2':'Wang ✦','hero.desc':'Double-major in Data Science & Math-CS at UCSD, Edge AI efficiency researcher, and anime fan. Exploring the intersection of data, algorithms, and AI ✨','hero.cta1':'Say Hello','hero.cta2':'View My Work','pow.title':'Traveler Energy Station','pow.sub':'旅行者能量站','pow.unit':'energy received','pow.btn':'Charge +1','pow.msg0':'Hello traveler! Click to give me energy!','exp.tag':'Research & Experience','exp.title1':"What I've",'exp.title2':'built & studied','e1.org':'UCSD · Independent Undergraduate Research','e1.role':'Independent Researcher — Edge AI Thermal Throttling','e1.date':'Mar 2026 – Present','e1.b1':'Independently leading a study on thermal throttling & energy efficiency in edge AI. Advisor: Prof. Peter Chi.','e1.b2':'Deployed Llama-3 on Jetson; collected real-time GPU temperature, clock speed, power draw via nvidia-smi & Prometheus.','e1.b3':'Built a quantitative efficiency-to-heat model with visualization dashboards on AI inference energy cost.','e2.org':'UCSD · Halıcıoğlu Data Science Institute','e2.role':'Research Assistant — Data Science Education Research','e2.date':'Jan 2026 – Present','e2.b1':'Collected and processed pre/post-instruction data on student mastery; built a quantitative assessment pipeline.','e2.b2':'Systematically studied and evaluated Pandas Tutor for computational workflow optimization potential.','e3.org':'Shanghai Jiao Tong University · Dept. of Psychology','e3.role':'Research Assistant — Child Development & Family Studies Lab','e3.date':'Jun 2024 – Sep 2025','e3.b1':'Processed 500+ hours of behavioral datasets under Prof. Xiaoning Sun.','e3.b2':'Managed assessment data in Stata & Excel; automated workflows, producing 95 standardized reports.','e3.b3':'Designed 60-variable survey instruments; conducted Wechsler & TEC assessments for 28 children.','e3.b4':'Reviewed papers for Developmental Psychology journal; delivered 10 methodology assessments weekly.','e4.org':'Shanghai World Foreign Language Academy · Student Union','e4.role':'Practice Dept. Vice Minister','e4.date':'Sep 2023 – Sep 2024','e4.b1':'Managed a 108-member volunteer team, organizing museum, cultural, charity, and sports events.','tl.tag':'Life Timeline','tl.title1':'Every step','tl.title2':'of the journey','tl.col1':'Education','tl.col2':'Activities & Achievements','tl1.ev':'🏫 Shanghai World Foreign Language Academy','tl1.d':'Three years of high school. Discovered deep passion for data science and social science; honed independent thinking.','tl2.ev':'🎖️ Student Union Vice Minister','tl2.d':'Led a 108-member volunteer team through major campus events, honing leadership and organizational skills.','tl3.ev':'🔬 SJTU Psychology Dept. RA','tl3.d':'First formal research experience. Conducted cognitive assessments for 28 children, processed 500+ hours of data.','tl4.ev':'✈️ Off to California — UCSD Begins','tl4.d':'Crossed the Pacific to begin a double major in Data Science & Math-CS. GPA: 4.0/4.0.','tl5.ev':'📝 "Why Do Students Go to College?"','tl5.d':'Led a 5-member sociology team through 10 interviews, hypothesis testing, and qualitative coding. Score: 100/100 ⭐','tl6.ev':'📈 EPL Transfer Spending Analysis','tl6.d':'Scraped 10 years of Premier League transfer data from Transfermarkt; quantified ROI using linear regression.','tl7.ev':'📊 HDSI Research Assistant','tl7.d':'Joined HDSI to work on data science education research, exploring Pandas Tutor for teaching optimization.','tl8.ev':'🏆 Independent Research: Edge AI','tl8.d':'Received undergraduate research funding to lead edge AI thermal throttling research under Prof. Peter Chi.','proj.tag':'Selected Projects','proj.title1':"Things I've",'proj.title2':'shipped','p1.t':'Edge AI Thermal Throttling Study','p1.d':'Independent undergraduate research. Deployed Llama-3 on Jetson, built monitoring pipeline and efficiency-to-heat model.','p2.t':'EPL Transfer Spending vs. Goal Difference','p2.d':'Scraped 10 years of Premier League data from Transfermarkt. Applied linear regression to quantify transfer ROI.','p3.t':'"Why Do Students Go to College?"','p3.d':'Led a 5-member team through 10 interviews, hypothesis testing, and qualitative coding. 25-page report. 100/100 ⭐','p4.t':'Child Development Data Pipeline','p4.d':'Automated Stata/Excel workflows at SJTU for 500+ hours of data. Conducted Wechsler assessments for 28 children.','sk.tag':'Skill Tree','sk.title1':'My','sk.title2':'capabilities','sk1.n':'Programming & Engineering','sk1.d':'HPC, data processing pipelines, automation scripts, and OOP systems development.','sk2.n':'Data Analysis','sk2.d':'Statistical modeling, hypothesis testing, linear regression, data cleaning, and EDA at scale.','sk3.n':'Research Methods','sk3.d':'Mixed-methods research, in-depth interview design, behavioral experiment execution, and structured reporting.','sk4.n':'AI & Machine Learning','sk4.d':'Edge AI deployment, LLM inference, supervised learning, and GPU performance profiling.','sk5.n':'Tools & Platforms','sk5.d':'Industry-standard tools for full-stack research workflows and reproducible data pipelines.','sk6.n':'Communication','sk6.d':'Bilingual Chinese/English writing and presentation. Bilibili creator with 155K+ total views.','mom.tag':'Life Sharing','mom.title1':'My','mom.title2':'Moments','mom.note':"Snippets of my life. Updated regularly — come see what I've been up to!",'m1.t':'Research funding approved!! Starting my independent research 🎉 Topic: edge AI thermal throttling. Deploying Llama-3 on Jetson next week! ✨⚡','m2.t':'Won the Club Tennis match today! Such a stress reliever 🎾 Also aced the Data Science midterm~ Here we go!','m3.n':'Coming Soon','m3.d':'Your next post here','m3.t':'📝 Add your content here. Campus life, research updates, travel, anime thoughts — anything goes!','ct.tag':'Contact','ct.title1':"Let's",'ct.title2':'build something together','ct.sub':'UCSD · Data Science & Math-CS · Class of 2029','ct.phone':'Phone (US)','ct.loc':'Location','ct.locv':'San Diego / Shanghai','ct.proj':'Research Project','ct.open':'Open to opportunities','ct.h3':"Let's do something interesting!",'ct.p1':"I'm an independent undergraduate researcher at UCSD studying edge AI energy efficiency under Prof. Peter Chi. Happy to chat! ✨",'ct.p2':'Double-majoring in Data Science and Math-CS, expected graduation 2029.','ct.btn':'Send me a message 💌','ft':'Made with','ft2':'· UCSD Data Science & Math-CS'}};
+const T={
+  zh:{
+    'nav.exp':'经历','nav.tl':'时间轴','nav.proj':'项目','nav.sk':'技能','nav.mom':'生活','nav.ct':'联系',
+    'hero.badge':'UCSD 2029届 · 圣地亚哥','hero.name2':'Wang ✦',
+    'hero.desc':'UCSD 数据科学 & 数学-计算机科学双专业在读，边缘 AI 能效研究员。在数据、算法和 AI 的交叉点探索世界 ✨',
+    'hero.cta1':'打个招呼','hero.cta2':'查看我的经历','pow.title':'旅行者能量站','pow.sub':'VISITOR ENERGY STATION','pow.unit':'份能量已收到','pow.btn':'点击充能 +1','pow.msg0':'你好呀旅行者，快来给我充能吧！',
+    'exp.tag':'研究 & 经历','exp.title1':'我做过的','exp.title2':'研究与探索',
+    'e1.org':'UCSD · 独立本科科研项目','e1.role':'独立研究员 — 边缘 AI 热节流效应研究','e1.date':'2026.03 – 至今','e1.b1':'独立主导课题：边缘 AI 热节流效应与能效关系。导师：Peter Chi 教授。','e1.b2':'在 GPU/Jetson 设备上部署 Llama-3，使用 nvidia-smi & Prometheus 实时采集 GPU 温度、时钟频率、功耗与吞吐量。','e1.b3':'构建"效率-热量"量化模型，产出含可视化仪表盘的技术报告，为不同热状态下 AI 推理提供实证数据。',
+    'e2.org':'UCSD · Halıcıoğlu 数据科学院','e2.role':'研究助理 — 数据科学教育研究','e2.date':'2026.01 – 至今','e2.b1':'采集与处理学生数据科学前后测数据，构建量化评估管道。','e2.b2':'系统学习并评估 Pandas Tutor 工具，分析其数据处理流程优化潜力。',
+    'e3.org':'上海交通大学 · 心理学院','e3.role':'研究助理 — 儿童发展与家庭研究实验室','e3.date':'2024.06 – 2025.09','e3.b1':'在孙晓宁教授课题组处理 500+ 小时幼儿行为结构化数据，推动大规模发展研究数据的系统化分析。','e3.b2':'使用 Stata & Excel 管理发展评估数据集，与博士生协作构建自动化流程，完成 95 份标准化计算分析报告。','e3.b3':'主导设计 60 项变量采集工具；独立执行 28 名儿童的标准化评估（韦氏量表、TEC）。','e3.b4':'担任《Developmental Psychology》期刊审稿人；每周文献研讨会完成 10 次方法学批判性汇报。',
+    'e4.org':'上海市世外中学 · 学生会','e4.role':'实践部副部长','e4.date':'2023.09 – 2024.09','e4.b1':'管理 108 人校志愿者团队，统筹调度电影博物馆、敦煌文化周、中国文化周、爱心义卖、篮球班赛等多类活动。',
+    'tl.tag':'人生时间轴','tl.title1':'走过的','tl.title2':'每一步','tl.col1':'教育经历','tl.col2':'活动 & 成就',
+    'tl1.ev':'🏫 上海市世外中学（高中）','tl1.d':'高中三年，发现对数据科学与社会科学的深厚兴趣，系统打磨独立思考与自学能力，厚积薄发。','tl2.ev':'🎖️ 学生会实践部副部长','tl2.d':'领导 108 人志愿者团队，在高三繁忙学业中磨砺组织能力与领导力，统筹多项大型校园文化活动。','tl3.ev':'🔬 上海交大心理学院 RA','tl3.d':'人生第一段正式科研经历。独立执行 28 名儿童认知评估，处理 500+ 小时数据，学会了 Stata 与系统化研究方法。','tl4.ev':'✈️ 远赴加州，开启 UCSD','tl4.d':'带着好奇与期待飞越太平洋，开始数据科学 & 数学-计算机科学双专业本科学习。GPA 4.0/4.0。','tl5.ev':'📝 "学生为何上学"社会学研究','tl5.d':'带领 5 人团队完成 10 场深度访谈，运用假设检验与定性编码，合作撰写 25 页研究报告。满分 100/100 ⭐','tl6.ev':'📈 英超转会分析项目','tl6.d':'用 Python/Pandas 爬取 Transfermarkt 近 10 年数据，构建时间序列数据集，用线性回归量化转会投入与竞技成绩的关系。','tl7.ev':'📊 HDSI 数据科学院 RA','tl7.d':'加入 HDSI 课题组，参与数据科学教育研究，探索 Pandas Tutor 工具对教学流程的优化潜力。','tl8.ev':'🏆 独立科研：边缘 AI 能效','tl8.d':'获得本科科研资助，独立主导边缘 AI 热节流效应研究，导师 Peter Chi 教授。向高性能计算与 AI 研究全力冲刺。',
+    'proj.tag':'精选项目','proj.title1':'做出来的','proj.title2':'成果',
+    'p1.t':'边缘 AI 热节流效应研究','p1.d':'独立本科科研项目，在 Jetson 上部署 Llama-3，构建实时监控管道与"效率-热量"量化模型，探究边缘推理能效边界。','p2.t':'英超转会花费与净胜球关系分析','p2.d':'用 Python/Pandas 从 Transfermarkt 爬取 20 支球队近 10 年数据，用线性回归量化转会投入与竞技成绩的相关性。','p3.t':'"学生为何上学" 社会学研究','p3.d':'带领 5 人团队完成 10 场深度访谈，运用统计假设检验与定性编码处理数据，合作完成 25 页研究报告。满分 100/100 ⭐','p4.t':'儿童发展数据流水线','p4.d':'在上海交大自动化 Stata/Excel 工作流，处理 500+ 小时行为数据。设计 60 变量问卷，为 28 名儿童执行韦氏量表等标准化评估。',
+    'sk.tag':'技能树','sk.title1':'我的','sk.title2':'能力点',
+    'sk1.n':'编程与工程','sk1.d':'高性能计算、数据处理流水线、自动化脚本与面向对象系统开发。','sk2.n':'数据分析','sk2.d':'统计建模、假设检验、线性回归建模、数据清洗与探索性分析（EDA）。','sk3.n':'研究方法','sk3.d':'定性与定量混合方法、深度访谈设计、行为实验执行与结构化报告撰写。','sk4.n':'AI & 机器学习','sk4.d':'边缘 AI 部署、LLM 推理、监督学习与 GPU 性能剖析。','sk5.n':'工具与平台','sk5.d':'覆盖研究分析全链路的行业工具，熟练构建可复现的数据流水线。','sk6.n':'表达与传播','sk6.d':'中英双语写作与演示。Bilibili 内容创作者，视频累计播放量 15.5 万+。',
+    'mom.tag':'生活分享','mom.title1':'我的','mom.title2':'朋友圈','mom.note':'这里是我的生活碎片。内容持续更新中，快来看看我最近在干嘛～',
+    
+    // ======== 新增的朋友圈 1 (上海大师赛) ========
+    'moment1.text': 'Sept.30-Oct.13 劳力士上海大师赛 🎾',
+    'moment1.location': '上海市 旗忠网球中心',
+    'moment1.date': '2024年10月11日',
+    // ===============================================
+
+    'm1.t':'独立科研项目批了！！要开始我的独立科研了 🎉 研究方向是边缘 AI 的热节流效应，导师是 Peter Chi 教授。下周开始在 Jetson 上跑 Llama-3，感觉超兴奋的，加油！✨⚡',
+    'm2.t':'Club Tennis 今天赢了！打球真的是减压神器，每次打完都感觉充满能量 🎾 顺便说一下期中 Data Science 拿了满绩，开心～下周还有三门课的 midterm，加油加油！',
+    'm3.n':'待更新','m3.d':'你的下一条朋友圈内容','m3.t':'📝 在这里填入你想分享的内容。可以是校园生活、研究进展、旅行见闻、动漫感想……什么都可以！',
+    'ct.tag':'联系我','ct.title1':'一起','ct.title2':'搞点有意思的事','ct.sub':'UCSD · 数据科学 & 数学-CS · 2029 届','ct.phone':'电话 (US)','ct.loc':'所在地','ct.locv':'圣地亚哥 / 上海','ct.proj':'研究项目','ct.open':'开放机遇中','ct.h3':'一起做些有趣的事吧！','ct.p1':'我目前是 UCSD 的独立本科研究员，在研究边缘 AI 能效问题，导师是 Peter Chi 教授。随时欢迎聊科研、数据科学、合作机会，或者只是打个招呼 ✨','ct.p2':'数据科学 & 数学-计算机科学双专业，预计 2029 年毕业。','ct.btn':'发消息给我 💌','ft':'用','ft2':'制作 · UCSD 数据科学 & 数学-CS'
+  },
+  en:{
+    'nav.exp':'Experience','nav.tl':'Timeline','nav.proj':'Projects','nav.sk':'Skills','nav.mom':'Life','nav.ct':'Contact',
+    'hero.badge':'UCSD Class of 2029 · San Diego','hero.name2':'Wang ✦',
+    'hero.desc':'Double-major in Data Science & Math-CS at UCSD, Edge AI efficiency researcher. Exploring the intersection of data, algorithms, and AI ✨',
+    'hero.cta1':'Say Hello','hero.cta2':'View My Work','pow.title':'Traveler Energy Station','pow.sub':'旅行者能量站','pow.unit':'energy received','pow.btn':'Charge +1','pow.msg0':'Hello traveler! Click to give me energy!',
+    'exp.tag':'Research & Experience','exp.title1':"What I've",'exp.title2':'built & studied',
+    'e1.org':'UCSD · Independent Undergraduate Research','e1.role':'Independent Researcher — Edge AI Thermal Throttling','e1.date':'Mar 2026 – Present','e1.b1':'Independently leading a study on thermal throttling & energy efficiency in edge AI. Advisor: Prof. Peter Chi.','e1.b2':'Deployed Llama-3 on Jetson; collected real-time GPU temperature, clock speed, power draw via nvidia-smi & Prometheus.','e1.b3':'Built a quantitative efficiency-to-heat model with visualization dashboards on AI inference energy cost.',
+    'e2.org':'UCSD · Halıcıoğlu Data Science Institute','e2.role':'Research Assistant — Data Science Education Research','e2.date':'Jan 2026 – Present','e2.b1':'Collected and processed pre/post-instruction data on student mastery; built a quantitative assessment pipeline.','e2.b2':'Systematically studied and evaluated Pandas Tutor for computational workflow optimization potential.',
+    'e3.org':'Shanghai Jiao Tong University · Dept. of Psychology','e3.role':'Research Assistant — Child Development & Family Studies Lab','e3.date':'Jun 2024 – Sep 2025','e3.b1':'Processed 500+ hours of behavioral datasets under Prof. Xiaoning Sun.','e3.b2':'Managed assessment data in Stata & Excel; automated workflows, producing 95 standardized reports.','e3.b3':'Designed 60-variable survey instruments; conducted Wechsler & TEC assessments for 28 children.','e3.b4':'Reviewed papers for Developmental Psychology journal; delivered 10 methodology assessments weekly.',
+    'e4.org':'Shanghai World Foreign Language Academy · Student Union','e4.role':'Practice Dept. Vice Minister','e4.date':'Sep 2023 – Sep 2024','e4.b1':'Managed a 108-member volunteer team, organizing museum, cultural, charity, and sports events.',
+    'tl.tag':'Life Timeline','tl.title1':'Every step','tl.title2':'of the journey','tl.col1':'Education','tl.col2':'Activities & Achievements',
+    'tl1.ev':'🏫 Shanghai World Foreign Language Academy','tl1.d':'Three years of high school. Discovered deep passion for data science and social science; honed independent thinking.','tl2.ev':'🎖️ Student Union Vice Minister','tl2.d':'Led a 108-member volunteer team through major campus events, honing leadership and organizational skills.','tl3.ev':'🔬 SJTU Psychology Dept. RA','tl3.d':'First formal research experience. Conducted cognitive assessments for 28 children, processed 500+ hours of data.','tl4.ev':'✈️ Off to California — UCSD Begins','tl4.d':'Crossed the Pacific to begin a double major in Data Science & Math-CS. GPA: 4.0/4.0.','tl5.ev':'📝 "Why Do Students Go to College?"','tl5.d':'Led a 5-member sociology team through 10 interviews, hypothesis testing, and qualitative coding. Score: 100/100 ⭐','tl6.ev':'📈 EPL Transfer Spending Analysis','tl6.d':'Scraped 10 years of Premier League transfer data from Transfermarkt; quantified ROI using linear regression.','tl7.ev':'📊 HDSI Research Assistant','tl7.d':'Joined HDSI to work on data science education research, exploring Pandas Tutor for teaching optimization.','tl8.ev':'🏆 Independent Research: Edge AI','tl8.d':'Received undergraduate research funding to lead edge AI thermal throttling research under Prof. Peter Chi.',
+    'proj.tag':'Selected Projects','proj.title1':"Things I've",'proj.title2':'shipped',
+    'p1.t':'Edge AI Thermal Throttling Study','p1.d':'Independent undergraduate research. Deployed Llama-3 on Jetson, built monitoring pipeline and efficiency-to-heat model.','p2.t':'EPL Transfer Spending vs. Goal Difference','p2.d':'Scraped 10 years of Premier League data from Transfermarkt. Applied linear regression to quantify transfer ROI.','p3.t':'"Why Do Students Go to College?"','p3.d':'Led a 5-member team through 10 interviews, hypothesis testing, and qualitative coding. 25-page report. 100/100 ⭐','p4.t':'Child Development Data Pipeline','p4.d':'Automated Stata/Excel workflows at SJTU for 500+ hours of data. Conducted Wechsler assessments for 28 children.',
+    'sk.tag':'Skill Tree','sk.title1':'My','sk.title2':'capabilities',
+    'sk1.n':'Programming & Engineering','sk1.d':'HPC, data processing pipelines, automation scripts, and OOP systems development.','sk2.n':'Data Analysis','sk2.d':'Statistical modeling, hypothesis testing, linear regression, data cleaning, and EDA at scale.','sk3.n':'Research Methods','sk3.d':'Mixed-methods research, in-depth interview design, behavioral experiment execution, and structured reporting.','sk4.n':'AI & Machine Learning','sk4.d':'Edge AI deployment, LLM inference, supervised learning, and GPU performance profiling.','sk5.n':'Tools & Platforms','sk5.d':'Industry-standard tools for full-stack research workflows and reproducible data pipelines.','sk6.n':'Communication','sk6.d':'Bilingual Chinese/English writing and presentation. Bilibili creator with 155K+ total views.',
+    'mom.tag':'Life Sharing','mom.title1':'My','mom.title2':'Moments','mom.note':"Snippets of my life. Updated regularly — come see what I've been up to!",
+    
+    // ======== 新增的朋友圈 1 (上海大师赛英文版) ========
+    'moment1.text': 'Sept.30-Oct.13 at Rolex SH Masters 🎾',
+    'moment1.location': 'Qi Zhong Tennis Center, Shanghai',
+    'moment1.date': 'Oct 11, 2024',
+    // ===============================================
+
+    'm1.t':'Research funding approved!! Starting my independent research 🎉 Topic: edge AI thermal throttling. Deploying Llama-3 on Jetson next week! ✨⚡','m2.t':'Won the Club Tennis match today! Such a stress reliever 🎾 Also aced the Data Science midterm~ Here we go!','m3.n':'Coming Soon','m3.d':'Your next post here','m3.t':'📝 Add your content here. Campus life, research updates, travel, thoughts — anything goes!','ct.tag':'Contact','ct.title1':"Let's",'ct.title2':'build something together','ct.sub':'UCSD · Data Science & Math-CS · Class of 2029','ct.phone':'Phone (US)','ct.loc':'Location','ct.locv':'San Diego / Shanghai','ct.proj':'Research Project','ct.open':'Open to opportunities','ct.h3':"Let's do something interesting!",'ct.p1':"I'm an independent undergraduate researcher at UCSD studying edge AI energy efficiency under Prof. Peter Chi. Happy to chat! ✨",'ct.p2':'Double-majoring in Data Science and Math-CS, expected graduation 2029.','ct.btn':'Send me a message 💌','ft':'Made with','ft2':'· UCSD Data Science & Math-CS'
+  }
+};
 
 let lang='zh';
-function toggleLang(){lang=lang==='zh'?'en':'zh';document.getElementById('langBtn').textContent=lang==='zh'?'EN':'中';document.documentElement.lang=lang;document.querySelector('title').textContent=lang==='zh'?'王臻 ✦ 个人空间':'Zhen Wang ✦ Portfolio';applyLang();}
-function applyLang(){document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(T[lang][k]!==undefined)el.textContent=T[lang][k];});updatePowMsg();}
+function toggleLang(){
+  lang=lang==='zh'?'en':'zh';
+  document.getElementById('langBtn').textContent=lang==='zh'?'EN':'中';
+  document.documentElement.lang=lang;
+  document.querySelector('title').textContent=lang==='zh'?'王臻 ✦ 个人空间':'Zhen Wang ✦ Portfolio';
+  applyLang();
+}
 
-const MSGS={zh:['你好呀旅行者，快来给我充能吧！','谢谢你！能量+1 ⚡','哇！你真好！✨','满满的能量感谢你！🌟','宇宙最强充能者出现了！💫','已收到你的心意，感激不尽！❤️','充能完毕！战斗力 MAX！🔥','你让我今天很开心！🎉','收到你的能量了，好温暖～💝','神秘旅行者！感谢惠顾！✦'],en:['Hello traveler, click to power me up!','Thank you! Energy +1 ⚡',"Wow you're so kind! ✨",'Full of energy, thanks! 🌟',"Universe's top charger! 💫",'Your kindness received! ❤️','Fully charged! MAX! 🔥','You made my day! 🎉','Received your energy! 💝','Mystery traveler! Thank you! ✦']};
+function applyLang(){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(T[lang][k]!==undefined) el.textContent=T[lang][k];
+  });
+  updatePowMsg();
+}
+
+const MSGS={
+  zh:['你好呀旅行者，快来给我充能吧！','谢谢你！能量+1 ⚡','哇！你真好！✨','满满的能量感谢你！🌟','宇宙最强充能者出现了！💫','已收到你的心意，感激不尽！❤️','充能完毕！战斗力 MAX！🔥','你让我今天很开心！🎉','收到你的能量了，好温暖～💝','神秘旅行者！感谢惠顾！✦'],
+  en:['Hello traveler, click to power me up!','Thank you! Energy +1 ⚡',"Wow you're so kind! ✨",'Full of energy, thanks! 🌟',"Universe's top charger! 💫",'Your kindness received! ❤️','Fully charged! MAX! 🔥','You made my day! 🎉','Received your energy! 💝','Mystery traveler! Thank you! ✦']
+};
+
 const BAR_MAX=100;
 function getPow(){return parseInt(localStorage.getItem('pow_v2')||'0')}
 function setPow(n){localStorage.setItem('pow_v2',n)}
 function initPow(){const n=getPow();document.getElementById('powNum').textContent=n;document.getElementById('powBar').style.width=Math.min(2+n%BAR_MAX,100)+'%';updatePowMsg();}
-function addPower(){const n=getPow()+1;setPow(n);document.getElementById('powNum').textContent=n;document.getElementById('powBar').style.width=Math.min(2+(n%BAR_MAX),100)+'%';updatePowMsg(n);const btn=document.getElementById('powBtn');const p=document.createElement('span');p.className='plus1';p.textContent='+1 ⚡';p.style.cssText='top:0;left:50%;transform:translateX(-50%)';btn.parentElement.style.position='relative';btn.parentElement.appendChild(p);setTimeout(()=>p.remove(),1000);btn.style.transform='scale(.95)';setTimeout(()=>btn.style.transform='',150);}
-function updatePowMsg(n){const c=n||getPow();const msgs=MSGS[lang];const msg=c===0?msgs[0]:msgs[Math.min(Math.floor((c-1)%10),msgs.length-1)];document.getElementById('powMsg').textContent=msg;}
+function addPower(){
+  const n=getPow()+1;setPow(n);
+  document.getElementById('powNum').textContent=n;
+  document.getElementById('powBar').style.width=Math.min(2+(n%BAR_MAX),100)+'%';
+  updatePowMsg(n);
+  const btn=document.getElementById('powBtn');
+  const p=document.createElement('span');
+  p.className='plus1';p.textContent='+1 ⚡';
+  p.style.cssText='top:0;left:50%;transform:translateX(-50%)';
+  btn.parentElement.style.position='relative';
+  btn.parentElement.appendChild(p);
+  setTimeout(()=>p.remove(),1000);
+  btn.style.transform='scale(.95)';
+  setTimeout(()=>btn.style.transform='',150);
+}
+function updatePowMsg(n){
+  const c=n||getPow();
+  const msgs=MSGS[lang];
+  const msg=c===0?msgs[0]:msgs[Math.min(Math.floor((c-1)%10),msgs.length-1)];
+  document.getElementById('powMsg').textContent=msg;
+}
 
-const io=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('vis'),i*70)});},{threshold:.08});
+const io=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting) setTimeout(()=>e.target.classList.add('vis'),i*70)
+  });
+},{threshold:.08});
 document.querySelectorAll('.exp-card,.tl-row').forEach(el=>io.observe(el));
 initPow();
 </script>
