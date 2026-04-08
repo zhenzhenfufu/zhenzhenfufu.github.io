@@ -33,12 +33,11 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
 .lang-btn{background:var(--vl);color:var(--v);border:none;border-radius:100px;padding:4px 12px;font-weight:800;cursor:pointer;transition:.2s}
 .lang-btn:hover{background:var(--v);color:var(--white)}
 
-/* ====== 全新：二次元多巴胺地图 Hero 区 ====== */
+/* ====== 二次元多巴胺地图 Hero 区 ====== */
 #hero {
   min-height: 100vh;
   display: flex; align-items: center; justify-content: center;
   position: relative; overflow: hidden;
-  /* 网格地图背景 */
   background-image: 
     linear-gradient(rgba(155,0,255,0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(155,0,255,0.03) 1px, transparent 1px);
@@ -50,55 +49,24 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
 .continent {
   position: absolute; border: 4px solid var(--white);
   box-shadow: 6px 10px 0px rgba(155, 0, 255, 0.12), inset -5px -5px 15px rgba(255, 255, 255, 0.5);
-  opacity: 0.95; overflow: hidden; /* 让等高线不溢出 */
+  opacity: 0.95; overflow: hidden;
 }
-
-/* 等高线地形（起伏的山地地貌） */
 .topo {
-  position: absolute;
-  border: 3px solid rgba(255, 255, 255, 0.4);
-  border-radius: inherit; /* 继承大陆的不规则形状 */
-  background: rgba(255, 255, 255, 0.15); /* 地势升高的透视感 */
+  position: absolute; border: 3px solid rgba(255, 255, 255, 0.4);
+  border-radius: inherit; background: rgba(255, 255, 255, 0.15); 
   box-shadow: inset 0px 5px 10px rgba(0,0,0,0.03), 0 5px 15px rgba(0,0,0,0.05);
 }
 .topo-1 { width: 75%; height: 75%; top: 12.5%; left: 12.5%; }
 .topo-2 { width: 45%; height: 45%; top: 27.5%; left: 27.5%; background: rgba(255, 255, 255, 0.25); border: 2px solid rgba(255, 255, 255, 0.6); }
 
-/* 左上 - 玫瑰粉渐变 */
-.cont-tl {
-  top:-5%; left:-5%; width:40%; height:40%; min-width:200px; min-height:200px;
-  background: linear-gradient(135deg, #FF8BB3, var(--p)); 
-  border-radius:40% 60% 70% 30%/40% 50% 60% 50%;
-}
-/* 右上 - 芒果黄渐变 */
-.cont-tr {
-  top:-10%; right:-5%; width:45%; height:45%; min-width:220px; min-height:220px;
-  background: linear-gradient(135deg, #FFE066, var(--y)); 
-  border-radius:50% 50% 30% 70%/60% 40% 70% 40%;
-}
-/* 左下 - 海水蓝渐变 */
-.cont-bl {
-  bottom:-10%; left:-5%; width:45%; height:45%; min-width:220px; min-height:220px;
-  background: linear-gradient(135deg, #66CCFF, var(--b)); 
-  border-radius:30% 70% 50% 50%/40% 40% 60% 60%;
-}
-/* 右下 - 葡萄紫渐变 */
-.cont-br {
-  bottom:-5%; right:-5%; width:40%; height:40%; min-width:200px; min-height:200px;
-  background: linear-gradient(135deg, #C88BFF, var(--v)); 
-  border-radius:60% 40% 50% 50%/50% 60% 40% 50%;
-}
-
+.cont-tl { top:-5%; left:-5%; width:40%; height:40%; min-width:200px; min-height:200px; background: linear-gradient(135deg, #FF8BB3, var(--p)); border-radius:40% 60% 70% 30%/40% 50% 60% 50%; }
+.cont-tr { top:-10%; right:-5%; width:45%; height:45%; min-width:220px; min-height:220px; background: linear-gradient(135deg, #FFE066, var(--y)); border-radius:50% 50% 30% 70%/60% 40% 70% 40%; }
+.cont-bl { bottom:-10%; left:-5%; width:45%; height:45%; min-width:220px; min-height:220px; background: linear-gradient(135deg, #66CCFF, var(--b)); border-radius:30% 70% 50% 50%/40% 40% 60% 60%; }
+.cont-br { bottom:-5%; right:-5%; width:40%; height:40%; min-width:200px; min-height:200px; background: linear-gradient(135deg, #C88BFF, var(--v)); border-radius:60% 40% 50% 50%/50% 60% 40% 50%; }
 .m-icon { position:absolute; font-size:2.5rem; filter:drop-shadow(3px 5px 2px rgba(0,0,0,0.15)); z-index: 2; }
 
-/* 飞机与曲线航线动画 */
-.plane-free {
-  position: absolute; z-index: 5; font-size: 2.5rem;
-  animation: fly-curve 16s linear infinite;
-  filter: drop-shadow(4px 8px 6px rgba(0,0,0,0.25));
-  pointer-events: none;
-  margin-top: -1.25rem; margin-left: -1.25rem;
-}
+/* 飞机与轮船动画 */
+.plane-free { position: absolute; z-index: 5; font-size: 2.5rem; animation: fly-curve 16s linear infinite; filter: drop-shadow(4px 8px 6px rgba(0,0,0,0.25)); pointer-events: none; margin-top: -1.25rem; margin-left: -1.25rem; }
 @keyframes fly-curve {
   0%   { top: 80%; left: 15%; transform: rotate(-30deg) scale(0.8); }
   12%  { top: 47%; left: 8%;  transform: rotate(15deg) scale(1.1); }
@@ -110,15 +78,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
   87%  { top: 92%; left: 50%; transform: rotate(270deg) scale(1.1); }
   100% { top: 80%; left: 15%; transform: rotate(330deg) scale(0.8); }
 }
-
-/* 轮船与航海线动画 */
-.ship-free {
-  position: absolute; z-index: 4; font-size: 2rem;
-  animation: sail-route 24s ease-in-out infinite;
-  filter: drop-shadow(2px 6px 4px rgba(0,0,0,0.3));
-  pointer-events: none;
-  margin-top: -1rem; margin-left: -1rem;
-}
+.ship-free { position: absolute; z-index: 4; font-size: 2rem; animation: sail-route 24s ease-in-out infinite; filter: drop-shadow(2px 6px 4px rgba(0,0,0,0.3)); pointer-events: none; margin-top: -1rem; margin-left: -1rem; }
 @keyframes sail-route {
   0%   { top: 85%; left: 10%; transform: scale(0.8) scaleX(-1) rotate(-5deg); }
   20%  { top: 90%; left: 45%; transform: scale(1) scaleX(-1) rotate(3deg); }
@@ -130,18 +90,8 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
   100% { top: 85%; left: 10%; transform: scale(0.8) scaleX(-1) rotate(-5deg); }
 }
 
-/* 资料玻璃态护盾 */
-.glass-panel {
-  position: relative; z-index: 10;
-  background: rgba(255, 254, 245, 0.75);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  padding: 50px 40px; border-radius: 40px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-  border: 2px solid rgba(255, 255, 255, 0.9);
-  max-width: 800px; margin: 0 auto; width: 100%;
-}
-
+/* 玻璃态护盾与主页资料 */
+.glass-panel { position: relative; z-index: 10; background: rgba(255, 254, 245, 0.75); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 50px 40px; border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.08); border: 2px solid rgba(255, 255, 255, 0.9); max-width: 800px; margin: 0 auto; width: 100%; }
 .h-inner{display:flex;flex-direction:column;align-items:center;text-align:center}
 .h-avatar-wrap{width:150px;height:150px;border-radius:50%;border:4px solid var(--white);box-shadow:0 10px 25px rgba(155,0,255,0.15);margin:0 auto 1.5rem auto;overflow:hidden;transition:transform 0.3s ease}
 .h-avatar-wrap:hover{transform:scale(1.05) rotate(2deg)}
@@ -161,13 +111,13 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
 .btn-s{background:var(--white);color:var(--t2);box-shadow:0 8px 24px var(--shd)}
 .btn-s:hover{background:var(--vl);color:var(--v)}
 
-/* 通用板块与卡片 */
+/* 通用板块与滚动特效 (恢复了卡片的浮现特效) */
 .s-tag{display:inline-block;font-size:.85rem;font-weight:800;color:var(--b);background:var(--bl);padding:4px 12px;border-radius:100px;margin-bottom:1rem}
 .s-title{font-size:2.5rem;font-weight:900;margin-bottom:3rem;line-height:1.2}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.exp-card{background:var(--white);padding:32px;border-radius:24px;box-shadow:0 12px 32px var(--shd);display:flex;gap:20px;border:1px solid var(--brd);transition:.3s;opacity:0;transform:translateY(20px)}
+.exp-card{background:var(--white);padding:32px;border-radius:24px;box-shadow:0 12px 32px var(--shd);display:flex;gap:20px;border:1px solid var(--brd);transition: all 0.4s ease; opacity:0; transform:translateY(30px)}
+.exp-card.vis{opacity:1; transform:translateY(0)}
 .exp-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(155,0,255,.18)}
-.exp-card.vis{opacity:1;transform:translateY(0)}
 .e-icon{width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
 .ei-p{background:var(--pl);color:var(--p)}.ei-v{background:var(--vl);color:var(--v)}.ei-b{background:var(--bl);color:var(--b)}.ei-g{background:var(--gl);color:var(--g)}
 .e-org{font-weight:800;font-size:1.2rem;margin-bottom:4px}
@@ -178,19 +128,21 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
 .chip{display:inline-block;padding:4px 12px;border-radius:100px;font-size:.8rem;font-weight:700;margin-bottom:12px;border:none}
 .c-p{color:var(--p);background:var(--pl)}.c-v{color:var(--v);background:var(--vl)}.c-b{color:var(--b);background:var(--bl)}
 
-/* 时间轴 */
+/* 时间轴特效恢复 */
 .tl-wrap{max-width:800px;margin:0 auto;position:relative}
 .tl-wrap::before{content:'';position:absolute;width:2px;background:var(--brd);top:0;bottom:0;left:50%;transform:translateX(-50%)}
-.tl-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;position:relative;width:100%;opacity:0;transform:translateY(20px);transition:.5s}
-.tl-row.vis{opacity:1;transform:translateY(0)}
+.tl-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;position:relative;width:100%;opacity:0; transform:translateY(30px); transition: all 0.5s ease;}
+.tl-row.vis{opacity:1; transform:translateY(0)}
 .tl-row::after{content:'';position:absolute;width:16px;height:16px;background:var(--v);border:4px solid var(--white);border-radius:50%;left:50%;transform:translateX(-50%);box-shadow:0 0 0 4px var(--vl)}
-.tl-card{width:45%;background:var(--white);padding:20px;border-radius:20px;box-shadow:0 8px 24px var(--shd);border:1px solid var(--brd)}
+.tl-card{width:45%;background:var(--white);padding:20px;border-radius:20px;box-shadow:0 8px 24px var(--shd);border:1px solid var(--brd); transition: 0.3s;}
+.tl-card:hover{transform: translateY(-5px); box-shadow: 0 12px 30px rgba(155,0,255,.15);}
 .tl-row:nth-child(even) .tl-card{margin-left:auto}
 .tl-ev{font-weight:800;color:var(--v);margin-bottom:8px}
 .tl-d{font-size:.9rem;color:var(--t2)}
 
 /* 朋友圈 */
-.moment-card{display:flex;gap:15px;background:var(--white);padding:24px;border-radius:16px;box-shadow:0 8px 24px var(--shd);margin:0 auto 2rem;max-width:800px}
+.moment-card{display:flex;gap:15px;background:var(--white);padding:24px;border-radius:16px;box-shadow:0 8px 24px var(--shd);margin:0 auto 2rem;max-width:800px; opacity:0; transform:translateY(30px); transition: 0.5s ease;}
+.moment-card.vis{opacity:1; transform:translateY(0)}
 .m-avatar img{width:50px;height:50px;border-radius:8px;object-fit:cover}
 .m-content{flex:1}
 .m-name{font-weight:800;color:#576b95;font-size:1.1rem;margin-bottom:6px}
@@ -209,8 +161,8 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
 .pow-unit{font-size:.85rem;color:var(--t2);font-weight:700}
 .pow-bar-wrap{width:100%;height:8px;background:var(--vl);border-radius:100px;margin-bottom:16px;overflow:hidden;margin-top:10px}
 .pow-bar{height:100%;background:linear-gradient(90deg,var(--b),var(--v),var(--p));border-radius:100px;transition:width .3s}
-.pow-btn{background:var(--vl);color:var(--v);border:none;padding:12px 24px;border-radius:100px;font-weight:800;font-size:1rem;cursor:pointer;width:100%}
-.pow-btn:hover{background:var(--v);color:var(--white)}
+.pow-btn{background:var(--vl);color:var(--v);border:none;padding:12px 24px;border-radius:100px;font-weight:800;font-size:1rem;cursor:pointer;width:100%; transition: 0.2s;}
+.pow-btn:hover{background:var(--v);color:var(--white); transform:scale(1.02);}
 .pow-msg{font-size:.85rem;color:var(--t2);margin-top:12px;font-weight:700}
 .plus1{position:absolute;color:var(--p);font-weight:900;animation:p1 .8s forwards;pointer-events:none}
 @keyframes p1{0%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,-40px)}}
@@ -226,6 +178,11 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
   .glass-panel { padding: 40px 20px; }
   .plane-free { font-size: 2rem; }
 }
+
+/* 🚀 找回丢失的全局动态星光粒子背景 🚀 */
+.particles-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; }
+.particle { position: absolute; bottom: -10px; background: var(--v); border-radius: 50%; opacity: 0; animation: floatUp linear infinite; box-shadow: 0 0 10px var(--v), 0 0 20px var(--v); }
+@keyframes floatUp { 0% { transform: translateY(0) scale(0.5); opacity: 0; } 10% { opacity: 0.6; } 80% { opacity: 0.2; } 100% { transform: translateY(-120vh) scale(1.5); opacity: 0; } }
 </style>
 </head>
 <body>
@@ -244,22 +201,18 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
 
 <section id="hero">
   <div class="map-layer">
-    
     <div class="continent cont-tl">
       <div class="topo topo-1"></div><div class="topo topo-2"></div>
       <span class="m-icon" style="bottom:20%; right:20%">🌲</span><span class="m-icon" style="bottom:40%; right:35%">⛰️</span>
     </div>
-    
     <div class="continent cont-tr">
       <div class="topo topo-1"></div><div class="topo topo-2"></div>
       <span class="m-icon" style="bottom:25%; left:20%">📍</span><span class="m-icon" style="bottom:45%; left:45%">☁️</span>
     </div>
-    
     <div class="continent cont-bl">
       <div class="topo topo-1"></div><div class="topo topo-2"></div>
       <span class="m-icon" style="top:25%; right:20%">🌴</span><span class="m-icon" style="top:45%; right:35%">🥥</span>
     </div>
-    
     <div class="continent cont-br">
       <div class="topo topo-1"></div><div class="topo topo-2"></div>
       <span class="m-icon" style="top:25%; left:20%">⛺</span><span class="m-icon" style="top:15%; left:45%">🗺️</span>
@@ -268,7 +221,6 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
     <svg preserveAspectRatio="none" viewBox="0 0 100 100" style="position: absolute; top:0; left:0; width:100%; height:100%; z-index: 1; pointer-events: none; overflow: visible;">
       <path d="M 15 80 Q 2 47.5 15 15 Q 50 2 85 15 Q 98 47.5 85 80 Q 50 98 15 80 Z" fill="none" stroke="var(--v)" stroke-width="0.4" stroke-dasharray="1.5 2" opacity="0.6" stroke-linecap="round"/>
     </svg>
-
     <svg preserveAspectRatio="none" viewBox="0 0 100 100" style="position: absolute; top:0; left:0; width:100%; height:100%; z-index: 1; pointer-events: none; overflow: visible;">
       <path d="M 10 85 Q 45 95 80 85 Q 90 50 50 30 Q 15 50 10 85 Z" fill="none" stroke="var(--b)" stroke-width="0.3" stroke-dasharray="2 4" opacity="0.4" stroke-linecap="round"/>
     </svg>
@@ -458,8 +410,32 @@ function toggleLang(){lang=lang==='zh'?'en':'zh';document.getElementById('langBt
 function applyLang(){document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(T[lang][k]!==undefined)el.textContent=T[lang][k];});updatePowMsg();}
 const MSGS={zh:['你好呀旅行者，快来给我充能吧！','谢谢你！能量+1 ⚡','哇！你真好！✨','满满的能量感谢你！🌟','宇宙最强充能者出现了！💫','已收到你的心意，感激不尽！❤️','充能完毕！战斗力 MAX！🔥','你让我今天很开心！🎉','收到你的能量了，好温暖～💝','神秘旅行者！感谢惠顾！✦'],en:['Hello traveler, click to power me up!','Thank you! Energy +1 ⚡',"Wow you're so kind! ✨",'Full of energy, thanks! 🌟',"Universe's top charger! 💫",'Your kindness received! ❤️','Fully charged! MAX! 🔥','You made my day! 🎉','Received your energy! 💝','Mystery traveler! Thank you! ✦']};
 const BAR_MAX=100;function getPow(){return parseInt(localStorage.getItem('pow_v2')||'0')}function setPow(n){localStorage.setItem('pow_v2',n)}function initPow(){const n=getPow();document.getElementById('powNum').textContent=n;document.getElementById('powBar').style.width=Math.min(2+n%BAR_MAX,100)+'%';updatePowMsg();}function addPower(){const n=getPow()+1;setPow(n);document.getElementById('powNum').textContent=n;document.getElementById('powBar').style.width=Math.min(2+(n%BAR_MAX),100)+'%';updatePowMsg(n);const btn=document.getElementById('powBtn');const p=document.createElement('span');p.className='plus1';p.textContent='+1 ⚡';p.style.cssText='top:0;left:50%;transform:translateX(-50%)';btn.parentElement.style.position='relative';btn.parentElement.appendChild(p);setTimeout(()=>p.remove(),1000);btn.style.transform='scale(.95)';setTimeout(()=>btn.style.transform='',150);}function updatePowMsg(n){const c=n||getPow();const msgs=MSGS[lang];const msg=c===0?msgs[0]:msgs[Math.min(Math.floor((c-1)%10),msgs.length-1)];document.getElementById('powMsg').textContent=msg;}
-const io=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('vis'),i*70)});},{threshold:.08});document.querySelectorAll('.exp-card,.tl-row').forEach(el=>io.observe(el));
-const typeWords={zh:["边缘 AI 能效研究 ⚡","数据科学与自动化 📊","大规模数据流水线 💻","假设检验与量化分析 📝"],en:["Edge AI Efficiency ⚡","Data Science & Automation 📊","Large-scale Pipelines 💻","Quantitative Analysis 📝"]};let typingWordIndex=0,typingCharIndex=0,isDeleting=false,typingTimeout;function typeEffect(){const words=typeWords[lang];const currentWord=words[typingWordIndex];const el=document.getElementById("typewriter");if(!el)return;if(isDeleting){typingCharIndex--;}else{typingCharIndex++;}el.textContent=currentWord.substring(0,typingCharIndex);let speed=isDeleting?40:100;if(!isDeleting&&typingCharIndex===currentWord.length){speed=2000;isDeleting=true;}else if(isDeleting&&typingCharIndex===0){isDeleting=false;typingWordIndex=(typingWordIndex+1)%words.length;speed=500;}typingTimeout=setTimeout(typeEffect,speed);}initPow();typeEffect();
+
+/* 🚀 恢复了卡片和时间轴的 IntersectionObserver 浮现动画 🚀 */
+const io=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('vis'),i*70)});},{threshold:.08});document.querySelectorAll('.exp-card, .tl-row, .moment-card').forEach(el=>io.observe(el));
+
+const typeWords={zh:["边缘 AI 能效研究 ⚡","数据科学与自动化 📊","大规模数据流水线 💻","假设检验与量化分析 📝"],en:["Edge AI Efficiency ⚡","Data Science & Automation 📊","Large-scale Pipelines 💻","Quantitative Analysis 📝"]};let typingWordIndex=0,typingCharIndex=0,isDeleting=false,typingTimeout;function typeEffect(){const words=typeWords[lang];const currentWord=words[typingWordIndex];const el=document.getElementById("typewriter");if(!el)return;if(isDeleting){typingCharIndex--;}else{typingCharIndex++;}el.textContent=currentWord.substring(0,typingCharIndex);let speed=isDeleting?40:100;if(!isDeleting&&typingCharIndex===currentWord.length){speed=2000;isDeleting=true;}else if(isDeleting&&typingCharIndex===0){isDeleting=false;typingWordIndex=(typingWordIndex+1)%words.length;speed=500;}typingTimeout=setTimeout(typeEffect,speed);}
+initPow();
+typeEffect();
+
+/* 🚀 找回丢失的全局动态粒子 JS 函数 🚀 */
+function createParticles(){
+  const bg=document.createElement('div');
+  bg.className='particles-bg';
+  document.body.appendChild(bg);
+  for(let i=0;i<40;i++){
+    let p=document.createElement('div');
+    p.className='particle';
+    p.style.left=Math.random()*100+'vw';
+    p.style.animationDuration=(Math.random()*15+10)+'s';
+    p.style.animationDelay='-'+(Math.random()*20)+'s';
+    const size=Math.random()*3+2;
+    p.style.width=size+'px';
+    p.style.height=size+'px';
+    bg.appendChild(p);
+  }
+}
+createParticles();
 
 applyLang();const originalApplyLang=applyLang;applyLang=function(){originalApplyLang();clearTimeout(typingTimeout);isDeleting=false;typingCharIndex=0;typeEffect();};
 </script>
