@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>王臻 ✦ Zhen Wang ✦ Dopamine Map</title>
+<title>王臻 ✦ Zhen Wang ✦ Dopamine Space</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&family=Nunito:wght@400;600;700;800;900&family=Pacifico&family=Quicksand:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 /* ================= 全局基础 ================= */
 html { scroll-behavior: smooth; }
 :root{
+  /* 多巴胺梦幻海洋背景 */
   --bg-ocean: linear-gradient(135deg, #FFE5EE 0%, #F2E5FF 50%, #DCF4FF 100%);
   --white:#fff;
   --p:#FF2D78;--pl:#FFE5EE; --y:#FFB700;--yl:#FFF8DC;
@@ -29,92 +30,128 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 .lang-btn{background:var(--vl);color:var(--v);border:none;border-radius:100px;padding:4px 12px;font-weight:800;cursor:pointer;transition:.2s}
 .lang-btn:hover{background:var(--v);color:var(--white)}
 
-/* ====== 🌍 多巴胺矢量地图 Hero 区 🌍 ====== */
+/* ====== 🌍 多巴胺矢量贴边地图 Hero 区 🌍 ====== */
 #hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
 
-/* 海洋生物 */
-.marine { position: absolute; font-size: 5rem; opacity: 0.2; pointer-events: none; z-index: 0; filter: blur(1px); }
+/* 海底生物 */
+.marine { position: absolute; font-size: 5.5rem; opacity: 0.25; pointer-events: none; z-index: 0; filter: blur(1px); }
 .whale { top: 65%; animation: swim-whale 35s linear infinite; }
-.dolphin { top: 20%; animation: swim-dolphin 25s linear infinite; animation-delay: -10s; }
+.dolphin { top: 15%; animation: swim-dolphin 25s linear infinite; animation-delay: -10s; }
 @keyframes swim-whale { 0% { left: -20%; transform: rotate(5deg); } 50% { transform: rotate(-5deg) translateY(-40px); } 100% { left: 120%; transform: rotate(5deg); } }
 @keyframes swim-dolphin { 0% { right: -20%; transform: scaleX(-1) rotate(5deg); } 50% { transform: scaleX(-1) rotate(-5deg) translateY(-20px); } 100% { right: 120%; transform: scaleX(-1) rotate(5deg); } }
 
-/* 全局 SVG 轨道与动画层 */
-.global-routes { position: absolute; top:0; left:0; width:100%; height:100%; z-index: 2; pointer-events: none; }
-
 /* 岛屿包裹层 */
 .map-layer { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1; }
-.continent-wrapper { position: absolute; width: 45vw; height: 45vh; max-width: 480px; max-height: 480px; }
-.cont-tl { top: -2%; left: -2%; }
-.cont-tr { top: -2%; right: -2%; }
-.cont-bl { bottom: -2%; left: -2%; }
-.cont-br { bottom: -2%; right: -2%; }
 
-/* 真实海湾大陆 SVG (交互由 SVG Path 触发，精准无比) */
+/* 单个大陆容器：设置为占屏幕四分之一，并彻底贴死边缘 */
+.continent-wrapper { position: absolute; width: 45vw; height: 45vh; min-width: 300px; min-height: 300px; }
+.cont-tl { top: 0; left: 0; }
+.cont-tr { top: 0; right: 0; }
+.cont-bl { bottom: 0; left: 0; }
+.cont-br { bottom: 0; right: 0; }
+
+/* 真正的 SVG 矢量地图形状 */
 .island-path {
+  width: 100%; height: 100%;
   pointer-events: auto; cursor: pointer;
-  stroke: rgba(255,255,255,0.9); stroke-width: 2.5; stroke-linejoin: round;
-  filter: drop-shadow(8px 12px 6px rgba(155,0,255,0.15));
+  stroke: rgba(255,255,255,0.8); stroke-width: 3; stroke-linejoin: round;
+  filter: drop-shadow(8px 12px 6px rgba(155,0,255,0.2));
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease;
   transform-origin: center;
 }
-.island-path:hover {
-  transform: scale(1.05);
-  filter: drop-shadow(15px 25px 12px rgba(155,0,255,0.25)) brightness(1.08);
-}
+/* 鼠标悬停立体感 */
+.island-path:hover { transform: scale(1.03); filter: drop-shadow(15px 25px 12px rgba(155,0,255,0.3)) brightness(1.08); z-index: 20; }
 
-/* ================= 完美防遮挡文本系统 ================= */
+/* ================= 完美防遮挡：极限边缘文本系统 ================= */
+.island-content { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index: 5;}
 .cont-label {
-  position: absolute; pointer-events: none;
-  font-family: var(--serf); font-weight: 900; font-size: 1.35rem; color: var(--white);
-  text-shadow: 0 3px 8px rgba(0,0,0,0.3);
-  max-width: 140px; white-space: normal; line-height: 1.3;
-  transition: transform 0.3s ease, text-shadow 0.3s ease;
-  z-index: 10;
+  position: absolute; transform: translate(-50%, -50%);
+  font-family: var(--serf); font-weight: 900; font-size: 1.45rem; color: var(--white);
+  text-shadow: 0 3px 8px rgba(0,0,0,0.4), 0 0 15px rgba(155,0,255,0.5); /* 强化描边防变色 */
+  max-width: 160px; white-space: normal; line-height: 1.3;
+  transition: transform 0.3s ease; z-index: 10;
 }
-/* 鼠标移到对应岛屿时，文字放大 */
-.continent-wrapper:hover .cont-label { transform: scale(1.15); text-shadow: 0 4px 15px rgba(255,255,255,0.7); }
+.island-path:hover + .island-content .cont-label { transform: translate(-50%, -50%) scale(1.15); }
 
-/* 精准坐标：极度贴近屏幕角落，绝不被中间遮挡 */
-.cont-tl .cont-label { top: 25%; left: 25%; text-align: left; transform-origin: top left; }
-.cont-tr .cont-label { top: 25%; right: 25%; text-align: right; transform-origin: top right; }
-.cont-bl .cont-label { bottom: 25%; left: 25%; text-align: left; transform-origin: bottom left; }
-.cont-br .cont-label { bottom: 25%; right: 25%; text-align: right; transform-origin: bottom right; }
+/* 精准坐标：极度贴近屏幕对角角落，彻底远离中心 */
+.cont-tl .cont-label { top: 20%; left: 25%; text-align: left; transform-origin: top left; }
+.cont-tr .cont-label { top: 20%; right: 5%; text-align: right; transform-origin: top right; }
+.cont-bl .cont-label { bottom: 0%; left: 25%; text-align: left; transform-origin: bottom left; }
+.cont-br .cont-label { bottom: 0%; right: 5%; text-align: right; transform-origin: bottom right; }
 
 /* ================= 学术与生活：动画奇遇系统 ================= */
-.island-content { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index: 5;}
+/* 🎓 TL 粉岛 (课内/学术) - 书本与数学符号 */
+.anim-edu { position: absolute; top: 40%; left: 45%; font-size: 3rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
+.math-sym { position: absolute; font-family: var(--serf); font-weight: 900; color: #fff; font-size: 1.5rem; opacity: 0; animation: float-sym 3s ease-in infinite; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+.sym1 { top: -15px; left: -10px; animation-delay: 0s; }
+.sym2 { top: -25px; left: 25px; animation-delay: 1s; }
+.sym3 { top: -5px; left: 50px; animation-delay: 2s; }
+@keyframes float-sym { 0% { transform: translateY(0) scale(0.8) rotate(-10deg); opacity: 1; } 100% { transform: translateY(-50px) scale(1.3) rotate(15deg); opacity: 0; } }
 
-/* 🎓 TL 粉岛：无言之书与悬浮学术符号 */
-.anim-edu { position: absolute; top: 45%; left: 55%; font-size: 2.5rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
-.math-sym { position: absolute; font-family: var(--serf); font-weight: 900; color: #fff; font-size: 1.2rem; opacity: 0; animation: float-sym 3s ease-in infinite; }
-.sym1 { top: -10px; left: -10px; animation-delay: 0s; }
-.sym2 { top: -20px; left: 20px; animation-delay: 1s; }
-.sym3 { top: -5px; left: 40px; animation-delay: 2s; }
-@keyframes float-sym { 0% { transform: translateY(0) scale(0.8) rotate(-10deg); opacity: 1; } 100% { transform: translateY(-40px) scale(1.2) rotate(10deg); opacity: 0; } }
+/* 🔬 TR 黄岛 (课外/研究) - 显微镜与气泡 */
+.anim-res { position: absolute; top: 40%; left: 55%; font-size: 3.5rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
+.bubble { position: absolute; font-size: 1.2rem; opacity: 0; animation: float-bubble 2s ease-in infinite; }
+.b1 { top: -5px; left: -10px; animation-delay: 0s; }
+.b2 { top: -20px; left: 10px; animation-delay: 1s; }
+@keyframes float-bubble { 0% { transform: translateY(0) scale(0.5); opacity: 1; } 100% { transform: translateY(-40px) scale(1.3); opacity: 0; } }
 
-/* 🔬 TR 黄岛：大地的底稿与沸腾烧瓶 */
-.anim-res { position: absolute; top: 50%; left: 45%; font-size: 2.8rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
-.bubble { position: absolute; font-size: 0.9rem; opacity: 0; animation: float-bubble 2s ease-in infinite; }
-.b1 { top: -5px; left: -15px; animation-delay: 0s; }
-.b2 { top: -15px; left: -5px; animation-delay: 1s; }
-@keyframes float-bubble { 0% { transform: translateY(0) scale(0.5); opacity: 1; } 100% { transform: translateY(-30px) scale(1.2); opacity: 0; } }
-
-/* 🏎️ BL 青岛：心底的牧场 - 顺滑F1赛道与小猫 */
-.anim-life { position: absolute; top: 45%; left: 55%; transform: translate(-50%, -50%); width: 120px; height: 80px;}
-.mini-cat { position: absolute; top: 10px; left: 30px; font-size: 2rem; filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); animation: cat-blink 4s infinite; }
-.f1-track-svg { position: absolute; width: 100%; height: 100%; }
+/* 🏎️ BL 青岛 (生活/兴趣) - 巨型 F1 与猫咪 */
+.anim-life { position: absolute; top: 55%; left: 45%; transform: translate(-50%, -50%); width: 160px; height: 120px; }
+.mini-cat { position: absolute; top: 30px; left: 50px; font-size: 2.5rem; filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); animation: cat-blink 4s infinite; z-index: 2; }
 @keyframes cat-blink { 0%, 90%, 100% { content: '🐱'; } 95% { content: '😑'; } }
+/* F1 完美微型赛道 */
+.f1-track-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.f1-car { font-size: 2.2rem; filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.4)); }
 
-/* ⛺ BR 紫岛：最近的灯火 - 篝火与飞舞的火星 */
-.anim-ppl { position: absolute; top: 45%; left: 45%; font-size: 3rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
-.spark { position: absolute; width: 6px; height: 6px; background: #FFD700; border-radius: 50%; box-shadow: 0 0 8px #FFD700; opacity: 0; animation: spark-fly 1.5s linear infinite; }
-.sp1 { top: 0; left: 10px; animation-delay: 0s; }
-.sp2 { top: 10px; left: 30px; animation-delay: 0.5s; }
-.sp3 { top: -10px; left: 20px; animation-delay: 1s; }
-@keyframes spark-fly { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-30px) scale(0.2); opacity: 0; } }
+/* ⛺ BR 紫岛 (身边人) - 篝火与信件 */
+.anim-ppl { position: absolute; top: 55%; left: 55%; font-size: 3.5rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
+.letter { position: absolute; font-size: 1.8rem; top: 20px; left: -30px; transform: rotate(-15deg); }
+.spark { position: absolute; width: 6px; height: 6px; background: #FFD700; border-radius: 50%; box-shadow: 0 0 10px #FFD700; opacity: 0; animation: spark-fly 1.5s linear infinite; }
+.sp1 { top: 0; left: 20px; animation-delay: 0s; }
+.sp2 { top: 15px; left: 40px; animation-delay: 0.5s; }
+.sp3 { top: -10px; left: 30px; animation-delay: 1s; }
+@keyframes spark-fly { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-40px) scale(0.2); opacity: 0; } }
+
+/* ================= 交通航线物理系统 (绝不穿模，带停顿) ================= */
+/* ✈️ 飞机环球轨道：悬停在四块大陆上空 */
+.flight-orbit {
+  position: absolute; top: 50%; left: 50%; width: 80vw; height: 80vh;
+  margin-top: -40vh; margin-left: -40vw;
+  border: 2px dashed rgba(155, 0, 255, 0.25); border-radius: 50%;
+  animation: orbit-spin 24s ease-in-out infinite; z-index: 5; pointer-events: none;
+}
+.plane { position: absolute; top: -35px; left: 50%; margin-left: -30px; font-size: 3.5rem; transform: rotate(90deg); filter: drop-shadow(5px 10px 5px rgba(0,0,0,0.4)); }
+/* 核心：0度正上方，45度右上，135度右下。实现完美着陆停顿 */
+@keyframes orbit-spin {
+  0% { transform: rotate(45deg); }
+  10% { transform: rotate(45deg); } /* 停顿 右上黄岛 */
+  25% { transform: rotate(135deg); }
+  35% { transform: rotate(135deg); } /* 停顿 右下紫岛 */
+  50% { transform: rotate(225deg); }
+  60% { transform: rotate(225deg); } /* 停顿 左下青岛 */
+  75% { transform: rotate(315deg); }
+  85% { transform: rotate(315deg); } /* 停顿 左上粉岛 */
+  100% { transform: rotate(405deg); }
+}
+
+/* 🚢 轮船海峡航线：只在十字路口两端港口停泊 */
+.ship-route {
+  position: absolute; top: 50%; left: 15%; width: 70%; height: 0;
+  border-top: 3px dashed rgba(0, 170, 255, 0.4); z-index: 4; pointer-events: none;
+}
+.ship { position: absolute; top: -30px; left: 0; font-size: 3rem; animation: ship-sail 20s ease-in-out infinite; filter: drop-shadow(2px 6px 4px rgba(0,0,0,0.4)); }
+@keyframes ship-sail {
+  0% { left: 0%; transform: scaleX(-1) rotate(-5deg); }
+  10% { left: 0%; transform: scaleX(-1) rotate(5deg); } /* 停顿 左港口 */
+  40% { left: 100%; transform: scaleX(-1) rotate(-5deg); }
+  50% { left: 100%; transform: scaleX(1) rotate(5deg); } /* 转身 停顿 右港口 */
+  60% { left: 100%; transform: scaleX(1) rotate(-5deg); }
+  90% { left: 0%; transform: scaleX(1) rotate(5deg); }
+  100% { left: 0%; transform: scaleX(-1) rotate(-5deg); } /* 回归 */
+}
 
 /* ================= 玻璃态护盾 ================= */
-.glass-panel { position: relative; z-index: 10; background: rgba(255, 254, 245, 0.75); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px 30px; border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.08); border: 2px solid rgba(255, 255, 255, 0.9); max-width: 680px; margin: 0 auto; width: 100%; pointer-events: auto; }
+.glass-panel { position: relative; z-index: 10; background: rgba(255, 254, 245, 0.75); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px 30px; border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.08); border: 2px solid rgba(255, 255, 255, 0.9); max-width: 650px; margin: 0 auto; width: 100%; pointer-events: auto; }
 .h-inner{display:flex;flex-direction:column;align-items:center;text-align:center}
 .h-avatar-wrap{width:140px;height:140px;border-radius:50%;border:4px solid var(--white);box-shadow:0 10px 25px rgba(155,0,255,0.15);margin:0 auto 1.2rem auto;overflow:hidden;transition:transform 0.3s ease}
 .h-avatar-wrap:hover{transform:scale(1.05) rotate(2deg)}
@@ -150,6 +187,8 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 .e-ul li::before{content:'✦';position:absolute;left:0;color:var(--v);font-size:.8rem;top:2px}
 .chip{display:inline-block;padding:4px 12px;border-radius:100px;font-size:.8rem;font-weight:700;margin-bottom:12px;border:none}
 .c-p{color:var(--p);background:var(--pl)}.c-v{color:var(--v);background:var(--vl)}.c-b{color:var(--b);background:var(--bl)}
+
+/* 时间轴 */
 .tl-wrap{max-width:800px;margin:0 auto;position:relative}
 .tl-wrap::before{content:'';position:absolute;width:2px;background:var(--brd);top:0;bottom:0;left:50%;transform:translateX(-50%)}
 .tl-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;position:relative;width:100%;opacity:0; transform:translateY(30px); transition: all 0.5s ease;}
@@ -160,6 +199,8 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 .tl-row:nth-child(even) .tl-card{margin-left:auto}
 .tl-ev{font-weight:800;color:var(--v);margin-bottom:8px}
 .tl-d{font-size:.9rem;color:var(--t2)}
+
+/* 朋友圈 */
 .moment-card{display:flex;gap:15px;background:var(--white);padding:24px;border-radius:16px;box-shadow:0 8px 24px var(--shd);margin:0 auto 2rem;max-width:800px; opacity:0; transform:translateY(30px); transition: 0.5s ease;}
 .moment-card.vis{opacity:1; transform:translateY(0)}
 .m-avatar img{width:50px;height:50px;border-radius:8px;object-fit:cover}
@@ -171,6 +212,8 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 .m-gallery img:hover{filter:brightness(0.9)}
 .m-location{font-size:.85rem;color:#576b95;margin-bottom:8px;font-weight:600}
 .m-footer{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;color:#b2b2b2}
+
+/* 能量站 */
 .pow-card{background:var(--white);padding:24px;border-radius:24px;box-shadow:0 12px 32px var(--shd);border:1px solid var(--brd);text-align:center;width:100%;max-width:400px;margin:2rem auto}
 .pow-title{font-weight:900;color:var(--v);font-size:1.2rem;margin-bottom:4px}
 .pow-sub{font-size:.75rem;color:var(--t3);font-weight:800;letter-spacing:1px;margin-bottom:16px}
@@ -193,9 +236,14 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
   .tl-row::after{left:24px}
   .tl-card{width:calc(100% - 56px);margin-left:auto!important}
   .glass-panel { padding: 40px 20px; }
-  .global-routes { display: none; } /* 移动端隐藏大路线防遮挡 */
-  .cont-label { font-size: 1rem; }
+  .flight-orbit { display: none; } 
+  .cont-label { font-size: 0.95rem; }
 }
+
+/* 背景星光粒子特效 */
+.particles-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; overflow: hidden; }
+.particle { position: absolute; bottom: -10px; background: var(--v); border-radius: 50%; opacity: 0; animation: floatUp linear infinite; box-shadow: 0 0 10px var(--v), 0 0 20px var(--v); }
+@keyframes floatUp { 0% { transform: translateY(0) scale(0.5); opacity: 0; } 10% { opacity: 0.6; } 80% { opacity: 0.2; } 100% { transform: translateY(-120vh) scale(1.5); opacity: 0; } }
 </style>
 </head>
 <body>
@@ -213,84 +261,47 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 </nav>
 
 <section id="hero">
-  
-  <svg class="global-routes" viewBox="0 0 1000 1000" preserveAspectRatio="none">
-    
-    <path id="plane-path" d="M 250 750 Q 50 500 250 250 Q 500 50 750 250 Q 950 500 750 750 Q 500 950 250 750 Z" fill="none" stroke="rgba(155,0,255,0.15)" stroke-width="2" stroke-dasharray="10 10"/>
-    <g filter="drop-shadow(5px 10px 5px rgba(0,0,0,0.3))">
-      <text font-size="45" transform="rotate(-45) translate(-10, 10)">✈️
-        <animateMotion dur="24s" repeatCount="indefinite" rotate="auto" 
-          calcMode="spline" 
-          keyTimes="0; 0.2; 0.25; 0.45; 0.5; 0.7; 0.75; 0.95; 1" 
-          keyPoints="0; 0.25; 0.25; 0.5; 0.5; 0.75; 0.75; 1; 1"
-          keySplines="0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1">
-          <mpath href="#plane-path"/>
-        </animateMotion>
-      </text>
-    </g>
-
-    <path id="ship-path" d="M 450 550 Q 400 500 450 450 Q 500 400 550 450 Q 600 500 550 550 Q 500 600 450 550 Z" fill="none" stroke="rgba(0,170,255,0.3)" stroke-width="2" stroke-dasharray="4 6"/>
-    <g filter="drop-shadow(2px 6px 4px rgba(0,0,0,0.3))">
-      <text font-size="35" transform="scale(-1, 1) translate(0, 10)">🚢
-        <animateMotion dur="20s" repeatCount="indefinite" rotate="auto" 
-          calcMode="spline" 
-          keyTimes="0; 0.2; 0.25; 0.45; 0.5; 0.7; 0.75; 0.95; 1" 
-          keyPoints="0; 0.25; 0.25; 0.5; 0.5; 0.75; 0.75; 1; 1"
-          keySplines="0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1">
-          <mpath href="#ship-path"/>
-        </animateMotion>
-      </text>
-    </g>
-  </svg>
+  <div class="marine whale">🐋</div>
+  <div class="marine dolphin">🐬</div>
 
   <div class="map-layer">
     
     <div class="continent-wrapper cont-tl">
       <svg class="island-path" viewBox="0 0 100 100" preserveAspectRatio="none" onclick="document.getElementById('timeline').scrollIntoView({behavior: 'smooth'});">
         <defs><linearGradient id="g-tl" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFAEC9"/><stop offset="100%" stop-color="#FF2D78"/></linearGradient></defs>
-        <path d="M 15 35 Q 25 15 45 20 T 75 15 Q 95 35 85 55 T 90 85 Q 65 95 45 80 T 15 85 Q 5 65 15 50 T 15 35 Z" fill="url(#g-tl)"/>
+        <path d="M 0 0 L 100 0 C 80 15, 90 60, 50 80 C 25 95, 10 75, 0 100 Z" fill="url(#g-tl)" vector-effect="non-scaling-stroke"/>
       </svg>
       <div class="island-content">
         <div class="cont-label" data-i18n="map.edu">对白·无言之书</div>
-        <div class="anim-edu">
-          📖
-          <span class="math-sym sym1">∑</span>
-          <span class="math-sym sym2">∫</span>
-          <span class="math-sym sym3">{ }</span>
-        </div>
+        <div class="anim-edu">📖<span class="math-sym sym1">∑</span><span class="math-sym sym2">∫</span><span class="math-sym sym3">{ }</span></div>
       </div>
     </div>
     
     <div class="continent-wrapper cont-tr">
       <svg class="island-path" viewBox="0 0 100 100" preserveAspectRatio="none" onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'});">
         <defs><linearGradient id="g-tr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFDF73"/><stop offset="100%" stop-color="#FFB700"/></linearGradient></defs>
-        <path d="M 20 20 Q 40 5 60 25 T 90 20 Q 95 50 80 70 T 85 95 Q 50 90 30 80 T 10 85 Q 5 50 20 40 T 20 20 Z" fill="url(#g-tr)"/>
+        <path d="M 0 0 L 100 0 L 100 100 C 90 75, 75 95, 50 80 C 10 60, 20 15, 0 0 Z" fill="url(#g-tr)" vector-effect="non-scaling-stroke"/>
       </svg>
       <div class="island-content">
         <div class="cont-label" data-i18n="map.res">求证·大地的底稿</div>
-        <div class="anim-res">
-          🔬
-          <span class="bubble b1">🫧</span>
-          <span class="bubble b2">🫧</span>
-        </div>
+        <div class="anim-res">🔬<span class="bubble b1">🫧</span><span class="bubble b2">🫧</span></div>
       </div>
     </div>
     
     <div class="continent-wrapper cont-bl">
       <svg class="island-path" viewBox="0 0 100 100" preserveAspectRatio="none" onclick="document.getElementById('life').scrollIntoView({behavior: 'smooth'});">
         <defs><linearGradient id="g-bl" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7CD6FF"/><stop offset="100%" stop-color="#00AAFF"/></linearGradient></defs>
-        <path d="M 30 10 Q 50 20 70 10 T 95 30 Q 85 50 90 70 T 70 95 Q 40 85 20 90 T 5 60 Q 15 40 10 20 T 30 10 Z" fill="url(#g-bl)"/>
+        <path d="M 0 0 C 10 25, 25 10, 50 20 C 90 40, 80 85, 100 100 L 0 100 Z" fill="url(#g-bl)" vector-effect="non-scaling-stroke"/>
       </svg>
       <div class="island-content">
         <div class="cont-label" data-i18n="map.life">漫游·心底的牧场</div>
         <div class="anim-life">
           <div class="mini-cat">🐱</div>
-          <svg viewBox="0 0 100 100" class="f1-track-svg">
-            <path id="f1-mini-path" d="M 20 60 Q 50 20 80 60 Q 50 90 20 60 Z" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2.5" stroke-dasharray="4 4"/>
-            <g>
-              <text font-size="15" transform="scale(-1, 1) translate(0, 5)">🏎️</text>
-              <animateMotion dur="4s" repeatCount="indefinite" rotate="auto"><mpath href="#f1-mini-path"/></animateMotion>
-            </g>
+          <svg viewBox="0 0 200 200" class="f1-track-svg">
+            <path id="f1-mini-path" d="M 140 100 A 60 40 0 1 0 20 100 A 60 40 0 1 0 140 100" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="3" stroke-dasharray="6 6"/>
+            <text class="f1-car" x="-15" y="10">🏎️
+               <animateMotion dur="4s" repeatCount="indefinite" rotate="auto"><mpath href="#f1-mini-path"/></animateMotion>
+            </text>
           </svg>
         </div>
       </div>
@@ -299,17 +310,23 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
     <div class="continent-wrapper cont-br">
       <svg class="island-path" viewBox="0 0 100 100" preserveAspectRatio="none" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">
         <defs><linearGradient id="g-br" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#D09CFF"/><stop offset="100%" stop-color="#9B00FF"/></linearGradient></defs>
-        <path d="M 25 15 Q 45 5 75 20 T 95 45 Q 85 65 90 85 T 60 95 Q 35 85 15 90 T 5 65 Q 15 45 10 25 T 25 15 Z" fill="url(#g-br)"/>
+        <path d="M 100 0 C 90 25, 75 10, 50 20 C 10 40, 20 85, 0 100 L 100 100 Z" fill="url(#g-br)" vector-effect="non-scaling-stroke"/>
       </svg>
       <div class="island-content">
         <div class="cont-label" data-i18n="map.ppl">相望·最近的灯火</div>
         <div class="anim-ppl">
-          ⛺
-          <span class="spark sp1"></span>
-          <span class="spark sp2"></span>
-          <span class="spark sp3"></span>
+          ⛺<div class="letter">✉️</div>
+          <span class="spark sp1"></span><span class="spark sp2"></span><span class="spark sp3"></span>
         </div>
       </div>
+    </div>
+
+    <div class="flight-orbit">
+      <div class="plane">✈️</div>
+    </div>
+
+    <div class="ship-route">
+      <div class="ship">🚢</div>
     </div>
 
   </div>
@@ -454,7 +471,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 </div>
 
 <script>
-/* ====== 🌍 双语字典系统 🌍 ====== */
+/* ====== 🌍 坚如磐石的双语字典 🌍 ====== */
 const T={
 zh:{
 'map.edu': '对白·无言之书',
@@ -512,6 +529,25 @@ const io=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isInter
 const typeWords={zh:["边缘 AI 能效研究 ⚡","数据科学与自动化 📊","大规模数据流水线 💻","假设检验与量化分析 📝"],en:["Edge AI Efficiency ⚡","Data Science & Automation 📊","Large-scale Pipelines 💻","Quantitative Analysis 📝"]};let typingWordIndex=0,typingCharIndex=0,isDeleting=false,typingTimeout;function typeEffect(){const words=typeWords[lang];const currentWord=words[typingWordIndex];const el=document.getElementById("typewriter");if(!el)return;if(isDeleting){typingCharIndex--;}else{typingCharIndex++;}el.textContent=currentWord.substring(0,typingCharIndex);let speed=isDeleting?40:100;if(!isDeleting&&typingCharIndex===currentWord.length){speed=2000;isDeleting=true;}else if(isDeleting&&typingCharIndex===0){isDeleting=false;typingWordIndex=(typingWordIndex+1)%words.length;speed=500;}typingTimeout=setTimeout(typeEffect,speed);}
 initPow();
 typeEffect();
+
+/* 背景星光粒子 */
+function createParticles(){
+  const bg=document.createElement('div');
+  bg.className='particles-bg';
+  document.body.appendChild(bg);
+  for(let i=0;i<40;i++){
+    let p=document.createElement('div');
+    p.className='particle';
+    p.style.left=Math.random()*100+'vw';
+    p.style.animationDuration=(Math.random()*15+10)+'s';
+    p.style.animationDelay='-'+(Math.random()*20)+'s';
+    const size=Math.random()*3+2;
+    p.style.width=size+'px';
+    p.style.height=size+'px';
+    bg.appendChild(p);
+  }
+}
+createParticles();
 
 applyLang();const originalApplyLang=applyLang;applyLang=function(){originalApplyLang();clearTimeout(typingTimeout);isDeleting=false;typingCharIndex=0;typeEffect();};
 </script>
