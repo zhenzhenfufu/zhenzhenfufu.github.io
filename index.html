@@ -6,6 +6,7 @@
 <title>王臻 ✦ 个人空间</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&family=Quicksand:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
+/* 全局丝滑滚动 */
 html { scroll-behavior: smooth; }
 
 :root{
@@ -44,26 +45,47 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
   background-size: 30px 30px;
 }
 
-/* 4块多巴胺大陆 - 渐变与等高线伪3D地貌 */
+/* 4块多巴胺大陆 - 自然渐变地貌 */
 .map-layer { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
 .continent {
   position: absolute; border: 4px solid var(--white);
   box-shadow: 6px 10px 0px rgba(155, 0, 255, 0.12), inset -5px -5px 15px rgba(255, 255, 255, 0.5);
   opacity: 0.95; overflow: hidden;
+  pointer-events: auto; /* 让大陆支持点击 */
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
-.topo {
-  position: absolute; border: 3px solid rgba(255, 255, 255, 0.4);
-  border-radius: inherit; background: rgba(255, 255, 255, 0.15); 
-  box-shadow: inset 0px 5px 10px rgba(0,0,0,0.03), 0 5px 15px rgba(0,0,0,0.05);
+.continent:hover {
+  transform: scale(1.03);
+  filter: brightness(1.05);
 }
-.topo-1 { width: 75%; height: 75%; top: 12.5%; left: 12.5%; }
-.topo-2 { width: 45%; height: 45%; top: 27.5%; left: 27.5%; background: rgba(255, 255, 255, 0.25); border: 2px solid rgba(255, 255, 255, 0.6); }
 
-.cont-tl { top:-5%; left:-5%; width:40%; height:40%; min-width:200px; min-height:200px; background: linear-gradient(135deg, #FF8BB3, var(--p)); border-radius:40% 60% 70% 30%/40% 50% 60% 50%; }
-.cont-tr { top:-10%; right:-5%; width:45%; height:45%; min-width:220px; min-height:220px; background: linear-gradient(135deg, #FFE066, var(--y)); border-radius:50% 50% 30% 70%/60% 40% 70% 40%; }
-.cont-bl { bottom:-10%; left:-5%; width:45%; height:45%; min-width:220px; min-height:220px; background: linear-gradient(135deg, #66CCFF, var(--b)); border-radius:30% 70% 50% 50%/40% 40% 60% 60%; }
-.cont-br { bottom:-5%; right:-5%; width:40%; height:40%; min-width:200px; min-height:200px; background: linear-gradient(135deg, #C88BFF, var(--v)); border-radius:60% 40% 50% 50%/50% 60% 40% 50%; }
-.m-icon { position:absolute; font-size:2.5rem; filter:drop-shadow(3px 5px 2px rgba(0,0,0,0.15)); z-index: 2; }
+/* 各个大陆渐变色配置 */
+.cont-tl { top:-5%; left:-5%; width:40%; height:40%; min-width:200px; min-height:200px; background: linear-gradient(135deg, #FFAEC9, var(--p)); border-radius:40% 60% 70% 30%/40% 50% 60% 50%; }
+.cont-tr { top:-10%; right:-5%; width:45%; height:45%; min-width:220px; min-height:220px; background: linear-gradient(135deg, #FFDF73, var(--y)); border-radius:50% 50% 30% 70%/60% 40% 70% 40%; }
+.cont-bl { bottom:-10%; left:-5%; width:45%; height:45%; min-width:220px; min-height:220px; background: linear-gradient(135deg, #7CD6FF, var(--b)); border-radius:30% 70% 50% 50%/40% 40% 60% 60%; }
+.cont-br { bottom:-5%; right:-5%; width:40%; height:40%; min-width:200px; min-height:200px; background: linear-gradient(135deg, #D09CFF, var(--v)); border-radius:60% 40% 50% 50%/50% 60% 40% 50%; }
+
+/* 大陆中心文本标签 */
+.cont-label {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--white);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  z-index: 10;
+  text-align: center;
+  white-space: nowrap;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease;
+}
+.continent:hover .cont-label {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.m-icon { position:absolute; font-size:2rem; filter:drop-shadow(3px 5px 2px rgba(0,0,0,0.15)); z-index: 2; opacity: 0.8; }
 
 /* 飞机与轮船动画 */
 .plane-free { position: absolute; z-index: 5; font-size: 2.5rem; animation: fly-curve 16s linear infinite; filter: drop-shadow(4px 8px 6px rgba(0,0,0,0.25)); pointer-events: none; margin-top: -1.25rem; margin-left: -1.25rem; }
@@ -91,7 +113,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
 }
 
 /* 玻璃态护盾与主页资料 */
-.glass-panel { position: relative; z-index: 10; background: rgba(255, 254, 245, 0.75); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 50px 40px; border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.08); border: 2px solid rgba(255, 255, 255, 0.9); max-width: 800px; margin: 0 auto; width: 100%; }
+.glass-panel { position: relative; z-index: 10; background: rgba(255, 254, 245, 0.75); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 50px 40px; border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.08); border: 2px solid rgba(255, 255, 255, 0.9); max-width: 800px; margin: 0 auto; width: 100%; pointer-events: auto; }
 .h-inner{display:flex;flex-direction:column;align-items:center;text-align:center}
 .h-avatar-wrap{width:150px;height:150px;border-radius:50%;border:4px solid var(--white);box-shadow:0 10px 25px rgba(155,0,255,0.15);margin:0 auto 1.5rem auto;overflow:hidden;transition:transform 0.3s ease}
 .h-avatar-wrap:hover{transform:scale(1.05) rotate(2deg)}
@@ -105,13 +127,13 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
 .rainbow{background:linear-gradient(90deg,var(--p),var(--v),var(--b));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .h-desc{font-size:1.05rem;color:var(--t2);margin-bottom:2rem;max-width:600px;margin-left:auto;margin-right:auto}
 .h-btns{display:flex;gap:16px;justify-content:center;width:100%}
-.btn{text-decoration:none;padding:12px 28px;border-radius:100px;font-weight:800;transition:.2s;display:inline-block;z-index:1}
+.btn{text-decoration:none;padding:12px 28px;border-radius:100px;font-weight:800;transition:.2s;display:inline-block;z-index:1;cursor:pointer;}
 .btn-main{background:var(--v);color:var(--white);box-shadow:0 8px 24px rgba(155,0,255,.3)}
 .btn-main:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(155,0,255,.4)}
 .btn-s{background:var(--white);color:var(--t2);box-shadow:0 8px 24px var(--shd)}
 .btn-s:hover{background:var(--vl);color:var(--v)}
 
-/* 通用板块与滚动特效 (恢复了卡片的浮现特效) */
+/* 通用板块与卡片 */
 .s-tag{display:inline-block;font-size:.85rem;font-weight:800;color:var(--b);background:var(--bl);padding:4px 12px;border-radius:100px;margin-bottom:1rem}
 .s-title{font-size:2.5rem;font-weight:900;margin-bottom:3rem;line-height:1.2}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
@@ -128,7 +150,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
 .chip{display:inline-block;padding:4px 12px;border-radius:100px;font-size:.8rem;font-weight:700;margin-bottom:12px;border:none}
 .c-p{color:var(--p);background:var(--pl)}.c-v{color:var(--v);background:var(--vl)}.c-b{color:var(--b);background:var(--bl)}
 
-/* 时间轴特效恢复 */
+/* 时间轴 */
 .tl-wrap{max-width:800px;margin:0 auto;position:relative}
 .tl-wrap::before{content:'';position:absolute;width:2px;background:var(--brd);top:0;bottom:0;left:50%;transform:translateX(-50%)}
 .tl-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;position:relative;width:100%;opacity:0; transform:translateY(30px); transition: all 0.5s ease;}
@@ -177,9 +199,10 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
   .tl-card{width:calc(100% - 56px);margin-left:auto!important}
   .glass-panel { padding: 40px 20px; }
   .plane-free { font-size: 2rem; }
+  .cont-label { font-size: 0.95rem; }
 }
 
-/* 🚀 找回丢失的全局动态星光粒子背景 🚀 */
+/* 全局动态粒子 */
 .particles-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; }
 .particle { position: absolute; bottom: -10px; background: var(--v); border-radius: 50%; opacity: 0; animation: floatUp linear infinite; box-shadow: 0 0 10px var(--v), 0 0 20px var(--v); }
 @keyframes floatUp { 0% { transform: translateY(0) scale(0.5); opacity: 0; } 10% { opacity: 0.6; } 80% { opacity: 0.2; } 100% { transform: translateY(-120vh) scale(1.5); opacity: 0; } }
@@ -201,21 +224,24 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
 
 <section id="hero">
   <div class="map-layer">
-    <div class="continent cont-tl">
-      <div class="topo topo-1"></div><div class="topo topo-2"></div>
-      <span class="m-icon" style="bottom:20%; right:20%">🌲</span><span class="m-icon" style="bottom:40%; right:35%">⛰️</span>
+    <div class="continent cont-tl" onclick="document.getElementById('timeline').scrollIntoView();">
+      <div class="cont-label" data-i18n="map.edu">课内学习经历</div>
+      <span class="m-icon" style="bottom:15%; right:15%">🌲</span>
     </div>
-    <div class="continent cont-tr">
-      <div class="topo topo-1"></div><div class="topo topo-2"></div>
-      <span class="m-icon" style="bottom:25%; left:20%">📍</span><span class="m-icon" style="bottom:45%; left:45%">☁️</span>
+    
+    <div class="continent cont-tr" onclick="document.getElementById('experience').scrollIntoView();">
+      <div class="cont-label" data-i18n="map.res">课外实践研究</div>
+      <span class="m-icon" style="bottom:20%; left:15%">📍</span>
     </div>
-    <div class="continent cont-bl">
-      <div class="topo topo-1"></div><div class="topo topo-2"></div>
-      <span class="m-icon" style="top:25%; right:20%">🌴</span><span class="m-icon" style="top:45%; right:35%">🥥</span>
+    
+    <div class="continent cont-bl" onclick="document.getElementById('life').scrollIntoView();">
+      <div class="cont-label" data-i18n="map.life">日常兴趣生活</div>
+      <span class="m-icon" style="top:20%; right:15%">🌴</span>
     </div>
-    <div class="continent cont-br">
-      <div class="topo topo-1"></div><div class="topo topo-2"></div>
-      <span class="m-icon" style="top:25%; left:20%">⛺</span><span class="m-icon" style="top:15%; left:45%">🗺️</span>
+    
+    <div class="continent cont-br" onclick="document.getElementById('contact').scrollIntoView();">
+      <div class="cont-label" data-i18n="map.ppl">身边人</div>
+      <span class="m-icon" style="top:20%; left:15%">⛺</span>
     </div>
     
     <svg preserveAspectRatio="none" viewBox="0 0 100 100" style="position: absolute; top:0; left:0; width:100%; height:100%; z-index: 1; pointer-events: none; overflow: visible;">
@@ -241,8 +267,8 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
         </div>
         <p class="h-desc" data-i18n="hero.desc">UCSD 数据科学 & 数学-计算机科学双专业在读，边缘 AI 能效研究员。在数据、算法和 AI 的交叉点探索世界 ✨</p>
         <div class="h-btns">
-          <a href="mailto:zw2@ucsd.edu" class="btn btn-main">✉ <span data-i18n="hero.cta1">打个招呼</span></a>
-          <a href="#experience" class="btn btn-s"><span data-i18n="hero.cta2">查看我的经历</span> ↓</a>
+          <a onclick="document.getElementById('contact').scrollIntoView();" class="btn btn-main">✉ <span data-i18n="hero.cta1">打个招呼</span></a>
+          <a onclick="document.getElementById('experience').scrollIntoView();" class="btn btn-s"><span data-i18n="hero.cta2">查看我的经历</span> ↓</a>
         </div>
       </div>
     </div>
@@ -371,6 +397,12 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
 <script>
 const T={
 zh:{
+/* === 新增的四个板块文字中英文 === */
+'map.edu': '课内学习经历',
+'map.res': '课外实践研究',
+'map.life': '日常兴趣生活',
+'map.ppl': '身边人',
+/* ============================= */
 'nav.exp':'经历','nav.tl':'时间轴','nav.proj':'项目','nav.sk':'技能','nav.mom':'生活','nav.ct':'联系','hero.badge':'UCSD 2029届 · 圣地亚哥','hero.name2':'Wang ✦','hero.focus':'我专注于：','hero.desc':'UCSD 数据科学 & 数学-计算机科学双专业在读，边缘 AI 能效研究员。在数据、算法和 AI 的交叉点探索世界 ✨','hero.cta1':'打个招呼','hero.cta2':'查看我的经历','pow.title':'旅行者能量站','pow.sub':'VISITOR ENERGY STATION','pow.unit':'份能量已收到','pow.btn':'点击充能 +1','pow.msg0':'你好呀旅行者，快来给我充能吧！','exp.tag':'研究 & 经历','exp.title1':'我做过的','exp.title2':'研究与探索',
 'e1.org':'UCSD · 独立本科科研项目','e1.role':'独立研究员 — 边缘 AI 热节流效应研究','e1.date':'2026.03 – 至今','e1.b1':'独立主导课题：边缘 AI 热节流效应与能效关系。导师：Peter Chi 教授。','e1.b2':'在 GPU/Jetson 设备上部署 Llama-3，使用 nvidia-smi & Prometheus 实时采集 GPU 温度、时钟频率、功耗与吞吐量。','e1.b3':'构建"效率-热量"量化模型，产出含可视化仪表盘的技术报告，为不同热状态下 AI 推理提供实证数据。',
 'e3.org':'上海交通大学 · 心理学院','e3.role':'研究助理 — 儿童发展与家庭研究实验室','e3.date':'2024.06 – 2025.09','e3.b1':'在孙晓宁教授课题组处理 500+ 小时幼儿行为结构化数据，推动大规模发展研究数据的系统化分析。','e3.b2':'使用 Stata & Excel 管理发展评估数据集，与博士生协作构建自动化流程，完成 95 份标准化计算分析报告。','e3.b3':'主导设计 60 项变量采集工具；独立执行 28 名儿童的标准化评估（韦氏量表、TEC）。','e3.b4':'担任《Developmental Psychology》期刊审稿人；每周文献研讨会完成 10 次方法学批判性汇报。',
@@ -384,6 +416,10 @@ zh:{
 'mom.tag':'生活分享','mom.title1':'我的','mom.title2':'朋友圈','mom.note':'这里是我的生活碎片。内容持续更新中，快来看看我最近在干嘛～','moment1.text': 'Sept.30-Oct.13 劳力士上海大师赛 🎾','moment1.location': '中国 上海市 旗忠网球中心','moment1.date': '2024年10月11日','ct.tag':'联系我','ct.title1':'一起','ct.title2':'搞点有意思的事','ct.h3':'一起做些有趣的事吧！','ct.p1':'我目前是 UCSD 的独立本科研究员，在研究边缘 AI 能效问题。随时欢迎聊科研、数据科学，或者只是打个招呼 ✨','ct.btn':'发消息给我 💌','ft':'用','ft2':'制作 · UCSD 数据科学 & 数学-CS'
 },
 en:{
+'map.edu': 'In-Class Learning',
+'map.res': 'Research & Projects',
+'map.life': 'Daily Life & Hobbies',
+'map.ppl': 'Connections',
 'nav.exp':'Experience','nav.tl':'Timeline','nav.proj':'Projects','nav.sk':'Skills','nav.mom':'Life','nav.ct':'Contact','hero.badge':'UCSD Class of 2029 · San Diego','hero.name2':'Wang ✦','hero.focus': 'I focus on: ','hero.desc':'Double-major in Data Science & Math-CS at UCSD, Edge AI efficiency researcher. Exploring the intersection of data, algorithms, and AI ✨','hero.cta1':'Say Hello','hero.cta2':'View My Work','pow.title':'Traveler Energy Station','pow.sub':'VISITOR ENERGY STATION','pow.unit':'energy received','pow.btn':'Charge +1','pow.msg0':'Hello traveler! Click to give me energy!','exp.tag':'Research & Experience','exp.title1':"What I've",'exp.title2':'built & studied',
 'e1.org':'UCSD · Independent Undergraduate Research','e1.role':'Independent Researcher — Edge AI Thermal Throttling','e1.date':'Mar 2026 – Present','e1.b1':'Independently leading a study on thermal throttling & energy efficiency in edge AI. Advisor: Prof. Peter Chi.','e1.b2':'Deployed Llama-3 on Jetson; collected real-time GPU temperature, clock speed, power draw via nvidia-smi & Prometheus.','e1.b3':'Built a quantitative efficiency-to-heat model with visualization dashboards on AI inference energy cost.',
 'e3.org':'Shanghai Jiao Tong University · Dept. of Psychology','e3.role':'Research Assistant — Child Development & Family Studies Lab','e3.date':'Jun 2024 – Sep 2025','e3.b1':'Processed 500+ hours of behavioral datasets under Prof. Xiaoning Sun.','e3.b2':'Managed assessment data in Stata & Excel; automated workflows, producing 95 standardized reports.','e3.b3':'Designed 60-variable survey instruments; conducted Wechsler & TEC assessments for 28 children.','e3.b4':'Reviewed papers for Developmental Psychology journal; delivered 10 methodology assessments weekly.',
@@ -411,14 +447,13 @@ function applyLang(){document.querySelectorAll('[data-i18n]').forEach(el=>{const
 const MSGS={zh:['你好呀旅行者，快来给我充能吧！','谢谢你！能量+1 ⚡','哇！你真好！✨','满满的能量感谢你！🌟','宇宙最强充能者出现了！💫','已收到你的心意，感激不尽！❤️','充能完毕！战斗力 MAX！🔥','你让我今天很开心！🎉','收到你的能量了，好温暖～💝','神秘旅行者！感谢惠顾！✦'],en:['Hello traveler, click to power me up!','Thank you! Energy +1 ⚡',"Wow you're so kind! ✨",'Full of energy, thanks! 🌟',"Universe's top charger! 💫",'Your kindness received! ❤️','Fully charged! MAX! 🔥','You made my day! 🎉','Received your energy! 💝','Mystery traveler! Thank you! ✦']};
 const BAR_MAX=100;function getPow(){return parseInt(localStorage.getItem('pow_v2')||'0')}function setPow(n){localStorage.setItem('pow_v2',n)}function initPow(){const n=getPow();document.getElementById('powNum').textContent=n;document.getElementById('powBar').style.width=Math.min(2+n%BAR_MAX,100)+'%';updatePowMsg();}function addPower(){const n=getPow()+1;setPow(n);document.getElementById('powNum').textContent=n;document.getElementById('powBar').style.width=Math.min(2+(n%BAR_MAX),100)+'%';updatePowMsg(n);const btn=document.getElementById('powBtn');const p=document.createElement('span');p.className='plus1';p.textContent='+1 ⚡';p.style.cssText='top:0;left:50%;transform:translateX(-50%)';btn.parentElement.style.position='relative';btn.parentElement.appendChild(p);setTimeout(()=>p.remove(),1000);btn.style.transform='scale(.95)';setTimeout(()=>btn.style.transform='',150);}function updatePowMsg(n){const c=n||getPow();const msgs=MSGS[lang];const msg=c===0?msgs[0]:msgs[Math.min(Math.floor((c-1)%10),msgs.length-1)];document.getElementById('powMsg').textContent=msg;}
 
-/* 🚀 恢复了卡片和时间轴的 IntersectionObserver 浮现动画 🚀 */
 const io=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('vis'),i*70)});},{threshold:.08});document.querySelectorAll('.exp-card, .tl-row, .moment-card').forEach(el=>io.observe(el));
 
 const typeWords={zh:["边缘 AI 能效研究 ⚡","数据科学与自动化 📊","大规模数据流水线 💻","假设检验与量化分析 📝"],en:["Edge AI Efficiency ⚡","Data Science & Automation 📊","Large-scale Pipelines 💻","Quantitative Analysis 📝"]};let typingWordIndex=0,typingCharIndex=0,isDeleting=false,typingTimeout;function typeEffect(){const words=typeWords[lang];const currentWord=words[typingWordIndex];const el=document.getElementById("typewriter");if(!el)return;if(isDeleting){typingCharIndex--;}else{typingCharIndex++;}el.textContent=currentWord.substring(0,typingCharIndex);let speed=isDeleting?40:100;if(!isDeleting&&typingCharIndex===currentWord.length){speed=2000;isDeleting=true;}else if(isDeleting&&typingCharIndex===0){isDeleting=false;typingWordIndex=(typingWordIndex+1)%words.length;speed=500;}typingTimeout=setTimeout(typeEffect,speed);}
 initPow();
 typeEffect();
 
-/* 🚀 找回丢失的全局动态粒子 JS 函数 🚀 */
+/* 动态粒子生成 */
 function createParticles(){
   const bg=document.createElement('div');
   bg.className='particles-bg';
