@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>王臻 ✦ Zhen Wang ✦ Dopamine Map</title>
+<title>王臻 ✦ Dopamine Space</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&family=Nunito:wght@400;600;700;800;900&family=Pacifico&family=Quicksand:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 /* 全局丝滑滚动 */
 html { scroll-behavior: smooth; }
 
 :root{
+  /* 梦幻海洋背景：粉-紫-蓝过渡 */
   --bg-ocean: linear-gradient(135deg, #FFE5EE 0%, #F2E5FF 50%, #DCF4FF 100%);
   --white:#fff;
   --p:#FF2D78;--pl:#FFE5EE;
@@ -33,153 +34,81 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 .lang-btn{background:var(--vl);color:var(--v);border:none;border-radius:100px;padding:4px 12px;font-weight:800;cursor:pointer;transition:.2s}
 .lang-btn:hover{background:var(--v);color:var(--white)}
 
-/* ====== 🚀 完美多巴胺异世界 Hero 区 🚀 ====== */
+/* ====== 🌍 完美多巴胺异世界 Hero 区 🌍 ====== */
 #hero {
   min-height: 100vh;
   display: flex; align-items: center; justify-content: center;
   position: relative; overflow: hidden;
 }
 
-/* 海洋生物 */
-.marine { position: absolute; font-size: 6rem; opacity: 0.15; pointer-events: none; z-index: 0; }
-.whale { top: 60%; animation: swim-right 40s linear infinite; }
-.dolphin { top: 20%; animation: swim-left 30s linear infinite; animation-delay: -10s; }
-@keyframes swim-right { 0% { left: -20%; transform: rotate(5deg) translateY(0); } 50% { transform: rotate(0deg) translateY(-30px); } 100% { left: 120%; transform: rotate(5deg) translateY(0); } }
-@keyframes swim-left { 0% { right: -20%; transform: scaleX(-1) rotate(5deg) translateY(0); } 50% { transform: scaleX(-1) rotate(0deg) translateY(-20px); } 100% { right: 120%; transform: scaleX(-1) rotate(5deg) translateY(0); } }
+/* 路线与生物 SVG 层 (全屏，放置在最底层海域) */
+.global-routes { position: absolute; top:0; left:0; width:100%; height:100%; z-index: 1; pointer-events: none; }
 
-/* 地图容器 */
-.map-layer { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1; }
+/* 岛屿包裹层 */
+.map-layer { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:2; }
 
-/* 岛屿通用：采用天然不规则的有机圆角 (Blob) 代替 clip-path 以保留阴影 */
-.continent {
+/* 单个大陆容器 */
+.continent-wrapper {
   position: absolute; 
-  border: 5px solid var(--white);
-  box-shadow: 10px 15px 0px rgba(155, 0, 255, 0.12), inset -8px -8px 20px rgba(255, 255, 255, 0.4);
-  opacity: 0.95; 
-  pointer-events: auto; 
-  cursor: pointer;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
-  background-blend-mode: overlay;
+  width: 45vw; height: 45vh; max-width: 450px; max-height: 450px;
+  pointer-events: auto; cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.continent:hover {
-  transform: scale(1.05) translateY(-8px);
-  box-shadow: 15px 25px 0px rgba(155, 0, 255, 0.15), inset -8px -8px 20px rgba(255, 255, 255, 0.6);
-  z-index: 10;
-}
+.continent-wrapper:hover { transform: scale(1.06) translateY(-8px); z-index: 20; }
 
-/* 1️⃣ 左上 - 玫瑰粉渐变 - F1赛道 */
-.cont-tl { 
-  top:-5%; left:-5%; width:45%; height:45%; min-width:250px; min-height:250px; 
-  background: linear-gradient(135deg, #FFAEC9, var(--p)), radial-gradient(rgba(255,255,255,0.2) 2px, transparent 2px);
-  background-size: 100% 100%, 15px 15px;
-  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-}
-/* F1 微型赛道 */
-.f1-track { position: absolute; top: 50%; left: 50%; width: 80px; height: 80px; margin-top: -40px; margin-left: -40px; border: 3px dashed rgba(255,255,255,0.5); border-radius: 50%; animation: track-spin 4s linear infinite; }
-.f1-car { position: absolute; font-size: 1.5rem; top: -15px; left: 50%; margin-left: -12px; transform: rotate(90deg); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.3)); }
-@keyframes track-spin { 100% { transform: rotate(360deg); } }
+/* 真正的 SVG 矢量地图 */
+.island-svg { width: 100%; height: 100%; filter: drop-shadow(8px 12px 6px rgba(155,0,255,0.15)); transition: filter 0.3s; }
+.continent-wrapper:hover .island-svg { filter: drop-shadow(12px 20px 10px rgba(155,0,255,0.25)) brightness(1.05); }
 
-/* 2️⃣ 右上 - 芒果黄渐变 - 游乐园与天际线 */
-.cont-tr { 
-  top:-10%; right:-5%; width:48%; height:48%; min-width:250px; min-height:250px; 
-  background: linear-gradient(135deg, #FFDF73, var(--y)), radial-gradient(rgba(255,255,255,0.25) 2px, transparent 2px);
-  background-size: 100% 100%, 15px 15px;
-  border-radius: 50% 50% 30% 70% / 60% 40% 70% 40%;
-}
-.skyline { position: absolute; bottom: 25%; left: 30%; display: flex; align-items: flex-end; gap: 3px; height: 40px;}
-.bldg { background: rgba(255,255,255,0.6); border-radius: 2px 2px 0 0; width: 15px; box-shadow: -2px 0 0 rgba(0,0,0,0.05); }
-.ferris-wheel { position: absolute; top: 40%; right: 30%; font-size: 2.5rem; animation: wheel-spin 12s linear infinite; filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2));}
-@keyframes wheel-spin { 100% { transform: rotate(360deg); } }
+/* 四块大陆定位 */
+.cont-tl { top: -2%; left: -2%; }
+.cont-tr { top: -2%; right: -2%; }
+.cont-bl { bottom: -2%; left: -2%; }
+.cont-br { bottom: -2%; right: -2%; }
 
-/* 3️⃣ 左下 - 海水青渐变 - 眨眼小猫 */
-.cont-bl { 
-  bottom:-10%; left:-5%; width:48%; height:48%; min-width:250px; min-height:250px; 
-  background: linear-gradient(135deg, #7CD6FF, var(--b)), radial-gradient(rgba(255,255,255,0.2) 2px, transparent 2px);
-  background-size: 100% 100%, 15px 15px;
-  border-radius: 30% 70% 50% 50% / 40% 40% 60% 60%;
-}
-.cat-wrap { position: absolute; top: 40%; right: 30%; font-size: 2.5rem; filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
-.cat-wrap::before { content: '🐱'; animation: cat-blink 4s infinite; position: relative; z-index: 2;}
-@keyframes cat-blink { 0%, 90%, 100% { content: '🐱'; } 95% { content: '😑'; } }
+/* 岛屿内部覆盖层 (用来放文字和奇遇动画) */
+.island-content { position: absolute; top:0; left:0; width: 100%; height: 100%; pointer-events: none; }
 
-/* 4️⃣ 右下 - 葡萄紫渐变 - 贪吃蛇 */
-.cont-br { 
-  bottom:-5%; right:-5%; width:45%; height:45%; min-width:250px; min-height:250px; 
-  background: linear-gradient(135deg, #D09CFF, var(--v)), radial-gradient(rgba(255,255,255,0.2) 2px, transparent 2px);
-  background-size: 100% 100%, 15px 15px;
-  border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%;
-}
-.snake-box { position: absolute; top: 30%; left: 30%; width: 80px; height: 80px; border: 3px solid rgba(255,255,255,0.4); border-radius: 10px; background: rgba(0,0,0,0.05); }
-.apple { position: absolute; font-size: 1.2rem; top: 10px; right: 10px; }
-.snake { position: absolute; font-size: 1.2rem; animation: snake-move 4s steps(1) infinite; }
-/* 经典贪吃蛇折线走法 */
-@keyframes snake-move {
-  0% { top: 10px; left: 10px; content: '🟩'; }
-  25% { top: 10px; left: 50px; content: '🟩'; }
-  50% { top: 50px; left: 50px; content: '🟩'; }
-  75% { top: 50px; left: 10px; content: '🟩'; }
-  100% { top: 10px; left: 10px; content: '🟩'; }
-}
-
-/* 诗意名字专属艺术字样式：绝对推向屏幕四周 */
+/* 诗意名字专属艺术字样式：绝对推向屏幕角落 */
 .cont-label {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  font-family: var(--serf);
-  font-weight: 900;
-  font-size: 1.35rem; 
-  color: var(--white);
-  text-shadow: 0 3px 8px rgba(0,0,0,0.3);
-  z-index: 10; white-space: nowrap; letter-spacing: 2px;
-  transition: transform 0.3s ease, text-shadow 0.3s ease;
+  position: absolute; transform: translate(-50%, -50%);
+  font-family: var(--serf); font-weight: 900; font-size: 1.4rem; 
+  color: var(--white); text-shadow: 0 3px 8px rgba(0,0,0,0.3);
+  white-space: nowrap; letter-spacing: 2px; transition: 0.3s ease;
 }
-.continent:hover .cont-label { transform: translate(-50%, -50%) scale(1.1); text-shadow: 0 4px 15px rgba(255,255,255,0.6); }
+.continent-wrapper:hover .cont-label { transform: translate(-50%, -50%) scale(1.1); text-shadow: 0 4px 15px rgba(255,255,255,0.6); }
 
 /* 精准坐标：远离中间护盾 */
-.cont-tl .cont-label { top: 25%; left: 30%; }
-.cont-tr .cont-label { top: 25%; right: 0%; transform: translate(-50%, -50%); }
-.cont-bl .cont-label { bottom: 20%; left: 30%; }
-.cont-br .cont-label { bottom: 20%; right: 0%; transform: translate(-50%, -50%); }
+.cont-tl .cont-label { top: 35%; left: 35%; }
+.cont-tr .cont-label { top: 35%; left: 65%; }
+.cont-bl .cont-label { top: 65%; left: 35%; }
+.cont-br .cont-label { top: 65%; left: 65%; }
 
-/* ✈️ 完美环绕航班系统 (Orbit System) */
-.flight-orbit {
-  position: absolute; top: 50%; left: 50%;
-  width: 90vw; height: 90vh; /* 覆盖全屏的大圆环 */
-  margin-top: -45vh; margin-left: -45vw;
-  border: 2px dashed rgba(155, 0, 255, 0.15); /* 淡淡的飞行轨迹线 */
-  border-radius: 50%;
-  animation: orbit-spin 20s linear infinite;
-  z-index: 5; pointer-events: none;
-}
-.plane {
-  position: absolute; top: -20px; left: 50%; margin-left: -20px;
-  font-size: 2.5rem;
-  /* 抵消环形的自转，并让机头始终朝前 */
-  transform: rotate(90deg); 
-  filter: drop-shadow(5px 10px 5px rgba(0,0,0,0.3));
-}
-@keyframes orbit-spin { 100% { transform: rotate(360deg); } }
+/* 图标 */
+.m-icon { position:absolute; font-size:2rem; filter:drop-shadow(3px 5px 2px rgba(0,0,0,0.15)); opacity: 0.9; transition: 0.3s; transform: translate(-50%, -50%); }
+.continent-wrapper:hover .m-icon { transform: translate(-50%, -50%) scale(1.15) rotate(10deg); }
+.cont-tl .m-icon { top: 55%; left: 55%; }
+.cont-tr .m-icon { top: 55%; left: 45%; }
+.cont-bl .m-icon { top: 45%; left: 55%; }
+.cont-br .m-icon { top: 45%; left: 45%; }
 
-/* 🚢 海峡轮船系统：只在水平海域行驶 */
-.ship-route {
-  position: absolute; top: 52%; left: -10%; width: 120%; height: 50px;
-  border-bottom: 3px dashed rgba(0, 170, 255, 0.3); /* 海浪虚线 */
-  border-radius: 50%; z-index: 4; pointer-events: none;
-}
-.ship {
-  position: absolute; top: -15px; font-size: 2.2rem;
-  animation: ship-sail 30s ease-in-out infinite;
-  filter: drop-shadow(2px 6px 4px rgba(0,0,0,0.3));
-}
-@keyframes ship-sail {
-  0% { left: 0%; transform: scaleX(-1) rotate(-5deg); }
-  45% { left: 100%; transform: scaleX(-1) rotate(5deg); }
-  50% { left: 100%; transform: scaleX(1) rotate(-5deg); } /* 掉头 */
-  95% { left: 0%; transform: scaleX(1) rotate(5deg); }
-  100% { left: 0%; transform: scaleX(-1) rotate(-5deg); } /* 再次掉头 */
-}
+/* 🏎️ F1 赛道微型系统 (粉岛) */
+.mini-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-/* 玻璃态护盾：略微变窄，给两侧地图文字留出充足空间 */
+/* 🎡 游乐园天际线 (黄岛) */
+.skyline { position: absolute; top: 50%; left: 55%; display: flex; align-items: flex-end; gap: 4px; height: 50px; transform: translateX(-50%);}
+.bldg { background: rgba(255,255,255,0.5); border-radius: 3px 3px 0 0; width: 18px; border: 1px solid rgba(255,255,255,0.8); border-bottom: none;}
+.ferris-wheel { position: absolute; top: 35%; left: 45%; font-size: 3rem; animation: wheel-spin 12s linear infinite; filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
+@keyframes wheel-spin { 100% { transform: rotate(360deg); } }
+
+/* 🐱 摇尾小猫 (青岛) */
+.cat-wrap { position: absolute; top: 45%; left: 50%; font-size: 3rem; filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); transform: translate(-50%, -50%); }
+.cat-wrap::before { content: '🐱'; animation: cat-blink 4s infinite; position: relative; z-index: 2;}
+.cat-tail { position: absolute; bottom: 5px; right: -15px; font-size: 1.5rem; animation: tail-wag 2s ease-in-out infinite; transform-origin: top left; }
+@keyframes cat-blink { 0%, 90%, 100% { content: '🐱'; } 95% { content: '😑'; } }
+@keyframes tail-wag { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(30deg); } }
+
+/* 玻璃态护盾 */
 .glass-panel { position: relative; z-index: 10; background: rgba(255, 254, 245, 0.75); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px 30px; border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.08); border: 2px solid rgba(255, 255, 255, 0.9); max-width: 720px; margin: 0 auto; width: 100%; pointer-events: auto; }
 .h-inner{display:flex;flex-direction:column;align-items:center;text-align:center}
 .h-avatar-wrap{width:140px;height:140px;border-radius:50%;border:4px solid var(--white);box-shadow:0 10px 25px rgba(155,0,255,0.15);margin:0 auto 1.2rem auto;overflow:hidden;transition:transform 0.3s ease}
@@ -265,7 +194,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
   .tl-row::after{left:24px}
   .tl-card{width:calc(100% - 56px);margin-left:auto!important}
   .glass-panel { padding: 40px 20px; }
-  .flight-orbit { display: none; } /* 移动端防挡 */
+  .global-routes { display: none; } /* 移动端防挡 */
   .cont-label { font-size: 0.95rem; }
 }
 
@@ -290,49 +219,89 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 </nav>
 
 <section id="hero">
-  <div class="marine whale">🐋</div>
-  <div class="marine dolphin">🐬</div>
+  <svg class="global-routes" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
+    <path id="whale-path" d="M -100 700 C 300 800, 700 600, 1100 700" fill="none"/>
+    <text font-size="50" opacity="0.3">🐋
+       <animateMotion dur="35s" repeatCount="indefinite" rotate="auto"><mpath href="#whale-path"/></animateMotion>
+    </text>
+    
+    <path id="dolphin-path" d="M 1100 300 C 700 200, 300 400, -100 300" fill="none"/>
+    <text font-size="40" opacity="0.4" transform="scale(-1, 1)">🐬
+       <animateMotion dur="25s" repeatCount="indefinite" rotate="auto"><mpath href="#dolphin-path"/></animateMotion>
+    </text>
+
+    <path id="ship-path" d="M 500 50 Q 500 500 50 500 Q 500 500 500 950 Q 500 500 950 500 Q 500 500 500 50 Z" fill="none" stroke="rgba(0,170,255,0.4)" stroke-width="3" stroke-dasharray="10 10"/>
+    <text font-size="40" filter="drop-shadow(2px 6px 4px rgba(0,0,0,0.3))">🚢
+       <animateMotion dur="30s" repeatCount="indefinite" rotate="auto"><mpath href="#ship-path"/></animateMotion>
+    </text>
+
+    <path id="plane-path" d="M 150 500 A 350 400 0 1 1 850 500 A 350 400 0 1 1 150 500" fill="none" stroke="rgba(155,0,255,0.2)" stroke-width="2" stroke-dasharray="15 15"/>
+    <text font-size="50" filter="drop-shadow(5px 10px 5px rgba(0,0,0,0.3))">✈️
+       <animateMotion dur="20s" repeatCount="indefinite" rotate="auto"><mpath href="#plane-path"/></animateMotion>
+    </text>
+  </svg>
 
   <div class="map-layer">
     
-    <div class="continent cont-tl" onclick="document.getElementById('timeline').scrollIntoView({behavior: 'smooth'});">
-      <div class="cont-label" data-i18n="map.edu">对白·无言之书</div>
-      <div class="f1-track">
-        <div class="f1-car">🏎️</div>
+    <div class="continent-wrapper cont-tl" onclick="document.getElementById('timeline').scrollIntoView({behavior: 'smooth'});">
+      <svg class="island-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <defs><linearGradient id="g-tl" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFAEC9"/><stop offset="100%" stop-color="#FF2D78"/></linearGradient></defs>
+        <path d="M 20 5 C 40 15, 60 0, 80 20 C 100 40, 85 70, 95 90 C 70 100, 40 85, 10 95 C -5 70, 10 40, 5 20 Z" fill="url(#g-tl)" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+      </svg>
+      <div class="island-content">
+        <div class="cont-label" data-i18n="map.edu">对白·无言之书</div>
+        <span class="m-icon">🌲</span>
+        <svg viewBox="0 0 100 100" class="mini-svg">
+          <path id="f1-path" d="M 30 60 A 20 15 0 1 1 70 60 A 20 15 0 1 1 30 60" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <text font-size="12" filter="drop-shadow(2px 2px 2px rgba(0,0,0,0.3))">🏎️<animateMotion dur="3s" repeatCount="indefinite" rotate="auto"><mpath href="#f1-path"/></animateMotion></text>
+        </svg>
       </div>
     </div>
     
-    <div class="continent cont-tr" onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'});">
-      <div class="cont-label" data-i18n="map.res">求证·大地的底稿</div>
-      <div class="skyline">
-        <div class="bldg" style="height: 15px;"></div>
-        <div class="bldg" style="height: 25px;"></div>
-        <div class="bldg" style="height: 10px;"></div>
-        <div class="bldg" style="height: 30px;"></div>
-      </div>
-      <div class="ferris-wheel">🎡</div>
-    </div>
-    
-    <div class="continent cont-bl" onclick="document.getElementById('life').scrollIntoView({behavior: 'smooth'});">
-      <div class="cont-label" data-i18n="map.life">漫游·心底的牧场</div>
-      <div class="cat-wrap"></div>
-    </div>
-    
-    <div class="continent cont-br" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">
-      <div class="cont-label" data-i18n="map.ppl">相望·最近的灯火</div>
-      <div class="snake-box">
-        <div class="apple">🍎</div>
-        <div class="snake"></div>
+    <div class="continent-wrapper cont-tr" onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'});">
+      <svg class="island-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <defs><linearGradient id="g-tr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFDF73"/><stop offset="100%" stop-color="#FFB700"/></linearGradient></defs>
+        <path d="M 15 25 C 30 5, 60 15, 85 10 C 95 35, 80 60, 95 85 C 70 95, 45 80, 20 95 C 0 70, 15 45, 5 25 Z" fill="url(#g-tr)" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+      </svg>
+      <div class="island-content">
+        <div class="cont-label" data-i18n="map.res">求证·大地的底稿</div>
+        <span class="m-icon">📍</span>
+        <div class="skyline">
+          <div class="bldg" style="height: 15px;"></div><div class="bldg" style="height: 30px;"></div><div class="bldg" style="height: 20px;"></div>
+        </div>
+        <div class="ferris-wheel">🎡</div>
       </div>
     </div>
     
-    <div class="flight-orbit">
-      <div class="plane">✈️</div>
+    <div class="continent-wrapper cont-bl" onclick="document.getElementById('life').scrollIntoView({behavior: 'smooth'});">
+      <svg class="island-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <defs><linearGradient id="g-bl" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7CD6FF"/><stop offset="100%" stop-color="#00AAFF"/></linearGradient></defs>
+        <path d="M 25 10 C 50 0, 75 15, 95 10 C 100 40, 85 60, 95 90 C 70 100, 45 85, 15 95 C -5 70, 10 40, 5 20 Z" fill="url(#g-bl)" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+      </svg>
+      <div class="island-content">
+        <div class="cont-label" data-i18n="map.life">漫游·心底的牧场</div>
+        <span class="m-icon">🌴</span>
+        <div class="cat-wrap"><div class="cat-tail">🐈‍⬛</div></div>
+      </div>
+    </div>
+    
+    <div class="continent-wrapper cont-br" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">
+      <svg class="island-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <defs><linearGradient id="g-br" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#D09CFF"/><stop offset="100%" stop-color="#9B00FF"/></linearGradient></defs>
+        <path d="M 10 20 C 35 5, 60 25, 85 10 C 100 35, 80 65, 95 90 C 70 100, 40 85, 15 95 C 0 70, 15 45, 5 25 Z" fill="url(#g-br)" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+      </svg>
+      <div class="island-content">
+        <div class="cont-label" data-i18n="map.ppl">相望·最近的灯火</div>
+        <span class="m-icon">⛺</span>
+        <svg viewBox="0 0 100 100" class="mini-svg">
+          <rect x="35" y="35" width="40" height="40" fill="rgba(0,0,0,0.08)" stroke="rgba(255,255,255,0.5)" stroke-width="2" rx="4"/>
+          <text x="63" y="48" font-size="10">🍎</text>
+          <path id="snake-path" d="M 40 40 L 70 40 L 70 70 L 40 70 Z" fill="none"/>
+          <text font-size="10">🟩<animateMotion dur="4s" repeatCount="indefinite" rotate="auto"><mpath href="#snake-path"/></animateMotion></text>
+        </svg>
+      </div>
     </div>
 
-    <div class="ship-route">
-      <div class="ship">🚢</div>
-    </div>
   </div>
 
   <div class="ctr" style="width: 100%; pointer-events: none;">
@@ -348,7 +317,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
         <p class="h-desc" data-i18n="hero.desc">UCSD 数据科学 & 数学-计算机科学双专业在读，边缘 AI 能效研究员。在数据、算法和 AI 的交叉点探索世界 ✨</p>
         <div class="h-btns">
           <a onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});" class="btn btn-main" style="pointer-events: auto;">✉ <span data-i18n="hero.cta1">打个招呼</span></a>
-          <a onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'});" class="btn btn-s" style="pointer-events: auto;"><span data-i18n="hero.cta2">查看我的经历</span> ↓</a>
+          <a onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'});" class="btn btn-s" style="pointer-events: auto;"><span data-i18n="hero.cta2">查看寻宝图</span> ↓</a>
         </div>
       </div>
     </div>
@@ -475,14 +444,13 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 </div>
 
 <script>
-/* ====== 🌍 坚如磐石的翻译系统 🌍 ====== */
 const T={
 zh:{
 'map.edu': '对白·无言之书',
 'map.res': '求证·大地的底稿',
 'map.life': '漫游·心底的牧场',
 'map.ppl': '相望·最近的灯火',
-'nav.exp':'经历','nav.tl':'时间轴','nav.proj':'项目','nav.sk':'技能','nav.mom':'生活','nav.ct':'联系','hero.badge':'UCSD 2029届 · 圣地亚哥','hero.name2':'Wang ✦','hero.focus':'我专注于：','hero.desc':'UCSD 数据科学 & 数学-计算机科学双专业在读，边缘 AI 能效研究员。在数据、算法和 AI 的交叉点探索世界 ✨','hero.cta1':'打个招呼','hero.cta2':'查看我的经历','pow.title':'旅行者能量站','pow.sub':'VISITOR ENERGY STATION','pow.unit':'份能量已收到','pow.btn':'点击充能 +1','pow.msg0':'你好呀旅行者，快来给我充能吧！','exp.tag':'研究 & 经历','exp.title1':'我做过的','exp.title2':'研究与探索',
+'nav.exp':'经历','nav.tl':'时间轴','nav.proj':'项目','nav.sk':'技能','nav.mom':'生活','nav.ct':'联系','hero.badge':'UCSD 2029届 · 圣地亚哥','hero.name2':'Wang ✦','hero.focus':'我专注于：','hero.desc':'UCSD 数据科学 & 数学-计算机科学双专业在读，边缘 AI 能效研究员。在数据、算法和 AI 的交叉点探索世界 ✨','hero.cta1':'打个招呼','hero.cta2':'查看寻宝图','pow.title':'旅行者能量站','pow.sub':'VISITOR ENERGY STATION','pow.unit':'份能量已收到','pow.btn':'点击充能 +1','pow.msg0':'你好呀旅行者，快来给我充能吧！','exp.tag':'研究 & 经历','exp.title1':'我做过的','exp.title2':'研究与探索',
 'e1.org':'UCSD · 独立本科科研项目','e1.role':'独立研究员 — 边缘 AI 热节流效应研究','e1.date':'2026.03 – 至今','e1.b1':'独立主导课题：边缘 AI 热节流效应与能效关系。导师：Peter Chi 教授。','e1.b2':'在 GPU/Jetson 设备上部署 Llama-3，使用 nvidia-smi & Prometheus 实时采集 GPU 温度、时钟频率、功耗与吞吐量。','e1.b3':'构建"效率-热量"量化模型，产出含可视化仪表盘的技术报告，为不同热状态下 AI 推理提供实证数据。',
 'e3.org':'上海交通大学 · 心理学院','e3.role':'研究助理 — 儿童发展与家庭研究实验室','e3.date':'2024.06 – 2025.09','e3.b1':'在孙晓宁教授课题组处理 500+ 小时幼儿行为结构化数据，推动大规模发展研究数据的系统化分析。','e3.b2':'使用 Stata & Excel 管理发展评估数据集，与博士生协作构建自动化流程，完成 95 份标准化计算分析报告。','e3.b3':'主导设计 60 项变量采集工具；独立执行 28 名儿童的标准化评估（韦氏量表、TEC）。','e3.b4':'担任《Developmental Psychology》期刊审稿人；每周文献研讨会完成 10 次方法学批判性汇报。',
 'e4.org':'上海市世外中学 · 学生会','e4.role':'实践部副部长','e4.date':'2023.09 – 2024.09','e4.b1':'管理 108 人校志愿者团队，统筹调度电影博物馆、敦煌文化周、中国文化周、爱心义卖、篮球班赛等多类活动。',
@@ -499,7 +467,7 @@ en:{
 'map.res': 'Research & Projects',
 'map.life': 'Daily Life & Hobbies',
 'map.ppl': 'Connections',
-'nav.exp':'Experience','nav.tl':'Timeline','nav.proj':'Projects','nav.sk':'Skills','nav.mom':'Life','nav.ct':'Contact','hero.badge':'UCSD Class of 2029 · San Diego','hero.name2':'Wang ✦','hero.focus': 'I focus on: ','hero.desc':'Double-major in Data Science & Math-CS at UCSD, Edge AI efficiency researcher. Exploring the intersection of data, algorithms, and AI ✨','hero.cta1':'Say Hello','hero.cta2':'View My Work','pow.title':'Traveler Energy Station','pow.sub':'VISITOR ENERGY STATION','pow.unit':'energy received','pow.btn':'Charge +1','pow.msg0':'Hello traveler! Click to give me energy!','exp.tag':'Research & Experience','exp.title1':"What I've",'exp.title2':'built & studied',
+'nav.exp':'Experience','nav.tl':'Timeline','nav.proj':'Projects','nav.sk':'Skills','nav.mom':'Life','nav.ct':'Contact','hero.badge':'UCSD Class of 2029 · San Diego','hero.name2':'Wang ✦','hero.focus': 'I focus on: ','hero.desc':'Double-major in Data Science & Math-CS at UCSD, Edge AI efficiency researcher. Exploring the intersection of data, algorithms, and AI ✨','hero.cta1':'Say Hello','hero.cta2':'View Map','pow.title':'Traveler Energy Station','pow.sub':'VISITOR ENERGY STATION','pow.unit':'energy received','pow.btn':'Charge +1','pow.msg0':'Hello traveler! Click to give me energy!','exp.tag':'Research & Experience','exp.title1':"What I've",'exp.title2':'built & studied',
 'e1.org':'UCSD · Independent Undergraduate Research','e1.role':'Independent Researcher — Edge AI Thermal Throttling','e1.date':'Mar 2026 – Present','e1.b1':'Independently leading a study on thermal throttling & energy efficiency in edge AI. Advisor: Prof. Peter Chi.','e1.b2':'Deployed Llama-3 on Jetson; collected real-time GPU temperature, clock speed, power draw via nvidia-smi & Prometheus.','e1.b3':'Built a quantitative efficiency-to-heat model with visualization dashboards on AI inference energy cost.',
 'e3.org':'Shanghai Jiao Tong University · Dept. of Psychology','e3.role':'Research Assistant — Child Development & Family Studies Lab','e3.date':'Jun 2024 – Sep 2025','e3.b1':'Processed 500+ hours of behavioral datasets under Prof. Xiaoning Sun.','e3.b2':'Managed assessment data in Stata & Excel; automated workflows, producing 95 standardized reports.','e3.b3':'Designed 60-variable survey instruments; conducted Wechsler & TEC assessments for 28 children.','e3.b4':'Reviewed papers for Developmental Psychology journal; delivered 10 methodology assessments weekly.',
 'e4.org':'Shanghai World Foreign Language Academy · Student Union','e4.role':'Practice Dept. Vice Minister','e4.date':'Sep 2023 – Sep 2024','e4.b1':'Managed a 108-member volunteer team, organizing museum, cultural, charity, and sports events.',
@@ -526,15 +494,12 @@ function applyLang(){document.querySelectorAll('[data-i18n]').forEach(el=>{const
 const MSGS={zh:['你好呀旅行者，快来给我充能吧！','谢谢你！能量+1 ⚡','哇！你真好！✨','满满的能量感谢你！🌟','宇宙最强充能者出现了！💫','已收到你的心意，感激不尽！❤️','充能完毕！战斗力 MAX！🔥','你让我今天很开心！🎉','收到你的能量了，好温暖～💝','神秘旅行者！感谢惠顾！✦'],en:['Hello traveler, click to power me up!','Thank you! Energy +1 ⚡',"Wow you're so kind! ✨",'Full of energy, thanks! 🌟',"Universe's top charger! 💫",'Your kindness received! ❤️','Fully charged! MAX! 🔥','You made my day! 🎉','Received your energy! 💝','Mystery traveler! Thank you! ✦']};
 const BAR_MAX=100;function getPow(){return parseInt(localStorage.getItem('pow_v2')||'0')}function setPow(n){localStorage.setItem('pow_v2',n)}function initPow(){const n=getPow();document.getElementById('powNum').textContent=n;document.getElementById('powBar').style.width=Math.min(2+n%BAR_MAX,100)+'%';updatePowMsg();}function addPower(){const n=getPow()+1;setPow(n);document.getElementById('powNum').textContent=n;document.getElementById('powBar').style.width=Math.min(2+(n%BAR_MAX),100)+'%';updatePowMsg(n);const btn=document.getElementById('powBtn');const p=document.createElement('span');p.className='plus1';p.textContent='+1 ⚡';p.style.cssText='top:0;left:50%;transform:translateX(-50%)';btn.parentElement.style.position='relative';btn.parentElement.appendChild(p);setTimeout(()=>p.remove(),1000);btn.style.transform='scale(.95)';setTimeout(()=>btn.style.transform='',150);}function updatePowMsg(n){const c=n||getPow();const msgs=MSGS[lang];const msg=c===0?msgs[0]:msgs[Math.min(Math.floor((c-1)%10),msgs.length-1)];document.getElementById('powMsg').textContent=msg;}
 
-/* 卡片滚动动画 */
 const io=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('vis'),i*70)});},{threshold:.08});document.querySelectorAll('.exp-card, .tl-row, .moment-card').forEach(el=>io.observe(el));
 
-/* 打字机特效 */
 const typeWords={zh:["边缘 AI 能效研究 ⚡","数据科学与自动化 📊","大规模数据流水线 💻","假设检验与量化分析 📝"],en:["Edge AI Efficiency ⚡","Data Science & Automation 📊","Large-scale Pipelines 💻","Quantitative Analysis 📝"]};let typingWordIndex=0,typingCharIndex=0,isDeleting=false,typingTimeout;function typeEffect(){const words=typeWords[lang];const currentWord=words[typingWordIndex];const el=document.getElementById("typewriter");if(!el)return;if(isDeleting){typingCharIndex--;}else{typingCharIndex++;}el.textContent=currentWord.substring(0,typingCharIndex);let speed=isDeleting?40:100;if(!isDeleting&&typingCharIndex===currentWord.length){speed=2000;isDeleting=true;}else if(isDeleting&&typingCharIndex===0){isDeleting=false;typingWordIndex=(typingWordIndex+1)%words.length;speed=500;}typingTimeout=setTimeout(typeEffect,speed);}
 initPow();
 typeEffect();
 
-/* 背景粒子生成 */
 function createParticles(){
   const bg=document.createElement('div');
   bg.className='particles-bg';
