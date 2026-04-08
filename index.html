@@ -342,6 +342,33 @@ function typeEffect(){
   typingTimeout=setTimeout(typeEffect,speed);
 }
 initPow();typeEffect();
+  // ====== 动态星光粒子生成器 ======
+function createParticles() {
+  const bg = document.createElement('div');
+  bg.className = 'particles-bg';
+  document.body.appendChild(bg);
+  
+  // 生成 40 个动态粒子
+  for (let i = 0; i < 40; i++) {
+    let p = document.createElement('div');
+    p.className = 'particle';
+    // 随机水平位置
+    p.style.left = Math.random() * 100 + 'vw';
+    // 随机漂浮速度 (10秒到30秒不等)
+    p.style.animationDuration = (Math.random() * 20 + 10) + 's';
+    // 随机出发延迟
+    p.style.animationDelay = (Math.random() * 10) + 's';
+    // 随机大小
+    const size = Math.random() * 3 + 2;
+    p.style.width = size + 'px';
+    p.style.height = size + 'px';
+    
+    bg.appendChild(p);
+  }
+}
+
+// 启动粒子效果
+createParticles();
 applyLang();
 const originalApplyLang=applyLang;
 applyLang=function(){originalApplyLang();clearTimeout(typingTimeout);isDeleting=false;typingCharIndex=0;typeEffect();};
