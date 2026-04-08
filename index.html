@@ -102,6 +102,31 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
   .tl-row::after{left:24px}
   .tl-card{width:calc(100% - 56px);margin-left:auto!important}
 }
+  /* 动态星光粒子背景 */
+.particles-bg {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; /* 确保不影响鼠标点击 */
+  z-index: 0;
+  overflow: hidden;
+}
+.particle {
+  position: absolute;
+  bottom: -10px;
+  width: 4px;
+  height: 4px;
+  background: var(--v); /* 采用你主题的科技紫 */
+  border-radius: 50%;
+  opacity: 0;
+  animation: floatUp linear infinite;
+  box-shadow: 0 0 8px var(--v); /* 增加一点发光质感 */
+}
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(0.8); opacity: 0; }
+  20% { opacity: 0.4; }
+  80% { opacity: 0.1; }
+  100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+}
 </style>
 </head>
 <body>
