@@ -45,14 +45,25 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
   background-size: 30px 30px;
 }
 
-/* 4块多巴胺大陆 - 渐变与伪3D质感 */
+/* 4块多巴胺大陆 - 渐变与等高线伪3D地貌 */
 .map-layer { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
 .continent {
   position: absolute; border: 4px solid var(--white);
-  /* 加深投影，让渐变大陆看起来更立体 */
   box-shadow: 6px 10px 0px rgba(155, 0, 255, 0.12), inset -5px -5px 15px rgba(255, 255, 255, 0.5);
-  opacity: 0.95;
+  opacity: 0.95; overflow: hidden; /* 让等高线不溢出 */
 }
+
+/* 等高线地形（起伏的山地地貌） */
+.topo {
+  position: absolute;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  border-radius: inherit; /* 继承大陆的不规则形状 */
+  background: rgba(255, 255, 255, 0.15); /* 地势升高的透视感 */
+  box-shadow: inset 0px 5px 10px rgba(0,0,0,0.03), 0 5px 15px rgba(0,0,0,0.05);
+}
+.topo-1 { width: 75%; height: 75%; top: 12.5%; left: 12.5%; }
+.topo-2 { width: 45%; height: 45%; top: 27.5%; left: 27.5%; background: rgba(255, 255, 255, 0.25); border: 2px solid rgba(255, 255, 255, 0.6); }
+
 /* 左上 - 玫瑰粉渐变 */
 .cont-tl {
   top:-5%; left:-5%; width:40%; height:40%; min-width:200px; min-height:200px;
@@ -77,7 +88,8 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
   background: linear-gradient(135deg, #C88BFF, var(--v)); 
   border-radius:60% 40% 50% 50%/50% 60% 40% 50%;
 }
-.m-icon { position:absolute; font-size:2.5rem; filter:drop-shadow(3px 5px 2px rgba(0,0,0,0.15)); }
+
+.m-icon { position:absolute; font-size:2.5rem; filter:drop-shadow(3px 5px 2px rgba(0,0,0,0.15)); z-index: 2; }
 
 /* 飞机与曲线航线动画 */
 .plane-free {
@@ -102,41 +114,26 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
 /* 轮船与航海线动画 */
 .ship-free {
   position: absolute; z-index: 4; font-size: 2rem;
-  /* 轮船开得比飞机慢一点，增加层次感 */
   animation: sail-route 24s ease-in-out infinite;
   filter: drop-shadow(2px 6px 4px rgba(0,0,0,0.3));
   pointer-events: none;
   margin-top: -1rem; margin-left: -1rem;
 }
 @keyframes sail-route {
-  /* 轮船在下半部分海域穿梭，带有轻微的波浪摇晃 (rotate) */
   0%   { top: 85%; left: 10%; transform: scale(0.8) scaleX(-1) rotate(-5deg); }
   20%  { top: 90%; left: 45%; transform: scale(1) scaleX(-1) rotate(3deg); }
   40%  { top: 85%; left: 80%; transform: scale(0.8) scaleX(-1) rotate(-5deg); }
-  45%  { top: 85%; left: 80%; transform: scale(0.8) scaleX(1) rotate(5deg); } /* 原地掉头 */
+  45%  { top: 85%; left: 80%; transform: scale(0.8) scaleX(1) rotate(5deg); }
   60%  { top: 50%; left: 85%; transform: scale(0.6) scaleX(1) rotate(-2deg); }
-  80%  { top: 30%; left: 50%; transform: scale(0.5) scaleX(1) rotate(4deg); } /* 驶向远方变小 */
+  80%  { top: 30%; left: 50%; transform: scale(0.5) scaleX(1) rotate(4deg); } 
   95%  { top: 85%; left: 10%; transform: scale(0.8) scaleX(1) rotate(-5deg); }
-  100% { top: 85%; left: 10%; transform: scale(0.8) scaleX(-1) rotate(-5deg); } /* 掉头重新开始 */
-}
-
-@keyframes fly-curve {
-  /* 飞机沿着曲线轨迹飞行的关键帧，自带转向和忽大忽小的透视感 */
-  0%   { top: 80%; left: 15%; transform: rotate(-30deg) scale(0.8); }
-  12%  { top: 47%; left: 8%;  transform: rotate(15deg) scale(1.1); }
-  25%  { top: 15%; left: 15%; transform: rotate(60deg) scale(0.8); }
-  37%  { top: 8%;  left: 50%; transform: rotate(90deg) scale(1.1); }
-  50%  { top: 15%; left: 85%; transform: rotate(120deg) scale(0.8); }
-  62%  { top: 47%; left: 92%; transform: rotate(165deg) scale(1.1); }
-  75%  { top: 80%; left: 85%; transform: rotate(240deg) scale(0.8); }
-  87%  { top: 92%; left: 50%; transform: rotate(270deg) scale(1.1); }
-  100% { top: 80%; left: 15%; transform: rotate(330deg) scale(0.8); }
+  100% { top: 85%; left: 10%; transform: scale(0.8) scaleX(-1) rotate(-5deg); }
 }
 
 /* 资料玻璃态护盾 */
 .glass-panel {
   position: relative; z-index: 10;
-  background: rgba(255, 254, 245, 0.7);
+  background: rgba(255, 254, 245, 0.75);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   padding: 50px 40px; border-radius: 40px;
@@ -144,7 +141,6 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
   border: 2px solid rgba(255, 255, 255, 0.9);
   max-width: 800px; margin: 0 auto; width: 100%;
 }
-/* ========================================= */
 
 .h-inner{display:flex;flex-direction:column;align-items:center;text-align:center}
 .h-avatar-wrap{width:150px;height:150px;border-radius:50%;border:4px solid var(--white);box-shadow:0 10px 25px rgba(155,0,255,0.15);margin:0 auto 1.5rem auto;overflow:hidden;transition:transform 0.3s ease}
@@ -230,11 +226,6 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
   .glass-panel { padding: 40px 20px; }
   .plane-free { font-size: 2rem; }
 }
-
-/* 背景粒子 */
-.particles-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden;}
-.particle { position: absolute; bottom: -10px; background: var(--v); border-radius: 50%; opacity: 0; animation: floatUp linear infinite; box-shadow: 0 0 10px var(--v), 0 0 20px var(--v); }
-@keyframes floatUp { 0% { transform: translateY(0) scale(0.5); opacity: 0; } 10% { opacity: 0.6; } 80% { opacity: 0.2; } 100% { transform: translateY(-120vh) scale(1.5); opacity: 0; } }
 </style>
 </head>
 <body>
@@ -253,10 +244,26 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
 
 <section id="hero">
   <div class="map-layer">
-    <div class="continent cont-tl"><span class="m-icon" style="bottom:20%; right:20%">🌲</span><span class="m-icon" style="bottom:40%; right:35%">⛰️</span></div>
-    <div class="continent cont-tr"><span class="m-icon" style="bottom:25%; left:20%">📍</span><span class="m-icon" style="bottom:45%; left:45%">☁️</span></div>
-    <div class="continent cont-bl"><span class="m-icon" style="top:25%; right:20%">🌴</span><span class="m-icon" style="top:45%; right:35%">🥥</span></div>
-    <div class="continent cont-br"><span class="m-icon" style="top:25%; left:20%">⛺</span><span class="m-icon" style="top:15%; left:45%">🗺️</span></div>
+    
+    <div class="continent cont-tl">
+      <div class="topo topo-1"></div><div class="topo topo-2"></div>
+      <span class="m-icon" style="bottom:20%; right:20%">🌲</span><span class="m-icon" style="bottom:40%; right:35%">⛰️</span>
+    </div>
+    
+    <div class="continent cont-tr">
+      <div class="topo topo-1"></div><div class="topo topo-2"></div>
+      <span class="m-icon" style="bottom:25%; left:20%">📍</span><span class="m-icon" style="bottom:45%; left:45%">☁️</span>
+    </div>
+    
+    <div class="continent cont-bl">
+      <div class="topo topo-1"></div><div class="topo topo-2"></div>
+      <span class="m-icon" style="top:25%; right:20%">🌴</span><span class="m-icon" style="top:45%; right:35%">🥥</span>
+    </div>
+    
+    <div class="continent cont-br">
+      <div class="topo topo-1"></div><div class="topo topo-2"></div>
+      <span class="m-icon" style="top:25%; left:20%">⛺</span><span class="m-icon" style="top:15%; left:45%">🗺️</span>
+    </div>
     
     <svg preserveAspectRatio="none" viewBox="0 0 100 100" style="position: absolute; top:0; left:0; width:100%; height:100%; z-index: 1; pointer-events: none; overflow: visible;">
       <path d="M 15 80 Q 2 47.5 15 15 Q 50 2 85 15 Q 98 47.5 85 80 Q 50 98 15 80 Z" fill="none" stroke="var(--v)" stroke-width="0.4" stroke-dasharray="1.5 2" opacity="0.6" stroke-linecap="round"/>
@@ -432,9 +439,17 @@ en:{
 'tl.tag':'Life Timeline','tl.title1':'Every step','tl.title2':'of the journey',
 'tl1.ev':'🏫 Shanghai World Foreign Language Academy','tl1.d':'Three years of high school. Discovered deep passion for data science and social science; honed independent thinking.','tl2.ev':'🎖️ Student Union Vice Minister','tl2.d':'Led a 108-member volunteer team through major campus events, honing leadership and organizational skills.','tl3.ev':'🔬 SJTU Psychology Dept. RA','tl3.d':'First formal research experience. Conducted cognitive assessments for 28 children, processed 500+ hours of data.','tl4.ev':'✈️ Off to California — UCSD Begins','tl4.d':'Crossed the Pacific to begin a double major in Data Science & Math-CS. GPA: 4.0/4.0.','tl5.ev':'📝 "Why Do Students Go to College?"','tl5.d':'Led a 5-member sociology team through 10 interviews, hypothesis testing, and qualitative coding. Score: 100/100 ⭐','tl6.ev':'📈 EPL Transfer Spending Analysis','tl6.d':'Scraped 10 years of Premier League transfer data from Transfermarkt; quantified ROI using linear regression.','tl8.ev':'🏆 Independent Research: Edge AI','tl8.d':'Received undergraduate research funding to lead edge AI thermal throttling research under Prof. Peter Chi.',
 'proj.tag':'Selected Projects','proj.title1':"Things I've",'proj.title2':'shipped',
-'p1.t':'Edge AI Thermal Throttling Study','p1.d':'Independent undergraduate research. Deployed Llama-3 on Jetson, built monitoring pipeline and efficiency-to-heat model.','p2.t':'EPL Transfer Spending vs. Goal Difference','p2.d':'Scraped 10 years of Premier League data from Transfermarkt. Applied linear regression to quantify transfer ROI.','p3.t':'"Why Do Students Go to College?"','p3.d':'Led a 5-member team through 10 interviews, hypothesis testing, and qualitative coding. 25-page report. 100/100 ⭐','p4.t':'Child Development Data Pipeline','p4.d':'Automated Stata/Excel workflows at SJTU for 500+ hours of data. Conducted Wechsler assessments for 28 children.',
+'p1.t':'Edge AI Thermal Throttling Study','p1.d':'Independent undergraduate research. Deployed Llama-3 on Jetson, built monitoring pipeline and efficiency-to-heat model.',
+'p2.t':'EPL Transfer Spending vs. Goal Difference','p2.d':'Scraped 10 years of Premier League data from Transfermarkt. Applied linear regression to quantify transfer ROI.',
+'p3.t':'"Why Do Students Go to College?"','p3.d':'Led a 5-member team through 10 interviews, hypothesis testing, and qualitative coding. 25-page report. 100/100 ⭐',
+'p4.t':'Child Development Data Pipeline','p4.d':'Automated Stata/Excel workflows at SJTU for 500+ hours of data. Conducted Wechsler assessments for 28 children.',
 'sk.tag':'Skill Tree','sk.title1':'My','sk.title2':'capabilities',
-'sk1.n':'Programming & Engineering','sk1.d':'HPC, data processing pipelines, automation scripts, and OOP systems development.','sk2.n':'Data Analysis','sk2.d':'Statistical modeling, hypothesis testing, linear regression, data cleaning, and EDA at scale.','sk3.n':'Research Methods','sk3.d':'Mixed-methods research, in-depth interview design, behavioral experiment execution, and structured reporting.','sk4.n':'AI & Machine Learning','sk4.d':'Edge AI deployment, LLM inference, supervised learning, and GPU performance profiling.','sk5.n':'Tools & Platforms','sk5.d':'Industry-standard tools for full-stack research workflows and reproducible data pipelines.','sk6.n':'Communication','sk6.d':'Bilingual Chinese/English writing and presentation. Bilibili creator with 155K+ total views.',
+'sk1.n':'Programming & Engineering','sk1.d':'HPC, data processing pipelines, automation scripts, and OOP systems development.',
+'sk2.n':'Data Analysis','sk2.d':'Statistical modeling, hypothesis testing, linear regression, data cleaning, and EDA at scale.',
+'sk3.n':'Research Methods','sk3.d':'Mixed-methods research, in-depth interview design, behavioral experiment execution, and structured reporting.',
+'sk4.n':'AI & Machine Learning','sk4.d':'Edge AI deployment, LLM inference, supervised learning, and GPU performance profiling.',
+'sk5.n':'Tools & Platforms','sk5.d':'Industry-standard tools for full-stack research workflows and reproducible data pipelines.',
+'sk6.n':'Communication','sk6.d':'Bilingual Chinese/English writing and presentation. Bilibili creator with 155K+ total views.',
 'mom.tag':'Life Sharing','mom.title1':'My','mom.title2':'Moments','mom.note':"Snippets of my life. Updated regularly — come see what I've been up to!",'moment1.text': 'Sept.30-Oct.13 at Rolex SH Masters 🎾','moment1.location': 'Qi Zhong Tennis Center, Shanghai','moment1.date': 'Oct 11, 2024','ct.tag':'Contact','ct.title1':"Let's",'ct.title2':'build something together','ct.h3':"Let's do something interesting!",'ct.p1':"I'm an independent undergraduate researcher at UCSD studying edge AI energy efficiency. Happy to chat! ✨",'ct.btn':'Send me a message 💌','ft':'Made with','ft2':'· UCSD Data Science & Math-CS'
 }};
 
@@ -446,8 +461,6 @@ const BAR_MAX=100;function getPow(){return parseInt(localStorage.getItem('pow_v2
 const io=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('vis'),i*70)});},{threshold:.08});document.querySelectorAll('.exp-card,.tl-row').forEach(el=>io.observe(el));
 const typeWords={zh:["边缘 AI 能效研究 ⚡","数据科学与自动化 📊","大规模数据流水线 💻","假设检验与量化分析 📝"],en:["Edge AI Efficiency ⚡","Data Science & Automation 📊","Large-scale Pipelines 💻","Quantitative Analysis 📝"]};let typingWordIndex=0,typingCharIndex=0,isDeleting=false,typingTimeout;function typeEffect(){const words=typeWords[lang];const currentWord=words[typingWordIndex];const el=document.getElementById("typewriter");if(!el)return;if(isDeleting){typingCharIndex--;}else{typingCharIndex++;}el.textContent=currentWord.substring(0,typingCharIndex);let speed=isDeleting?40:100;if(!isDeleting&&typingCharIndex===currentWord.length){speed=2000;isDeleting=true;}else if(isDeleting&&typingCharIndex===0){isDeleting=false;typingWordIndex=(typingWordIndex+1)%words.length;speed=500;}typingTimeout=setTimeout(typeEffect,speed);}initPow();typeEffect();
 
-// 背景粒子
-function createParticles(){const bg=document.createElement('div');bg.className='particles-bg';document.body.appendChild(bg);for(let i=0;i<40;i++){let p=document.createElement('div');p.className='particle';p.style.left=Math.random()*100+'vw';p.style.animationDuration=(Math.random()*15+10)+'s';p.style.animationDelay='-'+(Math.random()*20)+'s';const size=Math.random()*3+2;p.style.width=size+'px';p.style.height=size+'px';bg.appendChild(p);}}createParticles();
 applyLang();const originalApplyLang=applyLang;applyLang=function(){originalApplyLang();clearTimeout(typingTimeout);isDeleting=false;typingCharIndex=0;typeEffect();};
 </script>
 </body>
