@@ -3,24 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>王臻 ✦ Zhen Wang ✦ Dopamine Space</title>
+<title>王臻 ✦ Zhen Wang ✦ Dopamine Map</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&family=Nunito:wght@400;600;700;800;900&family=Pacifico&family=Quicksand:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* 🚀 全局初始化与多巴胺色调 */
+/* 全局丝滑滚动 */
 html { scroll-behavior: smooth; }
+
 :root{
-  --bg-ocean: linear-gradient(135deg, #FFE5EE 0%, #F2E5FF 50%, #DCF4FF 100%); /* 梦幻海洋：粉紫蓝 */
+  --bg-ocean: linear-gradient(135deg, #FFE5EE 0%, #F2E5FF 50%, #DCF4FF 100%);
   --white:#fff;
-  --p:#FF2D78;--pl:#FFE5EE; /* 多巴胺粉 */
-  --y:#FFB700;--yl:#FFF8DC; /* 多巴胺黄 */
-  --b:#00AAFF;--bl:#DCF4FF; /* 多巴胺蓝 */
-  --v:#9B00FF;--vl:#F2E5FF; /* 多巴胺紫 */
+  --p:#FF2D78;--pl:#FFE5EE;
+  --y:#FFB700;--yl:#FFF8DC;
+  --b:#00AAFF;--bl:#DCF4FF;
+  --v:#9B00FF;--vl:#F2E5FF;
   --t1:#180828;--t2:#5A3870;--t3:#C0A8D8;
   --brd:#EED8FF;--shd:rgba(155,0,255,.07);
   --disp:'Pacifico',cursive;--mono:'Space Mono',monospace;--serf:'Noto Serif SC',serif;
 }
+
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Quicksand',sans-serif;background:#FFFEF5;color:var(--t1);line-height:1.6;overflow-x:hidden}
+body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t1);line-height:1.6;overflow-x:hidden}
 .ctr{max-width:1100px;margin:0 auto;padding:0 24px}
 .sec{padding:6rem 0;position:relative}
 
@@ -31,84 +33,95 @@ body{font-family:'Quicksand',sans-serif;background:#FFFEF5;color:var(--t1);line-
 .lang-btn{background:var(--vl);color:var(--v);border:none;border-radius:100px;padding:4px 12px;font-weight:800;cursor:pointer;transition:.2s}
 .lang-btn:hover{background:var(--v);color:var(--white)}
 
-/* ====== 🚀 Hero 区：多巴胺异世界寻宝图 🚀 ====== */
+/* ====== 🚀 完美多巴胺异世界 Hero 区 🚀 ====== */
 #hero {
   min-height: 100vh;
   display: flex; align-items: center; justify-content: center;
   position: relative; overflow: hidden;
-  background: var(--bg-ocean); /* 修改为多巴胺渐变海洋 */
 }
 
-/* 地图层：放置海洋生物和航线 */
-.map-layer { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+/* 海洋生物 */
+.marine { position: absolute; font-size: 6rem; opacity: 0.15; pointer-events: none; z-index: 0; }
+.whale { top: 60%; animation: swim-right 40s linear infinite; }
+.dolphin { top: 20%; animation: swim-left 30s linear infinite; animation-delay: -10s; }
+@keyframes swim-right { 0% { left: -20%; transform: rotate(5deg) translateY(0); } 50% { transform: rotate(0deg) translateY(-30px); } 100% { left: 120%; transform: rotate(5deg) translateY(0); } }
+@keyframes swim-left { 0% { right: -20%; transform: scaleX(-1) rotate(5deg) translateY(0); } 50% { transform: scaleX(-1) rotate(0deg) translateY(-20px); } 100% { right: 120%; transform: scaleX(-1) rotate(5deg) translateY(0); } }
 
-/* 岛屿通用样式：去除overflow:hidden，允许艺术字悬浮 */
+/* 地图容器 */
+.map-layer { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1; }
+
+/* 岛屿通用：采用天然不规则的有机圆角 (Blob) 代替 clip-path 以保留阴影 */
 .continent {
   position: absolute; 
+  border: 5px solid var(--white);
+  box-shadow: 10px 15px 0px rgba(155, 0, 255, 0.12), inset -8px -8px 20px rgba(255, 255, 255, 0.4);
   opacity: 0.95; 
-  pointer-events: auto; /* 允许点击跳转 */
+  pointer-events: auto; 
   cursor: pointer;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+  background-blend-mode: overlay;
 }
-.continent:hover { transform: scale(1.05) translateY(-5px); filter: brightness(1.05); z-index: 10!important;}
+.continent:hover {
+  transform: scale(1.05) translateY(-8px);
+  box-shadow: 15px 25px 0px rgba(155, 0, 255, 0.15), inset -8px -8px 20px rgba(255, 255, 255, 0.6);
+  z-index: 10;
+}
 
-/* 1️⃣ 岛屿 1: 粉色岛 - 对白·无言之书 - F1赛车 */
+/* 1️⃣ 左上 - 玫瑰粉渐变 - F1赛道 */
 .cont-tl { 
-  top:5%; left:3%; width:42%; height:42%; background: linear-gradient(135deg, #FFAEC9, var(--p)); 
-  clip-path: url(#clip-island-1); /* 🚀 使用手绘 SVG 不规则形状 */
-  z-index: 1;
+  top:-5%; left:-5%; width:45%; height:45%; min-width:250px; min-height:250px; 
+  background: linear-gradient(135deg, #FFAEC9, var(--p)), radial-gradient(rgba(255,255,255,0.2) 2px, transparent 2px);
+  background-size: 100% 100%, 15px 15px;
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
 }
-/* F1 赛道与赛车 */
-.f1-track { position: absolute; width: 70%; height: 60%; top: 20%; left: 15%; border: 6px dashed rgba(255,255,255,0.4); border-radius: 50% 40% 60% 30% / 40% 50% 30% 60%; }
-.f1-car { position: absolute; font-size: 2.2rem; animation: f1-race 8s linear infinite; }
-@keyframes f1-race {
-  0% { top: -10px; left: 20%; transform: rotate(10deg); }
-  25% { top: 40%; left: 80%; transform: rotate(100deg); }
-  50% { top: 80%; left: 50%; transform: rotate(190deg); }
-  75% { top: 30%; left: 0%; transform: rotate(280deg); }
-  100% { top: -10px; left: 20%; transform: rotate(370deg); }
-}
+/* F1 微型赛道 */
+.f1-track { position: absolute; top: 50%; left: 50%; width: 80px; height: 80px; margin-top: -40px; margin-left: -40px; border: 3px dashed rgba(255,255,255,0.5); border-radius: 50%; animation: track-spin 4s linear infinite; }
+.f1-car { position: absolute; font-size: 1.5rem; top: -15px; left: 50%; margin-left: -12px; transform: rotate(90deg); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.3)); }
+@keyframes track-spin { 100% { transform: rotate(360deg); } }
 
-/* 2️⃣ 岛屿 2: 黄色岛 - 求证·大地的底稿 - 天际线与游乐园 */
+/* 2️⃣ 右上 - 芒果黄渐变 - 游乐园与天际线 */
 .cont-tr { 
-  top:3%; right:2%; width:46%; height:46%; background: linear-gradient(135deg, #FFDF73, var(--y)); 
-  clip-path: url(#clip-island-2); z-index: 1;
+  top:-10%; right:-5%; width:48%; height:48%; min-width:250px; min-height:250px; 
+  background: linear-gradient(135deg, #FFDF73, var(--y)), radial-gradient(rgba(255,255,255,0.25) 2px, transparent 2px);
+  background-size: 100% 100%, 15px 15px;
+  border-radius: 50% 50% 30% 70% / 60% 40% 70% 40%;
 }
-/* 天际线 */
-.skyline { position: absolute; bottom: 15%; left: 15%; width: 50%; height: 30%; display: flex; align-items: flex-end; gap: 4px; }
-.bldg { background: rgba(255,255,255,0.6); border-radius: 2px 2px 0 0; }
-/* 摩天轮 */
-.ferris-wheel { position: absolute; top: 20%; right: 20%; font-size: 3rem; animation: rotate-slow 15s linear infinite; opacity: 0.7; }
+.skyline { position: absolute; bottom: 25%; left: 30%; display: flex; align-items: flex-end; gap: 3px; height: 40px;}
+.bldg { background: rgba(255,255,255,0.6); border-radius: 2px 2px 0 0; width: 15px; box-shadow: -2px 0 0 rgba(0,0,0,0.05); }
+.ferris-wheel { position: absolute; top: 40%; right: 30%; font-size: 2.5rem; animation: wheel-spin 12s linear infinite; filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2));}
+@keyframes wheel-spin { 100% { transform: rotate(360deg); } }
 
-/* 3️⃣ 岛屿 3: 青色岛 - 漫游·心底的牧场 - 眨眼小猫 */
+/* 3️⃣ 左下 - 海水青渐变 - 眨眼小猫 */
 .cont-bl { 
-  bottom:3%; left:2%; width:46%; height:46%; background: linear-gradient(135deg, #7CD6FF, var(--b)); 
-  clip-path: url(#clip-island-3); z-index: 1;
+  bottom:-10%; left:-5%; width:48%; height:48%; min-width:250px; min-height:250px; 
+  background: linear-gradient(135deg, #7CD6FF, var(--b)), radial-gradient(rgba(255,255,255,0.2) 2px, transparent 2px);
+  background-size: 100% 100%, 15px 15px;
+  border-radius: 30% 70% 50% 50% / 40% 40% 60% 60%;
 }
-/* 眨眼摇尾小猫 */
-.cat-container { position: absolute; bottom: 20%; left: 20%; font-size: 4rem; display: flex; flex-direction: column; align-items: center; }
-.cat-body { animation: cat-blink 4s infinite; }
-.cat-tail { position: absolute; bottom: -10px; right: -10px; font-size: 2rem; animation: tail-wag 2s ease-in-out infinite; transform-origin: top left; }
+.cat-wrap { position: absolute; top: 40%; right: 30%; font-size: 2.5rem; filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
+.cat-wrap::before { content: '🐱'; animation: cat-blink 4s infinite; position: relative; z-index: 2;}
 @keyframes cat-blink { 0%, 90%, 100% { content: '🐱'; } 95% { content: '😑'; } }
-@keyframes tail-wag { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(30deg); } }
 
-/* 4️⃣ 岛屿 4: 紫色岛 - 相望·最近的灯火 - 贪吃蛇 */
+/* 4️⃣ 右下 - 葡萄紫渐变 - 贪吃蛇 */
 .cont-br { 
-  bottom:5%; right:3%; width:42%; height:42%; background: linear-gradient(135deg, #D09CFF, var(--v)); 
-  clip-path: url(#clip-island-4); z-index: 1;
+  bottom:-5%; right:-5%; width:45%; height:45%; min-width:250px; min-height:250px; 
+  background: linear-gradient(135deg, #D09CFF, var(--v)), radial-gradient(rgba(255,255,255,0.2) 2px, transparent 2px);
+  background-size: 100% 100%, 15px 15px;
+  border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%;
 }
-/* 贪吃蛇游戏画面 */
-.snake-game { position: absolute; top: 20%; left: 20%; width: 60%; height: 60%; border: 3px solid rgba(255,255,255,0.3); background: rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; font-family: var(--mono); color: rgba(255,255,255,0.8); font-size: 0.8rem; }
-.snake-head { position: absolute; animation: snake-move 5s linear infinite; }
+.snake-box { position: absolute; top: 30%; left: 30%; width: 80px; height: 80px; border: 3px solid rgba(255,255,255,0.4); border-radius: 10px; background: rgba(0,0,0,0.05); }
+.apple { position: absolute; font-size: 1.2rem; top: 10px; right: 10px; }
+.snake { position: absolute; font-size: 1.2rem; animation: snake-move 4s steps(1) infinite; }
+/* 经典贪吃蛇折线走法 */
 @keyframes snake-move {
-  0% { top: 10%; left: 10%; content: '🟩🟩🟩'; }
-  25% { top: 10%; left: 60%; content: '🟩🟩🟩'; transform: rotate(90deg); }
-  50% { top: 70%; left: 60%; content: '🟩🟩🟩'; transform: rotate(180deg); }
-  75% { top: 70%; left: 10%; content: '🟩🟩🟩'; transform: rotate(270deg); }
-  100% { top: 10%; left: 10%; content: '🟩🟩🟩'; }
+  0% { top: 10px; left: 10px; content: '🟩'; }
+  25% { top: 10px; left: 50px; content: '🟩'; }
+  50% { top: 50px; left: 50px; content: '🟩'; }
+  75% { top: 50px; left: 10px; content: '🟩'; }
+  100% { top: 10px; left: 10px; content: '🟩'; }
 }
 
-/* 🚀 诗意名字专属艺术字样式 (思源宋体)，彻底推向角落 */
+/* 诗意名字专属艺术字样式：绝对推向屏幕四周 */
 .cont-label {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -116,55 +129,70 @@ body{font-family:'Quicksand',sans-serif;background:#FFFEF5;color:var(--t1);line-
   font-weight: 900;
   font-size: 1.35rem; 
   color: var(--white);
-  text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  text-shadow: 0 3px 8px rgba(0,0,0,0.3);
   z-index: 10; white-space: nowrap; letter-spacing: 2px;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
 }
+.continent:hover .cont-label { transform: translate(-50%, -50%) scale(1.1); text-shadow: 0 4px 15px rgba(255,255,255,0.6); }
+
 /* 精准坐标：远离中间护盾 */
-.cont-tl .cont-label { top: 25%; left: 25%; }
-.cont-tr .cont-label { top: 25%; right: -5%; transform: translate(-50%, -50%); }
-.cont-bl .cont-label { bottom: 20%; left: 25%; }
-.cont-br .cont-label { bottom: 20%; right: -5%; transform: translate(-50%, -50%); }
+.cont-tl .cont-label { top: 25%; left: 30%; }
+.cont-tr .cont-label { top: 25%; right: 0%; transform: translate(-50%, -50%); }
+.cont-bl .cont-label { bottom: 20%; left: 30%; }
+.cont-br .cont-label { bottom: 20%; right: 0%; transform: translate(-50%, -50%); }
 
-/* ✈️ 飞机动画：保持 */
-.plane-free { position: absolute; z-index: 5; font-size: 2.5rem; animation: fly-curve 16s linear infinite; filter: drop-shadow(4px 8px 6px rgba(0,0,0,0.25)); pointer-events: none; }
-@keyframes fly-curve {
-  0% { top: 80%; left: 15%; transform: rotate(-30deg) scale(0.8); }
-  50% { top: 15%; left: 85%; transform: rotate(120deg) scale(0.8); }
-  100% { top: 80%; left: 15%; transform: rotate(330deg) scale(0.8); }
+/* ✈️ 完美环绕航班系统 (Orbit System) */
+.flight-orbit {
+  position: absolute; top: 50%; left: 50%;
+  width: 90vw; height: 90vh; /* 覆盖全屏的大圆环 */
+  margin-top: -45vh; margin-left: -45vw;
+  border: 2px dashed rgba(155, 0, 255, 0.15); /* 淡淡的飞行轨迹线 */
+  border-radius: 50%;
+  animation: orbit-spin 20s linear infinite;
+  z-index: 5; pointer-events: none;
+}
+.plane {
+  position: absolute; top: -20px; left: 50%; margin-left: -20px;
+  font-size: 2.5rem;
+  /* 抵消环形的自转，并让机头始终朝前 */
+  transform: rotate(90deg); 
+  filter: drop-shadow(5px 10px 5px rgba(0,0,0,0.3));
+}
+@keyframes orbit-spin { 100% { transform: rotate(360deg); } }
+
+/* 🚢 海峡轮船系统：只在水平海域行驶 */
+.ship-route {
+  position: absolute; top: 52%; left: -10%; width: 120%; height: 50px;
+  border-bottom: 3px dashed rgba(0, 170, 255, 0.3); /* 海浪虚线 */
+  border-radius: 50%; z-index: 4; pointer-events: none;
+}
+.ship {
+  position: absolute; top: -15px; font-size: 2.2rem;
+  animation: ship-sail 30s ease-in-out infinite;
+  filter: drop-shadow(2px 6px 4px rgba(0,0,0,0.3));
+}
+@keyframes ship-sail {
+  0% { left: 0%; transform: scaleX(-1) rotate(-5deg); }
+  45% { left: 100%; transform: scaleX(-1) rotate(5deg); }
+  50% { left: 100%; transform: scaleX(1) rotate(-5deg); } /* 掉头 */
+  95% { left: 0%; transform: scaleX(1) rotate(5deg); }
+  100% { left: 0%; transform: scaleX(-1) rotate(-5deg); } /* 再次掉头 */
 }
 
-/* 🚢 轮船动画：修正航线，仅在岛屿之间海洋行驶，决不穿陆 */
-.ship-free { position: absolute; z-index: 4; font-size: 2.2rem; animation: sail-ocean-route 25s ease-in-out infinite; filter: drop-shadow(2px 6px 4px rgba(0,0,0,0.3)); pointer-events: none; }
-@keyframes sail-ocean-route {
-  0% { top: 50%; left: 5%; transform: scaleX(-1) rotate(-5deg); } /* 起点：左侧海洋中部 */
-  20% { top: 85%; left: 45%; transform: scaleX(-1) rotate(5deg); } /* 黄、青岛之间南方海洋 */
-  40% { top: 50%; left: 90%; transform: scaleX(-1) rotate(-2deg); } /* 穿过南方海洋到达右侧 */
-  45% { top: 50%; left: 90%; transform: scaleX(1) rotate(5deg); } /* 调头 */
-  70% { top: 15%; left: 55%; transform: scaleX(1) rotate(-5deg); } /* 粉、黄岛之间北方海洋 */
-  100% { top: 50%; left: 5%; transform: scaleX(1) rotate(5deg); } /* 回到起点 */
-}
-
-/* 🐋 海洋生物动画：在多巴胺海洋中游动 */
-.marine-life { position: absolute; opacity: 0.3; pointer-events: none; font-size: 5rem; color: var(--v); }
-.whale { top: 70%; left: 55%; animation: whale-swim 30s linear infinite; z-index: 0; }
-.dolphin { top: 25%; left: 15%; animation: dolphin-swim 20s linear infinite; animation-delay: -5s; z-index: 0; }
-@keyframes whale-swim { 0% { transform: translateX(-100px) rotate(5deg); } 50% { transform: translateX(100px) rotate(-5deg); } 100% { transform: translateX(-100px) rotate(5deg); } }
-@keyframes dolphin-swim { 0% { transform: translate(0, 0) rotate(0deg); } 25% { transform: translate(50px, -20px) rotate(-10deg); } 50% { transform: translate(100px, 0) rotate(0deg); } 75% { transform: translate(50px, 20px) rotate(10deg); } 100% { transform: translate(0, 0) rotate(0deg); } }
-
-/* 玻璃态护盾（保持原样，作为寻宝图中心的秘密基地） */
-.glass-panel { position: relative; z-index: 10; background: rgba(255, 254, 245, 0.75); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 50px 40px; border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.08); border: 2px solid rgba(255, 255, 255, 0.9); max-width: 800px; margin: 0 auto; width: 100%; pointer-events: auto; }
+/* 玻璃态护盾：略微变窄，给两侧地图文字留出充足空间 */
+.glass-panel { position: relative; z-index: 10; background: rgba(255, 254, 245, 0.75); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px 30px; border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.08); border: 2px solid rgba(255, 255, 255, 0.9); max-width: 720px; margin: 0 auto; width: 100%; pointer-events: auto; }
 .h-inner{display:flex;flex-direction:column;align-items:center;text-align:center}
-.h-avatar-wrap{width:150px;height:150px;border-radius:50%;border:4px solid var(--white);box-shadow:0 10px 25px rgba(155,0,255,0.15);margin:0 auto 1.5rem auto;overflow:hidden;transition:transform 0.3s ease}
+.h-avatar-wrap{width:140px;height:140px;border-radius:50%;border:4px solid var(--white);box-shadow:0 10px 25px rgba(155,0,255,0.15);margin:0 auto 1.2rem auto;overflow:hidden;transition:transform 0.3s ease}
 .h-avatar-wrap:hover{transform:scale(1.05) rotate(2deg)}
 .h-avatar-wrap img{width:100%;height:100%;object-fit:cover}
 .h-typing{font-size:1.25rem;font-weight:600;color:var(--t2);margin-bottom:1.5rem;margin-top:-0.5rem}
 .typewriter-text{color:var(--v);font-family:var(--mono)}
 .typewriter-cursor{display:inline-block;width:3px;background-color:var(--v);margin-left:4px;animation:blink 0.8s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-.h-badge{display:inline-block;background:var(--white);padding:6px 16px;border-radius:100px;font-size:.85rem;font-weight:800;color:var(--p);box-shadow:0 4px 12px rgba(255,45,120,.1);margin-bottom:1.5rem}
-.h-name{font-family:var(--disp);font-size:4.5rem;line-height:1.1;color:var(--t1);margin-bottom:1rem}
+.h-badge{display:inline-block;background:var(--white);padding:6px 16px;border-radius:100px;font-size:.85rem;font-weight:800;color:var(--p);box-shadow:0 4px 12px rgba(255,45,120,.1);margin-bottom:1.2rem}
+.h-name{font-family:var(--disp);font-size:4.2rem;line-height:1.1;color:var(--t1);margin-bottom:1rem}
 .rainbow{background:linear-gradient(90deg,var(--p),var(--v),var(--b));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.h-desc{font-size:1.05rem;color:var(--t2);margin-bottom:2rem;max-width:600px;margin-left:auto;margin-right:auto}
+.h-desc{font-size:1.05rem;color:var(--t2);margin-bottom:2rem;max-width:550px;margin-left:auto;margin-right:auto}
 .h-btns{display:flex;gap:16px;justify-content:center;width:100%}
 .btn{text-decoration:none;padding:12px 28px;border-radius:100px;font-weight:800;transition:.2s;display:inline-block;z-index:1;cursor:pointer;}
 .btn-main{background:var(--v);color:var(--white);box-shadow:0 8px 24px rgba(155,0,255,.3)}
@@ -237,37 +265,17 @@ body{font-family:'Quicksand',sans-serif;background:#FFFEF5;color:var(--t1);line-
   .tl-row::after{left:24px}
   .tl-card{width:calc(100% - 56px);margin-left:auto!important}
   .glass-panel { padding: 40px 20px; }
-  .plane-free { display: none; } /* 移动端隐藏飞机以防遮挡 */
+  .flight-orbit { display: none; } /* 移动端防挡 */
   .cont-label { font-size: 0.95rem; }
 }
 
-/* 通用动态效果 */
-@keyframes rotate-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-/* 全局动态粒子 */
+/* 全局动态星光粒子 */
 .particles-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; overflow: hidden; }
 .particle { position: absolute; bottom: -10px; background: var(--v); border-radius: 50%; opacity: 0; animation: floatUp linear infinite; box-shadow: 0 0 10px var(--v), 0 0 20px var(--v); }
 @keyframes floatUp { 0% { transform: translateY(0) scale(0.5); opacity: 0; } 10% { opacity: 0.6; } 80% { opacity: 0.2; } 100% { transform: translateY(-120vh) scale(1.5); opacity: 0; } }
 </style>
 </head>
 <body>
-
-<svg width="0" height="0" style="position:absolute;">
-  <defs>
-    <clipPath id="clip-island-1" clipPathUnits="objectBoundingBox">
-      <path d="M0.2,0.1 Q0.05,0.2 0.15,0.4 T0.1,0.7 Q0.3,0.95 0.6,0.85 T0.9,0.7 Q0.95,0.4 0.8,0.2 T0.5,0.1 Z"></path>
-    </clipPath>
-    <clipPath id="clip-island-2" clipPathUnits="objectBoundingBox">
-      <path d="M0.1,0.2 L0.05,0.4 L0.15,0.5 L0.1,0.7 L0.3,0.8 L0.5,0.95 L0.7,0.8 L0.9,0.85 L0.95,0.6 L0.85,0.4 L0.9,0.2 L0.7,0.1 L0.5,0.05 L0.3,0.1 Z"></path>
-    </clipPath>
-    <clipPath id="clip-island-3" clipPathUnits="objectBoundingBox">
-      <path d="M0.3,0.05 C0.1,0.2 0.05,0.5 0.1,0.8 C0.2,0.95 0.5,0.9 0.6,0.7 C0.8,0.8 1,0.6 0.9,0.4 C0.8,0.2 0.6,0.1 0.3,0.05 Z"></path>
-    </clipPath>
-    <clipPath id="clip-island-4" clipPathUnits="objectBoundingBox">
-      <path d="M0.5,0.1 Q0.2,0.05 0.1,0.3 T0.15,0.6 Q0.3,0.95 0.6,0.9 T0.9,0.6 Q0.95,0.3 0.7,0.15 T0.5,0.1 Z"></path>
-    </clipPath>
-  </defs>
-</svg>
 
 <nav class="nav">
   <div class="nav-links">
@@ -282,46 +290,49 @@ body{font-family:'Quicksand',sans-serif;background:#FFFEF5;color:var(--t1);line-
 </nav>
 
 <section id="hero">
+  <div class="marine whale">🐋</div>
+  <div class="marine dolphin">🐬</div>
+
   <div class="map-layer">
-    
-    <div class="marine-life whale">🐋</div>
-    <div class="marine-life dolphin">🐬</div>
     
     <div class="continent cont-tl" onclick="document.getElementById('timeline').scrollIntoView({behavior: 'smooth'});">
       <div class="cont-label" data-i18n="map.edu">对白·无言之书</div>
-      <div class="f1-track"></div>
-      <div class="f1-car">🏎️</div>
+      <div class="f1-track">
+        <div class="f1-car">🏎️</div>
+      </div>
     </div>
     
     <div class="continent cont-tr" onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'});">
       <div class="cont-label" data-i18n="map.res">求证·大地的底稿</div>
       <div class="skyline">
-        <div class="bldg" style="width:20%;height:100%;"></div>
-        <div class="bldg" style="width:25%;height:70%;"></div>
-        <div class="bldg" style="width:15%;height:120%;"></div>
+        <div class="bldg" style="height: 15px;"></div>
+        <div class="bldg" style="height: 25px;"></div>
+        <div class="bldg" style="height: 10px;"></div>
+        <div class="bldg" style="height: 30px;"></div>
       </div>
       <div class="ferris-wheel">🎡</div>
     </div>
     
     <div class="continent cont-bl" onclick="document.getElementById('life').scrollIntoView({behavior: 'smooth'});">
       <div class="cont-label" data-i18n="map.life">漫游·心底的牧场</div>
-      <div class="cat-container">
-        <div class="cat-body">🐱</div>
-        <div class="cat-tail">🐈‍⬛</div>
-      </div>
+      <div class="cat-wrap"></div>
     </div>
     
     <div class="continent cont-br" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">
       <div class="cont-label" data-i18n="map.ppl">相望·最近的灯火</div>
-      <div class="snake-game">
-        <div class="snake-head">🟩🟩🟩</div>
-        <div class="food" style="position:absolute;top:70%;left:10%;">🍎</div>
+      <div class="snake-box">
+        <div class="apple">🍎</div>
+        <div class="snake"></div>
       </div>
     </div>
     
-    <div class="plane-free">✈️</div>
-    
-    <div class="ship-free">🚢</div>
+    <div class="flight-orbit">
+      <div class="plane">✈️</div>
+    </div>
+
+    <div class="ship-route">
+      <div class="ship">🚢</div>
+    </div>
   </div>
 
   <div class="ctr" style="width: 100%; pointer-events: none;">
@@ -337,7 +348,7 @@ body{font-family:'Quicksand',sans-serif;background:#FFFEF5;color:var(--t1);line-
         <p class="h-desc" data-i18n="hero.desc">UCSD 数据科学 & 数学-计算机科学双专业在读，边缘 AI 能效研究员。在数据、算法和 AI 的交叉点探索世界 ✨</p>
         <div class="h-btns">
           <a onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});" class="btn btn-main" style="pointer-events: auto;">✉ <span data-i18n="hero.cta1">打个招呼</span></a>
-          <a onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'});" class="btn btn-s" style="pointer-events: auto;"><span data-i18n="hero.cta2">查看寻宝图</span> ↓</a>
+          <a onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'});" class="btn btn-s" style="pointer-events: auto;"><span data-i18n="hero.cta2">查看我的经历</span> ↓</a>
         </div>
       </div>
     </div>
@@ -464,15 +475,14 @@ body{font-family:'Quicksand',sans-serif;background:#FFFEF5;color:var(--t1);line-
 </div>
 
 <script>
+/* ====== 🌍 坚如磐石的翻译系统 🌍 ====== */
 const T={
 zh:{
-/* 🚀 已经帮你修改好的四个诗意新名字，底层字典同步更新！ */
 'map.edu': '对白·无言之书',
 'map.res': '求证·大地的底稿',
 'map.life': '漫游·心底的牧场',
 'map.ppl': '相望·最近的灯火',
-/* ========================================================= */
-'nav.exp':'经历','nav.tl':'时间轴','nav.proj':'项目','nav.sk':'技能','nav.mom':'生活','nav.ct':'联系','hero.badge':'UCSD 2029届 · 圣地亚哥','hero.name2':'Wang ✦','hero.focus':'我专注于：','hero.desc':'UCSD 数据科学 & 数学-计算机科学双专业在读，边缘 AI 能效研究员。在数据、算法和 AI 的交叉点探索世界 ✨','hero.cta1':'打个招呼','hero.cta2':'查看寻宝图','pow.title':'旅行者能量站','pow.sub':'VISITOR ENERGY STATION','pow.unit':'份能量已收到','pow.btn':'点击充能 +1','pow.msg0':'你好呀旅行者，快来给我充能吧！','exp.tag':'研究 & 经历','exp.title1':'我做过的','exp.title2':'研究与探索',
+'nav.exp':'经历','nav.tl':'时间轴','nav.proj':'项目','nav.sk':'技能','nav.mom':'生活','nav.ct':'联系','hero.badge':'UCSD 2029届 · 圣地亚哥','hero.name2':'Wang ✦','hero.focus':'我专注于：','hero.desc':'UCSD 数据科学 & 数学-计算机科学双专业在读，边缘 AI 能效研究员。在数据、算法和 AI 的交叉点探索世界 ✨','hero.cta1':'打个招呼','hero.cta2':'查看我的经历','pow.title':'旅行者能量站','pow.sub':'VISITOR ENERGY STATION','pow.unit':'份能量已收到','pow.btn':'点击充能 +1','pow.msg0':'你好呀旅行者，快来给我充能吧！','exp.tag':'研究 & 经历','exp.title1':'我做过的','exp.title2':'研究与探索',
 'e1.org':'UCSD · 独立本科科研项目','e1.role':'独立研究员 — 边缘 AI 热节流效应研究','e1.date':'2026.03 – 至今','e1.b1':'独立主导课题：边缘 AI 热节流效应与能效关系。导师：Peter Chi 教授。','e1.b2':'在 GPU/Jetson 设备上部署 Llama-3，使用 nvidia-smi & Prometheus 实时采集 GPU 温度、时钟频率、功耗与吞吐量。','e1.b3':'构建"效率-热量"量化模型，产出含可视化仪表盘的技术报告，为不同热状态下 AI 推理提供实证数据。',
 'e3.org':'上海交通大学 · 心理学院','e3.role':'研究助理 — 儿童发展与家庭研究实验室','e3.date':'2024.06 – 2025.09','e3.b1':'在孙晓宁教授课题组处理 500+ 小时幼儿行为结构化数据，推动大规模发展研究数据的系统化分析。','e3.b2':'使用 Stata & Excel 管理发展评估数据集，与博士生协作构建自动化流程，完成 95 份标准化计算分析报告。','e3.b3':'主导设计 60 项变量采集工具；独立执行 28 名儿童的标准化评估（韦氏量表、TEC）。','e3.b4':'担任《Developmental Psychology》期刊审稿人；每周文献研讨会完成 10 次方法学批判性汇报。',
 'e4.org':'上海市世外中学 · 学生会','e4.role':'实践部副部长','e4.date':'2023.09 – 2024.09','e4.b1':'管理 108 人校志愿者团队，统筹调度电影博物馆、敦煌文化周、中国文化周、爱心义卖、篮球班赛等多类活动。',
@@ -485,13 +495,11 @@ zh:{
 'mom.tag':'生活分享','mom.title1':'我的','mom.title2':'朋友圈','mom.note':'这里是我的生活碎片。内容持续更新中，快来看看我最近在干嘛～','moment1.text': 'Sept.30-Oct.13 劳力士上海大师赛 🎾','moment1.location': '中国 上海市 旗忠网球中心','moment1.date': '2024年10月11日','ct.tag':'联系我','ct.title1':'一起','ct.title2':'搞点有意思的事','ct.h3':'一起做些有趣的事吧！','ct.p1':'我目前是 UCSD 的独立本科研究员，在研究边缘 AI 能效问题。随时欢迎聊科研、数据科学，或者只是打个招呼 ✨','ct.btn':'发消息给我 💌','ft':'用','ft2':'制作 · UCSD 数据科学 & 数学-CS'
 },
 en:{
-/* 🚀 英文对应翻译已经完美保留！ 🚀 */
 'map.edu': 'In-Class Learning',
 'map.res': 'Research & Projects',
 'map.life': 'Daily Life & Hobbies',
 'map.ppl': 'Connections',
-/* ======================================= */
-'nav.exp':'Experience','nav.tl':'Timeline','nav.proj':'Projects','nav.sk':'Skills','nav.mom':'Life','nav.ct':'Contact','hero.badge':'UCSD Class of 2029 · San Diego','hero.name2':'Wang ✦','hero.focus': 'I focus on: ','hero.desc':'Double-major in Data Science & Math-CS at UCSD, Edge AI efficiency researcher. Exploring the intersection of data, algorithms, and AI ✨','hero.cta1':'Say Hello','hero.cta2':'View dopamap','pow.title':'Traveler Energy Station','pow.sub':'VISITOR ENERGY STATION','pow.unit':'energy received','pow.btn':'Charge +1','pow.msg0':'Hello traveler! Click to give me energy!','exp.tag':'Research & Experience','exp.title1':"What I've",'exp.title2':'built & studied',
+'nav.exp':'Experience','nav.tl':'Timeline','nav.proj':'Projects','nav.sk':'Skills','nav.mom':'Life','nav.ct':'Contact','hero.badge':'UCSD Class of 2029 · San Diego','hero.name2':'Wang ✦','hero.focus': 'I focus on: ','hero.desc':'Double-major in Data Science & Math-CS at UCSD, Edge AI efficiency researcher. Exploring the intersection of data, algorithms, and AI ✨','hero.cta1':'Say Hello','hero.cta2':'View My Work','pow.title':'Traveler Energy Station','pow.sub':'VISITOR ENERGY STATION','pow.unit':'energy received','pow.btn':'Charge +1','pow.msg0':'Hello traveler! Click to give me energy!','exp.tag':'Research & Experience','exp.title1':"What I've",'exp.title2':'built & studied',
 'e1.org':'UCSD · Independent Undergraduate Research','e1.role':'Independent Researcher — Edge AI Thermal Throttling','e1.date':'Mar 2026 – Present','e1.b1':'Independently leading a study on thermal throttling & energy efficiency in edge AI. Advisor: Prof. Peter Chi.','e1.b2':'Deployed Llama-3 on Jetson; collected real-time GPU temperature, clock speed, power draw via nvidia-smi & Prometheus.','e1.b3':'Built a quantitative efficiency-to-heat model with visualization dashboards on AI inference energy cost.',
 'e3.org':'Shanghai Jiao Tong University · Dept. of Psychology','e3.role':'Research Assistant — Child Development & Family Studies Lab','e3.date':'Jun 2024 – Sep 2025','e3.b1':'Processed 500+ hours of behavioral datasets under Prof. Xiaoning Sun.','e3.b2':'Managed assessment data in Stata & Excel; automated workflows, producing 95 standardized reports.','e3.b3':'Designed 60-variable survey instruments; conducted Wechsler & TEC assessments for 28 children.','e3.b4':'Reviewed papers for Developmental Psychology journal; delivered 10 methodology assessments weekly.',
 'e4.org':'Shanghai World Foreign Language Academy · Student Union','e4.role':'Practice Dept. Vice Minister','e4.date':'Sep 2023 – Sep 2024','e4.b1':'Managed a 108-member volunteer team, organizing museum, cultural, charity, and sports events.',
