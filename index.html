@@ -18,21 +18,25 @@ html { scroll-behavior: smooth; }
 }
 *{box-sizing:border-box;margin:0;padding:0}
 
-/* ====== 🌅 动态流转底色：偏红到偏蓝 ====== */
+/* ====== 🌅 动态流转底色 ====== */
 body {
   font-family: 'Quicksand', sans-serif;
   color: var(--t1);
   line-height: 1.6;
   overflow-x: hidden;
   background: linear-gradient(135deg, #FFB6C1 0%, #F8D8FF 40%, #87CEFA 100%);
-  background-size: 200% 200%;
-  animation: gradientShift 15s ease infinite;
+  background-attachment: fixed;
 }
-@keyframes gradientShift { 
-  0% { background-position: 0% 50%; } 
-  50% { background-position: 100% 50%; } 
-  100% { background-position: 0% 50%; } 
+
+/* ================= 🌟 页面全局背景呼吸光球 (新加入) ================= */
+.bg-orb {
+  position: fixed; border-radius: 50%; filter: blur(90px); z-index: -1; opacity: 0.5; pointer-events: none;
+  animation: floatOrb 25s infinite alternate ease-in-out;
 }
+.orb-1 { width: 45vw; height: 45vw; background: rgba(255, 45, 120, 0.4); top: 5%; left: -10vw; }
+.orb-2 { width: 55vw; height: 55vw; background: rgba(0, 170, 255, 0.3); bottom: -15%; right: -10vw; animation-delay: -7s; }
+.orb-3 { width: 35vw; height: 35vw; background: rgba(155, 0, 255, 0.3); top: 40%; left: 30vw; animation-delay: -14s; }
+@keyframes floatOrb { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(60px, 120px) scale(1.15); } }
 
 .ctr{max-width:1100px;margin:0 auto;padding:0 24px}
 .sec{padding:6rem 0;position:relative}
@@ -47,65 +51,60 @@ body {
 /* ====== 🌍 极简网格 Hero 区 ====== */
 #hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
 
-/* ================= 🧩 核心亮点：全屏切割拼图网格系统 ================= */
+/* ================= 🧩 优化重构：极其丝滑的 3D 拼图翻转系统 ================= */
 #puzzleGrid {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(8, 1fr);
-  gap: 2px;
-  z-index: 1;
-  pointer-events: none;
+  gap: 0; z-index: 1; pointer-events: none;
 }
 
-.puzzle-piece {
-  pointer-events: auto;
+.puzzle-cell {
+  perspective: 1200px; width: 100%; height: 100%; pointer-events: auto;
+}
+
+.puzzle-inner {
+  position: relative; width: 100%; height: 100%;
+  transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1); /* 带有果冻弹性的超丝滑 3D 翻转 */
+  transform-style: preserve-3d; cursor: pointer;
+}
+
+/* 真正的 🧩 拼图形状：精准切割出的凹凸起伏轮廓 */
+.puzzle-front, .puzzle-back {
+  position: absolute; width: 100%; height: 100%; backface-visibility: hidden;
+  clip-path: polygon(
+    15% 15%, 35% 15%, 50% 0%, 65% 15%, 
+    85% 15%, 85% 35%, 100% 50%, 85% 65%, 
+    85% 85%, 65% 85%, 50% 70%, 35% 85%, 
+    15% 85%, 15% 65%, 30% 50%, 15% 35%
+  );
+}
+
+.puzzle-front {
   background: url('个人主页首页动态壁纸.jpg') center/cover fixed no-repeat;
-  opacity: 0.35;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  /* 凹凸卡槽科技拼图形状 */
-  clip-path: polygon(
-    0% 15%, 15% 15%, 15% 0%, 
-    85% 0%, 85% 15%, 100% 15%, 
-    100% 85%, 85% 85%, 85% 100%, 
-    15% 100%, 15% 85%, 0% 85%
-  );
-  cursor: pointer;
+  opacity: 0.35; transition: opacity 0.3s ease;
 }
 
-.puzzle-piece:hover {
-  opacity: 0.95; 
-  transform: scale(0.92); 
-  z-index: 2;
-  clip-path: polygon(
-    0% 10%, 10% 10%, 10% 0%, 
-    90% 0%, 90% 10%, 100% 10%, 
-    100% 90%, 90% 90%, 90% 100%, 
-    10% 100%, 10% 90%, 0% 90%
-  );
+.puzzle-back {
+  transform: rotateY(180deg);
+  background-size: cover; background-position: center;
+  box-shadow: inset 0 0 20px rgba(255,255,255,0.6);
+  background-color: var(--pl); /* 默认底色，防止图没加载出来时空白 */
 }
 
-/* ⚡ 量子转场动画类 */
-.quantum-animate {
-  animation: quantumGlitch 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+/* 鼠标悬停时的神仙动态：立体凸起 + 180度顺滑翻面 */
+.puzzle-cell:hover .puzzle-inner {
+  transform: rotateY(180deg) scale(1.15); z-index: 20;
 }
-@keyframes quantumGlitch {
-  0% { filter: brightness(1) contrast(1) hue-rotate(0deg); transform: scale(0.92); }
-  20% { filter: brightness(3) contrast(2) hue-rotate(90deg); transform: scale(1.1) rotate(3deg); background-color: var(--b); }
-  40% { filter: brightness(2) contrast(3) hue-rotate(-90deg) invert(1); transform: scale(0.8) rotate(-3deg); }
-  100% { filter: brightness(1) contrast(1) hue-rotate(0deg); transform: scale(0.92); }
-}
+.puzzle-cell:hover .puzzle-front { opacity: 1; }
 
-/* ⚡ 量子震荡波特效 */
+/* 量子点击波纹（保留） */
 .shockwave {
-  position: fixed;
-  border-radius: 50%;
-  background: transparent;
+  position: fixed; border-radius: 50%; background: transparent;
   border: 2px solid rgba(0, 170, 255, 0.8);
   box-shadow: 0 0 20px rgba(155, 0, 255, 0.6), inset 0 0 20px rgba(0, 170, 255, 0.6);
-  pointer-events: none;
-  z-index: 9999;
+  pointer-events: none; z-index: 9999;
   transform: translate(-50%, -50%) scale(0);
   animation: shockwaveAnim 0.8s ease-out forwards;
 }
@@ -114,8 +113,8 @@ body {
   100% { transform: translate(-50%, -50%) scale(3); opacity: 0; border-width: 0px; }
 }
 
-/* ================= 玻璃态护盾 3D 翻转系统 (名片) ================= */
-.flip-container { perspective: 1500px; width: 100%; min-height: 480px; position: relative; z-index: 20; pointer-events: auto; max-width: 720px; margin: 0 auto; }
+/* ================= 玻璃态护盾 3D 翻转系统 (中心名片) ================= */
+.flip-container { perspective: 1500px; width: 100%; min-height: 480px; position: relative; z-index: 30; pointer-events: auto; max-width: 720px; margin: 0 auto; }
 .flip-inner { position: absolute; width: 100%; height: 100%; transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55); transform-style: preserve-3d; }
 .flip-inner.is-flipped { transform: rotateY(180deg); }
 
@@ -157,13 +156,16 @@ body {
 .edu-title { font-weight: 900; color: var(--t1); font-size: 1.1rem; }
 .edu-sub { font-size: 0.95rem; color: var(--t2); font-weight: 700; margin-top: 4px; }
 
-/* ====== 完整恢复所有的通用排版 (半透明高级磨砂) ====== */
+/* ================= 🚀 新增内容滚动滑入动画 ================= */
+.reveal-item { opacity: 0; transform: translateY(50px) scale(0.98); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
+.reveal-item.vis { opacity: 1; transform: translateY(0) scale(1); }
+
+/* ====== 通用排版 ====== */
 .s-tag{display:inline-block;font-size:.85rem;font-weight:800;color:var(--b);background:var(--white);padding:4px 12px;border-radius:100px;margin-bottom:1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);}
 .s-title{font-size:2.5rem;font-weight:900;margin-bottom:3rem;line-height:1.2}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 
-.exp-card{background:rgba(255,255,255,0.65); backdrop-filter: blur(10px); padding:32px;border-radius:24px;box-shadow:0 12px 32px rgba(0,0,0,0.05);display:flex;gap:20px;border:1px solid rgba(255,255,255,0.8);transition: all 0.4s ease; opacity:0; transform:translateY(30px)}
-.exp-card.vis{opacity:1; transform:translateY(0)}
+.exp-card{background:rgba(255,255,255,0.65); backdrop-filter: blur(10px); padding:32px;border-radius:24px;box-shadow:0 12px 32px rgba(0,0,0,0.05);display:flex;gap:20px;border:1px solid rgba(255,255,255,0.8);transition: all 0.4s ease;}
 .exp-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(155,0,255,.12); background:rgba(255,255,255,0.85);}
 .e-icon{width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
 .ei-p{background:var(--pl);color:var(--p)}.ei-v{background:var(--vl);color:var(--v)}.ei-b{background:var(--bl);color:var(--b)}.ei-g{background:#E8F8F5;color:#1ABC9C}
@@ -177,8 +179,7 @@ body {
 
 .tl-wrap{max-width:800px;margin:0 auto;position:relative}
 .tl-wrap::before{content:'';position:absolute;width:2px;background:rgba(255,255,255,0.6);top:0;bottom:0;left:50%;transform:translateX(-50%)}
-.tl-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;position:relative;width:100%;opacity:0; transform:translateY(30px); transition: all 0.5s ease;}
-.tl-row.vis{opacity:1; transform:translateY(0)}
+.tl-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;position:relative;width:100%;}
 .tl-row::after{content:'';position:absolute;width:16px;height:16px;background:var(--v);border:4px solid var(--white);border-radius:50%;left:50%;transform:translateX(-50%);box-shadow:0 0 0 4px var(--vl)}
 .tl-card{width:45%;background:rgba(255,255,255,0.65); backdrop-filter: blur(10px); padding:20px;border-radius:20px;box-shadow:0 8px 24px rgba(0,0,0,0.05);border:1px solid rgba(255,255,255,0.8); transition: 0.3s;}
 .tl-card:hover{transform: translateY(-5px); background:rgba(255,255,255,0.85); box-shadow: 0 12px 30px rgba(155,0,255,.1);}
@@ -186,9 +187,8 @@ body {
 .tl-ev{font-weight:800;color:var(--v);margin-bottom:8px}
 .tl-d{font-size:.9rem;color:var(--t2)}
 
-.moment-card{display:flex;gap:15px;background:rgba(255,255,255,0.65); backdrop-filter: blur(10px); padding:24px;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,0.05); border:1px solid rgba(255,255,255,0.8); margin:0 auto 2rem;max-width:800px; opacity:0; transform:translateY(30px); transition: 0.5s ease;}
-.moment-card.vis{opacity:1; transform:translateY(0)}
-.moment-card:hover{background:rgba(255,255,255,0.85);}
+.moment-card{display:flex;gap:15px;background:rgba(255,255,255,0.65); backdrop-filter: blur(10px); padding:24px;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,0.05); border:1px solid rgba(255,255,255,0.8); margin:0 auto 2rem;max-width:800px; transition: 0.4s ease;}
+.moment-card:hover{background:rgba(255,255,255,0.85); transform: translateY(-5px); box-shadow:0 12px 32px rgba(155,0,255,0.1);}
 .m-avatar img{width:50px;height:50px;border-radius:8px;object-fit:cover}
 .m-content{flex:1}
 .m-name{font-weight:800;color:#576b95;font-size:1.1rem;margin-bottom:6px}
@@ -232,6 +232,10 @@ body {
 </style>
 </head>
 <body>
+
+<div class="bg-orb orb-1"></div>
+<div class="bg-orb orb-2"></div>
+<div class="bg-orb orb-3"></div>
 
 <div class="particles-bg" id="particlesBg"></div>
 
@@ -290,23 +294,23 @@ body {
 </section>
 
 <section id="experience" class="sec" style="background:rgba(255,255,255,0.25); backdrop-filter: blur(8px);">
-  <div class="ctr">
+  <div class="ctr reveal-item">
     <div class="s-tag" data-i18n="exp.tag">研究 & 经历</div>
     <h2 class="s-title"><span data-i18n="exp.title1">我做过的</span> <span class="rainbow" data-i18n="exp.title2">研究与探索</span></h2>
     <div class="grid-2">
-      <div class="exp-card"><div class="e-icon ei-p">⚡</div><div>
+      <div class="exp-card reveal-item"><div class="e-icon ei-p">⚡</div><div>
         <div class="e-org" data-i18n="e1.org">UCSD · 独立本科科研项目</div>
         <div class="e-role" data-i18n="e1.role">独立研究员 — 边缘 AI 热节流效应研究</div>
         <div class="chip c-p" data-i18n="e1.date">2026.03 – 至今</div>
         <ul class="e-ul"><li data-i18n="e1.b1"></li><li data-i18n="e1.b2"></li><li data-i18n="e1.b3"></li></ul>
       </div></div>
-      <div class="exp-card"><div class="e-icon ei-v">🧠</div><div>
+      <div class="exp-card reveal-item"><div class="e-icon ei-v">🧠</div><div>
         <div class="e-org" data-i18n="e3.org">上海交通大学 · 心理学院</div>
         <div class="e-role" data-i18n="e3.role">研究助理 — 儿童发展与家庭研究实验室</div>
         <div class="chip c-v" data-i18n="e3.date">2024.06 – 2025.09</div>
         <ul class="e-ul"><li data-i18n="e3.b1"></li><li data-i18n="e3.b2"></li><li data-i18n="e3.b3"></li><li data-i18n="e3.b4"></li></ul>
       </div></div>
-      <div class="exp-card"><div class="e-icon ei-b">🏛️</div><div>
+      <div class="exp-card reveal-item"><div class="e-icon ei-b">🏛️</div><div>
         <div class="e-org" data-i18n="e4.org">上海市世外中学 · 学生会</div>
         <div class="e-role" data-i18n="e4.role">实践部副部长</div>
         <div class="chip c-b" data-i18n="e4.date">2023.09 – 2024.09</div>
@@ -317,55 +321,55 @@ body {
 </section>
 
 <section id="timeline" class="sec" style="background:rgba(255,255,255,0.4); backdrop-filter: blur(12px);">
-  <div class="ctr">
+  <div class="ctr reveal-item">
     <div class="s-tag" data-i18n="tl.tag">人生时间轴</div>
     <h2 class="s-title"><span data-i18n="tl.title1">走过的</span> <span class="rainbow" data-i18n="tl.title2">每一步</span></h2>
     <div class="tl-wrap">
-      <div class="tl-row"><div class="tl-card"><div class="tl-ev" data-i18n="tl8.ev"></div><div class="tl-d" data-i18n="tl8.d"></div></div></div>
-      <div class="tl-row"><div class="tl-card"><div class="tl-ev" data-i18n="tl6.ev"></div><div class="tl-d" data-i18n="tl6.d"></div></div></div>
-      <div class="tl-row"><div class="tl-card"><div class="tl-ev" data-i18n="tl5.ev"></div><div class="tl-d" data-i18n="tl5.d"></div></div></div>
-      <div class="tl-row"><div class="tl-card"><div class="tl-ev" data-i18n="tl4.ev"></div><div class="tl-d" data-i18n="tl4.d"></div></div></div>
-      <div class="tl-row"><div class="tl-card"><div class="tl-ev" data-i18n="tl3.ev"></div><div class="tl-d" data-i18n="tl3.d"></div></div></div>
-      <div class="tl-row"><div class="tl-card"><div class="tl-ev" data-i18n="tl2.ev"></div><div class="tl-d" data-i18n="tl2.d"></div></div></div>
-      <div class="tl-row"><div class="tl-card"><div class="tl-ev" data-i18n="tl1.ev"></div><div class="tl-d" data-i18n="tl1.d"></div></div></div>
+      <div class="tl-row reveal-item"><div class="tl-card"><div class="tl-ev" data-i18n="tl8.ev"></div><div class="tl-d" data-i18n="tl8.d"></div></div></div>
+      <div class="tl-row reveal-item"><div class="tl-card"><div class="tl-ev" data-i18n="tl6.ev"></div><div class="tl-d" data-i18n="tl6.d"></div></div></div>
+      <div class="tl-row reveal-item"><div class="tl-card"><div class="tl-ev" data-i18n="tl5.ev"></div><div class="tl-d" data-i18n="tl5.d"></div></div></div>
+      <div class="tl-row reveal-item"><div class="tl-card"><div class="tl-ev" data-i18n="tl4.ev"></div><div class="tl-d" data-i18n="tl4.d"></div></div></div>
+      <div class="tl-row reveal-item"><div class="tl-card"><div class="tl-ev" data-i18n="tl3.ev"></div><div class="tl-d" data-i18n="tl3.d"></div></div></div>
+      <div class="tl-row reveal-item"><div class="tl-card"><div class="tl-ev" data-i18n="tl2.ev"></div><div class="tl-d" data-i18n="tl2.d"></div></div></div>
+      <div class="tl-row reveal-item"><div class="tl-card"><div class="tl-ev" data-i18n="tl1.ev"></div><div class="tl-d" data-i18n="tl1.d"></div></div></div>
     </div>
   </div>
 </section>
 
 <section id="projects" class="sec" style="background:rgba(255,255,255,0.25); backdrop-filter: blur(8px);">
-  <div class="ctr">
+  <div class="ctr reveal-item">
     <div class="s-tag" data-i18n="proj.tag">精选项目</div>
     <h2 class="s-title"><span data-i18n="proj.title1">做出来的</span> <span class="rainbow" data-i18n="proj.title2">成果</span></h2>
     <div class="grid-2">
-      <div class="exp-card"><div class="e-icon ei-p">💡</div><div><div class="e-org" data-i18n="p1.t"></div><div class="e-role" data-i18n="p1.d" style="font-weight:normal;color:var(--t2);margin-top:8px"></div></div></div>
-      <div class="exp-card"><div class="e-icon ei-v">⚽</div><div><div class="e-org" data-i18n="p2.t"></div><div class="e-role" data-i18n="p2.d" style="font-weight:normal;color:var(--t2);margin-top:8px"></div></div></div>
-      <div class="exp-card"><div class="e-icon ei-b">🏫</div><div><div class="e-org" data-i18n="p3.t"></div><div class="e-role" data-i18n="p3.d" style="font-weight:normal;color:var(--t2);margin-top:8px"></div></div></div>
-      <div class="exp-card"><div class="e-icon ei-g">👶</div><div><div class="e-org" data-i18n="p4.t"></div><div class="e-role" data-i18n="p4.d" style="font-weight:normal;color:var(--t2);margin-top:8px"></div></div></div>
+      <div class="exp-card reveal-item"><div class="e-icon ei-p">💡</div><div><div class="e-org" data-i18n="p1.t"></div><div class="e-role" data-i18n="p1.d" style="font-weight:normal;color:var(--t2);margin-top:8px"></div></div></div>
+      <div class="exp-card reveal-item"><div class="e-icon ei-v">⚽</div><div><div class="e-org" data-i18n="p2.t"></div><div class="e-role" data-i18n="p2.d" style="font-weight:normal;color:var(--t2);margin-top:8px"></div></div></div>
+      <div class="exp-card reveal-item"><div class="e-icon ei-b">🏫</div><div><div class="e-org" data-i18n="p3.t"></div><div class="e-role" data-i18n="p3.d" style="font-weight:normal;color:var(--t2);margin-top:8px"></div></div></div>
+      <div class="exp-card reveal-item"><div class="e-icon ei-g">👶</div><div><div class="e-org" data-i18n="p4.t"></div><div class="e-role" data-i18n="p4.d" style="font-weight:normal;color:var(--t2);margin-top:8px"></div></div></div>
     </div>
   </div>
 </section>
 
 <section id="skills" class="sec" style="background:rgba(255,255,255,0.4); backdrop-filter: blur(12px);">
-  <div class="ctr">
+  <div class="ctr reveal-item">
     <div class="s-tag" data-i18n="sk.tag">技能树</div>
     <h2 class="s-title"><span data-i18n="sk.title1">我的</span> <span class="rainbow" data-i18n="sk.title2">能力点</span></h2>
     <div class="grid-2">
-      <div class="exp-card"><div class="e-icon ei-p">💻</div><div><div class="e-org" data-i18n="sk1.n"></div><div class="e-role" data-i18n="sk1.d" style="font-weight:normal;color:var(--t2);margin-top:8px"></div></div></div>
-      <div class="exp-card"><div class="e-icon ei-v">📈</div><div><div class="e-org" data-i18n="sk2.n"></div><div class="e-role" data-i18n="sk2.d" style="font-weight:normal;color:var(--t2);margin-top:8px"></div></div></div>
-      <div class="exp-card"><div class="e-icon ei-b">🔍</div><div><div class="e-org" data-i18n="sk3.n"></div><div class="e-role" data-i18n="sk3.d" style="font-weight:normal;color:var(--t2);margin-top:8px"></div></div></div>
-      <div class="exp-card"><div class="e-icon ei-g">🤖</div><div><div class="e-org" data-i18n="sk4.n"></div><div class="e-role" data-i18n="sk4.d" style="font-weight:normal;color:var(--t2);margin-top:8px"></div></div></div>
-      <div class="exp-card"><div class="e-icon ei-p">🛠️</div><div><div class="e-org" data-i18n="sk5.n"></div><div class="e-role" data-i18n="sk5.d" style="font-weight:normal;color:var(--t2);margin-top:8px"></div></div></div>
-      <div class="exp-card"><div class="e-icon ei-v">📢</div><div><div class="e-org" data-i18n="sk6.n"></div><div class="e-role" data-i18n="sk6.d" style="font-weight:normal;color:var(--t2);margin-top:8px"></div></div></div>
+      <div class="exp-card reveal-item"><div class="e-icon ei-p">💻</div><div><div class="e-org" data-i18n="sk1.n"></div><div class="e-role" data-i18n="sk1.d" style="font-weight:normal;color:var(--t2);margin-top:8px"></div></div></div>
+      <div class="exp-card reveal-item"><div class="e-icon ei-v">📈</div><div><div class="e-org" data-i18n="sk2.n"></div><div class="e-role" data-i18n="sk2.d" style="font-weight:normal;color:var(--t2);margin-top:8px"></div></div></div>
+      <div class="exp-card reveal-item"><div class="e-icon ei-b">🔍</div><div><div class="e-org" data-i18n="sk3.n"></div><div class="e-role" data-i18n="sk3.d" style="font-weight:normal;color:var(--t2);margin-top:8px"></div></div></div>
+      <div class="exp-card reveal-item"><div class="e-icon ei-g">🤖</div><div><div class="e-org" data-i18n="sk4.n"></div><div class="e-role" data-i18n="sk4.d" style="font-weight:normal;color:var(--t2);margin-top:8px"></div></div></div>
+      <div class="exp-card reveal-item"><div class="e-icon ei-p">🛠️</div><div><div class="e-org" data-i18n="sk5.n"></div><div class="e-role" data-i18n="sk5.d" style="font-weight:normal;color:var(--t2);margin-top:8px"></div></div></div>
+      <div class="exp-card reveal-item"><div class="e-icon ei-v">📢</div><div><div class="e-org" data-i18n="sk6.n"></div><div class="e-role" data-i18n="sk6.d" style="font-weight:normal;color:var(--t2);margin-top:8px"></div></div></div>
     </div>
   </div>
 </section>
 
 <section id="life" class="sec" style="background:rgba(255,255,255,0.25); backdrop-filter: blur(8px);">
-  <div class="ctr">
+  <div class="ctr reveal-item">
     <div class="s-tag" data-i18n="mom.tag">生活分享</div>
     <h2 class="s-title" style="text-align:center"><span data-i18n="mom.title1">我的</span> <span class="rainbow" data-i18n="mom.title2">朋友圈</span></h2>
     <p style="color:var(--t2);font-weight:700;margin-bottom:2rem;text-align:center" data-i18n="mom.note">这里是我的生活碎片。内容持续更新中，快来看看我最近在干嘛～</p>
-    <div class="moment-card">
+    <div class="moment-card reveal-item">
       <div class="m-avatar"><img src="个人主页首页照片.jpg" alt="Zhen Wang"></div>
       <div class="m-content">
         <div class="m-name">Zhen Wang</div>
@@ -383,7 +387,7 @@ body {
 </section>
 
 <section id="contact" class="sec" style="background:rgba(255,255,255,0.4); backdrop-filter: blur(12px);">
-  <div class="ctr" style="display:flex;flex-direction:column;align-items:center">
+  <div class="ctr reveal-item" style="display:flex;flex-direction:column;align-items:center">
     <div class="s-tag" data-i18n="ct.tag">联系我</div>
     <h2 class="s-title" style="text-align:center"><span data-i18n="ct.title1">一起</span> <span class="rainbow" data-i18n="ct.title2">搞点有意思的事</span></h2>
     <div style="text-align:center;max-width:600px;margin-bottom:2rem">
@@ -391,7 +395,7 @@ body {
       <p style="margin-bottom:1rem;color:var(--t2)" data-i18n="ct.p1"></p>
       <a href="mailto:zw2@ucsd.edu" class="btn btn-main" style="margin-top:1rem" data-i18n="ct.btn" style="pointer-events: auto;">发消息给我 💌</a>
     </div>
-    <div class="pow-card" id="powCard" style="pointer-events: auto;">
+    <div class="pow-card reveal-item" id="powCard" style="pointer-events: auto;">
       <div class="pow-title">⚡ <span data-i18n="pow.title">旅行者能量站</span></div>
       <div class="pow-sub" data-i18n="pow.sub">VISITOR ENERGY STATION</div>
       <div class="pow-num" id="powNum">0</div>
@@ -409,7 +413,7 @@ body {
 </div>
 
 <script>
-/* ================= 完整的翻译系统 ================= */
+/* ================= 完整的翻译字典 ================= */
 const T={
 zh:{
 'map.edu': '对白·无言之书', 'map.res': '求证·大地的底稿', 'map.life': '漫游·心底的牧场', 'map.ppl': '相望·最近的灯火',
@@ -479,8 +483,16 @@ const BAR_MAX=100;function getPow(){return parseInt(localStorage.getItem('pow_v2
 /* 翻转与交互控制 */
 function toggleFlip() { document.getElementById('flipCard').classList.toggle('is-flipped'); }
 
-/* 滚动动画 */
-const io=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('vis'),i*70)});},{threshold:.08});document.querySelectorAll('.exp-card, .tl-row, .moment-card').forEach(el=>io.observe(el));
+/* 🌟 优雅的滚动进入动画 (Scroll Reveal) */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('vis'),i*120);
+      io.unobserve(e.target); // 动画只触发一次，提高性能
+    }
+  });
+},{threshold:.1});
+document.querySelectorAll('.reveal-item').forEach(el=>io.observe(el));
 
 /* 动态打字机特效 */
 const typeWords={
@@ -501,7 +513,7 @@ function typeEffect(){
   typingTimeout=setTimeout(typeEffect,speed);
 }
 
-/* ================= 🌟 亮闪闪漂浮星光系统 ================= */
+/* 亮闪闪漂浮星光系统 */
 function createSparkles(){
   const bg = document.getElementById('particlesBg');
   if(!bg) return;
@@ -519,60 +531,67 @@ function createSparkles(){
   }
 }
 
-/* ================= 🧩 拼图网格生成 & 专属图片替换 & 量子交互 ================= */
+/* ================= 🧩 全面升维：3D 悬浮翻牌拼图系统 ================= */
 function createPuzzleGrid(){
   const grid = document.getElementById('puzzleGrid');
   if(!grid) return;
   
-  // 你指定的专属 Hover 图片数组（前三格）
+  // 收录了你提供的所有 11 张壁纸盲盒！
   const specialImages = [
     '主页薇尔莉特.jpg',
     '主页喜多川.jpg',
-    '主页eva合影.jpg'
+    '主页eva合影.jpg',
+    '主页胡桃.jpg',
+    '主页流萤合影.jpg',
+    '主页命运石之门.jpg',
+    '主页四谎.jpg',
+    '主页有希.jpg',
+    '主页二乃.jpg',
+    '主页芙芙1.jpg',
+    '主页芙芙2.jpg'
   ];
 
-  /* 10x8 = 80 个切割碎片 */
-  for(let i=0; i<80; i++){
-    let piece = document.createElement('div');
-    piece.className = 'puzzle-piece';
+  // 随机挑选 11 个不重复的拼图格子下标（总共80个格子，0到79）
+  let imgPositions = [];
+  while(imgPositions.length < specialImages.length){
+    let r = Math.floor(Math.random() * 80);
+    if(imgPositions.indexOf(r) === -1) imgPositions.push(r);
+  }
 
-    // 如果是前三个格子，绑定你上传的图片
-    if (i < 3) {
-      piece.dataset.hoverImg = specialImages[i];
+  for(let i=0; i<80; i++){
+    // 构建 3D 翻牌盒子
+    let cell = document.createElement('div');
+    cell.className = 'puzzle-cell';
+
+    let inner = document.createElement('div');
+    inner.className = 'puzzle-inner';
+
+    // 正面：显示完整背景图的一部分，带有 🧩 拼图裁剪形状
+    let front = document.createElement('div');
+    front.className = 'puzzle-front';
+
+    // 背面：默认不配置，除非抽到了盲盒壁纸
+    let back = document.createElement('div');
+    back.className = 'puzzle-back';
+
+    // 如果这个格子被选中作为彩蛋，就把对应的图片绑定在背面
+    const imgIndex = imgPositions.indexOf(i);
+    if (imgIndex !== -1) {
+      back.style.backgroundImage = `url('${specialImages[imgIndex]}')`;
     }
 
-    // 🌟 Hover 事件：替换独立图片
-    piece.addEventListener('mouseenter', function() {
-      if (this.dataset.hoverImg) {
-        // 如果有专属图片，将背景从 fixed 切割图换成本块独占的 cover 居中图
-        this.style.background = `url('${this.dataset.hoverImg}') center/cover no-repeat`;
-      }
-    });
-
-    // 🌟 移开鼠标：恢复背景切割壁纸
-    piece.addEventListener('mouseleave', function() {
-      if (this.dataset.hoverImg) {
-        // 恢复为全局大壁纸的一部分
-        this.style.background = `url('个人主页首页动态壁纸.jpg') center/cover fixed no-repeat`;
-      }
-    });
-
-    // ⚡ Click 事件：量子转场特效
-    piece.addEventListener('click', function(e) {
-      // 1. 生成屏幕巨型震荡波
+    // ⚡ 点击量子转场波纹特效 (保留)
+    inner.addEventListener('click', function(e) {
       createShockwave(e.clientX, e.clientY);
-      
-      // 2. 触发拼图自身的量子抖动与色散发光
-      this.classList.remove('quantum-animate');
-      void this.offsetWidth; // 触发重绘，使动画可以连续点击触发
-      this.classList.add('quantum-animate');
     });
 
-    grid.appendChild(piece);
+    inner.appendChild(front);
+    inner.appendChild(back);
+    cell.appendChild(inner);
+    grid.appendChild(cell);
   }
 }
 
-// 震荡波生成函数
 function createShockwave(x, y) {
   const wave = document.createElement('div');
   wave.className = 'shockwave';
@@ -581,20 +600,15 @@ function createShockwave(x, y) {
   wave.style.height = size + 'px';
   wave.style.left = x + 'px';
   wave.style.top = y + 'px';
-  
   document.body.appendChild(wave);
-  
-  // 动画结束后自动移除 DOM 节点
   setTimeout(() => { wave.remove(); }, 800);
 }
 
-// 执行初始化
 initPow();
 typeEffect();
 createSparkles();
 createPuzzleGrid();
 
-// 语言应用初始化
 applyLang();const originalApplyLang=applyLang;applyLang=function(){originalApplyLang();clearTimeout(typingTimeout);isDeleting=false;typingCharIndex=0;typeEffect();};
 </script>
 </body>
