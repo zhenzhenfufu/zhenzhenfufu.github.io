@@ -10,18 +10,17 @@
 html { scroll-behavior: smooth; }
 :root{
   --white:#fff;
-  --p:#FF2D78;--pl:#FFE5EE; --y:#FFB700;--yl:#FFF8DC;
-  --b:#00AAFF;--bl:#DCF4FF; --v:#9B00FF;--vl:#F2E5FF;
+  --neon-p: #ff007f;--neon-y: #ffd700;--neon-b: #00ffff;--neon-v: #bf00ff;
   --t1:#180828;--t2:#5A3870;--t3:#C0A8D8;
   --brd:#EED8FF;--shd:rgba(155,0,255,.07);
   --disp:'Pacifico',cursive;--mono:'Space Mono',monospace;--serf:'Noto Serif SC',serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 
-/* 使用你指定的动态壁纸作为全局背景 */
+/* 使用指定的动态壁纸作为全局背景 */
 body {
   font-family: 'Quicksand', sans-serif;
-  background: url('个人主页首页动态壁纸.jpg') no-repeat center center fixed;
+  background: url('个人主页首页动态壁纸.png') no-repeat center center fixed;
   background-size: cover;
   color: var(--t1);
   line-height: 1.6;
@@ -29,57 +28,50 @@ body {
 }
 
 .ctr{max-width:1100px;margin:0 auto;padding:0 24px}
-.sec{padding:6rem 0;position:relative; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);} /* 给底部内容区加个底色保证可读 */
+.sec{padding:6rem 0;position:relative}
 
 /* 导航栏 */
 .nav{position:fixed;top:1rem;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.85);backdrop-filter:blur(12px);padding:10px 24px;border-radius:100px;box-shadow:0 8px 32px rgba(0,0,0,0.15);display:flex;gap:24px;z-index:999;border:1px solid rgba(255,255,255,0.5)}
 .nav a{text-decoration:none;color:var(--t2);font-weight:700;font-size:.95rem;transition:.2s}
-.nav a:hover{color:var(--v)}
-.lang-btn{background:var(--vl);color:var(--v);border:none;border-radius:100px;padding:4px 12px;font-weight:800;cursor:pointer;transition:.2s}
-.lang-btn:hover{background:var(--v);color:var(--white)}
+.nav a:hover{color:var(--neon-v)}
+.lang-btn{background:var(--vl);color:var(--neon-v);border:none;border-radius:100px;padding:4px 12px;font-weight:800;cursor:pointer;transition:.2s}
+.lang-btn:hover{background:var(--neon-v);color:var(--white)}
 
 /* ====== 🌍 顶级多巴胺地图 Hero 区 🌍 ====== */
 #hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
 
-/* 海底生物 */
-.marine { position: absolute; font-size: 5rem; opacity: 0.3; pointer-events: none; z-index: 0; filter: blur(1px); }
-.whale { top: 75%; animation: swim-whale 35s linear infinite; }
-.dolphin { top: 15%; animation: swim-dolphin 25s linear infinite; animation-delay: -10s; }
-@keyframes swim-whale { 0% { left: -20%; transform: rotate(5deg); } 50% { transform: rotate(-5deg) translateY(-40px); } 100% { left: 120%; transform: rotate(5deg); } }
-@keyframes swim-dolphin { 0% { right: -20%; transform: scaleX(-1) rotate(5deg); } 50% { transform: scaleX(-1) rotate(-5deg) translateY(-20px); } 100% { right: 120%; transform: scaleX(-1) rotate(5deg); } }
+/* 海底生物移除了，使主题更纯粹 */
 
-/* ================= 真实圆润的半透明彩色玻璃大陆 ================= */
+/* ================= 真实圆润流动的大陆地貌 -> 霓虹几何大陆轮廓 ================= */
 .map-layer { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1; }
 
-.continent-wrapper { position: absolute; pointer-events: auto; }
-.cont-tl { top: 0; left: 0; width: 42vw; height: 42vh; min-width: 320px; min-height: 320px; }
-.cont-tr { top: 0; right: 0; width: 42vw; height: 42vh; min-width: 320px; min-height: 320px; }
-.cont-bl { bottom: 0; left: 0; width: 55vw; height: 55vh; min-width: 400px; min-height: 400px; } /* 漫游心底特别放大 */
-.cont-br { bottom: 0; right: 0; width: 45vw; height: 45vh; min-width: 350px; min-height: 350px; }
-
-/* 真正的 SVG 矢量地图形状，美丽自然的曲线 */
-.island-path {
-  width: 100%; height: 100%; cursor: pointer;
-  stroke: rgba(255,255,255,0.6); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round;
-  filter: drop-shadow(8px 12px 10px rgba(0,0,0,0.3)); /* 加深阴影与壁纸区分 */
+.continent {
+  position: absolute; pointer-events: auto; cursor: pointer;
+  border: 5px solid rgba(255,255,255,0.7);
+  box-shadow: inset 0 0 30px rgba(255,255,255,0.4), 8px 12px 15px rgba(155,0,255,0.15);
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease;
-  transform-origin: center;
 }
-.island-path:hover { transform: scale(1.03); filter: drop-shadow(15px 25px 15px rgba(0,0,0,0.4)) brightness(1.1); z-index: 20; }
+.continent:hover { transform: scale(1.04) translateY(-10px); filter: brightness(1.08); z-index: 10; box-shadow: inset 0 0 40px rgba(255,255,255,0.6), 15px 20px 20px rgba(155,0,255,0.25); }
 
-/* ================= 极度向外拉伸的防别扭换行文本系统 ================= */
+/* 四块充满几何凹凸起伏的真实大陆地貌，紧贴边角地带 */
+.cont-tl { top: -10vh; left: -10vw; width: 45vw; height: 45vh; background: linear-gradient(135deg, #FFAEC9, var(--neon-p)); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; box-shadow: 0 0 10px var(--neon-p); border-color: var(--neon-p); }
+.cont-tr { top: -10vh; right: -10vw; width: 45vw; height: 45vh; background: linear-gradient(135deg, #FFDF73, var(--neon-y)); border-radius: 50% 50% 30% 70% / 60% 40% 70% 40%; box-shadow: 0 0 10px var(--neon-y); border-color: var(--neon-y); }
+.cont-bl { bottom: -15vh; left: -10vw; width: 55vw; height: 55vh; background: linear-gradient(135deg, #7CD6FF, var(--neon-b)); border-radius: 30% 70% 50% 50% / 40% 40% 60% 60%; box-shadow: 0 0 10px var(--neon-b); border-color: var(--neon-b); } /* 漫游心底被特别放大 */
+.cont-br { bottom: -10vh; right: -10vw; width: 45vw; height: 45vh; background: linear-gradient(135deg, #D09CFF, var(--neon-v)); border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%; box-shadow: 0 0 10px var(--neon-v); border-color: var(--neon-v); }
+
+/* ================= 文字防遮挡系统与角落布局优化 ================= */
 .global-routes { position: absolute; top:0; left:0; width:100%; height:100%; z-index: 5; pointer-events: none; }
 
 .cont-label {
   position: absolute; transform: translate(-50%, -50%);
   font-family: var(--serf); font-weight: 900; font-size: 1.5rem; color: var(--white);
-  /* 加强阴影保证在复杂壁纸上的可读性 */
+  /* 黑色阴影文字背景 */
   text-shadow: 0 3px 6px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.8);
   white-space: nowrap; /* 绝对禁止别扭换行 */
   letter-spacing: 2px; transition: transform 0.3s ease;
 }
 
-/* 文字定于四个极端的对角角落 (12vw/vh 距离屏幕边缘更近) */
+/* 文字标签钉在极角落位置，避开卡片 */
 .label-tl { top: 15vh; left: 12vw; text-align: center; }
 .label-tr { top: 15vh; left: 88vw; text-align: center; }
 .label-bl { top: 85vh; left: 12vw; text-align: center; }
@@ -89,50 +81,50 @@ body {
 .island-content { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index: 2;}
 
 /* 🎓 左上: 书本与学术 */
-.anim-edu { position: absolute; top: 45%; left: 45%; font-size: 3.5rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.4)); }
-.math-sym { position: absolute; font-family: var(--serf); font-weight: 900; color: #fff; font-size: 1.6rem; opacity: 0; animation: float-sym 3s ease-in infinite; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+.anim-edu { position: absolute; top: 40%; left: 45%; font-size: 3.5rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
+.math-sym { position: absolute; font-family: var(--serf); font-weight: 900; color: #fff; font-size: 1.6rem; opacity: 0; animation: float-sym 3s ease-in infinite; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
 .sym1 { top: -15px; left: -10px; animation-delay: 0s; }
 .sym2 { top: -25px; left: 35px; animation-delay: 1s; }
 .sym3 { top: -5px; left: 60px; animation-delay: 2s; }
 @keyframes float-sym { 0% { transform: translateY(0) scale(0.8) rotate(-10deg); opacity: 1; } 100% { transform: translateY(-50px) scale(1.3) rotate(15deg); opacity: 0; } }
 
 /* 🔬 右上: 显微镜气泡 */
-.anim-res { position: absolute; top: 45%; left: 55%; font-size: 4rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.4)); }
+.anim-res { position: absolute; top: 45%; left: 55%; font-size: 4rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
 .bubble { position: absolute; font-size: 1.4rem; opacity: 0; animation: float-bubble 2s ease-in infinite; }
 .b1 { top: -5px; left: -10px; animation-delay: 0s; }
 .b2 { top: -20px; left: 15px; animation-delay: 1s; }
 @keyframes float-bubble { 0% { transform: translateY(0) scale(0.5); opacity: 1; } 100% { transform: translateY(-40px) scale(1.3); opacity: 0; } }
 
-/* 🏎️ 左下: 巨大F1赛道与猫咪 (完美分离) */
-.anim-life { position: absolute; top: 50%; left: 45%; transform: translate(-50%, -50%); width: 280px; height: 180px; }
-.mini-cat { position: absolute; top: 10px; right: -20px; font-size: 3.5rem; filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.4)); animation: cat-blink 4s infinite; }
+/* 🏎️ 左下: 巨大F1赛道与猫咪 (完美分离，正向行驶修复) */
+.anim-life { position: absolute; top: 45%; left: 55%; transform: translate(-50%, -50%); width: 280px; height: 180px; }
+.mini-cat { position: absolute; top: 10px; right: -20px; font-size: 3.5rem; filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); animation: cat-blink 4s infinite; }
 @keyframes cat-blink { 0%, 90%, 100% { content: '🐱'; } 95% { content: '😑'; } }
-/* 完美的 F1 赛道，完全独立，顺滑正向行驶 */
+/* 完美的 F1 赛道，完全独立，顺滑漂移 */
 .f1-track-svg { position: absolute; bottom: 0; left: 0; width: 180px; height: 120px; }
-.f1-car { font-size: 2.8rem; filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.6)); }
+.f1-car { font-size: 2.8rem; filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.4)); }
 
-/* ⛺ 右下: 篝火信件 */
-.anim-ppl { position: absolute; top: 50%; left: 55%; font-size: 4rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.4)); }
-.letter { position: absolute; font-size: 2.2rem; top: 25px; left: -40px; transform: rotate(-15deg); filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.3));}
+/* ⛺ 右下: 篝火与信件 */
+.anim-ppl { position: absolute; top: 45%; left: 45%; font-size: 4rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
+.letter { position: absolute; font-size: 2.2rem; top: 25px; left: -40px; transform: rotate(-15deg); }
 .spark { position: absolute; width: 8px; height: 8px; background: #FFD700; border-radius: 50%; box-shadow: 0 0 12px #FFD700; opacity: 0; animation: spark-fly 1.5s linear infinite; }
 .sp1 { top: 0; left: 20px; animation-delay: 0s; }
 .sp2 { top: 15px; left: 45px; animation-delay: 0.5s; }
 .sp3 { top: -10px; left: 35px; animation-delay: 1s; }
 @keyframes spark-fly { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-50px) scale(0.2); opacity: 0; } }
 
-/* ================= ✈️ 飞机精准着陆轨道 & 🚢 垂直轮船 ================= */
-/* 飞机的全屏幕柔和闭环抛物线，坐标已根据文本的 12/88 完全重算 */
+/* ================= ✈️ 飞机精准停靠系统 & 🚢 垂直轮船 ================= */
+/* ✈️ 飞机路径：柔和的霓虹抛物线大圆环 */
 .plane-svg { position: absolute; top:0; left:0; width:100%; height:100%; }
-.plane { position: absolute; font-size: 3rem; margin-top: -1.5rem; margin-left: -1.5rem; filter: drop-shadow(4px 8px 4px rgba(0,0,0,0.5)); }
+.plane { position: absolute; font-size: 3rem; margin-top: -1.5rem; margin-left: -1.5rem; filter: drop-shadow(4px 8px 4px rgba(0,0,0,0.4)); }
 
-/* 垂直往返轮船：在右侧上下区域边缘穿梭 */
-.ship-route { position: absolute; top: 20vh; right: 12vw; width: 0; height: 60vh; border-right: 3px dashed rgba(255, 255, 255, 0.5); z-index: 3; pointer-events: none;}
-.ship { position: absolute; top: 0; right: -35px; font-size: 3.5rem; filter: drop-shadow(2px 6px 4px rgba(0,0,0,0.5)); animation: ship-vertical 24s ease-in-out infinite; }
+/* 🚢 右侧水域垂直轮船：在上下区域边缘上下往返穿梭，远离陆地 */
+.ship-route { position: absolute; top: 20vh; right: 12vw; width: 0; height: 60vh; border-right: 3px dashed rgba(0, 170, 255, 0.4); z-index: 3; pointer-events: none;}
+.ship { position: absolute; top: 0; right: -35px; font-size: 3.5rem; filter: drop-shadow(2px 6px 4px rgba(0,0,0,0.4)); animation: ship-vertical 24s ease-in-out infinite; }
 @keyframes ship-vertical {
   0% { top: 0%; transform: scaleX(1) rotate(90deg); }
   10% { top: 0%; transform: scaleX(1) rotate(90deg); } /* 停泊右上 */
   45% { top: 100%; transform: scaleX(1) rotate(90deg); }
-  50% { top: 100%; transform: scaleX(-1) rotate(90deg); } /* 抵达右下，调头 */
+  50% { top: 100%; transform: scaleX(-1) rotate(90deg); } /* 抵达右下，转身 */
   60% { top: 100%; transform: scaleX(-1) rotate(90deg); }
   90% { top: 0%; transform: scaleX(-1) rotate(90deg); }
   100% { top: 0%; transform: scaleX(1) rotate(90deg); } /* 回去调头 */
@@ -143,11 +135,10 @@ body {
 .flip-inner { position: absolute; width: 100%; height: 100%; transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55); transform-style: preserve-3d; }
 .flip-inner.is-flipped { transform: rotateY(180deg); }
 
-/* 中心卡片加重了毛玻璃，以便在复杂壁纸上突出显示 */
 .flip-front, .flip-back { 
   position: absolute; width: 100%; height: 100%; backface-visibility: hidden; 
-  background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); border: 2px solid rgba(255, 255, 255, 0.9);
+  background: rgba(255, 254, 245, 0.75); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+  border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); border: 2px solid rgba(255, 255, 255, 0.9);
   padding: 40px 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
 }
 .flip-back { transform: rotateY(180deg); align-items: stretch; text-align: left; padding: 40px 50px; }
@@ -159,55 +150,56 @@ body {
 .h-avatar-wrap img{width:100%;height:100%;object-fit:cover}
 .intro-text-side { flex: 1; }
 .h-name{font-family:var(--disp);font-size:3.5rem;line-height:1.1;color:var(--t1);margin-top: 5px; margin-bottom: 0px;}
-.rainbow{background:linear-gradient(90deg,var(--p),var(--v),var(--b));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.h-badge{display:inline-block;background:var(--white);padding:5px 14px;border-radius:100px;font-size:.85rem;font-weight:800;color:var(--p);box-shadow:0 4px 12px rgba(255,45,120,.1);margin-bottom: 8px;}
+.rainbow{background:linear-gradient(90deg,var(--neon-p),var(--neon-v),var(--neon-b));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.h-badge{display:inline-block;background:var(--white);padding:5px 14px;border-radius:100px;font-size:.85rem;font-weight:800;color:var(--neon-p);box-shadow:0 4px 12px rgba(255,45,120,.1);margin-bottom: 8px;}
 .h-typing{font-size:1.2rem;font-weight:600;color:var(--t2);margin-bottom: 1.2rem; display: flex; align-items: center; justify-content: center;}
-.typewriter-text{color:var(--v);font-family:var(--mono)}
-.typewriter-cursor{display:inline-block;width:3px;background-color:var(--v);margin-left:4px;animation:blink 0.8s infinite}
+.typewriter-text{color:var(--neon-v);font-family:var(--mono)}
+.typewriter-cursor{display:inline-block;width:3px;background-color:var(--neon-v);margin-left:4px;animation:blink 0.8s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 .h-desc{font-size:1.1rem;color:var(--t2);margin-bottom:2.5rem;max-width:580px;text-align: center; line-height: 1.6;}
 .h-btns{display:flex;gap:16px;justify-content:center;width:100%}
 .btn{text-decoration:none;padding:12px 28px;border-radius:100px;font-weight:800;transition:.2s;display:inline-block;z-index:1;cursor:pointer; font-size: 1rem;}
-.btn-main{background:var(--v);color:var(--white);box-shadow:0 8px 24px rgba(155,0,255,.3)}
+.btn-main{background:var(--neon-v);color:var(--white);box-shadow:0 8px 24px rgba(155,0,255,.3)}
 .btn-main:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(155,0,255,.4)}
-.btn-s{background:var(--white);color:var(--t2);box-shadow:0 8px 24px rgba(0,0,0,0.1)}
-.btn-s:hover{background:var(--vl);color:var(--v)}
+.btn-s{background:var(--white);color:var(--t2);box-shadow:0 8px 24px rgba(0,0,0,0.08)}
+.btn-s:hover{background:var(--vl);color:var(--neon-v)}
 
-/* 背面：简历排版（中英全覆盖翻译） */
-.resume-name { font-size: 2.2rem; font-family: var(--serf); font-weight: 900; color: var(--v); margin-bottom: 1.2rem; border-bottom: 2px dashed var(--brd); padding-bottom: 10px; text-align: center;}
+/* 背面：简历排版 (中英全覆盖翻译) */
+.resume-name { font-size: 2.2rem; font-family: var(--serf); font-weight: 900; color: var(--neon-v); margin-bottom: 1.2rem; border-bottom: 2px dashed var(--brd); padding-bottom: 10px; text-align: center;}
 .res-row { display: flex; align-items: center; font-size: 1.05rem; font-weight: 700; color: var(--t2); margin-bottom: 12px; }
 .res-icon { display: inline-block; width: 35px; font-size: 1.25rem; text-align: center;}
+/* 背面简历加厚毛玻璃和底色 */
 .edu-box { background: rgba(255,255,255,0.7); padding: 15px 20px; border-radius: 16px; border: 1px solid var(--white); margin-bottom: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.03);}
 .edu-title { font-weight: 900; color: var(--t1); font-size: 1.1rem; }
 .edu-sub { font-size: 0.95rem; color: var(--t2); font-weight: 700; margin-top: 4px; }
 
 /* 其他板块通用 */
-.s-tag{display:inline-block;font-size:.85rem;font-weight:800;color:var(--b);background:var(--bl);padding:4px 12px;border-radius:100px;margin-bottom:1rem}
+.s-tag{display:inline-block;font-size:.85rem;font-weight:800;color:var(--neon-b);background:var(--bl);padding:4px 12px;border-radius:100px;margin-bottom:1rem}
 .s-title{font-size:2.5rem;font-weight:900;margin-bottom:3rem;line-height:1.2}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.exp-card{background:var(--white);padding:32px;border-radius:24px;box-shadow:0 12px 32px var(--shd);display:flex;gap:20px;border:1px solid var(--brd);transition: all 0.4s ease; opacity:0; transform:translateY(30px)}
+.exp-card{background:var(--white);padding:32px;border-radius:24px;box-shadow:0 12px 32px rgba(155,0,255,.1);display:flex;gap:20px;border:1px solid var(--brd);transition: all 0.4s ease; opacity:0; transform:translateY(30px)}
 .exp-card.vis{opacity:1; transform:translateY(0)}
 .exp-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(155,0,255,.18)}
 .e-icon{width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
-.ei-p{background:var(--pl);color:var(--p)}.ei-v{background:var(--vl);color:var(--v)}.ei-b{background:var(--bl);color:var(--b)}.ei-g{background:var(--gl);color:var(--g)}
+.ei-p{background:var(--pl);color:var(--neon-p)}.ei-v{background:var(--vl);color:var(--neon-v)}.ei-b{background:var(--bl);color:var(--neon-b)}.ei-g{background:var(--gl);color:var(--g)}
 .e-org{font-weight:800;font-size:1.2rem;margin-bottom:4px}
-.e-role{color:var(--v);font-weight:700;font-size:.95rem;margin-bottom:8px}
+.e-role{color:var(--neon-v);font-weight:700;font-size:.95rem;margin-bottom:8px}
 .e-ul{list-style:none;margin-top:12px;font-size:.95rem;color:var(--t2)}
 .e-ul li{margin-bottom:8px;position:relative;padding-left:16px}
-.e-ul li::before{content:'✦';position:absolute;left:0;color:var(--v);font-size:.8rem;top:2px}
+.e-ul li::before{content:'✦';position:absolute;left:0;color:var(--neon-v);font-size:.8rem;top:2px}
 .chip{display:inline-block;padding:4px 12px;border-radius:100px;font-size:.8rem;font-weight:700;margin-bottom:12px;border:none}
-.c-p{color:var(--p);background:var(--pl)}.c-v{color:var(--v);background:var(--vl)}.c-b{color:var(--b);background:var(--bl)}
+.c-p{color:var(--neon-p);background:var(--pl)}.c-v{color:var(--neon-v);background:var(--vl)}.c-b{color:var(--neon-b);background:var(--bl)}
 .tl-wrap{max-width:800px;margin:0 auto;position:relative}
 .tl-wrap::before{content:'';position:absolute;width:2px;background:var(--brd);top:0;bottom:0;left:50%;transform:translateX(-50%)}
 .tl-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;position:relative;width:100%;opacity:0; transform:translateY(30px); transition: all 0.5s ease;}
 .tl-row.vis{opacity:1; transform:translateY(0)}
-.tl-row::after{content:'';position:absolute;width:16px;height:16px;background:var(--v);border:4px solid var(--white);border-radius:50%;left:50%;transform:translateX(-50%);box-shadow:0 0 0 4px var(--vl)}
-.tl-card{width:45%;background:var(--white);padding:20px;border-radius:20px;box-shadow:0 8px 24px var(--shd);border:1px solid var(--brd); transition: 0.3s;}
+.tl-row::after{content:'';position:absolute;width:16px;height:16px;background:var(--neon-v);border:4px solid var(--white);border-radius:50%;left:50%;transform:translateX(-50%);box-shadow:0 0 0 4px var(--vl)}
+.tl-card{width:45%;background:var(--white);padding:20px;border-radius:20px;box-shadow:0 8px 24px rgba(155,0,255,.07);border:1px solid var(--brd); transition: 0.3s;}
 .tl-card:hover{transform: translateY(-5px); box-shadow: 0 12px 30px rgba(155,0,255,.15);}
 .tl-row:nth-child(even) .tl-card{margin-left:auto}
-.tl-ev{font-weight:800;color:var(--v);margin-bottom:8px}
+.tl-ev{font-weight:800;color:var(--neon-v);margin-bottom:8px}
 .tl-d{font-size:.9rem;color:var(--t2)}
-.moment-card{display:flex;gap:15px;background:var(--white);padding:24px;border-radius:16px;box-shadow:0 8px 24px var(--shd);margin:0 auto 2rem;max-width:800px; opacity:0; transform:translateY(30px); transition: 0.5s ease;}
+.moment-card{display:flex;gap:15px;background:var(--white);padding:24px;border-radius:166px;box-shadow:0 8px 24px rgba(155,0,255,.07);margin:0 auto 2rem;max-width:800px; opacity:0; transform:translateY(30px); transition: 0.5s ease;}
 .moment-card.vis{opacity:1; transform:translateY(0)}
 .m-avatar img{width:50px;height:50px;border-radius:8px;object-fit:cover}
 .m-content{flex:1}
@@ -218,17 +210,17 @@ body {
 .m-gallery img:hover{filter:brightness(0.9)}
 .m-location{font-size:.85rem;color:#576b95;margin-bottom:8px;font-weight:600}
 .m-footer{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;color:#b2b2b2}
-.pow-card{background:var(--white);padding:24px;border-radius:24px;box-shadow:0 12px 32px var(--shd);border:1px solid var(--brd);text-align:center;width:100%;max-width:400px;margin:2rem auto}
-.pow-title{font-weight:900;color:var(--v);font-size:1.2rem;margin-bottom:4px}
+.pow-card{background:var(--white);padding:24px;border-radius:24px;box-shadow:0 12px 32px rgba(155,0,255,.1);border:1px solid var(--brd);text-align:center;width:100%;max-width:400px;margin:2rem auto}
+.pow-title{font-weight:900;color:var(--neon-v);font-size:1.2rem;margin-bottom:4px}
 .pow-sub{font-size:.75rem;color:var(--t3);font-weight:800;letter-spacing:1px;margin-bottom:16px}
 .pow-num{font-weight:900;font-size:3rem;line-height:1;color:var(--t1)}
 .pow-unit{font-size:.85rem;color:var(--t2);font-weight:700}
 .pow-bar-wrap{width:100%;height:8px;background:var(--vl);border-radius:100px;margin-bottom:16px;overflow:hidden;margin-top:10px}
-.pow-bar{height:100%;background:linear-gradient(90deg,var(--b),var(--v),var(--p));border-radius:100px;transition:width .3s}
-.pow-btn{background:var(--vl);color:var(--v);border:none;padding:12px 24px;border-radius:100px;font-weight:800;font-size:1rem;cursor:pointer;width:100%; transition: 0.2s;}
-.pow-btn:hover{background:var(--v);color:var(--white); transform:scale(1.02);}
+.pow-bar{height:100%;background:linear-gradient(90deg,var(--neon-b),var(--neon-v),var(--neon-p));border-radius:100px;transition:width .3s}
+.pow-btn{background:var(--vl);color:var(--neon-v);border:none;padding:12px 24px;border-radius:100px;font-weight:800;font-size:1rem;cursor:pointer;width:100%; transition: 0.2s;}
+.pow-btn:hover{background:var(--neon-v);color:var(--white); transform:scale(1.02);}
 .pow-msg{font-size:.85rem;color:var(--t2);margin-top:12px;font-weight:700}
-.plus1{position:absolute;color:var(--p);font-weight:900;animation:p1 .8s forwards;pointer-events:none}
+.plus1{position:absolute;color:var(--neon-p);font-weight:900;animation:p1 .8s forwards;pointer-events:none}
 @keyframes p1{0%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,-40px)}}
 .footer{text-align:center;padding:3rem 24px;color:var(--t2);font-weight:700;font-size:.9rem}
 
@@ -245,9 +237,16 @@ body {
   .global-routes { display: none; } 
   .cont-label { font-size: 1.1rem; }
 }
+
+/* 原始星光粒子特效恢复，霓虹色发光 */
+.particles-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; overflow: hidden; }
+.particle { position: absolute; bottom: -10px; background: var(--neon-v); border-radius: 50%; opacity: 0; animation: floatUp linear infinite; box-shadow: 0 0 10px var(--neon-v), 0 0 20px var(--neon-v); }
+@keyframes floatUp { 0% { transform: translateY(0) scale(0.5); opacity: 0; } 10% { opacity: 0.7; } 80% { opacity: 0.2; } 100% { transform: translateY(-120vh) scale(1.5); opacity: 0; } }
 </style>
 </head>
-<body>
+<body style="background: transparent;">
+
+<div class="particles-bg" id="particlesBg"></div>
 
 <nav class="nav">
   <div class="nav-links">
@@ -263,42 +262,27 @@ body {
 
 <section id="hero">
 
-  <div class="marine whale">🐋</div>
-  <div class="marine dolphin">🐬</div>
-
   <div class="map-layer">
     
-    <div class="continent-wrapper cont-tl">
-      <svg class="island-path" viewBox="0 0 100 100" preserveAspectRatio="none" onclick="document.getElementById('timeline').scrollIntoView({behavior: 'smooth'});">
-        <defs><linearGradient id="g-tl" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="rgba(255,174,201,0.7)"/><stop offset="100%" stop-color="rgba(255,45,120,0.7)"/></linearGradient></defs>
-        <path d="M 0 0 L 100 0 C 80 20, 95 45, 65 65 C 40 85, 45 95, 30 100 L 0 100 Z" fill="url(#g-tl)" vector-effect="non-scaling-stroke"/>
-      </svg>
+    <div class="continent cont-tl" onclick="document.getElementById('timeline').scrollIntoView({behavior: 'smooth'});">
       <div class="island-content">
         <div class="anim-edu">📖<span class="math-sym sym1">∑</span><span class="math-sym sym2">∫</span><span class="math-sym sym3">{ }</span></div>
       </div>
     </div>
     
-    <div class="continent-wrapper cont-tr">
-      <svg class="island-path" viewBox="0 0 100 100" preserveAspectRatio="none" onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'});">
-        <defs><linearGradient id="g-tr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="rgba(255,223,115,0.7)"/><stop offset="100%" stop-color="rgba(255,183,0,0.7)"/></linearGradient></defs>
-        <path d="M 0 0 L 100 0 L 100 100 C 85 95, 80 75, 60 65 C 45 55, 30 50, 15 35 C 5 20, 15 10, 0 0 Z" fill="url(#g-tr)" vector-effect="non-scaling-stroke"/>
-      </svg>
+    <div class="continent cont-tr" onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'});">
       <div class="island-content">
         <div class="anim-res">🔬<span class="bubble b1">🫧</span><span class="bubble b2">🫧</span></div>
       </div>
     </div>
     
-    <div class="continent-wrapper cont-bl">
-      <svg class="island-path" viewBox="0 0 100 100" preserveAspectRatio="none" onclick="document.getElementById('life').scrollIntoView({behavior: 'smooth'});">
-        <defs><linearGradient id="g-bl" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="rgba(124,214,255,0.7)"/><stop offset="100%" stop-color="rgba(0,170,255,0.7)"/></linearGradient></defs>
-        <path d="M 0 100 L 100 100 C 85 80, 95 55, 65 45 C 45 35, 30 25, 20 10 C 15 0, 5 15, 0 0 Z" fill="url(#g-bl)" vector-effect="non-scaling-stroke"/>
-      </svg>
+    <div class="continent cont-bl" onclick="document.getElementById('life').scrollIntoView({behavior: 'smooth'});">
       <div class="island-content">
         <div class="anim-life">
           <div class="mini-cat">🐱</div>
           <svg viewBox="0 0 200 200" class="f1-track-svg">
-            <path id="f1-mini-path" d="M 160 100 A 60 40 0 1 0 40 100 A 60 40 0 1 0 160 100 Z" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="4" stroke-dasharray="8 8"/>
-            <text class="f1-car" text-anchor="middle" dominant-baseline="central" transform="rotate(180) translate(0, -5)">🏎️
+            <path id="f1-mini-path" d="M 160 100 A 70 40 0 1 0 20 100 A 70 40 0 1 0 160 100 Z" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="4" stroke-dasharray="8 8"/>
+            <text class="f1-car" text-anchor="middle" dominant-baseline="central">🏎️
                <animateMotion dur="4.5s" repeatCount="indefinite" rotate="auto"><mpath href="#f1-mini-path"/></animateMotion>
             </text>
           </svg>
@@ -306,16 +290,9 @@ body {
       </div>
     </div>
     
-    <div class="continent-wrapper cont-br">
-      <svg class="island-path" viewBox="0 0 100 100" preserveAspectRatio="none" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">
-        <defs><linearGradient id="g-br" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="rgba(208,156,255,0.7)"/><stop offset="100%" stop-color="rgba(155,0,255,0.7)"/></linearGradient></defs>
-        <path d="M 100 100 L 0 100 C 20 85, 10 65, 35 50 C 50 40, 60 25, 75 15 C 85 5, 95 15, 100 0 Z" fill="url(#g-br)" vector-effect="non-scaling-stroke"/>
-      </svg>
+    <div class="continent cont-br" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">
       <div class="island-content">
-        <div class="anim-ppl">
-          ⛺<div class="letter">✉️</div>
-          <span class="spark sp1"></span><span class="spark sp2"></span><span class="spark sp3"></span>
-        </div>
+        <div class="anim-ppl">⛺<div class="letter">✉️</div><span class="spark sp1"></span><span class="spark sp2"></span><span class="spark sp3"></span></div>
       </div>
     </div>
 
@@ -328,9 +305,9 @@ body {
     <div class="cont-label label-br" data-i18n="map.ppl">相望·最近的灯火</div>
 
     <svg class="plane-svg" viewBox="0 0 100 100" preserveAspectRatio="none" style="width:100%; height:100%;">
-      <path id="plane-path" d="M 12 15 Q 50 0 88 15 Q 100 50 88 85 Q 50 100 12 85 Q 0 50 12 15 Z" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="0.3" stroke-dasharray="1.5 1.5"/>
-      <g filter="drop-shadow(1px 2px 1px rgba(0,0,0,0.5))">
-        <text font-size="5" text-anchor="middle" dominant-baseline="central" transform="rotate(-45)">✈️
+      <path id="plane-path" d="M 12 15 Q 50 0 88 15 Q 100 50 88 85 Q 50 100 12 85 Q 0 50 12 15 Z" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.3" stroke-dasharray="1.5 1.5"/>
+      <g filter="drop-shadow(1px 2px 1px rgba(0,0,0,0.3))">
+        <text font-size="5" text-anchor="middle" dominant-baseline="central" transform="rotate(-40)">✈️
           <animateMotion dur="24s" repeatCount="indefinite" rotate="auto" 
             calcMode="spline" 
             keyTimes="0; 0.166; 0.25; 0.416; 0.5; 0.666; 0.75; 0.916; 1" 
@@ -369,15 +346,15 @@ body {
 
       <div class="flip-back" style="pointer-events: auto;">
         <div class="resume-name" data-i18n="res.name">王臻 Zhen Wang</div>
-        <div class="res-row"><span class="res-icon">📱</span> <span data-i18n="res.phone">手机 Phone: +86 15205181003 / +1 858-220-8768</span></div>
-        <div class="res-row"><span class="res-icon">📧</span> <span data-i18n="res.email">邮箱 Email: zhw124@ucsd.edu</span></div>
-        <div class="res-row"><span class="res-icon">🎂</span> <span data-i18n="res.dob">出生日期 DOB: 2007/01/07 &nbsp;&nbsp;&nbsp; ♂️ 性别 Gender: 男 Male</span></div>
-        <div class="res-row"><span class="res-icon">📍</span> <span data-i18n="res.loc">所在地 Location: 中国 上海 Shanghai & 美国 圣地亚哥 San Diego</span></div>
+        <div class="res-row"><span class="res-icon" style="text-shadow: 0 0 10px var(--neon-p); color: var(--neon-p);">📱</span> <span data-i18n="res.phone">手机 Phone: +86 15205181003 / +1 858-220-8768</span></div>
+        <div class="res-row"><span class="res-icon" style="text-shadow: 0 0 10px var(--neon-p); color: var(--neon-p);">📧</span> <span data-i18n="res.email">邮箱 Email: zhw124@ucsd.edu</span></div>
+        <div class="res-row"><span class="res-icon" style="text-shadow: 0 0 10px var(--neon-p); color: var(--neon-p);">🎂</span> <span data-i18n="res.dob">出生日期 DOB: 2007/01/07 &nbsp;&nbsp;&nbsp; ♂️ 性别 Gender: 男 Male</span></div>
+        <div class="res-row"><span class="res-icon" style="text-shadow: 0 0 10px var(--neon-b); color: var(--neon-b);">📍</span> <span data-i18n="res.loc">所在地 Location: 中国 上海 Shanghai & 美国 圣地亚哥 San Diego</span></div>
         
         <hr style="margin: 15px 0; border: none; border-top: 2px dashed rgba(155,0,255,0.2);">
         
         <div class="edu-box">
-          <div class="edu-title" data-i18n="res.edu1t">🎓 加州大学圣地亚哥分校 (UCSD)</div>
+          <div class="edu-title" data-i18n="res.edu1t">🎓 UC San Diego (UCSD)</div>
           <div class="edu-sub" data-i18n="res.edu1s">本科 | 2025.09 - 至今 (Present)</div>
         </div>
         <div class="edu-box">
@@ -517,7 +494,7 @@ function toggleFlip() {
   document.getElementById('flipCard').classList.toggle('is-flipped');
 }
 
-/* ====== 🌍 坚如磐石的双语字典 (反转背面与全 UI 覆盖) 🌍 ====== */
+/* ====== 🌍 坚如磐石的双语字典 (反转背面绝对覆盖翻译) 🌍 ====== */
 const T={
 zh:{
 'map.edu': '对白·无言之书', 'map.res': '求证·大地的底稿', 'map.life': '漫游·心底的牧场', 'map.ppl': '相望·最近的灯火',
@@ -527,51 +504,43 @@ zh:{
 'res.email': '邮箱 Email: zhw124@ucsd.edu',
 'res.dob': '出生日期 DOB: 2007/01/07 &nbsp;&nbsp;&nbsp; ♂️ 性别 Gender: 男 Male',
 'res.loc': '所在地 Location: 中国 上海 Shanghai & 美国 圣地亚哥 San Diego',
-'res.edu1t': '🎓 加州大学圣地亚哥分校 (UCSD)', 'res.edu1s': '本科 | 2025.09 - 至今',
+'res.edu1t': '🎓 UC San Diego (UCSD)', 'res.edu1s': '本科 | 2025.09 - 至今 (Present)',
 'res.edu2t': '🏫 上海市世外中学 (WFLA)', 'res.edu2s': '高中 | 2022.09 - 2025.06',
 'res.back': '↩ 返回正面界面',
-'nav.exp':'经历','nav.tl':'时间轴','nav.proj':'项目','nav.sk':'技能','nav.mom':'生活','nav.ct':'联系','hero.badge':'UCSD 2029届 · 圣地亚哥','hero.name2':'Wang ✦','hero.focus':'我专注于：','hero.desc':'UCSD 数据科学 & 数学-计算机科学双专业在读，边缘 AI 能效研究员。在数据、算法和 AI 的交叉点探索世界 ✨','pow.title':'旅行者能量站','pow.sub':'VISITOR ENERGY STATION','pow.unit':'份能量已收到','pow.btn':'点击充能 +1','pow.msg0':'你好呀旅行者，快来给我充能吧！','exp.tag':'研究 & 经历','exp.title1':'我做过的','exp.title2':'研究与探索',
-'e1.org':'UCSD · 独立本科科研项目','e1.role':'独立研究员 — 边缘 AI 热节流效应研究','e1.date':'2026.03 – 至今','e1.b1':'独立主导课题：边缘 AI 热节流效应与能效关系。导师：Peter Chi 教授。','e1.b2':'在 GPU/Jetson 设备上部署 Llama-3，使用 nvidia-smi & Prometheus 实时采集 GPU 温度、时钟频率、功耗与吞吐量。','e1.b3':'构建"效率-热量"量化模型，产出含可视化仪表盘的技术报告，为不同热状态下 AI 推理提供实证数据。',
-'e3.org':'上海交通大学 · 心理学院','e3.role':'研究助理 — 儿童发展与家庭研究实验室','e3.date':'2024.06 – 2025.09','e3.b1':'在孙晓宁教授课题组处理 500+ 小时幼儿行为结构化数据，推动大规模发展研究数据的系统化分析。','e3.b2':'使用 Stata & Excel 管理发展评估数据集，与博士生协作构建自动化流程，完成 95 份标准化计算分析报告。','e3.b3':'主导设计 60 项变量采集工具；独立执行 28 名儿童的标准化评估（韦氏量表、TEC）。','e3.b4':'担任《Developmental Psychology》期刊审稿人；每周文献研讨会完成 10 次方法学批判性汇报。',
-'e4.org':'上海市世外中学 · 学生会','e4.role':'实践部副部长','e4.date':'2023.09 – 2024.09','e4.b1':'管理 108 人校志愿者团队，统筹调度电影博物馆、敦煌文化周、中国文化周、爱心义卖、篮球班赛等多类活动。',
-'tl.tag':'人生时间轴','tl.title1':'走过的','tl.title2':'每一步',
-'tl1.ev':'🏫 上海市世外中学（高中）','tl1.d':'高中三年，发现对数据科学与社会科学的深厚兴趣，系统打磨独立思考与自学能力，厚积薄发。','tl2.ev':'🎖️ 学生会实践部副部长','tl2.d':'领导 108 人志愿者团队，在高三繁忙学业中磨砺组织能力与领导力，统筹多项大型校园文化活动。','tl3.ev':'🔬 上海交大心理学院 RA','tl3.d':'人生第一段正式科研经历。独立执行 28 名儿童认知评估，处理 500+ 小时数据，学会了 Stata 与系统化研究方法。','tl4.ev':'✈️ 远赴加州，开启 UCSD','tl4.d':'带着好奇与期待飞越太平洋，开始数据科学 & 数学-计算机科学双专业本科学习。GPA 4.0/4.0。','tl5.ev':'📝 "学生为何上学"社会学研究','tl5.d':'带领 5 人团队完成 10 场深度访谈，运用假设检验与定性编码，合作撰写 25 页研究报告。满分 100/100 ⭐','tl6.ev':'📈 英超转会分析项目','tl6.d':'用 Python/Pandas 爬取 Transfermarkt 近 10 年数据，构建时间序列数据集，用线性回归量化转会投入与竞技成绩的关系。','tl8.ev':'🏆 独立科研：边缘 AI 能效','tl8.d':'获得本科科研资助，独立主导边缘 AI 热节流效应研究，导师 Peter Chi 教授。向高性能计算与 AI 研究全力冲刺。',
-'proj.tag':'精选项目','proj.title1':'做出来的','proj.title2':'成果',
-'p1.t':'边缘 AI 热节流效应研究','p1.d':'独立本科科研项目，在 Jetson 上部署 Llama-3，构建实时监控管道与"效率-热量"量化模型，探究边缘推理能效边界。','p2.t':'英超转会花费与净胜球关系分析','p2.d':'用 Python/Pandas 从 Transfermarkt 爬取 20 支球队近 10 年数据，用线性回归量化转会投入与竞技成绩的相关性。','p3.t':'"学生为何上学" 社会学研究','p3.d':'带领 5 人团队完成 10 场深度访谈，运用统计假设检验与定性编码处理数据，合作完成 25 页研究报告。满分 100/100 ⭐','p4.t':'儿童发展数据流水线','p4.d':'在上海交大自动化 Stata/Excel 工作流，处理 500+ 小时行为数据。设计 60 变量问卷，为 28 名儿童执行韦氏量表等标准化评估。',
-'sk.tag':'技能树','sk.title1':'我的','sk.title2':'能力点',
-'sk1.n':'编程与工程','sk1.d':'高性能计算、数据处理流水线、自动化脚本与面向对象系统开发。','sk2.n':'数据分析','sk2.d':'统计建模、假设检验、线性回归建模、数据清洗与探索性分析（EDA）。','sk3.n':'研究方法','sk3.d':'定性与定量混合方法、深度访谈设计、行为实验执行与结构化报告撰写。','sk4.n':'AI & 机器学习','sk4.d':'边缘 AI 部署、LLM 推理、监督学习与 GPU 性能剖析。','sk5.n':'工具与平台','sk5.d':'覆盖研究分析全链路的行业工具，熟练构建可复现的数据流水线。','sk6.n':'表达与传播','sk6.d':'中英双语写作与演示。Bilibili 内容创作者，视频累计播放量 15.5 万+。',
-'mom.tag':'生活分享','mom.title1':'我的','mom.title2':'朋友圈','mom.note':'这里是我的生活碎片。内容持续更新中，快来看看我最近在干嘛～','moment1.text': 'Sept.30-Oct.13 劳力士上海大师赛 🎾','moment1.location': '中国 上海市 旗忠网球中心','moment1.date': '2024年10月11日','ct.tag':'联系我','ct.title1':'一起','ct.title2':'搞点有意思的事','ct.h3':'一起做些有趣的事吧！','ct.p1':'我目前是 UCSD 的独立本科研究员，在研究边缘 AI 能效问题。随时欢迎聊科研、数据科学，或者只是打个招呼 ✨','ct.btn':'发消息给我 💌','ft':'用','ft2':'制作 · UCSD 数据科学 & 数学-CS'
+'nav.exp':'经历','nav.tl':'时间轴','nav.proj':'项目','nav.sk':'技能','nav.mom':'生活','nav.ct':'联系','hero.badge':'UCSD Class of 2029 · San Diego','hero.name2':'Wang ✦','hero.focus':'我专注于：','hero.desc':'Double-major in Data Science & Math-CS at UCSD, Edge AI efficiency researcher. Exploring the intersection of data, algorithms and AI ✨','pow.title':'旅行者能量站','pow.sub':'VISITOR ENERGY STATION','pow.unit':'energy received','pow.btn':'Charge +1','pow.msg0':'Hello traveler! Click to give me energy!','exp.tag':'Research & Experience','exp.title1':"What I've",'exp.title2':'built & studied',
+'e1.org':'UCSD · Independent Undergraduate Research','e1.role':'Independent Researcher — Edge AI Thermal Throttling','e1.date':'Mar 2026 – Present','e1.b1':'独立主导课题：边缘 AI 热节流效应与能效关系。导师：Peter Chi 教授。','e1.b2':'在 GPU/Jetson 设备上部署 Llama-3，使用 nvidia-smi & Prometheus 实时采集 GPU 温度、时钟频率、功耗与吞吐量。','e1.b3':'构建"效率-热量"量化模型，产出含可视化仪表盘的技术报告，为不同热状态下 AI 推理提供实证数据。',
+'e3.org':'上海交通大学 · 心理学院','e3.role':'研究助理 — 儿童发展与家庭研究实验室','e3.date':'Jun 2024 – Sep 2025','e3.b1':'在孙晓宁教授课题组处理 500+ 小时幼儿行为结构化数据，推动大规模发展研究数据的系统化分析。','e3.b2':'使用 Stata & Excel 管理发展评估数据集，与博士生协作构建自动化流程，完成 95 份标准化计算分析报告。','e3.b3':'主导设计 60 项变量采集工具；独立执行 28 名儿童的标准化评估（韦氏量表、TEC）。','e3.b4':'担任《Developmental Psychology》期刊审稿人；每周文献研讨会完成 10 次方法学批判性汇报。',
+'e4.org':'上海市世外中学 · 学生会','e4.role':'实践部副部长','e4.date':'Sep 2023 – Sep 2024','e4.b1':'管理 108 人校志愿者团队，统筹调度电影博物馆、敦煌文化周、中国文化周、爱心义卖、篮球班赛等多类活动。',
+'tl.tag':'Life Timeline','tl.title1':'Every step','tl.title2':'of the journey',
+'tl1.ev':'🏫 上海市世外中学（高中）','tl1.d':'Three years of high school. Discovered deep passion for data science and social science; honed independent thinking.','tl2.ev':'🎖️ 学生会实践部副部长','tl2.d':'Led a 108-member volunteer team through major campus events, honing leadership and organizational skills.','tl3.ev':'🔬 SJTU Psychology Dept. RA','tl3.d':'First formal research experience. Conducted cognitive assessments for 28 children, processed 500+ hours of data.','tl4.ev':'✈️ 远赴加州，开启 UCSD','tl4.d':'Crossed the Pacific to begin a double major in Data Science & Math-CS. GPA: 4.0/4.0.','tl5.ev':'📝 "为何上学"社会学研究','tl5.d':'带领 5 人团队完成 10 场深度访谈，运用假设检验与定性编码，合作撰写 25 页研究报告。满分 100/100 ⭐','tl6.ev':'📈 英超转会分析项目','tl6.d':'Scraped 10 years of EPL transfer data; quantified ROI using linear regression.','tl8.ev':'🏆 独立科研：边缘 AI 能效','tl8.d':'Received undergrad research funding to lead edge AI thermal study under Prof. Chi.',
+'proj.tag':'精选项目','proj.title1':"Things I've",'proj.title2':'shipped',
+'p1.t':'边缘 AI 热节流效应研究','p1.d':'Independent undergrad research. Deployed Llama-3, built monitoring pipeline and efficiency-to-heat model.','p2.t':'英超转会花费与净胜球分析','p2.d':'Scraped 10 years of EPL data. Used linear regression to quantify transfer ROI.','p3.t':'"为何上学" 社会学研究','p3.d':'Led a 5-member team through 10 interviews, hypothesis testing, and qual coding. 100/100 ⭐','p4.t':'儿童发展数据流水线','p4.d':'Automated workflows at SJTU for 500+ hours data. Conducted Wechsler assessments.',
+'sk.tag':'Skill Tree','sk.title1':'My','sk.title2':'capabilities',
+'sk1.n':'编程与工程','sk1.d':'高性能计算、数据处理流水线、自动化脚本与面向对象系统开发。','sk2.n':'数据分析','sk2.d':'统计建模、假设检验、线性回归建模、数据清洗与探索性分析（EDA）。','sk3.n':'研究方法','sk3.d':'Qual & quant mixed methods, in-depth interviews, behavioral experiments.','sk4.n':'AI & 机器学习','sk4.d':'Edge AI deployment, LLM inference, supervised learning, and GPU performance profiling.','sk5.n':'工具与平台','sk5.d':'覆盖研究分析全链路的行业工具，熟练构建可复现的数据流水线。','sk6.n':'表达与传播','sk6.d':'Bilingual writing & presentation. Bilibili creator with 155K+ total views.',
+'mom.tag':'Life Sharing','mom.title1':'My','mom.title2':'Moments','mom.note':"Snippets of my life. Updated regularly — come see what I've been up to!",'moment1.text': 'Sept.30-Oct.13 Rolex Shanghai Masters 🎾','moment1.location': '旗忠网球中心, 上海','moment1.date': 'Oct 11, 2024','ct.tag':'Contact','ct.title1':"Let's",'ct.title2':'build something together','ct.h3':"Let's do something interesting!",'ct.p1':"I'm an independent undergraduate researcher at UCSD studying edge AI efficiency. Happy to chat! ✨",'ct.btn':'Send me a message 💌','ft':'Made with','ft2':'· UCSD Data Science & Math-CS'
 },
 en:{
 'map.edu': 'In-Class Learning', 'map.res': 'Research & Projects', 'map.life': 'Daily Life & Hobbies', 'map.ppl': 'Connections',
-'hero.cta1':'Explore Me', 'hero.cta2':'Click to view personal info',
-'res.name': 'Zhen Wang',
+'hero.cta1':'深入探索我', 'hero.cta2':'Click to view personal info',
+'res.name': '王臻 Zhen Wang',
 'res.phone': 'Phone: +86 15205181003 / +1 858-220-8768',
 'res.email': 'Email: zhw124@ucsd.edu',
 'res.dob': 'DOB: 2007/01/07 &nbsp;&nbsp;&nbsp; Gender: Male',
 'res.loc': 'Location: Shanghai, China & San Diego, USA',
-'res.edu1t': '🎓 UC San Diego (UCSD)', 'res.edu1s': 'Undergrad | 2025.09 - Present',
-'res.edu2t': '🏫 Shanghai World Foreign Language Academy (WFLA)', 'res.edu2s': 'High School | 2022.09 - 2025.06',
+'res.edu1t': '🎓 UC San Diego (UCSD)', 'res.edu1s': '本科 | 2025.09 - 至今 (Present)',
+'res.edu2t': '🏫 上海市世外中学 (WFLA)', 'res.edu2s': '高中 | 2022.09 - 2025.06',
 'res.back': '↩ Back to Front',
 'nav.exp':'Experience','nav.tl':'Timeline','nav.proj':'Projects','nav.sk':'Skills','nav.mom':'Life','nav.ct':'Contact','hero.badge':'UCSD Class of 2029 · San Diego','hero.name2':'Wang ✦','hero.focus': 'I focus on: ','hero.desc':'Double-major in Data Science & Math-CS at UCSD, Edge AI efficiency researcher. Exploring the intersection of data, algorithms and AI ✨','pow.title':'Traveler Energy Station','pow.sub':'VISITOR ENERGY STATION','pow.unit':'energy received','pow.btn':'Charge +1','pow.msg0':'Hello traveler! Click to give me energy!','exp.tag':'Research & Experience','exp.title1':"What I've",'exp.title2':'built & studied',
-'e1.org':'UCSD · Independent Undergraduate Research','e1.role':'Independent Researcher — Edge AI Thermal Throttling','e1.date':'Mar 2026 – Present','e1.b1':'Independently leading a study on thermal throttling & energy efficiency in edge AI. Advisor: Prof. Peter Chi.','e1.b2':'Deployed Llama-3 on Jetson; collected real-time GPU temperature, clock speed, power draw via nvidia-smi & Prometheus.','e1.b3':'Built a quantitative efficiency-to-heat model with visualization dashboards on AI inference energy cost.',
-'e3.org':'Shanghai Jiao Tong University · Dept. of Psychology','e3.role':'Research Assistant — Child Development & Family Studies Lab','e3.date':'Jun 2024 – Sep 2025','e3.b1':'Processed 500+ hours of behavioral datasets under Prof. Xiaoning Sun.','e3.b2':'Managed assessment data in Stata & Excel; automated workflows, producing 95 standardized reports.','e3.b3':'Designed 60-variable survey instruments; conducted Wechsler & TEC assessments for 28 children.','e3.b4':'Reviewed papers for Developmental Psychology journal; delivered 10 methodology assessments weekly.',
-'e4.org':'Shanghai World Foreign Language Academy · Student Union','e4.role':'Practice Dept. Vice Minister','e4.date':'Sep 2023 – Sep 2024','e4.b1':'Managed a 108-member volunteer team, organizing museum, cultural, charity, and sports events.',
+'e1.org':'UCSD · Independent Undergraduate Research','e1.role':'Independent Researcher — Edge AI Thermal Throttling','e1.date':'Mar 2026 – Present','e1.b1':'独立主导课题：边缘 AI 热节流效应与能效关系。导师：Peter Chi 教授。','e1.b2':'在 GPU/Jetson 设备上部署 Llama-3，使用 nvidia-smi & Prometheus 实时采集 GPU 温度、时钟频率、功耗与吞吐量。','e1.b3':'构建"效率-热量"量化模型，产出含可视化仪表盘的技术报告，为不同热状态下 AI 推理提供实证数据。',
+'e3.org':'Shanghai Jiao Tong University · Dept. of Psychology','e3.role':'Research Assistant — Child Development & Family Studies Lab','e3.date':'Jun 2024 – Sep 2025','e3.b1':'在孙晓宁教授课题组处理 500+ 小时幼儿行为结构化数据，推动大规模发展研究数据的系统化分析。','e3.b2':'使用 Stata & Excel 管理发展评估数据集，与博士生协作构建自动化流程，完成 95 份标准化计算分析报告。','e3.b3':'主导设计 60 项变量采集工具；独立执行 28 名儿童的标准化评估（韦氏量表、TEC）。','e3.b4':'担任《Developmental Psychology》期刊审稿人；每周文献研讨会完成 10 次方法学批判性汇报。',
+'e4.org':'Shanghai World Foreign Language Academy · Student Union','e4.role':'Practice Dept. Vice Minister','e4.date':'Sep 2023 – Sep 2024','e4.b1':'管理 108 人校志愿者团队，统筹调度电影博物馆、敦煌文化周、中国文化周、爱心义卖、篮球班赛等多类活动。',
 'tl.tag':'Life Timeline','tl.title1':'Every step','tl.title2':'of the journey',
-'tl1.ev':'🏫 Shanghai World Foreign Language Academy','tl1.d':'Three years of high school. Discovered deep passion for data science and social science; honed independent thinking.','tl2.ev':'🎖️ Student Union Vice Minister','tl2.d':'Led a 108-member volunteer team through major campus events, honing leadership and organizational skills.','tl3.ev':'🔬 SJTU Psychology Dept. RA','tl3.d':'First formal research experience. Conducted cognitive assessments for 28 children, processed 500+ hours of data.','tl4.ev':'✈️ Off to California — UCSD Begins','tl4.d':'Crossed the Pacific to begin a double major in Data Science & Math-CS. GPA: 4.0/4.0.','tl5.ev':'📝 "Why Do Students Go to College?"','tl5.d':'Led a 5-member sociology team through 10 interviews, hypothesis testing, and qualitative coding. Score: 100/100 ⭐','tl6.ev':'📈 EPL Transfer Spending Analysis','tl6.d':'Scraped 10 years of Premier League transfer data from Transfermarkt; quantified ROI using linear regression.','tl8.ev':'🏆 Independent Research: Edge AI','tl8.d':'Received undergraduate research funding to lead edge AI thermal throttling research under Prof. Peter Chi.',
+'tl1.ev':'🏫 上海市世外中学（高中）','tl1.d':'Three years of high school. Discovered deep passion for data science and social science; honed independent thinking.','tl2.ev':'🎖️ 学生会实践部副部长','tl2.d':'Led a 108-member volunteer team through major campus events, honing leadership and organizational skills.','tl3.ev':'🔬 SJTU Psychology Dept. RA','tl3.d':'First formal research experience. Conducted cognitive assessments for 28 children, processed 500+ hours of data.','tl4.ev':'✈️ 远赴加州，开启 UCSD','tl4.d':'Crossed the Pacific to begin a double major in Data Science & Math-CS. GPA: 4.0/4.0.','tl5.ev':'📝 "为何上学"社会学研究','tl5.d':'带领 5 人团队完成 10 场深度访谈，运用假设检验与定性编码，合作撰写 25 页研究报告。满分 100/100 ⭐','tl6.ev':'📈 英超转会分析项目','tl6.d':'Scraped 10 years of EPL transfer data; quantified ROI using linear regression.','tl8.ev':'🏆 独立科研：边缘 AI 能效','tl8.d':'Received undergrad research funding to lead edge AI thermal study under Prof. Chi.',
 'proj.tag':'Selected Projects','proj.title1':"Things I've",'proj.title2':'shipped',
-'p1.t':'Edge AI Thermal Throttling Study','p1.d':'Independent undergraduate research. Deployed Llama-3 on Jetson, built monitoring pipeline and efficiency-to-heat model.',
-'p2.t':'EPL Transfer Spending vs. Goal Difference','p2.d':'Scraped 10 years of Premier League data from Transfermarkt. Applied linear regression to quantify transfer ROI.',
-'p3.t':'"Why Do Students Go to College?"','p3.d':'Led a 5-member team through 10 interviews, hypothesis testing, and qualitative coding. 25-page report. 100/100 ⭐',
-'p4.t':'Child Development Data Pipeline','p4.d':'Automated Stata/Excel workflows at SJTU for 500+ hours of data. Conducted Wechsler assessments for 28 children.',
+'p1.t':'边缘 AI 热节流效应研究','p1.d':'Independent undergrad research. Deployed Llama-3, built monitoring pipeline and efficiency-to-heat model.','p2.t':'英超转会花费与净胜球分析','p2.d':'Scraped 10 years of EPL data. Used linear regression to quantify transfer ROI.','p3.t':'"为何上学" 社会学研究','p3.d':'Led a 5-member team through 10 interviews, hypothesis testing, and qual coding. 100/100 ⭐','p4.t':'儿童发展数据流水线','p4.d':'Automated workflows at SJTU for 500+ hours data. Conducted Wechsler assessments.',
 'sk.tag':'Skill Tree','sk.title1':'My','sk.title2':'capabilities',
-'sk1.n':'Programming & Engineering','sk1.d':'HPC, data processing pipelines, automation scripts, and OOP systems development.',
-'sk2.n':'Data Analysis','sk2.d':'Statistical modeling, hypothesis testing, linear regression, data cleaning, and EDA at scale.',
-'sk3.n':'Research Methods','sk3.d':'Mixed-methods research, in-depth interview design, behavioral experiment execution, and structured reporting.',
-'sk4.n':'AI & Machine Learning','sk4.d':'Edge AI deployment, LLM inference, supervised learning, and GPU performance profiling.',
-'sk5.n':'Tools & Platforms','sk5.d':'Industry-standard tools for full-stack research workflows and reproducible data pipelines.',
-'sk6.n':'Communication','sk6.d':'Bilingual Chinese/English writing and presentation. Bilibili creator with 155K+ total views.',
-'mom.tag':'Life Sharing','mom.title1':'My','mom.title2':'Moments','mom.note':"Snippets of my life. Updated regularly — come see what I've been up to!",'moment1.text': 'Sept.30-Oct.13 at Rolex Shanghai Masters 🎾','moment1.location': 'Qi Zhong Tennis Center, Shanghai','moment1.date': 'Oct 11, 2024','ct.tag':'Contact','ct.title1':"Let's",'ct.title2':'build something together','ct.h3':"Let's do something interesting!",'ct.p1':"I'm an independent undergraduate researcher at UCSD studying edge AI energy efficiency. Happy to chat! ✨",'ct.btn':'Send me a message 💌','ft':'Made with','ft2':'· UCSD Data Science & Math-CS'
+'sk1.n':'编程与工程','sk1.d':'高性能计算、数据处理流水线、自动化脚本与面向对象系统开发。','sk2.n':'数据分析','sk2.d':'统计建模、假设检验、线性回归建模、数据清洗与探索性分析（EDA）。','sk3.n':'研究方法','sk3.d':'Qual & quant mixed methods, in-depth interviews, behavioral experiments.','sk4.n':'AI & 机器学习','sk4.d':'Edge AI deployment, LLM inference, supervised learning, and GPU performance profiling.','sk5.n':'工具与平台','sk5.d':'覆盖研究分析全链路的行业工具，熟练构建可复现的数据流水线。','sk6.n':'表达与传播','sk6.d':'Bilingual writing & presentation. Bilibili creator with 155K+ total views.',
+'mom.tag':'Life Sharing','mom.title1':'My','mom.title2':'Moments','mom.note':"Snippets of my life. Updated regularly — come see what I've been up to!",'moment1.text': 'Sept.30-Oct.13 Rolex Shanghai Masters 🎾','moment1.location': '旗忠网球中心, 上海','moment1.date': 'Oct 11, 2024','ct.tag':'Contact','ct.title1':"Let's",'ct.title2':'build something together','ct.h3':"Let's do something interesting!",'ct.p1':"I'm an independent undergraduate researcher at UCSD studying edge AI efficiency. Happy to chat! ✨",'ct.btn':'Send me a message 💌','ft':'Made with','ft2':'· UCSD Data Science & Math-CS'
 }};
 
 let lang='zh';
@@ -603,6 +572,24 @@ function typeEffect(){
 }
 initPow();
 typeEffect();
+
+/* 原始霓虹粒子特效 */
+function createParticles(){
+  const bg=document.getElementById('particlesBg');
+  if(!bg)return;
+  for(let i=0;i<40;i++){
+    let p=document.createElement('div');
+    p.className='particle';
+    p.style.left=Math.random()*100+'vw';
+    p.style.animationDuration=(Math.random()*15+10)+'s';
+    p.style.animationDelay='-'+(Math.random()*20)+'s';
+    const size=Math.random()*3+2;
+    p.style.width=size+'px';
+    p.style.height=size+'px';
+    bg.appendChild(p);
+  }
+}
+createParticles();
 
 applyLang();const originalApplyLang=applyLang;applyLang=function(){originalApplyLang();clearTimeout(typingTimeout);isDeleting=false;typingCharIndex=0;typeEffect();};
 </script>
