@@ -13,12 +13,12 @@ html { scroll-behavior: smooth; }
   --p:#FF2D78;--pl:#FFE5EE; --y:#FFB700;--yl:#FFF8DC;
   --b:#00AAFF;--bl:#DCF4FF; --v:#9B00FF;--vl:#F2E5FF;
   --t1:#180828;--t2:#5A3870;--t3:#C0A8D8;
-  --brd:#EED8FF;--shd:rgba(155,0,255,.07);
+  --brd:#EED8FF;
   --disp:'Pacifico',cursive;--mono:'Space Mono',monospace;--serf:'Noto Serif SC',serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 
-/* ====== 🌅 动态流转底色：偏红到偏蓝 ====== */
+/* ====== 🌅 全局动态流转底色：偏红到偏蓝 ====== */
 body {
   font-family: 'Quicksand', sans-serif;
   color: var(--t1);
@@ -26,12 +26,33 @@ body {
   overflow-x: hidden;
   background: linear-gradient(135deg, #FFB6C1 0%, #F8D8FF 40%, #87CEFA 100%);
   background-size: 200% 200%;
+  background-attachment: fixed; /* 保证向下滚动时背景依然生效 */
   animation: gradientShift 15s ease infinite;
 }
 @keyframes gradientShift { 
   0% { background-position: 0% 50%; } 
   50% { background-position: 100% 50%; } 
   100% { background-position: 0% 50%; } 
+}
+
+/* ================= 🌟 页面全局背景呼吸光球 ================= */
+.bg-orb {
+  position: fixed; border-radius: 50%; filter: blur(90px); z-index: -1; opacity: 0.5; pointer-events: none;
+  animation: floatOrb 25s infinite alternate ease-in-out;
+}
+.orb-1 { width: 45vw; height: 45vw; background: rgba(255, 45, 120, 0.4); top: 5%; left: -10vw; }
+.orb-2 { width: 55vw; height: 55vw; background: rgba(0, 170, 255, 0.3); bottom: -15%; right: -10vw; animation-delay: -7s; }
+.orb-3 { width: 35vw; height: 35vw; background: rgba(155, 0, 255, 0.3); top: 40%; left: 30vw; animation-delay: -14s; }
+@keyframes floatOrb { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(60px, 120px) scale(1.15); } }
+
+/* ====== 🌟 亮闪闪星光粒子系统 (全屏覆盖) ====== */
+.particles-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; overflow: hidden; }
+.particle { position: absolute; border-radius: 50%; background: white; opacity: 0; animation: floatSparkle linear infinite; }
+@keyframes floatSparkle { 
+  0% { transform: translateY(100vh) scale(0); opacity: 0; } 
+  20% { opacity: 0.8; transform: translateY(80vh) scale(1); } 
+  80% { opacity: 0.6; } 
+  100% { transform: translateY(-20vh) scale(0); opacity: 0; } 
 }
 
 .ctr{max-width:1100px;margin:0 auto;padding:0 24px}
@@ -44,109 +65,87 @@ body {
 .lang-btn{background:var(--vl);color:var(--v);border:none;border-radius:100px;padding:4px 12px;font-weight:800;cursor:pointer;transition:.2s}
 .lang-btn:hover{background:var(--v);color:var(--white)}
 
-/* ================= 🌟 页面全局背景呼吸光球 ================= */
-.bg-orb {
-  position: fixed; border-radius: 50%; filter: blur(90px); z-index: -1; opacity: 0.5; pointer-events: none;
-  animation: floatOrb 25s infinite alternate ease-in-out;
-}
-.orb-1 { width: 45vw; height: 45vw; background: rgba(255, 45, 120, 0.4); top: 5%; left: -10vw; }
-.orb-2 { width: 55vw; height: 55vw; background: rgba(0, 170, 255, 0.3); bottom: -15%; right: -10vw; animation-delay: -7s; }
-.orb-3 { width: 35vw; height: 35vw; background: rgba(155, 0, 255, 0.3); top: 40%; left: 30vw; animation-delay: -14s; }
-@keyframes floatOrb { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(60px, 120px) scale(1.15); } }
+/* ====== 🌍 Hero 拼图区 ====== */
+#hero { min-height: 100vh; width: 100vw; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;}
 
-/* ====== 🌍 极简网格 Hero 区 ====== */
-#hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-
-/* ================= 🧩 优化重构：150块极细缝隙的 3D 拼图 ================= */
+/* ================= 🧩 绝对定位的 3D 悬浮拼图引擎 ================= */
 #puzzleGrid {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  display: grid;
-  /* 增加密度：15 列 x 10 行 = 150 块拼图 */
-  grid-template-columns: repeat(15, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  /* 1px 的极细直线间距 */
-  gap: 1px; 
+  position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;
   z-index: 1; pointer-events: none;
 }
 
 .puzzle-cell {
-  perspective: 1200px; width: 100%; height: 100%; pointer-events: auto;
+  position: absolute;
+  perspective: 1200px; 
+  pointer-events: auto;
+  /* 初始 scale 控制拼图缝隙宽度：0.97 产生极美的镂空线条感 */
+  transform: scale(0.97);
+  transition: transform 0.4s ease;
 }
 
 .puzzle-inner {
   position: relative; width: 100%; height: 100%;
-  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
   transform-style: preserve-3d; cursor: pointer;
 }
 
-/* 极细微的 1% 缩进，形成纤细的拼图凹凸轮廓 */
+/* 通过 SVG 实现最真实的拼图曲面轮廓 */
 .puzzle-front, .puzzle-back {
   position: absolute; width: 100%; height: 100%; backface-visibility: hidden;
-  clip-path: polygon(
-    1% 1%, 
-    42% 1%, 45% 0%, 55% 0%, 58% 1%, 
-    99% 1%, 
-    99% 42%, 100% 45%, 100% 55%, 99% 58%, 
-    99% 99%, 
-    58% 99%, 55% 100%, 45% 100%, 42% 99%, 
-    1% 99%, 
-    1% 58%, 0% 55%, 0% 45%, 1% 42%
-  );
 }
 
+/* 正面：默认动态壁纸 */
 .puzzle-front {
   background: url('个人主页首页动态壁纸.jpg') center/cover fixed no-repeat;
-  opacity: 0.35; transition: opacity 0.3s ease;
+  opacity: 0.4; transition: opacity 0.4s ease;
 }
 
+/* 背面：盲盒壁纸 */
 .puzzle-back {
   transform: rotateY(180deg);
   background-size: cover; background-position: center;
-  box-shadow: inset 0 0 15px rgba(255,255,255,0.4);
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.3);
   background-color: var(--pl);
-  border: 1px solid rgba(255,255,255,0.3);
 }
 
-/* 鼠标悬停：因为拼图变小了，翻面时放大 1.3 倍更具视觉冲击力 */
-.puzzle-cell:hover .puzzle-inner {
-  transform: rotateY(180deg) scale(1.3); z-index: 20;
-}
+/* Hover 悬停：放大并翻出专属盲盒图片 */
+.puzzle-cell:hover { transform: scale(1.08); z-index: 20; }
+.puzzle-cell:hover .puzzle-inner { transform: rotateY(180deg); }
 .puzzle-cell:hover .puzzle-front { opacity: 1; }
 
-/* 量子点击波纹 */
+/* ⚡ 量子转场动画类 (点击时触发) */
+.quantum-animate { animation: quantumGlitch 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+@keyframes quantumGlitch {
+  0% { filter: brightness(1) contrast(1) hue-rotate(0deg); transform: scale(1) rotateY(180deg); }
+  20% { filter: brightness(2) contrast(2) hue-rotate(90deg); transform: scale(1.1) rotateY(180deg) rotate(4deg); background-color: var(--b); }
+  40% { filter: brightness(2) contrast(3) hue-rotate(-90deg) invert(1); transform: scale(0.9) rotateY(180deg) rotate(-4deg); }
+  100% { filter: brightness(1) contrast(1) hue-rotate(0deg); transform: scale(1) rotateY(180deg); }
+}
+
+/* ⚡ 量子震荡波特效 */
 .shockwave {
   position: fixed; border-radius: 50%; background: transparent;
   border: 2px solid rgba(0, 170, 255, 0.8);
-  box-shadow: 0 0 20px rgba(155, 0, 255, 0.6), inset 0 0 20px rgba(0, 170, 255, 0.6);
+  box-shadow: 0 0 30px rgba(155, 0, 255, 0.8), inset 0 0 30px rgba(0, 170, 255, 0.8);
   pointer-events: none; z-index: 9999;
   transform: translate(-50%, -50%) scale(0);
   animation: shockwaveAnim 0.8s ease-out forwards;
 }
 @keyframes shockwaveAnim {
-  0% { transform: translate(-50%, -50%) scale(0); opacity: 1; border-width: 10px; }
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 1; border-width: 15px; }
   100% { transform: translate(-50%, -50%) scale(3); opacity: 0; border-width: 0px; }
 }
 
-/* ⚡ 量子色散动画 */
-.quantum-animate {
-  animation: quantumGlitch 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-}
-@keyframes quantumGlitch {
-  0% { filter: brightness(1) contrast(1) hue-rotate(0deg); transform: scale(1.3) rotateY(180deg); }
-  20% { filter: brightness(2) contrast(2) hue-rotate(90deg); transform: scale(1.4) rotateY(180deg) rotate(5deg); }
-  40% { filter: brightness(1.5) contrast(3) hue-rotate(-90deg) invert(1); transform: scale(1.2) rotateY(180deg) rotate(-5deg); }
-  100% { filter: brightness(1) contrast(1) hue-rotate(0deg); transform: scale(1.3) rotateY(180deg); }
-}
-
-/* ================= 玻璃态护盾 3D 翻转系统 (中心名片) ================= */
+/* ================= 玻璃态护盾 3D 翻转系统 (名片居中保护) ================= */
 .flip-container { perspective: 1500px; width: 100%; min-height: 480px; position: relative; z-index: 30; pointer-events: auto; max-width: 720px; margin: 0 auto; }
 .flip-inner { position: absolute; width: 100%; height: 100%; transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55); transform-style: preserve-3d; }
 .flip-inner.is-flipped { transform: rotateY(180deg); }
 
+/* 中心名片：超强毛玻璃，确保不被拼图遮盖 */
 .flip-front, .flip-back { 
   position: absolute; width: 100%; height: 100%; backface-visibility: hidden; 
   background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-  border-radius: 40px; box-shadow: 0 20px 50px rgba(155,0,255,0.15); border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.15); border: 1px solid rgba(255, 255, 255, 0.9);
   padding: 40px 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
 }
 .flip-back { transform: rotateY(180deg); align-items: stretch; text-align: left; padding: 40px 50px; }
@@ -181,9 +180,9 @@ body {
 .edu-title { font-weight: 900; color: var(--t1); font-size: 1.1rem; }
 .edu-sub { font-size: 0.95rem; color: var(--t2); font-weight: 700; margin-top: 4px; }
 
-/* ================= 🚀 内容滚动滑入动画 ================= */
-.reveal-item { opacity: 0; transform: translateY(50px) scale(0.98); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
-.reveal-item.vis { opacity: 1; transform: translateY(0) scale(1); }
+/* ================= 🚀 优雅滚动动画 (Scroll Reveal) ================= */
+.reveal-item { opacity: 0; transform: translateY(60px); transition: all 0.9s cubic-bezier(0.25, 0.8, 0.25, 1); }
+.reveal-item.vis { opacity: 1; transform: translateY(0); }
 
 /* ====== 通用卡片排版 ====== */
 .s-tag{display:inline-block;font-size:.85rem;font-weight:800;color:var(--b);background:var(--white);padding:4px 12px;border-radius:100px;margin-bottom:1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);}
@@ -249,14 +248,18 @@ body {
   .flip-back { padding: 30px 20px; }
   #puzzleGrid { display: none; } 
 }
-
-/* ================= 🌟 星光粒子系统 ================= */
-.particles-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; overflow: hidden; }
-.particle { position: absolute; bottom: -50px; border-radius: 50%; background: white; opacity: 0; animation: floatSparkle linear infinite; }
-@keyframes floatSparkle { 0% { transform: translateY(50px) scale(0); opacity: 0; } 20% { opacity: 0.8; transform: translateY(-10vh) scale(1); } 80% { opacity: 0.6; } 100% { transform: translateY(-110vh) scale(0); opacity: 0; } }
 </style>
 </head>
 <body>
+
+<svg style="width:0;height:0;position:absolute;">
+  <clipPath id="puzzle-plus" clipPathUnits="objectBoundingBox">
+    <path d="M 0.1 0.1 L 0.4 0.1 C 0.4 -0.05, 0.6 -0.05, 0.6 0.1 L 0.9 0.1 L 0.9 0.4 C 1.05 0.4, 1.05 0.6, 0.9 0.6 L 0.9 0.9 L 0.6 0.9 C 0.6 1.05, 0.4 1.05, 0.4 0.9 L 0.1 0.9 L 0.1 0.6 C -0.05 0.6, -0.05 0.4, 0.1 0.4 Z" />
+  </clipPath>
+  <clipPath id="puzzle-minus" clipPathUnits="objectBoundingBox">
+    <path d="M 0.1 0.1 L 0.4 0.1 C 0.4 0.25, 0.6 0.25, 0.6 0.1 L 0.9 0.1 L 0.9 0.4 C 0.75 0.4, 0.75 0.6, 0.9 0.6 L 0.9 0.9 L 0.6 0.9 C 0.6 0.75, 0.4 0.75, 0.4 0.9 L 0.1 0.9 L 0.1 0.6 C 0.25 0.6, 0.25 0.4, 0.1 0.4 Z" />
+  </clipPath>
+</svg>
 
 <div class="bg-orb orb-1"></div>
 <div class="bg-orb orb-2"></div>
@@ -276,8 +279,7 @@ body {
 </nav>
 
 <section id="hero">
-  <div id="puzzleGrid">
-    </div>
+  <div id="puzzleGrid"></div>
 
   <div class="ctr flip-container" style="pointer-events: none;">
     <div class="flip-inner" id="flipCard">
@@ -555,7 +557,7 @@ function createSparkles(){
   }
 }
 
-/* ================= 🧩 全面升维：3D 悬浮翻牌拼图系统 ================= */
+/* ================= 🧩 全面核心重构：绝对坐标的极细缝隙纯正拼图系统 ================= */
 function createPuzzleGrid(){
   const grid = document.getElementById('puzzleGrid');
   if(!grid) return;
@@ -575,33 +577,57 @@ function createPuzzleGrid(){
     '主页芙芙2.jpg'
   ];
 
-  // 随机挑选 11 个不重复的拼图格子下标（总共150个格子，0到149）
+  // 定义网格维度 (6列 * 4行 = 24块) - 刚好达到"中间主体的左右两侧各两列"的大小
+  const cols = 6;
+  const rows = 4;
+  const totalPieces = cols * rows;
+
+  // 随机挑选 11 个不重复的拼图格子来放置图片盲盒
   let imgPositions = [];
+  // 第一行的1,2,3(索引0,1,2)固定分配给前三张图
+  imgPositions.push(0, 1, 2);
+  
+  // 其余8张图随机分配
   while(imgPositions.length < specialImages.length){
-    let r = Math.floor(Math.random() * 150);
+    let r = Math.floor(Math.random() * totalPieces);
     if(imgPositions.indexOf(r) === -1) imgPositions.push(r);
   }
 
-  for(let i=0; i<150; i++){
+  for(let i=0; i<totalPieces; i++){
+    let col = i % cols;
+    let row = Math.floor(i / cols);
+
     // 构建 3D 翻牌盒子
     let cell = document.createElement('div');
     cell.className = 'puzzle-cell';
+    
+    // JS 动态绝对定位：每个块占宽度的 16.66%，高度的 25% (6x4网格)
+    // 为了实现交错的拼图轮廓互相咬合，我们让每个 div "放大并重叠" 一点点，但在内部用 clip-path 裁掉
+    cell.style.width = '20vw'; 
+    cell.style.height = '30vh'; 
+    cell.style.left = `calc(${col * 16.66}vw - 1.6vw)`; 
+    cell.style.top = `calc(${row * 25}vh - 2.5vh)`; 
 
     let inner = document.createElement('div');
     inner.className = 'puzzle-inner';
 
-    // 正面：显示完整背景图的一部分，带有极细的 🧩 拼图裁剪形状
     let front = document.createElement('div');
     front.className = 'puzzle-front';
+    // 交替使用拼图凹凸形状
+    let shapeId = (row + col) % 2 === 0 ? 'url(#puzzle-plus)' : 'url(#puzzle-minus)';
+    front.style.clipPath = shapeId;
 
-    // 背面：默认不配置，除非抽到了盲盒壁纸
     let back = document.createElement('div');
     back.className = 'puzzle-back';
+    back.style.clipPath = shapeId;
 
-    // 如果这个格子被选中作为彩蛋，就把对应的图片绑定在背面
+    // 如果这个格子被选中作为盲盒，就绑定背面的图片
     const imgIndex = imgPositions.indexOf(i);
     if (imgIndex !== -1) {
       back.style.backgroundImage = `url('${specialImages[imgIndex]}')`;
+    } else {
+      // 如果没有图片，放一张浅色的多巴胺色彩纯色
+      back.style.background = 'rgba(255, 229, 238, 0.8)'; 
     }
 
     // ⚡ 点击量子转场波纹特效
