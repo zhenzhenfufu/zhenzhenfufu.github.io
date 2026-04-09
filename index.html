@@ -9,8 +9,6 @@
 /* ================= 全局基础 ================= */
 html { scroll-behavior: smooth; }
 :root{
-  /* 恢复你最爱的多巴胺梦幻海洋渐变 */
-  --bg-ocean: linear-gradient(135deg, #FFE5EE 0%, #F2E5FF 50%, #DCF4FF 100%);
   --white:#fff;
   --p:#FF2D78;--pl:#FFE5EE; --y:#FFB700;--yl:#FFF8DC;
   --b:#00AAFF;--bl:#DCF4FF; --v:#9B00FF;--vl:#F2E5FF;
@@ -20,12 +18,30 @@ html { scroll-behavior: smooth; }
 }
 *{box-sizing:border-box;margin:0;padding:0}
 
+/* ====== 🌅 动态流转底色：偏红到偏蓝 ====== */
 body {
   font-family: 'Quicksand', sans-serif;
-  background: var(--bg-ocean); /* 恢复原始动态渐变背景 */
   color: var(--t1);
   line-height: 1.6;
   overflow-x: hidden;
+  background: linear-gradient(135deg, #FFB6C1 0%, #F8D8FF 40%, #87CEFA 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 15s ease infinite;
+}
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ====== 🖼️ 自定义壁纸层 (透明度 0.35 完美平衡) ====== */
+.bg-image-layer {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: url('个人主页首页动态壁纸.jpg') center/cover no-repeat;
+  opacity: 0.35; 
+  z-index: -1;
+  pointer-events: none;
 }
 
 .ctr{max-width:1100px;margin:0 auto;padding:0 24px}
@@ -38,7 +54,7 @@ body {
 .lang-btn{background:var(--vl);color:var(--v);border:none;border-radius:100px;padding:4px 12px;font-weight:800;cursor:pointer;transition:.2s}
 .lang-btn:hover{background:var(--v);color:var(--white)}
 
-/* ====== 🌍 极简多巴胺 Hero 区 🌍 ====== */
+/* ====== 🌍 极简 Hero 区 ====== */
 #hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
 
 /* ================= 玻璃态护盾 3D 翻转系统 ================= */
@@ -46,16 +62,16 @@ body {
 .flip-inner { position: absolute; width: 100%; height: 100%; transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55); transform-style: preserve-3d; }
 .flip-inner.is-flipped { transform: rotateY(180deg); }
 
-/* 中心卡片加厚毛玻璃，折射背后的浮动拼图 */
+/* 中心卡片加厚毛玻璃，让背后背景若隐若现 */
 .flip-front, .flip-back { 
   position: absolute; width: 100%; height: 100%; backface-visibility: hidden; 
-  background: rgba(255, 254, 245, 0.7); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   border-radius: 40px; box-shadow: 0 20px 50px rgba(155,0,255,0.15); border: 2px solid rgba(255, 255, 255, 0.9);
   padding: 40px 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
 }
 .flip-back { transform: rotateY(180deg); align-items: stretch; text-align: left; padding: 40px 50px; }
 
-/* 正面：个人简介与照片完美并排 */
+/* 正面元素 */
 .front-intro-wrap { display: flex; align-items: center; justify-content: center; gap: 30px; width: 100%; margin-bottom: 1.5rem; text-align: left;}
 .h-avatar-wrap{width:140px;height:140px;border-radius:50%;border:4px solid var(--white);box-shadow:0 10px 25px rgba(155,0,255,0.2);overflow:hidden;transition:transform 0.3s ease; flex-shrink: 0;}
 .h-avatar-wrap:hover{transform:scale(1.05) rotate(2deg)}
@@ -68,8 +84,6 @@ body {
 .typewriter-text{color:var(--v);font-family:var(--mono)}
 .typewriter-cursor{display:inline-block;width:3px;background-color:var(--v);margin-left:4px;animation:blink 0.8s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-
-/* 新版专属介绍文字排版 */
 .h-desc{font-size:1.1rem;color:var(--t2);margin-bottom:2rem;max-width:620px;text-align: center; line-height: 1.7; font-weight: 600;}
 .h-btns{display:flex;gap:16px;justify-content:center;width:100%}
 .btn{text-decoration:none;padding:12px 28px;border-radius:100px;font-weight:800;transition:.2s;display:inline-block;z-index:1;cursor:pointer; font-size: 1rem;}
@@ -78,7 +92,7 @@ body {
 .btn-s{background:var(--white);color:var(--t2);box-shadow:0 8px 24px rgba(0,0,0,0.08)}
 .btn-s:hover{background:var(--vl);color:var(--v)}
 
-/* 背面：简历排版（中英全覆盖翻译） */
+/* 背面元素 */
 .resume-name { font-size: 2.2rem; font-family: var(--serf); font-weight: 900; color: var(--v); margin-bottom: 1.2rem; border-bottom: 2px dashed var(--brd); padding-bottom: 10px; text-align: center;}
 .res-row { display: flex; align-items: center; font-size: 1.05rem; font-weight: 700; color: var(--t2); margin-bottom: 12px; }
 .res-icon { display: inline-block; width: 35px; font-size: 1.25rem; text-align: center;}
@@ -86,15 +100,15 @@ body {
 .edu-title { font-weight: 900; color: var(--t1); font-size: 1.1rem; }
 .edu-sub { font-size: 0.95rem; color: var(--t2); font-weight: 700; margin-top: 4px; }
 
-/* 其他板块通用 */
-.s-tag{display:inline-block;font-size:.85rem;font-weight:800;color:var(--b);background:var(--bl);padding:4px 12px;border-radius:100px;margin-bottom:1rem}
+/* ====== 通用排版 (修改背景使底层流转显露) ====== */
+.s-tag{display:inline-block;font-size:.85rem;font-weight:800;color:var(--b);background:var(--white);padding:4px 12px;border-radius:100px;margin-bottom:1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);}
 .s-title{font-size:2.5rem;font-weight:900;margin-bottom:3rem;line-height:1.2}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.exp-card{background:var(--white);padding:32px;border-radius:24px;box-shadow:0 12px 32px var(--shd);display:flex;gap:20px;border:1px solid var(--brd);transition: all 0.4s ease; opacity:0; transform:translateY(30px)}
+.exp-card{background:rgba(255,255,255,0.65); backdrop-filter: blur(10px); padding:32px;border-radius:24px;box-shadow:0 12px 32px rgba(0,0,0,0.05);display:flex;gap:20px;border:1px solid rgba(255,255,255,0.8);transition: all 0.4s ease; opacity:0; transform:translateY(30px)}
 .exp-card.vis{opacity:1; transform:translateY(0)}
-.exp-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(155,0,255,.18)}
+.exp-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(155,0,255,.12); background:rgba(255,255,255,0.85);}
 .e-icon{width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
-.ei-p{background:var(--pl);color:var(--p)}.ei-v{background:var(--vl);color:var(--v)}.ei-b{background:var(--bl);color:var(--b)}.ei-g{background:var(--gl);color:var(--g)}
+.ei-p{background:var(--pl);color:var(--p)}.ei-v{background:var(--vl);color:var(--v)}.ei-b{background:var(--bl);color:var(--b)}.ei-g{background:#E8F8F5;color:#1ABC9C}
 .e-org{font-weight:800;font-size:1.2rem;margin-bottom:4px}
 .e-role{color:var(--v);font-weight:700;font-size:.95rem;margin-bottom:8px}
 .e-ul{list-style:none;margin-top:12px;font-size:.95rem;color:var(--t2)}
@@ -102,18 +116,21 @@ body {
 .e-ul li::before{content:'✦';position:absolute;left:0;color:var(--v);font-size:.8rem;top:2px}
 .chip{display:inline-block;padding:4px 12px;border-radius:100px;font-size:.8rem;font-weight:700;margin-bottom:12px;border:none}
 .c-p{color:var(--p);background:var(--pl)}.c-v{color:var(--v);background:var(--vl)}.c-b{color:var(--b);background:var(--bl)}
+
 .tl-wrap{max-width:800px;margin:0 auto;position:relative}
-.tl-wrap::before{content:'';position:absolute;width:2px;background:var(--brd);top:0;bottom:0;left:50%;transform:translateX(-50%)}
+.tl-wrap::before{content:'';position:absolute;width:2px;background:rgba(255,255,255,0.6);top:0;bottom:0;left:50%;transform:translateX(-50%)}
 .tl-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;position:relative;width:100%;opacity:0; transform:translateY(30px); transition: all 0.5s ease;}
 .tl-row.vis{opacity:1; transform:translateY(0)}
 .tl-row::after{content:'';position:absolute;width:16px;height:16px;background:var(--v);border:4px solid var(--white);border-radius:50%;left:50%;transform:translateX(-50%);box-shadow:0 0 0 4px var(--vl)}
-.tl-card{width:45%;background:var(--white);padding:20px;border-radius:20px;box-shadow:0 8px 24px var(--shd);border:1px solid var(--brd); transition: 0.3s;}
-.tl-card:hover{transform: translateY(-5px); box-shadow: 0 12px 30px rgba(155,0,255,.15);}
+.tl-card{width:45%;background:rgba(255,255,255,0.65); backdrop-filter: blur(10px); padding:20px;border-radius:20px;box-shadow:0 8px 24px rgba(0,0,0,0.05);border:1px solid rgba(255,255,255,0.8); transition: 0.3s;}
+.tl-card:hover{transform: translateY(-5px); background:rgba(255,255,255,0.85); box-shadow: 0 12px 30px rgba(155,0,255,.1);}
 .tl-row:nth-child(even) .tl-card{margin-left:auto}
 .tl-ev{font-weight:800;color:var(--v);margin-bottom:8px}
 .tl-d{font-size:.9rem;color:var(--t2)}
-.moment-card{display:flex;gap:15px;background:var(--white);padding:24px;border-radius:16px;box-shadow:0 8px 24px var(--shd);margin:0 auto 2rem;max-width:800px; opacity:0; transform:translateY(30px); transition: 0.5s ease;}
+
+.moment-card{display:flex;gap:15px;background:rgba(255,255,255,0.65); backdrop-filter: blur(10px); padding:24px;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,0.05); border:1px solid rgba(255,255,255,0.8); margin:0 auto 2rem;max-width:800px; opacity:0; transform:translateY(30px); transition: 0.5s ease;}
 .moment-card.vis{opacity:1; transform:translateY(0)}
+.moment-card:hover{background:rgba(255,255,255,0.85);}
 .m-avatar img{width:50px;height:50px;border-radius:8px;object-fit:cover}
 .m-content{flex:1}
 .m-name{font-weight:800;color:#576b95;font-size:1.1rem;margin-bottom:6px}
@@ -123,7 +140,8 @@ body {
 .m-gallery img:hover{filter:brightness(0.9)}
 .m-location{font-size:.85rem;color:#576b95;margin-bottom:8px;font-weight:600}
 .m-footer{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;color:#b2b2b2}
-.pow-card{background:var(--white);padding:24px;border-radius:24px;box-shadow:0 12px 32px var(--shd);border:1px solid var(--brd);text-align:center;width:100%;max-width:400px;margin:2rem auto}
+
+.pow-card{background:rgba(255,255,255,0.8); backdrop-filter: blur(10px); padding:24px;border-radius:24px;box-shadow:0 12px 32px rgba(155,0,255,0.1);border:1px solid rgba(255,255,255,0.9);text-align:center;width:100%;max-width:400px;margin:2rem auto}
 .pow-title{font-weight:900;color:var(--v);font-size:1.2rem;margin-bottom:4px}
 .pow-sub{font-size:.75rem;color:var(--t3);font-weight:800;letter-spacing:1px;margin-bottom:16px}
 .pow-num{font-weight:900;font-size:3rem;line-height:1;color:var(--t1)}
@@ -150,24 +168,27 @@ body {
   .h-desc { font-size: 0.95rem; }
 }
 
-/* ================= 新增：多巴胺悬浮拼图粒子背景 ================= */
+/* ================= 🌟 亮闪闪星光粒子特效 ================= */
 .particles-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; overflow: hidden; }
 .particle { 
   position: absolute; 
-  bottom: -150px; 
-  opacity: 0; 
-  animation: floatPuzzle linear infinite; 
+  bottom: -50px; 
+  border-radius: 50%;
+  background: white;
+  opacity: 0;
+  animation: floatSparkle linear infinite; 
 }
-@keyframes floatPuzzle { 
-  0% { transform: translateY(150px) translateX(0px); opacity: 0; } 
-  10% { opacity: 0.85; } 
-  90% { opacity: 0.85; } 
-  100% { transform: translateY(-120vh) translateX(100px); opacity: 0; } 
+@keyframes floatSparkle { 
+  0% { transform: translateY(50px) scale(0); opacity: 0; } 
+  20% { opacity: 0.8; transform: translateY(-10vh) scale(1); } 
+  80% { opacity: 0.6; } 
+  100% { transform: translateY(-110vh) scale(0); opacity: 0; } 
 }
 </style>
 </head>
 <body>
 
+<div class="bg-image-layer"></div>
 <div class="particles-bg" id="particlesBg"></div>
 
 <nav class="nav">
@@ -183,7 +204,6 @@ body {
 </nav>
 
 <section id="hero">
-
   <div class="ctr flip-container" style="pointer-events: none;">
     <div class="flip-inner" id="flipCard">
       
@@ -234,7 +254,7 @@ body {
   </div>
 </section>
 
-<section id="experience" class="sec" style="background:rgba(255,255,255,0.85)">
+<section id="experience" class="sec" style="background:rgba(255,255,255,0.25); backdrop-filter: blur(8px);">
   <div class="ctr">
     <div class="s-tag" data-i18n="exp.tag">研究 & 经历</div>
     <h2 class="s-title"><span data-i18n="exp.title1">我做过的</span> <span class="rainbow" data-i18n="exp.title2">研究与探索</span></h2>
@@ -261,7 +281,7 @@ body {
   </div>
 </section>
 
-<section id="timeline" class="sec" style="background:rgba(255,255,255,0.95)">
+<section id="timeline" class="sec" style="background:rgba(255,255,255,0.4); backdrop-filter: blur(12px);">
   <div class="ctr">
     <div class="s-tag" data-i18n="tl.tag">人生时间轴</div>
     <h2 class="s-title"><span data-i18n="tl.title1">走过的</span> <span class="rainbow" data-i18n="tl.title2">每一步</span></h2>
@@ -277,7 +297,7 @@ body {
   </div>
 </section>
 
-<section id="projects" class="sec" style="background:rgba(255,255,255,0.85)">
+<section id="projects" class="sec" style="background:rgba(255,255,255,0.25); backdrop-filter: blur(8px);">
   <div class="ctr">
     <div class="s-tag" data-i18n="proj.tag">精选项目</div>
     <h2 class="s-title"><span data-i18n="proj.title1">做出来的</span> <span class="rainbow" data-i18n="proj.title2">成果</span></h2>
@@ -290,7 +310,7 @@ body {
   </div>
 </section>
 
-<section id="skills" class="sec" style="background:rgba(255,255,255,0.95)">
+<section id="skills" class="sec" style="background:rgba(255,255,255,0.4); backdrop-filter: blur(12px);">
   <div class="ctr">
     <div class="s-tag" data-i18n="sk.tag">技能树</div>
     <h2 class="s-title"><span data-i18n="sk.title1">我的</span> <span class="rainbow" data-i18n="sk.title2">能力点</span></h2>
@@ -305,7 +325,7 @@ body {
   </div>
 </section>
 
-<section id="life" class="sec" style="background:rgba(255,255,255,0.85)">
+<section id="life" class="sec" style="background:rgba(255,255,255,0.25); backdrop-filter: blur(8px);">
   <div class="ctr">
     <div class="s-tag" data-i18n="mom.tag">生活分享</div>
     <h2 class="s-title" style="text-align:center"><span data-i18n="mom.title1">我的</span> <span class="rainbow" data-i18n="mom.title2">朋友圈</span></h2>
@@ -327,7 +347,7 @@ body {
   </div>
 </section>
 
-<section id="contact" class="sec" style="background:rgba(255,255,255,0.95)">
+<section id="contact" class="sec" style="background:rgba(255,255,255,0.4); backdrop-filter: blur(12px);">
   <div class="ctr" style="display:flex;flex-direction:column;align-items:center">
     <div class="s-tag" data-i18n="ct.tag">联系我</div>
     <h2 class="s-title" style="text-align:center"><span data-i18n="ct.title1">一起</span> <span class="rainbow" data-i18n="ct.title2">搞点有意思的事</span></h2>
@@ -348,18 +368,14 @@ body {
   </div>
 </section>
 
-<div class="footer" style="background:rgba(255,255,255,0.95)">
+<div class="footer" style="background:rgba(255,255,255,0.5)">
   <span data-i18n="ft">用</span> 🤍 <span data-i18n="ft2">制作 · UCSD 数据科学 & 数学-CS</span><br>
   <span style="font-size:.8rem;color:var(--t3);font-weight:600;margin-top:8px;display:inline-block">© 2026 Zhen Wang. All rights reserved.</span>
 </div>
 
 <script>
-/* 翻转动画控制 */
-function toggleFlip() {
-  document.getElementById('flipCard').classList.toggle('is-flipped');
-}
+function toggleFlip() { document.getElementById('flipCard').classList.toggle('is-flipped'); }
 
-/* ====== 🌍 坚如磐石的底层双语字典 (已深度绑定所有新文本) 🌍 ====== */
 const T={
 zh:{
 'map.edu': '对白·无言之书', 'map.res': '求证·大地的底稿', 'map.life': '漫游·心底的牧场', 'map.ppl': '相望·最近的灯火',
@@ -426,10 +442,10 @@ function applyLang(){document.querySelectorAll('[data-i18n]').forEach(el=>{const
 const MSGS={zh:['你好呀旅行者，快来给我充能吧！','谢谢你！能量+1 ⚡','哇！你真好！✨','满满的能量感谢你！🌟','宇宙最强充能者出现了！💫','已收到你的心意，感激不尽！❤️','充能完毕！战斗力 MAX！🔥','你让我今天很开心！🎉','收到你的能量了，好温暖～💝','神秘旅行者！感谢惠顾！✦'],en:['Hello traveler, click to power me up!','Thank you! Energy +1 ⚡',"Wow you're so kind! ✨",'Full of energy, thanks! 🌟',"Universe's top charger! 💫",'Your kindness received! ❤️','Fully charged! MAX! 🔥','You made my day! 🎉','Received your energy! 💝','Mystery traveler! Thank you! ✦']};
 const BAR_MAX=100;function getPow(){return parseInt(localStorage.getItem('pow_v2')||'0')}function setPow(n){localStorage.setItem('pow_v2',n)}function initPow(){const n=getPow();document.getElementById('powNum').textContent=n;document.getElementById('powBar').style.width=Math.min(2+n%BAR_MAX,100)+'%';updatePowMsg();}function addPower(){const n=getPow()+1;setPow(n);document.getElementById('powNum').textContent=n;document.getElementById('powBar').style.width=Math.min(2+(n%BAR_MAX),100)+'%';updatePowMsg(n);const btn=document.getElementById('powBtn');const p=document.createElement('span');p.className='plus1';p.textContent='+1 ⚡';p.style.cssText='top:0;left:50%;transform:translateX(-50%)';btn.parentElement.style.position='relative';btn.parentElement.appendChild(p);setTimeout(()=>p.remove(),1000);btn.style.transform='scale(.95)';setTimeout(()=>btn.style.transform='',150);}function updatePowMsg(n){const c=n||getPow();const msgs=MSGS[lang];const msg=c===0?msgs[0]:msgs[Math.min(Math.floor((c-1)%10),msgs.length-1)];document.getElementById('powMsg').textContent=msg;}
 
-/* 卡片滚动动画 */
+/* 滚动动画 */
 const io=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('vis'),i*70)});},{threshold:.08});document.querySelectorAll('.exp-card, .tl-row, .moment-card').forEach(el=>io.observe(el));
 
-/* 动态打字机特效，已更新四大兴趣领域 */
+/* 动态打字机 */
 const typeWords={
   zh:["高性能计算 💻","机器学习 🤖","数据分析 📊","游戏设计 🎮"],
   en:["High-Performance Computing 💻","Machine Learning 🤖","Data Analysis 📊","Game Design 🎮"]
@@ -450,37 +466,27 @@ function typeEffect(){
 initPow();
 typeEffect();
 
-/* ====== 🎯 极简高级多巴胺漂浮拼图粒子引擎 ====== */
-function createPuzzleParticles(){
+/* ====== ✨ 亮闪闪漂浮星光系统 ====== */
+function createSparkleParticles(){
   const bg = document.getElementById('particlesBg');
   if(!bg) return;
-  /* 多巴胺配色：经典蓝、神秘紫、明亮青、活力粉 */
-  const colors = ['#00AAFF', '#9B00FF', '#00FFFF', '#FF2D78']; 
-  
+  bg.innerHTML = ''; 
   for(let i=0; i<60; i++){
     let p = document.createElement('div');
     p.className = 'particle';
-    /* 全屏随机分布 */
-    p.style.left = (Math.random() * 110 - 5) + 'vw';
-    p.style.animationDuration = (Math.random() * 20 + 15) + 's';
-    p.style.animationDelay = '-' + (Math.random() * 30) + 's'; /* 负延迟保证一打开就满屏 */
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.animationDuration = (Math.random() * 12 + 8) + 's'; /* 8s - 20s */
+    p.style.animationDelay = '-' + (Math.random() * 20) + 's'; 
     
-    const size = Math.random() * 50 + 25; // 25px 到 75px
+    const size = Math.random() * 4 + 2; /* 2px - 6px */
     p.style.width = size + 'px';
     p.style.height = size + 'px';
-    
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    const rot = Math.random() * 360;
-    
-    /* 绘制完美闭合的多巴胺拼图块 SVG */
-    p.innerHTML = `<svg viewBox="0 0 100 100" width="100%" height="100%" style="filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.1)); transform: rotate(${rot}deg);">
-      <path d="M 25 25 L 40 25 C 40 10 60 10 60 25 L 75 25 L 75 40 C 90 40 90 60 75 60 L 75 75 L 60 75 C 60 90 40 90 40 75 L 25 75 L 25 60 C 10 60 10 40 25 40 Z" fill="${color}" opacity="0.65" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
-    </svg>`;
+    p.style.boxShadow = `0 0 ${size*2}px rgba(255,255,255,0.9)`;
     
     bg.appendChild(p);
   }
 }
-createPuzzleParticles();
+createSparkleParticles();
 
 applyLang();const originalApplyLang=applyLang;applyLang=function(){originalApplyLang();clearTimeout(typingTimeout);isDeleting=false;typingCharIndex=0;typeEffect();};
 </script>
