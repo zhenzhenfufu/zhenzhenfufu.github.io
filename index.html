@@ -76,7 +76,7 @@ body {
 /* ====== 🌍 极简网格 Hero 区 ====== */
 #hero { min-height: 100vh; width: 100vw; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;}
 
-/* ================= 🧩 绝对定位的 8x6 拼图引擎 ================= */
+/* ================= 🧩 绝对定位的 8x6 精致拼图引擎 ================= */
 #puzzleGrid {
   position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;
   z-index: 1; pointer-events: none;
@@ -110,7 +110,8 @@ body {
   transform: rotateY(180deg);
   background-size: cover; background-position: center;
   box-shadow: inset 0 0 30px rgba(0,0,0,0.3);
-  background-color: var(--pl);
+  /* 基础颜色，如果没背景图会显示这个 */
+  background-color: var(--pl); 
 }
 
 /* Hover 悬停：放大并翻出专属盲盒图片 */
@@ -462,7 +463,7 @@ zh:{
 'pow.title':'旅行者能量站','pow.sub':'VISITOR ENERGY STATION','pow.unit':'份能量已收到','pow.btn':'点击充能 +1','pow.msg0':'你好呀旅行者，快来给我充能吧！','exp.tag':'研究 & 经历','exp.title1':'我做过的','exp.title2':'研究与探索',
 'e1.org':'UCSD · 独立本科科研项目','e1.role':'独立研究员 — 边缘 AI 热节流效应研究','e1.date':'2026.03 – 至今','e1.b1':'独立主导课题：边缘 AI 热节流效应与能效关系。导师：Peter Chi 教授。','e1.b2':'在 GPU/Jetson 设备上部署 Llama-3，使用 nvidia-smi & Prometheus 实时采集 GPU 温度、时钟频率、功耗与吞吐量。','e1.b3':'构建"效率-热量"量化模型，产出含可视化仪表盘的技术报告，为不同热状态下 AI 推理提供实证数据。',
 'e3.org':'上海交通大学 · 心理学院','e3.role':'研究助理 — 儿童发展与家庭研究实验室','e3.date':'2024.06 – 2025.09','e3.b1':'在孙晓宁教授课题组处理 500+ 小时幼儿行为结构化数据，推动大规模发展研究数据的系统化分析。','e3.b2':'使用 Stata & Excel 管理发展评估数据集，与博士生协作构建自动化流程，完成 95 份标准化计算分析报告。','e3.b3':'主导设计 60 项变量采集工具；独立执行 28 名儿童的标准化评估（韦氏量表、TEC）。','e3.b4':'担任《Developmental Psychology》期刊审稿人；每周文献研讨会完成 10 次方法学批判性汇报。',
-'e4.org':'上海市世外中学 · 学生会','e4.role':'实践部副部长','e4.date':'2023.09 – 2024.09','e4.b1':'管理 108 人校志愿者团队，统筹调度电影博物馆、敦煌文化周、中国文化周、爱心义卖、篮球班赛等多类活动。',
+'e4.org':'上海市世外中学 · 学生会','e4.role':'实践部副部长','e4.date':'203.09 – 2024.09','e4.b1':'管理 108 人校志愿者团队，统筹调度电影博物馆、敦煌文化周、中国文化周、爱心义卖、篮球班赛等多类活动。',
 'tl.tag':'人生时间轴','tl.title1':'走过的','tl.title2':'每一步',
 'tl1.ev':'🏫 上海市世外中学（高中）','tl1.d':'高中三年，发现对数据科学与社会科学的深厚兴趣，系统打磨独立思考与自学能力，厚积薄发。','tl2.ev':'🎖️ 学生会实践部副部长','tl2.d':'领导 108 人志愿者团队，在高三繁忙学业中磨砺组织能力与领导力，统筹多项大型校园文化活动。','tl3.ev':'🔬 上海交大心理学院 RA','tl3.d':'人生第一段正式科研经历。独立执行 28 名儿童认知评估，处理 500+ 小时数据，学会了 Stata 与系统化研究方法。','tl4.ev':'✈️ 远赴加州，开启 UCSD','tl4.d':'带着好奇与期待飞越太平洋，开始数据科学 & 数学-计算机科学双专业本科学习。GPA 4.0/4.0。','tl5.ev':'📝 "学生为何上学"社会学研究','tl5.d':'带领 5 人团队完成 10 场深度访谈，运用假设检验与定性编码，合作撰写 25 页研究报告。满分 100/100 ⭐','tl6.ev':'📈 英超转会分析项目','tl6.d':'用 Python/Pandas 爬取 Transfermarkt 近 10 年数据，构建时间序列数据集，用线性回归量化转会投入与竞技成绩的关系。','tl8.ev':'🏆 独立科研：边缘 AI 能效','tl8.d':'获得本科科研资助，独立主导边缘 AI 热节流效应研究，导师 Peter Chi 教授。向高性能计算与 AI 研究全力冲刺。',
 'proj.tag':'精选项目','proj.title1':'做出来的','proj.title2':'成果',
@@ -492,6 +493,7 @@ en:{
 'tl1.ev':'🏫 Shanghai World Foreign Language Academy','tl1.d':'Three years of high school. Discovered deep passion for data science and social science; honed independent thinking.','tl2.ev':'🎖️ Student Union Vice Minister','tl2.d':'Led a 108-member volunteer team through major campus events, honing leadership and organizational skills.','tl3.ev':'🔬 SJTU Psychology Dept. RA','tl3.d':'First formal research experience. Conducted cognitive assessments for 28 children, processed 500+ hours of data.','tl4.ev':'✈️ Off to California — UCSD Begins','tl4.d':'Crossed the Pacific to begin a double major in Data Science & Math-CS. GPA: 4.0/4.0.','tl5.ev':'📝 "Why Do Students Go to College?"','tl5.d':'Led a 5-member sociology team through 10 interviews, hypothesis testing, and qualitative coding. Score: 100/100 ⭐','tl6.ev':'📈 EPL Transfer Spending Analysis','tl6.d':'Scraped 10 years of Premier League transfer data from Transfermarkt; quantified ROI using linear regression.','tl8.ev':'🏆 Independent Research: Edge AI','tl8.d':'Received undergraduate research funding to lead edge AI thermal throttling research under Prof. Peter Chi.',
 'proj.tag':'Selected Projects','proj.title1':"Things I've",'proj.title2':'shipped',
 'p1.t':'Edge AI Thermal Throttling Study','p1.d':'Independent undergraduate research. Deployed Llama-3 on Jetson, built monitoring pipeline and efficiency-to-heat model.',
+'p2.t':'Edge AI Thermal Throttling Study','p2.d':'Deployed Llama-3 on Jetson, built monitoring pipeline and efficiency-to-heat model.',
 'p2.t':'EPL Transfer Spending vs. Goal Difference','p2.d':'Scraped 10 years of Premier League data from Transfermarkt. Applied linear regression to quantify transfer ROI.',
 'p3.t':'"Why Do Students Go to College?"','p3.d':'Led a 5-member team through 10 interviews, hypothesis testing, and qualitative coding. 25-page report. 100/100 ⭐',
 'p4.t':'Child Development Data Pipeline','p4.d':'Automated Stata/Excel workflows at SJTU for 500+ hours of data. Conducted Wechsler assessments for 28 children.',
@@ -544,7 +546,7 @@ function typeEffect(){
   typingTimeout=setTimeout(typeEffect,speed);
 }
 
-/* ================= 🌟 满屏亮闪闪飘落粒子 ================= */
+/* ================= 🌟 满屏亮闪闪漂落粒子 ================= */
 function createSparkles(){
   const bg = document.getElementById('particlesBg');
   if(!bg) return;
@@ -562,29 +564,52 @@ function createSparkles(){
   }
 }
 
-/* ================= 🧩 绝对坐标 8x6 = 48 块真实拼图引擎 ================= */
+/* ================= 🧩 绝对坐标 8x6 = 48 块真实拼图引擎 (更新图片逻辑) ================= */
 function createPuzzleGrid(){
   const grid = document.getElementById('puzzleGrid');
   if(!grid) return;
   
-  const specialImages = [
-    '主页薇尔莉特.jpg', '主页喜多川.jpg', '主页eva合影.jpg',
-    '主页胡桃.jpg', '主页流萤合影.jpg', '主页命运石之门.jpg',
-    '主页四谎.jpg', '主页有希.jpg', '主页二乃.jpg',
-    '主页芙芙1.jpg', '主页芙芙2.jpg'
+  // 1. 定义上传的 8 张图片
+  const availableImages = [
+    '主页阿根廷夺冠.webp',
+    '主页巴萨夺冠.jpg',
+    '主页德约.jpg',
+    '主页黄泉.jpg',
+    '主页苏牙.jpg',
+    '主页遐蝶.jpg',
+    '主页一色.jpeg',
+    '主页有希.jpg'
   ];
 
   const cols = 8; const rows = 6; const totalPieces = 48;
   
-  // 第一行的 1, 2, 3 (索引 0, 1, 2) 固定分配给前三张图
-  let imgPositions = [0, 1, 2]; 
-  
-  // 其余 8 张图随机分配到剩余的 45 个格子中
-  while(imgPositions.length < specialImages.length){
-    let r = Math.floor(Math.random() * totalPieces);
-    if(imgPositions.indexOf(r) === -1) imgPositions.push(r);
+  // 2. 找出所有位于第1、2、7、8列 (索引 0,1,6,7) 和第1、6行 (索引 0,5) 的目标格子索引
+  let targetIndices = [];
+  for(let i=0; i<totalPieces; i++){
+    let col = i % cols;
+    let row = Math.floor(i / cols);
+    // 判断是否在目标区域 (最外两圈)
+    if(col === 0 || col === 1 || col === 6 || col === 7 || row === 0 || row === 5) {
+      targetIndices.push(i);
+    }
   }
 
+  // 3. 随机打乱目标格子的索引顺序 (Fisher-Yates Shuffle)
+  for (let i = targetIndices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [targetIndices[i], targetIndices[j]] = [targetIndices[j], targetIndices[i]];
+  }
+
+  // 4. 将图片分配给打乱后的前 8 个目标格子
+  let finalPieceConfig = {}; // 格式: { pieceIndex: imageName }
+  for(let i=0; i<availableImages.length; i++) {
+    // 确保图片数量不超过目标格子数量 (8 < 32，没问题)
+    if(i < targetIndices.length) {
+      finalPieceConfig[targetIndices[i]] = availableImages[i];
+    }
+  }
+
+  // 5. 生成拼图 HTML
   for(let i=0; i<totalPieces; i++){
     let col = i % cols;
     let row = Math.floor(i / cols);
@@ -592,11 +617,7 @@ function createPuzzleGrid(){
     let cell = document.createElement('div');
     cell.className = 'puzzle-cell';
     
-    // JS 动态绝对定位：8x6 网格
-    // 宽 100/8 = 12.5vw，高 100/6 ≈ 16.666vh
     const cellW = 100 / cols; const cellH = 100 / rows;
-    
-    // 为了实现交错的拼图轮廓互相咬合，我们需要对原始大小进行精准的 1/0.88 倍放大
     const totalW = cellW / 0.88;
     const totalH = cellH / 0.88;
     const offsetW = (totalW - cellW) / 2;
@@ -612,12 +633,9 @@ function createPuzzleGrid(){
 
     let front = document.createElement('div');
     front.className = 'puzzle-front';
-    
-    // 交替使用拼图的凹凸形状，以实现边缘咬合
     let shapeId = (row + col) % 2 === 0 ? 'url(#puzzle-plus)' : 'url(#puzzle-minus)';
     front.style.clipPath = shapeId;
 
-    // 内部定位一层全屏图片，消除由于 fixed 定位在某些浏览器中的失效 bug
     let frontBg = document.createElement('div');
     frontBg.className = 'puzzle-full-bg';
     frontBg.style.left = `calc(${-col * cellW}vw + ${offsetW}vw)`;
@@ -628,15 +646,14 @@ function createPuzzleGrid(){
     back.className = 'puzzle-back';
     back.style.clipPath = shapeId;
 
-    // 绑定选中的盲盒壁纸
-    const imgIndex = imgPositions.indexOf(i);
-    if (imgIndex !== -1) {
-      back.style.backgroundImage = `url('${specialImages[imgIndex]}')`;
+    // 6. 根据配置为拼图背面添加图片
+    if (finalPieceConfig[i]) {
+      back.style.backgroundImage = `url('${finalPieceConfig[i]}')`;
     } else {
+      // 其他最外圈格子或中间格子，保持默认样式或空白
       back.style.background = 'rgba(255, 229, 238, 0.8)'; 
     }
 
-    // 点击量子特效
     inner.addEventListener('click', function(e) {
       createShockwave(e.clientX, e.clientY);
       this.classList.remove('quantum-animate');
