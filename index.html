@@ -24,6 +24,7 @@ body {
   color: var(--t1);
   line-height: 1.6;
   overflow-x: hidden;
+  /* 恢复你要求的 偏红色变蓝色 动态背景 */
   background: linear-gradient(135deg, #FFB6C1 0%, #F8D8FF 40%, #87CEFA 100%);
   background-size: 200% 200%;
   animation: gradientShift 15s ease infinite;
@@ -32,16 +33,6 @@ body {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
-}
-
-/* ====== 🖼️ 自定义壁纸层 (透明度 0.35 完美平衡) ====== */
-.bg-image-layer {
-  position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  background: url('个人主页首页动态壁纸.jpg') center/cover no-repeat;
-  opacity: 0.35; 
-  z-index: -1;
-  pointer-events: none;
 }
 
 .ctr{max-width:1100px;margin:0 auto;padding:0 24px}
@@ -54,114 +45,56 @@ body {
 .lang-btn{background:var(--vl);color:var(--v);border:none;border-radius:100px;padding:4px 12px;font-weight:800;cursor:pointer;transition:.2s}
 .lang-btn:hover{background:var(--v);color:var(--white)}
 
-/* ====== 🌍 极简 Hero 区 ====== */
+/* ====== 🌍 极简网格 Hero 区 ====== */
 #hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
 
-/* ================= 🟩 3D MC 悬浮方块系统 🟩 ================= */
-.mc-blocks-layer { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:2; }
-
-.mc-block {
+/* ================= 🧩 核心亮点：全屏切割拼图网格系统 ================= */
+#puzzleGrid {
   position: absolute;
-  width: 140px; height: 160px;
-  pointer-events: auto; cursor: pointer;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease;
-  transform-origin: center;
+  top: 0; left: 0; width: 100%; height: 100%;
+  display: grid;
+  /* 划分为 10列 x 8行 的网格系统 */
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  gap: 3px; /* 这 3px 就是你要求的“切割线条/缝隙” */
+  z-index: 1; /* 位于星光之上，卡片之下 */
+  pointer-events: none; /* 外层禁止事件，交由子元素处理 */
 }
 
-/* 赋予四个方块不同的上下呼吸悬浮动画 */
-.mc-tl { top: 18vh; left: 12vw; animation: floatMC 6s ease-in-out infinite; }
-.mc-tr { top: 18vh; right: 12vw; animation: floatMC 7s ease-in-out infinite reverse; }
-.mc-bl { bottom: 15vh; left: 12vw; animation: floatMC 6.5s ease-in-out infinite; }
-.mc-br { bottom: 15vh; right: 12vw; animation: floatMC 5.5s ease-in-out infinite reverse; }
-
-@keyframes floatMC {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+.puzzle-piece {
+  pointer-events: auto;
+  /* 最关键的一步：通过 fixed 让所有碎片共享同一张背景图，形成切割效果 */
+  /* 注意：这里扩展名使用 .png，请确保你的文件名为 个人主页首页动态壁纸.png */
+  background: url('个人主页首页动态壁纸.png') center/cover fixed no-repeat;
+  opacity: 0.35; /* 你要求的合适透明度 */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: 2px;
 }
 
-.mc-block:hover { transform: scale(1.1) translateY(-20px); filter: brightness(1.15) drop-shadow(0 15px 20px rgba(255,255,255,0.4)); z-index: 20; animation-play-state: paused;}
-
-/* SVG 方块样式 */
-.voxel-svg { width: 100%; height: 100%; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.3)); }
-.voxel-top { stroke: rgba(255,255,255,0.8); stroke-width: 1.5; }
-.voxel-left { stroke: rgba(255,255,255,0.4); stroke-width: 1; }
-.voxel-right { stroke: rgba(255,255,255,0.2); stroke-width: 1; }
-
-/* 文本标签紧贴方块下方，防遮挡且禁止换行 */
-.mc-label {
-  position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%);
-  font-family: var(--serf); font-weight: 900; font-size: 1.3rem; color: var(--white);
-  text-shadow: 0 2px 5px rgba(0,0,0,0.8), 0 0 10px rgba(0,0,0,0.8);
-  white-space: nowrap; letter-spacing: 2px;
+/* 解压的鼠标悬停交互效果 */
+.puzzle-piece:hover {
+  opacity: 0.85; /* 擦亮画面 */
+  transform: scale(0.92); /* 微微收缩，增加立体感 */
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  z-index: 2;
 }
 
-/* ================= 奇遇互动元素放在方块上方 ================= */
-.mc-anim-layer { position: absolute; top: -30px; left: 50%; transform: translateX(-50%); width: 100%; height: 100px; pointer-events: none;}
-
-/* TL: 学术书本 */
-.anim-edu { text-align: center; font-size: 3.5rem; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.4)); margin-top: -10px;}
-.math-sym { position: absolute; font-family: var(--serf); font-weight: 900; color: #fff; font-size: 1.5rem; opacity: 0; animation: float-sym 3s ease-in infinite; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
-.sym1 { top: 0; left: 20%; animation-delay: 0s; }
-.sym2 { top: -10px; left: 50%; animation-delay: 1s; }
-.sym3 { top: 10px; left: 80%; animation-delay: 2s; }
-@keyframes float-sym { 0% { transform: translateY(0) scale(0.8) rotate(-10deg); opacity: 1; } 100% { transform: translateY(-40px) scale(1.3) rotate(15deg); opacity: 0; } }
-
-/* TR: 显微镜 */
-.anim-res { text-align: center; font-size: 3.5rem; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.4)); margin-top: -10px;}
-.bubble { position: absolute; font-size: 1.2rem; opacity: 0; animation: float-bubble 2s ease-in infinite; }
-.b1 { top: 10px; left: 30%; animation-delay: 0s; }
-.b2 { top: -5px; left: 60%; animation-delay: 1s; }
-@keyframes float-bubble { 0% { transform: translateY(0) scale(0.5); opacity: 1; } 100% { transform: translateY(-30px) scale(1.3); opacity: 0; } }
-
-/* BL: 猫咪在方块顶，F1 赛车 3D 环绕轨道 (绝对正向行驶) */
-.anim-life { width: 100%; height: 100%; position: relative; }
-.mini-cat { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); font-size: 3rem; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.4)); animation: cat-blink 4s infinite; z-index: 2;}
-@keyframes cat-blink { 0%, 90%, 100% { content: '🐱'; } 95% { content: '😑'; } }
-.f1-track-svg { position: absolute; top: -10px; left: -30px; width: 200px; height: 120px; z-index: 3;}
-.f1-car { font-size: 2.2rem; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.5)); }
-
-/* BR: 篝火与信件 */
-.anim-ppl { text-align: center; font-size: 3.5rem; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.4)); margin-top: -10px; position: relative;}
-.letter { position: absolute; font-size: 2rem; top: 10px; left: -10px; transform: rotate(-15deg); filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));}
-.spark { position: absolute; width: 6px; height: 6px; background: #FFD700; border-radius: 50%; box-shadow: 0 0 10px #FFD700; opacity: 0; animation: spark-fly 1.5s linear infinite; }
-.sp1 { top: 10px; left: 40%; animation-delay: 0s; }
-.sp2 { top: 20px; left: 60%; animation-delay: 0.5s; }
-.sp3 { top: 0px; left: 50%; animation-delay: 1s; }
-@keyframes spark-fly { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-40px) scale(0.2); opacity: 0; } }
-
-/* ================= ✈️ 飞机精准停靠系统 & 🚢 垂直轮船 ================= */
-.global-routes { position: absolute; top:0; left:0; width:100%; height:100%; z-index: 6; pointer-events: none; }
-.plane-svg { position: absolute; top:0; left:0; width:100%; height:100%; }
-.plane { position: absolute; font-size: 2.8rem; margin-top: -1.4rem; margin-left: -1.4rem; filter: drop-shadow(4px 8px 4px rgba(0,0,0,0.4)); }
-
-/* 轮船垂直航线：在右侧两块 MC 方块之间穿梭 */
-.ship-route { position: absolute; top: 25vh; right: 12vw; width: 0; height: 50vh; border-right: 3px dashed rgba(255, 255, 255, 0.4); z-index: 3; pointer-events: none;}
-.ship { position: absolute; top: 0; right: -30px; font-size: 3rem; filter: drop-shadow(2px 6px 4px rgba(0,0,0,0.4)); animation: ship-vertical 24s ease-in-out infinite; }
-@keyframes ship-vertical {
-  0% { top: 0%; transform: scaleX(1) rotate(90deg); }
-  10% { top: 0%; transform: scaleX(1) rotate(90deg); } /* 停泊右上 */
-  45% { top: 100%; transform: scaleX(1) rotate(90deg); }
-  50% { top: 100%; transform: scaleX(-1) rotate(90deg); } /* 抵达右下，调头 */
-  60% { top: 100%; transform: scaleX(-1) rotate(90deg); }
-  90% { top: 0%; transform: scaleX(-1) rotate(90deg); }
-  100% { top: 0%; transform: scaleX(1) rotate(90deg); } /* 回去调头 */
-}
-
-/* ================= 玻璃态护盾 3D 翻转系统 ================= */
+/* ================= 玻璃态护盾 3D 翻转系统 (名片) ================= */
 .flip-container { perspective: 1500px; width: 100%; min-height: 480px; position: relative; z-index: 20; pointer-events: auto; max-width: 720px; margin: 0 auto; }
 .flip-inner { position: absolute; width: 100%; height: 100%; transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55); transform-style: preserve-3d; }
 .flip-inner.is-flipped { transform: rotateY(180deg); }
 
-/* 中心卡片加厚毛玻璃 */
+/* 中心名片：厚毛玻璃质感，突出中心地位 */
 .flip-front, .flip-back { 
   position: absolute; width: 100%; height: 100%; backface-visibility: hidden; 
-  background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border-radius: 40px; box-shadow: 0 20px 50px rgba(155,0,255,0.15); border: 2px solid rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+  border-radius: 40px; box-shadow: 0 20px 50px rgba(155,0,255,0.15); border: 1px solid rgba(255, 255, 255, 0.8);
   padding: 40px 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
 }
 .flip-back { transform: rotateY(180deg); align-items: stretch; text-align: left; padding: 40px 50px; }
 
-/* 正面：个人简介与照片完美并排 */
+/* 正面元素排版 */
 .front-intro-wrap { display: flex; align-items: center; justify-content: center; gap: 30px; width: 100%; margin-bottom: 1.5rem; text-align: left;}
 .h-avatar-wrap{width:140px;height:140px;border-radius:50%;border:4px solid var(--white);box-shadow:0 10px 25px rgba(155,0,255,0.2);overflow:hidden;transition:transform 0.3s ease; flex-shrink: 0;}
 .h-avatar-wrap:hover{transform:scale(1.05) rotate(2deg)}
@@ -175,7 +108,7 @@ body {
 .typewriter-cursor{display:inline-block;width:3px;background-color:var(--v);margin-left:4px;animation:blink 0.8s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
-/* 描述排版 */
+/* 个人介绍段落 */
 .h-desc{font-size:1.1rem;color:var(--t2);margin-bottom:2rem;max-width:620px;text-align: center; line-height: 1.7; font-weight: 600;}
 .h-btns{display:flex;gap:16px;justify-content:center;width:100%}
 .btn{text-decoration:none;padding:12px 28px;border-radius:100px;font-weight:800;transition:.2s;display:inline-block;z-index:1;cursor:pointer; font-size: 1rem;}
@@ -184,7 +117,7 @@ body {
 .btn-s{background:var(--white);color:var(--t2);box-shadow:0 8px 24px rgba(0,0,0,0.08)}
 .btn-s:hover{background:var(--vl);color:var(--v)}
 
-/* 背面：简历排版 */
+/* 背面简历排版 */
 .resume-name { font-size: 2.2rem; font-family: var(--serf); font-weight: 900; color: var(--v); margin-bottom: 1.2rem; border-bottom: 2px dashed var(--brd); padding-bottom: 10px; text-align: center;}
 .res-row { display: flex; align-items: center; font-size: 1.05rem; font-weight: 700; color: var(--t2); margin-bottom: 12px; }
 .res-icon { display: inline-block; width: 35px; font-size: 1.25rem; text-align: center;}
@@ -192,10 +125,11 @@ body {
 .edu-title { font-weight: 900; color: var(--t1); font-size: 1.1rem; }
 .edu-sub { font-size: 0.95rem; color: var(--t2); font-weight: 700; margin-top: 4px; }
 
-/* ====== 通用排版 ====== */
+/* ====== 通用排版 (半透明磨砂设计) ====== */
 .s-tag{display:inline-block;font-size:.85rem;font-weight:800;color:var(--b);background:var(--white);padding:4px 12px;border-radius:100px;margin-bottom:1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);}
 .s-title{font-size:2.5rem;font-weight:900;margin-bottom:3rem;line-height:1.2}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+
 .exp-card{background:rgba(255,255,255,0.65); backdrop-filter: blur(10px); padding:32px;border-radius:24px;box-shadow:0 12px 32px rgba(0,0,0,0.05);display:flex;gap:20px;border:1px solid rgba(255,255,255,0.8);transition: all 0.4s ease; opacity:0; transform:translateY(30px)}
 .exp-card.vis{opacity:1; transform:translateY(0)}
 .exp-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(155,0,255,.12); background:rgba(255,255,255,0.85);}
@@ -258,11 +192,10 @@ body {
   .flip-back { padding: 30px 20px; }
   .res-row { font-size: 0.85rem; }
   .h-desc { font-size: 0.95rem; }
-  .mc-blocks-layer { display: none; }
-  .global-routes { display: none; }
+  #puzzleGrid { display: none; } /* 移动端可隐藏复杂拼图以提升性能 */
 }
 
-/* ================= ✨ 亮闪闪星光粒子特效 ================= */
+/* ================= ✨ 恢复亮闪闪星光系统 ====== */
 .particles-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; overflow: hidden; }
 .particle { 
   position: absolute; 
@@ -282,7 +215,6 @@ body {
 </head>
 <body>
 
-<div class="bg-image-layer"></div>
 <div class="particles-bg" id="particlesBg"></div>
 
 <nav class="nav">
@@ -299,77 +231,8 @@ body {
 
 <section id="hero">
 
-  <div class="mc-blocks-layer">
-    
-    <div class="mc-block mc-tl" onclick="document.getElementById('timeline').scrollIntoView({behavior: 'smooth'});">
-      <div class="mc-anim-layer"><div class="anim-edu">📖<span class="math-sym sym1">∑</span><span class="math-sym sym2">∫</span><span class="math-sym sym3">{ }</span></div></div>
-      <svg class="voxel-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-        <polygon class="voxel-top" points="50,15 85,32.5 50,50 15,32.5" fill="#FF85B3" />
-        <polygon class="voxel-left" points="15,32.5 50,50 50,85 15,67.5" fill="#FF2D78" />
-        <polygon class="voxel-right" points="50,50 85,32.5 85,67.5 50,85" fill="#D61C5C" />
-      </svg>
-      <div class="mc-label" data-i18n="map.edu">对白·无言之书</div>
+  <div id="puzzleGrid">
     </div>
-
-    <div class="mc-block mc-tr" onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'});">
-      <div class="mc-anim-layer"><div class="anim-res">🔬<span class="bubble b1">🫧</span><span class="bubble b2">🫧</span></div></div>
-      <svg class="voxel-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-        <polygon class="voxel-top" points="50,15 85,32.5 50,50 15,32.5" fill="#FFE066" />
-        <polygon class="voxel-left" points="15,32.5 50,50 50,85 15,67.5" fill="#FFB700" />
-        <polygon class="voxel-right" points="50,50 85,32.5 85,67.5 50,85" fill="#CC9200" />
-      </svg>
-      <div class="mc-label" data-i18n="map.res">求证·大地的底稿</div>
-    </div>
-
-    <div class="mc-block mc-bl" onclick="document.getElementById('life').scrollIntoView({behavior: 'smooth'});">
-      <div class="mc-anim-layer">
-        <div class="anim-life">
-          <div class="mini-cat">🐱</div>
-          <svg viewBox="0 0 200 150" class="f1-track-svg">
-            <path id="f1-mini-path" d="M 170 75 A 70 30 0 1 0 30 75 A 70 30 0 1 0 170 75 Z" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="4" stroke-dasharray="6 6"/>
-            <text class="f1-car" text-anchor="middle" dominant-baseline="central" transform="rotate(180)">🏎️
-               <animateMotion dur="4.5s" repeatCount="indefinite" rotate="auto"><mpath href="#f1-mini-path"/></animateMotion>
-            </text>
-          </svg>
-        </div>
-      </div>
-      <svg class="voxel-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-        <polygon class="voxel-top" points="50,15 85,32.5 50,50 15,32.5" fill="#66CCFF" />
-        <polygon class="voxel-left" points="15,32.5 50,50 50,85 15,67.5" fill="#00AAFF" />
-        <polygon class="voxel-right" points="50,50 85,32.5 85,67.5 50,85" fill="#0088CC" />
-      </svg>
-      <div class="mc-label" data-i18n="map.life">漫游·心底的牧场</div>
-    </div>
-
-    <div class="mc-block mc-br" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">
-      <div class="mc-anim-layer"><div class="anim-ppl">⛺<div class="letter">✉️</div><span class="spark sp1"></span><span class="spark sp2"></span><span class="spark sp3"></span></div></div>
-      <svg class="voxel-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-        <polygon class="voxel-top" points="50,15 85,32.5 50,50 15,32.5" fill="#C485FF" />
-        <polygon class="voxel-left" points="15,32.5 50,50 50,85 15,67.5" fill="#9B00FF" />
-        <polygon class="voxel-right" points="50,50 85,32.5 85,67.5 50,85" fill="#7500CC" />
-      </svg>
-      <div class="mc-label" data-i18n="map.ppl">相望·最近的灯火</div>
-    </div>
-  </div>
-
-  <div class="global-routes">
-    <svg class="plane-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-      <path id="plane-path" d="M 12 18 Q 50 0 88 18 Q 100 50 88 85 Q 50 100 12 85 Q 0 50 12 18 Z" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="0.3" stroke-dasharray="1.5 1.5"/>
-      <g filter="drop-shadow(2px 4px 2px rgba(0,0,0,0.4))">
-        <text class="plane" text-anchor="middle" dominant-baseline="central" transform="rotate(-40)">✈️
-          <animateMotion dur="24s" repeatCount="indefinite" rotate="auto" 
-            calcMode="spline" 
-            keyTimes="0; 0.166; 0.25; 0.416; 0.5; 0.666; 0.75; 0.916; 1" 
-            keyPoints="0; 0.25; 0.25; 0.5; 0.5; 0.75; 0.75; 1; 1"
-            keySplines="0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1">
-            <mpath href="#plane-path"/>
-          </animateMotion>
-        </text>
-      </g>
-    </svg>
-
-    <div class="ship-route"><div class="ship">🚢</div></div>
-  </div>
 
   <div class="ctr flip-container" style="pointer-events: none;">
     <div class="flip-inner" id="flipCard">
@@ -543,7 +406,7 @@ body {
 <script>
 function toggleFlip() { document.getElementById('flipCard').classList.toggle('is-flipped'); }
 
-/* ====== 🌍 双语翻译字典系统 (全绑定) ====== */
+/* ====== 🌍 双语翻译字典系统 ====== */
 const T={
 zh:{
 'map.edu': '对白·无言之书', 'map.res': '求证·大地的底稿', 'map.life': '漫游·心底的牧场', 'map.ppl': '相望·最近的灯火',
@@ -634,27 +497,37 @@ function typeEffect(){
 initPow();
 typeEffect();
 
-/* ====== ✨ 亮闪闪漂浮星光系统 ====== */
-function createSparkleParticles(){
+/* ====== 🌟 星光粒子特效 & 动态切割拼图生成系统 ====== */
+function createSparkles(){
   const bg = document.getElementById('particlesBg');
   if(!bg) return;
-  bg.innerHTML = ''; 
-  for(let i=0; i<60; i++){
+  for(let i=0; i<50; i++){
     let p = document.createElement('div');
     p.className = 'particle';
     p.style.left = Math.random() * 100 + 'vw';
-    p.style.animationDuration = (Math.random() * 12 + 8) + 's'; /* 8s - 20s */
+    p.style.animationDuration = (Math.random() * 12 + 8) + 's'; 
     p.style.animationDelay = '-' + (Math.random() * 20) + 's'; 
-    
-    const size = Math.random() * 4 + 2; /* 2px - 6px */
+    const size = Math.random() * 3 + 2; 
     p.style.width = size + 'px';
     p.style.height = size + 'px';
-    p.style.boxShadow = `0 0 ${size*2}px rgba(255,255,255,0.9)`;
-    
+    p.style.boxShadow = `0 0 ${size*2}px rgba(255,255,255,0.8)`;
     bg.appendChild(p);
   }
 }
-createSparkleParticles();
+
+function createPuzzleGrid(){
+  const grid = document.getElementById('puzzleGrid');
+  if(!grid) return;
+  /* 10x8 = 80 个切割碎片 */
+  for(let i=0; i<80; i++){
+    let piece = document.createElement('div');
+    piece.className = 'puzzle-piece';
+    grid.appendChild(piece);
+  }
+}
+
+createSparkles();
+createPuzzleGrid();
 
 applyLang();const originalApplyLang=applyLang;applyLang=function(){originalApplyLang();clearTimeout(typingTimeout);isDeleting=false;typingCharIndex=0;typeEffect();};
 </script>
